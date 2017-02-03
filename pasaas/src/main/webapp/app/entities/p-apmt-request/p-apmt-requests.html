@@ -1,0 +1,82 @@
+<div>
+    <h2 data-translate="pasaasApp.pAPMTRequest.home.title">PAPMT Requests</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-apmt-request.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pAPMTRequest.home.createLabel">
+                        Create new PAPMT Request
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="category"><span data-translate="pasaasApp.pAPMTRequest.category">Category</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pmtdescription"><span data-translate="pasaasApp.pAPMTRequest.pmtdescription">Pmtdescription</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pmtreason"><span data-translate="pasaasApp.pAPMTRequest.pmtreason">Pmtreason</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pmttitle"><span data-translate="pasaasApp.pAPMTRequest.pmttitle">Pmttitle</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pmttype"><span data-translate="pasaasApp.pAPMTRequest.pmttype">Pmttype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="siteid"><span data-translate="pasaasApp.pAPMTRequest.siteid">Siteid</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sitename"><span data-translate="pasaasApp.pAPMTRequest.sitename">Sitename</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sitepriority"><span data-translate="pasaasApp.pAPMTRequest.sitepriority">Sitepriority</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pmtstatus"><span data-translate="pasaasApp.pAPMTRequest.pmtstatus">Pmtstatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pmtpriority"><span data-translate="pasaasApp.pAPMTRequest.pmtpriority">Pmtpriority</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgpmt.organization"><span data-translate="pasaasApp.pAPMTRequest.paorgpmt">Paorgpmt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="papropmt.projectname"><span data-translate="pasaasApp.pAPMTRequest.papropmt">Papropmt</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pAPMTRequest in vm.pAPMTRequests track by pAPMTRequest.id">
+                    <td><a ui-sref="p-apmt-request-detail({id:pAPMTRequest.id})">{{pAPMTRequest.id}}</a></td>
+                    <td data-translate="{{'pasaasApp.PMTCategory.' + pAPMTRequest.category}}">{{pAPMTRequest.category}}</td>
+                    <td>{{pAPMTRequest.pmtdescription}}</td>
+                    <td>{{pAPMTRequest.pmtreason}}</td>
+                    <td>{{pAPMTRequest.pmttitle}}</td>
+                    <td>{{pAPMTRequest.pmttype}}</td>
+                    <td>{{pAPMTRequest.siteid}}</td>
+                    <td>{{pAPMTRequest.sitename}}</td>
+                    <td>{{pAPMTRequest.sitepriority}}</td>
+                    <td data-translate="{{'pasaasApp.PMTStatus.' + pAPMTRequest.pmtstatus}}">{{pAPMTRequest.pmtstatus}}</td>
+                    <td data-translate="{{'pasaasApp.PMTPriority.' + pAPMTRequest.pmtpriority}}">{{pAPMTRequest.pmtpriority}}</td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pAPMTRequest.paorgpmt.id})">{{pAPMTRequest.paorgpmt.organization}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pAPMTRequest.papropmt.id})">{{pAPMTRequest.papropmt.projectname}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-apmt-request-detail({id:pAPMTRequest.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-apmt-request.edit({id:pAPMTRequest.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-apmt-request.delete({id:pAPMTRequest.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

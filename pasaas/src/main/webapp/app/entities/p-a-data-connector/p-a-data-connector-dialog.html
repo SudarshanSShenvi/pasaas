@@ -1,0 +1,139 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPADataConnectorLabel" data-translate="pasaasApp.pADataConnector.home.createOrEditLabel">Create or edit a PA Data Connector</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pADataConnector.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pADataConnector.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.dcname" for="field_dcname">Dcname</label>
+            <input type="text" class="form-control" name="dcname" id="field_dcname"
+                    ng-model="vm.pADataConnector.dcname"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.dctype" for="field_dctype">Dctype</label>
+            <select class="form-control" name="dctype" ng-model="vm.pADataConnector.dctype" id="field_dctype">
+                <option value="JSR" data-translate="pasaasApp.DCType.JSR">JSR</option>
+                <option value="RDBMS" data-translate="pasaasApp.DCType.RDBMS">RDBMS</option>
+                <option value="CSV" data-translate="pasaasApp.DCType.CSV">CSV</option>
+                <option value="TSV" data-translate="pasaasApp.DCType.TSV">TSV</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.urllink" for="field_urllink">Urllink</label>
+            <input type="text" class="form-control" name="urllink" id="field_urllink"
+                    ng-model="vm.pADataConnector.urllink"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.remoteuname" for="field_remoteuname">Remoteuname</label>
+            <input type="text" class="form-control" name="remoteuname" id="field_remoteuname"
+                    ng-model="vm.pADataConnector.remoteuname"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.remotepwd" for="field_remotepwd">Remotepwd</label>
+            <input type="text" class="form-control" name="remotepwd" id="field_remotepwd"
+                    ng-model="vm.pADataConnector.remotepwd"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.remoteip" for="field_remoteip">Remoteip</label>
+            <input type="text" class="form-control" name="remoteip" id="field_remoteip"
+                    ng-model="vm.pADataConnector.remoteip"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.port" for="field_port">Port</label>
+            <input type="number" class="form-control" name="port" id="field_port"
+                    ng-model="vm.pADataConnector.port"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.localpath" for="field_localpath">Localpath</label>
+            <input type="text" class="form-control" name="localpath" id="field_localpath"
+                    ng-model="vm.pADataConnector.localpath"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.jsrpwd" for="field_jsrpwd">Jsrpwd</label>
+            <input type="text" class="form-control" name="jsrpwd" id="field_jsrpwd"
+                    ng-model="vm.pADataConnector.jsrpwd"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.jsruser" for="field_jsruser">Jsruser</label>
+            <input type="text" class="form-control" name="jsruser" id="field_jsruser"
+                    ng-model="vm.pADataConnector.jsruser"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.destinationpath" for="field_destinationpath">Destinationpath</label>
+            <input type="text" class="form-control" name="destinationpath" id="field_destinationpath"
+                    ng-model="vm.pADataConnector.destinationpath"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.retrieve" for="field_retrieve">Retrieve</label>
+            <input type="number" class="form-control" name="retrieve" id="field_retrieve"
+                    ng-model="vm.pADataConnector.retrieve"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.retrievedays" for="field_retrievedays">Retrievedays</label>
+            <input type="number" class="form-control" name="retrievedays" id="field_retrievedays"
+                    ng-model="vm.pADataConnector.retrievedays"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.mode" for="field_mode">Mode</label>
+            <input type="text" class="form-control" name="mode" id="field_mode"
+                    ng-model="vm.pADataConnector.mode"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.datamode" for="field_datamode">Datamode</label>
+            <input type="text" class="form-control" name="datamode" id="field_datamode"
+                    ng-model="vm.pADataConnector.datamode"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pADataConnector.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pADataConnector.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pADataConnector.paorgdc" for="field_paorgdc">Paorgdc</label>
+            <select class="form-control" id="field_paorgdc" name="paorgdc" ng-model="vm.pADataConnector.paorgdc" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pADataConnector.paprodc" for="field_paprodc">Paprodc</label>
+            <select class="form-control" id="field_paprodc" name="paprodc" ng-model="vm.pADataConnector.paprodc" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

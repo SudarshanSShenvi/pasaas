@@ -1,0 +1,106 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPAFileUploadLabel" data-translate="pasaasApp.pAFileUpload.home.createOrEditLabel">Create or edit a PA File Upload</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAFileUpload.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAFileUpload.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.remotepwd" for="field_remotepwd">Remotepwd</label>
+            <input type="text" class="form-control" name="remotepwd" id="field_remotepwd"
+                    ng-model="vm.pAFileUpload.remotepwd"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.portno" for="field_portno">Portno</label>
+            <input type="number" class="form-control" name="portno" id="field_portno"
+                    ng-model="vm.pAFileUpload.portno"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.filepath" for="field_filepath">Filepath</label>
+            <input type="text" class="form-control" name="filepath" id="field_filepath"
+                    ng-model="vm.pAFileUpload.filepath"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.transfertype" for="field_transfertype">Transfertype</label>
+            <input type="text" class="form-control" name="transfertype" id="field_transfertype"
+                    ng-model="vm.pAFileUpload.transfertype"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.remoteipaddr" for="field_remoteipaddr">Remoteipaddr</label>
+            <input type="text" class="form-control" name="remoteipaddr" id="field_remoteipaddr"
+                    ng-model="vm.pAFileUpload.remoteipaddr"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.remoteuser" for="field_remoteuser">Remoteuser</label>
+            <input type="text" class="form-control" name="remoteuser" id="field_remoteuser"
+                    ng-model="vm.pAFileUpload.remoteuser"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.scheduledprocess" for="field_scheduledprocess">Scheduledprocess</label>
+            <input type="number" class="form-control" name="scheduledprocess" id="field_scheduledprocess"
+                    ng-model="vm.pAFileUpload.scheduledprocess"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.mapreduce" for="field_mapreduce">Mapreduce</label>
+            <input type="text" class="form-control" name="mapreduce" id="field_mapreduce"
+                    ng-model="vm.pAFileUpload.mapreduce"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.filetype" for="field_filetype">Filetype</label>
+            <input type="text" class="form-control" name="filetype" id="field_filetype"
+                    ng-model="vm.pAFileUpload.filetype"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.customseparator" for="field_customseparator">Customseparator</label>
+            <input type="text" class="form-control" name="customseparator" id="field_customseparator"
+                    ng-model="vm.pAFileUpload.customseparator"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAFileUpload.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAFileUpload.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAFileUpload.paorgfu" for="field_paorgfu">Paorgfu</label>
+            <select class="form-control" id="field_paorgfu" name="paorgfu" ng-model="vm.pAFileUpload.paorgfu" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAFileUpload.paprofu" for="field_paprofu">Paprofu</label>
+            <select class="form-control" id="field_paprofu" name="paprofu" ng-model="vm.pAFileUpload.paprofu" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

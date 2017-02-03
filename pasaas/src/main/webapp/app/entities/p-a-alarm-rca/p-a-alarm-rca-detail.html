@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAAlarmRCA.detail.title">PA Alarm RCA</span> {{vm.pAAlarmRCA.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAAlarmRCA.alarmno">Alarmno</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmRCA.alarmno}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmRCA.alarmtext">Alarmtext</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmRCA.alarmtext}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmRCA.alarmtype">Alarmtype</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmRCA.alarmtype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmRCA.rcdetails">Rcdetails</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmRCA.rcdetails}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmRCA.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAAlarmRCA.pastatus}}">{{vm.pAAlarmRCA.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmRCA.paproarc">Paproarc</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAAlarmRCA.paproarc.id})">{{vm.pAAlarmRCA.paproarc.projectname}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmRCA.paorgarc">Paorgarc</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAAlarmRCA.paorgarc.id})">{{vm.pAAlarmRCA.paorgarc.organization}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-alarm-rca-detail.edit({id:vm.pAAlarmRCA.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

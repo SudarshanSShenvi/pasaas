@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity PAReliabilityConf.
+    -->
+    <changeSet id="20170202111758-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paorgrc_id"
+                                 baseTableName="pa_reliability_conf"
+                                 constraintName="fk_pareliability_conf_paorgrc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="paprorc_id"
+                                 baseTableName="pa_reliability_conf"
+                                 constraintName="fk_pareliability_conf_paprorc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_project"/>
+
+    </changeSet>
+</databaseChangeLog>

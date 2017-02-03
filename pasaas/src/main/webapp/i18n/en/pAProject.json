@@ -1,0 +1,41 @@
+{
+    "pasaasApp": {
+        "pAProject" : {
+            "home": {
+                "title": "PA Projects",
+                "createLabel": "Create a new PA Project",
+                "createOrEditLabel": "Create or edit a PA Project",
+                "search": "Search for PA Project"
+            },
+            "created": "A new PA Project is created with identifier {{ param }}",
+            "updated": "A PA Project is updated with identifier {{ param }}",
+            "deleted": "A PA Project is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Project {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Project"
+            },
+            "projectname": "Projectname",
+            "description": "Description",
+            "paorgpro": "Paorgpro",
+            "paempro": "Paempro",
+            "panotpro": "Panotpro",
+            "pafupro": "Pafupro",
+            "paappro": "Paappro",
+            "paprepro": "Paprepro",
+            "paaapro": "Paaapro",
+            "pascpro": "Pascpro",
+            "pasctpro": "Pasctpro",
+            "papspro": "Papspro",
+            "parcpro": "Parcpro",
+            "parspro": "Parspro",
+            "papmtpro": "Papmtpro",
+            "pascipro": "Pascipro",
+            "paarcpro": "Paarcpro",
+            "panedpro": "Panedpro",
+            "padcpro": "Padcpro",
+            "paschpro": "Paschpro"
+        }
+    }
+}

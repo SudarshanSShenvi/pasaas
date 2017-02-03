@@ -1,0 +1,11 @@
+{
+    "pasaasApp": {
+        "PlanType" : {
+            "null": "",
+            "Trial": "Trial",
+            "Silver": "Silver",
+            "Gold": "Gold",
+            "Platinum": "Platinum"
+        }
+    }
+}

@@ -1,0 +1,79 @@
+<div>
+    <h2 data-translate="pasaasApp.pANotification.home.title">PA Notifications</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-notification.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pANotification.home.createLabel">
+                        Create new PA Notification
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="notiftype"><span data-translate="pasaasApp.pANotification.notiftype">Notiftype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="msgto"><span data-translate="pasaasApp.pANotification.msgto">Msgto</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="msgcc"><span data-translate="pasaasApp.pANotification.msgcc">Msgcc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="msgsubject"><span data-translate="pasaasApp.pANotification.msgsubject">Msgsubject</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="msgbody"><span data-translate="pasaasApp.pANotification.msgbody">Msgbody</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="msgtouchtime"><span data-translate="pasaasApp.pANotification.msgtouchtime">Msgtouchtime</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="msgattachments"><span data-translate="pasaasApp.pANotification.msgattachments">Msgattachments</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgnot.organization"><span data-translate="pasaasApp.pANotification.paorgnot">Paorgnot</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="papronot.projectname"><span data-translate="pasaasApp.pANotification.papronot">Papronot</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pANotification in vm.pANotifications track by pANotification.id">
+                    <td><a ui-sref="p-a-notification-detail({id:pANotification.id})">{{pANotification.id}}</a></td>
+                    <td data-translate="{{'pasaasApp.PANotifType.' + pANotification.notiftype}}">{{pANotification.notiftype}}</td>
+                    <td>{{pANotification.msgto}}</td>
+                    <td>{{pANotification.msgcc}}</td>
+                    <td>{{pANotification.msgsubject}}</td>
+                    <td>{{pANotification.msgbody}}</td>
+                    <td>{{pANotification.msgtouchtime | date:'medium'}}</td>
+                    <td>
+                        <a ng-if="pANotification.msgattachments" ng-click="vm.openFile(pANotification.msgattachmentsContentType, pANotification.msgattachments)" data-translate="entity.action.open">open</a>
+                        <span ng-if="pANotification.msgattachments">{{pANotification.msgattachmentsContentType}}, {{vm.byteSize(pANotification.msgattachments)}}</span>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pANotification.paorgnot.id})">{{pANotification.paorgnot.organization}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pANotification.papronot.id})">{{pANotification.papronot.projectname}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-notification-detail({id:pANotification.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-notification.edit({id:pANotification.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-notification.delete({id:pANotification.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

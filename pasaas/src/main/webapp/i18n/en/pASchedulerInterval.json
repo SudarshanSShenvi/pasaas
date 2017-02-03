@@ -1,0 +1,29 @@
+{
+    "pasaasApp": {
+        "pASchedulerInterval" : {
+            "home": {
+                "title": "PA Scheduler Intervals",
+                "createLabel": "Create a new PA Scheduler Interval",
+                "createOrEditLabel": "Create or edit a PA Scheduler Interval",
+                "search": "Search for PA Scheduler Interval"
+            },
+            "created": "A new PA Scheduler Interval is created with identifier {{ param }}",
+            "updated": "A PA Scheduler Interval is updated with identifier {{ param }}",
+            "deleted": "A PA Scheduler Interval is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Scheduler Interval {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Scheduler Interval"
+            },
+            "type": "Type",
+            "hourval": "Hourval",
+            "minutesval": "Minutesval",
+            "schname": "Schname",
+            "dcname": "Dcname",
+            "pastatus": "Pastatus",
+            "paorgsci": "Paorgsci",
+            "paprosci": "Paprosci"
+        }
+    }
+}

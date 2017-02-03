@@ -1,0 +1,28 @@
+{
+    "pasaasApp": {
+        "pAAlarmRCA" : {
+            "home": {
+                "title": "PA Alarm RCAS",
+                "createLabel": "Create a new PA Alarm RCA",
+                "createOrEditLabel": "Create or edit a PA Alarm RCA",
+                "search": "Search for PA Alarm RCA"
+            },
+            "created": "A new PA Alarm RCA is created with identifier {{ param }}",
+            "updated": "A PA Alarm RCA is updated with identifier {{ param }}",
+            "deleted": "A PA Alarm RCA is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Alarm RCA {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Alarm RCA"
+            },
+            "alarmno": "Alarmno",
+            "alarmtext": "Alarmtext",
+            "alarmtype": "Alarmtype",
+            "rcdetails": "Rcdetails",
+            "pastatus": "Pastatus",
+            "paproarc": "Paproarc",
+            "paorgarc": "Paorgarc"
+        }
+    }
+}

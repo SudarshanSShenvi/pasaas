@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pASchedulerInterval.detail.title">PA Scheduler Interval</span> {{vm.pASchedulerInterval.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.type">Type</span></dt>
+        <dd>
+            <span>{{vm.pASchedulerInterval.type}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.hourval">Hourval</span></dt>
+        <dd>
+            <span>{{vm.pASchedulerInterval.hourval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.minutesval">Minutesval</span></dt>
+        <dd>
+            <span>{{vm.pASchedulerInterval.minutesval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.schname">Schname</span></dt>
+        <dd>
+            <span>{{vm.pASchedulerInterval.schname}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.dcname">Dcname</span></dt>
+        <dd>
+            <span>{{vm.pASchedulerInterval.dcname}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pASchedulerInterval.pastatus}}">{{vm.pASchedulerInterval.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.paorgsci">Paorgsci</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pASchedulerInterval.paorgsci.id})">{{vm.pASchedulerInterval.paorgsci.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASchedulerInterval.paprosci">Paprosci</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pASchedulerInterval.paprosci.id})">{{vm.pASchedulerInterval.paprosci.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-scheduler-interval-detail.edit({id:vm.pASchedulerInterval.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

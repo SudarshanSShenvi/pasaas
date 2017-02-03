@@ -1,0 +1,24 @@
+{
+    "pasaasApp": {
+        "pARawAlarmData" : {
+            "home": {
+                "title": "PA Raw Alarm Data",
+                "createLabel": "Create a new PA Raw Alarm Data",
+                "createOrEditLabel": "Create or edit a PA Raw Alarm Data",
+                "search": "Search for PA Raw Alarm Data"
+            },
+            "created": "A new PA Raw Alarm Data is created with identifier {{ param }}",
+            "updated": "A PA Raw Alarm Data is updated with identifier {{ param }}",
+            "deleted": "A PA Raw Alarm Data is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Raw Alarm Data {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Raw Alarm Data"
+            },
+            "alarmno": "Alarmno",
+            "distname": "Distname",
+            "starteddate": "Starteddate"
+        }
+    }
+}

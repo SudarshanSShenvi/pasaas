@@ -1,0 +1,27 @@
+{
+    "pasaasApp": {
+        "pAErrorMessage" : {
+            "home": {
+                "title": "PA Error Messages",
+                "createLabel": "Create a new PA Error Message",
+                "createOrEditLabel": "Create or edit a PA Error Message",
+                "search": "Search for PA Error Message"
+            },
+            "created": "A new PA Error Message is created with identifier {{ param }}",
+            "updated": "A PA Error Message is updated with identifier {{ param }}",
+            "deleted": "A PA Error Message is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Error Message {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Error Message"
+            },
+            "errorcode": "Errorcode",
+            "errormsg": "Errormsg",
+            "errortime": "Errortime",
+            "erroruser": "Erroruser",
+            "paorgem": "Paorgem",
+            "paproem": "Paproem"
+        }
+    }
+}

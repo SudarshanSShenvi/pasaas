@@ -1,0 +1,10 @@
+{
+    "pasaasApp": {
+        "Active, Inactive, Delete" : {
+            "null": "",
+            "Active": "Active",
+            "Inactive": "Inactive",
+            "Delete": "Delete"
+        }
+    }
+}

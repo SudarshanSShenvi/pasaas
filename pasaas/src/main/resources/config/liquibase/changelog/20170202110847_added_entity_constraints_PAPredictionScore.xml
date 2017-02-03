@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity PAPredictionScore.
+    -->
+    <changeSet id="20170202110847-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paorgps_id"
+                                 baseTableName="pa_prediction_score"
+                                 constraintName="fk_paprediction_score_paorgps_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="paprops_id"
+                                 baseTableName="pa_prediction_score"
+                                 constraintName="fk_paprediction_score_paprops_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_project"/>
+
+    </changeSet>
+</databaseChangeLog>

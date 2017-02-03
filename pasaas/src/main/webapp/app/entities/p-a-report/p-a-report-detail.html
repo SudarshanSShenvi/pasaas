@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAReport.detail.title">PA Report</span> {{vm.pAReport.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAReport.reporttype">Reporttype</span></dt>
+        <dd>
+            <span>{{vm.pAReport.reporttype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReport.reportname">Reportname</span></dt>
+        <dd>
+            <span>{{vm.pAReport.reportname}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReport.reportparms">Reportparms</span></dt>
+        <dd>
+            <span>{{vm.pAReport.reportparms}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReport.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAReport.pastatus}}">{{vm.pAReport.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReport.paorgrep">Paorgrep</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAReport.paorgrep.id})">{{vm.pAReport.paorgrep.organization}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-report-detail.edit({id:vm.pAReport.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

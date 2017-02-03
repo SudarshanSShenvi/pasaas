@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pASaxCodeTmp.detail.title">PA Sax Code Tmp</span> {{vm.pASaxCodeTmp.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.distalarm">Distalarm</span></dt>
+        <dd>
+            <span>{{vm.pASaxCodeTmp.distalarm}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.saxcode">Saxcode</span></dt>
+        <dd>
+            <span>{{vm.pASaxCodeTmp.saxcode}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.total">Total</span></dt>
+        <dd>
+            <span>{{vm.pASaxCodeTmp.total}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.painterval">Painterval</span></dt>
+        <dd>
+            <span>{{vm.pASaxCodeTmp.painterval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.severity">Severity</span></dt>
+        <dd>
+            <span>{{vm.pASaxCodeTmp.severity}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pASaxCodeTmp.pastatus}}">{{vm.pASaxCodeTmp.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.paorgsct">Paorgsct</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pASaxCodeTmp.paorgsct.id})">{{vm.pASaxCodeTmp.paorgsct.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCodeTmp.paprosct">Paprosct</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pASaxCodeTmp.paprosct.id})">{{vm.pASaxCodeTmp.paprosct.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-sax-code-tmp-detail.edit({id:vm.pASaxCodeTmp.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,33 @@
+{
+    "pasaasApp": {
+        "pAPMTRequest" : {
+            "home": {
+                "title": "PAPMT Requests",
+                "createLabel": "Create a new PAPMT Request",
+                "createOrEditLabel": "Create or edit a PAPMT Request",
+                "search": "Search for PAPMT Request"
+            },
+            "created": "A new PAPMT Request is created with identifier {{ param }}",
+            "updated": "A PAPMT Request is updated with identifier {{ param }}",
+            "deleted": "A PAPMT Request is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PAPMT Request {{ id }}?"
+            },
+            "detail": {
+                "title": "PAPMT Request"
+            },
+            "category": "Category",
+            "pmtdescription": "Pmtdescription",
+            "pmtreason": "Pmtreason",
+            "pmttitle": "Pmttitle",
+            "pmttype": "Pmttype",
+            "siteid": "Siteid",
+            "sitename": "Sitename",
+            "sitepriority": "Sitepriority",
+            "pmtstatus": "Pmtstatus",
+            "pmtpriority": "Pmtpriority",
+            "paorgpmt": "Paorgpmt",
+            "papropmt": "Papropmt"
+        }
+    }
+}

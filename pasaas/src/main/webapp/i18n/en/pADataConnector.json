@@ -1,0 +1,39 @@
+{
+    "pasaasApp": {
+        "pADataConnector" : {
+            "home": {
+                "title": "PA Data Connectors",
+                "createLabel": "Create a new PA Data Connector",
+                "createOrEditLabel": "Create or edit a PA Data Connector",
+                "search": "Search for PA Data Connector"
+            },
+            "created": "A new PA Data Connector is created with identifier {{ param }}",
+            "updated": "A PA Data Connector is updated with identifier {{ param }}",
+            "deleted": "A PA Data Connector is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Data Connector {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Data Connector"
+            },
+            "dcname": "Dcname",
+            "dctype": "Dctype",
+            "urllink": "Urllink",
+            "remoteuname": "Remoteuname",
+            "remotepwd": "Remotepwd",
+            "remoteip": "Remoteip",
+            "port": "Port",
+            "localpath": "Localpath",
+            "jsrpwd": "Jsrpwd",
+            "jsruser": "Jsruser",
+            "destinationpath": "Destinationpath",
+            "retrieve": "Retrieve",
+            "retrievedays": "Retrievedays",
+            "mode": "Mode",
+            "datamode": "Datamode",
+            "pastatus": "Pastatus",
+            "paorgdc": "Paorgdc",
+            "paprodc": "Paprodc"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgbp",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "pabporg"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "businessplan",
+            "fieldType": "PlanType",
+            "fieldValues": "Trial, Silver, Gold, Platinum"
+        },
+        {
+            "fieldName": "users",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        },
+        {
+            "fieldName": "projects",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170202082052",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_businessplan",
+    "pagination": "infinite-scroll"
+}

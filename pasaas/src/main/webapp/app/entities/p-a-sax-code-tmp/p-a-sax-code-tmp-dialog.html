@@ -1,0 +1,76 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPASaxCodeTmpLabel" data-translate="pasaasApp.pASaxCodeTmp.home.createOrEditLabel">Create or edit a PA Sax Code Tmp</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pASaxCodeTmp.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pASaxCodeTmp.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCodeTmp.distalarm" for="field_distalarm">Distalarm</label>
+            <input type="text" class="form-control" name="distalarm" id="field_distalarm"
+                    ng-model="vm.pASaxCodeTmp.distalarm"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCodeTmp.saxcode" for="field_saxcode">Saxcode</label>
+            <input type="text" class="form-control" name="saxcode" id="field_saxcode"
+                    ng-model="vm.pASaxCodeTmp.saxcode"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCodeTmp.total" for="field_total">Total</label>
+            <input type="text" class="form-control" name="total" id="field_total"
+                    ng-model="vm.pASaxCodeTmp.total"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCodeTmp.painterval" for="field_painterval">Painterval</label>
+            <input type="text" class="form-control" name="painterval" id="field_painterval"
+                    ng-model="vm.pASaxCodeTmp.painterval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCodeTmp.severity" for="field_severity">Severity</label>
+            <input type="text" class="form-control" name="severity" id="field_severity"
+                    ng-model="vm.pASaxCodeTmp.severity"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCodeTmp.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pASaxCodeTmp.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pASaxCodeTmp.paorgsct" for="field_paorgsct">Paorgsct</label>
+            <select class="form-control" id="field_paorgsct" name="paorgsct" ng-model="vm.pASaxCodeTmp.paorgsct" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pASaxCodeTmp.paprosct" for="field_paprosct">Paprosct</label>
+            <select class="form-control" id="field_paprosct" name="paprosct" ng-model="vm.pASaxCodeTmp.paprosct" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

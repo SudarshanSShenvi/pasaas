@@ -1,0 +1,86 @@
+<div>
+    <h2 data-translate="pasaasApp.pAAlarmActuality.home.title">PA Alarm Actualities</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-alarm-actuality.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pAAlarmActuality.home.createLabel">
+                        Create new PA Alarm Actuality
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nename"><span data-translate="pasaasApp.pAAlarmActuality.nename">Nename</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="faulttype"><span data-translate="pasaasApp.pAAlarmActuality.faulttype">Faulttype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="severity"><span data-translate="pasaasApp.pAAlarmActuality.severity">Severity</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="siteid"><span data-translate="pasaasApp.pAAlarmActuality.siteid">Siteid</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sitepriority"><span data-translate="pasaasApp.pAAlarmActuality.sitepriority">Sitepriority</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="predictionmatched"><span data-translate="pasaasApp.pAAlarmActuality.predictionmatched">Predictionmatched</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="occured"><span data-translate="pasaasApp.pAAlarmActuality.occured">Occured</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pmtcreated"><span data-translate="pasaasApp.pAAlarmActuality.pmtcreated">Pmtcreated</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="totalevents"><span data-translate="pasaasApp.pAAlarmActuality.totalevents">Totalevents</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="failedcountmatch"><span data-translate="pasaasApp.pAAlarmActuality.failedcountmatch">Failedcountmatch</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nofailcountmatch"><span data-translate="pasaasApp.pAAlarmActuality.nofailcountmatch">Nofailcountmatch</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pAAlarmActuality.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgaa.organization"><span data-translate="pasaasApp.pAAlarmActuality.paorgaa">Paorgaa</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paproaa.projectname"><span data-translate="pasaasApp.pAAlarmActuality.paproaa">Paproaa</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pAAlarmActuality in vm.pAAlarmActualities track by pAAlarmActuality.id">
+                    <td><a ui-sref="p-a-alarm-actuality-detail({id:pAAlarmActuality.id})">{{pAAlarmActuality.id}}</a></td>
+                    <td>{{pAAlarmActuality.nename}}</td>
+                    <td>{{pAAlarmActuality.faulttype}}</td>
+                    <td>{{pAAlarmActuality.severity}}</td>
+                    <td>{{pAAlarmActuality.siteid}}</td>
+                    <td>{{pAAlarmActuality.sitepriority}}</td>
+                    <td>{{pAAlarmActuality.predictionmatched}}</td>
+                    <td>{{pAAlarmActuality.occured | date:'medium'}}</td>
+                    <td>{{pAAlarmActuality.pmtcreated}}</td>
+                    <td>{{pAAlarmActuality.totalevents}}</td>
+                    <td>{{pAAlarmActuality.failedcountmatch}}</td>
+                    <td>{{pAAlarmActuality.nofailcountmatch}}</td>
+                    <td data-translate="{{'pasaasApp.PAStatus.' + pAAlarmActuality.pastatus}}">{{pAAlarmActuality.pastatus}}</td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pAAlarmActuality.paorgaa.id})">{{pAAlarmActuality.paorgaa.organization}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pAAlarmActuality.paproaa.id})">{{pAAlarmActuality.paproaa.projectname}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-alarm-actuality-detail({id:pAAlarmActuality.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-alarm-actuality.edit({id:pAAlarmActuality.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-alarm-actuality.delete({id:pAAlarmActuality.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

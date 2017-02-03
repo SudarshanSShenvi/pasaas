@@ -1,0 +1,28 @@
+{
+    "pasaasApp": {
+        "pASaxCode" : {
+            "home": {
+                "title": "PA Sax Codes",
+                "createLabel": "Create a new PA Sax Code",
+                "createOrEditLabel": "Create or edit a PA Sax Code",
+                "search": "Search for PA Sax Code"
+            },
+            "created": "A new PA Sax Code is created with identifier {{ param }}",
+            "updated": "A PA Sax Code is updated with identifier {{ param }}",
+            "deleted": "A PA Sax Code is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Sax Code {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Sax Code"
+            },
+            "distalarm": "Distalarm",
+            "saxcode": "Saxcode",
+            "total": "Total",
+            "painterval": "Painterval",
+            "pastatus": "Pastatus",
+            "paorgsc": "Paorgsc",
+            "paprosc": "Paprosc"
+        }
+    }
+}

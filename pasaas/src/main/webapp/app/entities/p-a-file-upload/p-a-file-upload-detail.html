@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAFileUpload.detail.title">PA File Upload</span> {{vm.pAFileUpload.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAFileUpload.remotepwd">Remotepwd</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.remotepwd}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.portno">Portno</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.portno}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.filepath">Filepath</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.filepath}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.transfertype">Transfertype</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.transfertype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.remoteipaddr">Remoteipaddr</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.remoteipaddr}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.remoteuser">Remoteuser</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.remoteuser}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.scheduledprocess">Scheduledprocess</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.scheduledprocess}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.mapreduce">Mapreduce</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.mapreduce}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.filetype">Filetype</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.filetype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.customseparator">Customseparator</span></dt>
+        <dd>
+            <span>{{vm.pAFileUpload.customseparator}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAFileUpload.pastatus}}">{{vm.pAFileUpload.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.paorgfu">Paorgfu</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAFileUpload.paorgfu.id})">{{vm.pAFileUpload.paorgfu.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAFileUpload.paprofu">Paprofu</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAFileUpload.paprofu.id})">{{vm.pAFileUpload.paprofu.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-file-upload-detail.edit({id:vm.pAFileUpload.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

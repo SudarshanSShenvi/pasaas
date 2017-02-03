@@ -1,0 +1,29 @@
+{
+    "pasaasApp": {
+        "pANEDetails" : {
+            "home": {
+                "title": "PANE Details",
+                "createLabel": "Create a new PANE Details",
+                "createOrEditLabel": "Create or edit a PANE Details",
+                "search": "Search for PANE Details"
+            },
+            "created": "A new PANE Details is created with identifier {{ param }}",
+            "updated": "A PANE Details is updated with identifier {{ param }}",
+            "deleted": "A PANE Details is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PANE Details {{ id }}?"
+            },
+            "detail": {
+                "title": "PANE Details"
+            },
+            "distinguishedname": "Distinguishedname",
+            "siteid": "Siteid",
+            "sitename": "Sitename",
+            "sitelocation": "Sitelocation",
+            "sitezone": "Sitezone",
+            "pastatus": "Pastatus",
+            "paorgned": "Paorgned",
+            "paproned": "Paproned"
+        }
+    }
+}

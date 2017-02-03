@@ -1,0 +1,118 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPASchedulerLabel" data-translate="pasaasApp.pAScheduler.home.createOrEditLabel">Create or edit a PA Scheduler</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAScheduler.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAScheduler.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                    ng-model="vm.pAScheduler.type"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.intervaltime" for="field_intervaltime">Intervaltime</label>
+            <input type="number" class="form-control" name="intervaltime" id="field_intervaltime"
+                    ng-model="vm.pAScheduler.intervaltime"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.hourval" for="field_hourval">Hourval</label>
+            <input type="number" class="form-control" name="hourval" id="field_hourval"
+                    ng-model="vm.pAScheduler.hourval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.minutesval" for="field_minutesval">Minutesval</label>
+            <input type="number" class="form-control" name="minutesval" id="field_minutesval"
+                    ng-model="vm.pAScheduler.minutesval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.runsunday" for="field_runsunday">Runsunday</label>
+            <input type="checkbox" class="form-control" name="runsunday" id="field_runsunday"
+                    ng-model="vm.pAScheduler.runsunday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.runmonday" for="field_runmonday">Runmonday</label>
+            <input type="checkbox" class="form-control" name="runmonday" id="field_runmonday"
+                    ng-model="vm.pAScheduler.runmonday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.runtuesday" for="field_runtuesday">Runtuesday</label>
+            <input type="checkbox" class="form-control" name="runtuesday" id="field_runtuesday"
+                    ng-model="vm.pAScheduler.runtuesday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.runwednesday" for="field_runwednesday">Runwednesday</label>
+            <input type="checkbox" class="form-control" name="runwednesday" id="field_runwednesday"
+                    ng-model="vm.pAScheduler.runwednesday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.runthursday" for="field_runthursday">Runthursday</label>
+            <input type="checkbox" class="form-control" name="runthursday" id="field_runthursday"
+                    ng-model="vm.pAScheduler.runthursday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.runfriday" for="field_runfriday">Runfriday</label>
+            <input type="checkbox" class="form-control" name="runfriday" id="field_runfriday"
+                    ng-model="vm.pAScheduler.runfriday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.dcname" for="field_dcname">Dcname</label>
+            <input type="text" class="form-control" name="dcname" id="field_dcname"
+                    ng-model="vm.pAScheduler.dcname"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.runsaturday" for="field_runsaturday">Runsaturday</label>
+            <input type="checkbox" class="form-control" name="runsaturday" id="field_runsaturday"
+                    ng-model="vm.pAScheduler.runsaturday"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAScheduler.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAScheduler.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAScheduler.paorgsch" for="field_paorgsch">Paorgsch</label>
+            <select class="form-control" id="field_paorgsch" name="paorgsch" ng-model="vm.pAScheduler.paorgsch" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAScheduler.paprosch" for="field_paprosch">Paprosch</label>
+            <select class="form-control" id="field_paprosch" name="paprosch" ng-model="vm.pAScheduler.paprosch" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

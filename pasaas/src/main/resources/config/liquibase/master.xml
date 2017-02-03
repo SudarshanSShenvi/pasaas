@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202082052_added_entity_PABusinessPlan.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202085244_added_entity_PANotification.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202083802_added_entity_PAErrorMessage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202090515_added_entity_PAOrganization.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202091632_added_entity_PAProject.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202101452_added_entity_PAFileUpload.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202102448_added_entity_PAAccPrecision.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202103231_added_entity_PAReport.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202103833_added_entity_PAPrediction.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202104912_added_entity_PAAlarmActuality.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202105345_added_entity_PASaxCode.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202105345_added_entity_PASaxCodeTmp.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202110847_added_entity_PAPredictionScore.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202111523_added_entity_PARawAlarmData.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202111758_added_entity_PAReliabilityConf.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202112223_added_entity_PAReliabilityScore.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202112646_added_entity_PAGeneralConfig.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203063430_added_entity_PAPMTRequest.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203071420_added_entity_PADataConnector.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203072230_added_entity_PAScheduler.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203072814_added_entity_PASchedulerInterval.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203073225_added_entity_PAAlarmRCA.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203074331_added_entity_PANEDetails.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20170202085244_added_entity_constraints_PANotification.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202083802_added_entity_constraints_PAErrorMessage.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202091632_added_entity_constraints_PAProject.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202090515_added_entity_constraints_PAOrganization.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202101452_added_entity_constraints_PAFileUpload.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202102448_added_entity_constraints_PAAccPrecision.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202103231_added_entity_constraints_PAReport.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202103833_added_entity_constraints_PAPrediction.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202104912_added_entity_constraints_PAAlarmActuality.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202105345_added_entity_constraints_PASaxCode.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202105345_added_entity_constraints_PASaxCodeTmp.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202110847_added_entity_constraints_PAPredictionScore.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202111758_added_entity_constraints_PAReliabilityConf.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170202112223_added_entity_constraints_PAReliabilityScore.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203063430_added_entity_constraints_PAPMTRequest.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203071420_added_entity_constraints_PADataConnector.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203072230_added_entity_constraints_PAScheduler.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203072814_added_entity_constraints_PASchedulerInterval.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203073225_added_entity_constraints_PAAlarmRCA.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170203074331_added_entity_constraints_PANEDetails.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

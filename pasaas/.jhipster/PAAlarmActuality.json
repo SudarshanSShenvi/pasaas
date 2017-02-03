@@ -1,0 +1,73 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgaa",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paproaa",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nename",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "faulttype",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "severity",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "siteid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sitepriority",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "predictionmatched",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "occured",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "pmtcreated",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "totalevents",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "failedcountmatch",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nofailcountmatch",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202104912",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_alarmactuality",
+    "pagination": "infinite-scroll"
+}

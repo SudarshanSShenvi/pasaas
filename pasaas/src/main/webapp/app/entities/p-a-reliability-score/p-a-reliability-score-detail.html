@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAReliabilityScore.detail.title">PA Reliability Score</span> {{vm.pAReliabilityScore.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.predictedalarms">Predictedalarms</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityScore.predictedalarms}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.occuredalarms">Occuredalarms</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityScore.occuredalarms}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.matchedalarms">Matchedalarms</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityScore.matchedalarms}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.created">Created</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityScore.created | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.predictedpercentage">Predictedpercentage</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityScore.predictedpercentage}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAReliabilityScore.pastatus}}">{{vm.pAReliabilityScore.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.paorgrs">Paorgrs</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAReliabilityScore.paorgrs.id})">{{vm.pAReliabilityScore.paorgrs.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityScore.paprors">Paprors</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAReliabilityScore.paprors.id})">{{vm.pAReliabilityScore.paprors.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-reliability-score-detail.edit({id:vm.pAReliabilityScore.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

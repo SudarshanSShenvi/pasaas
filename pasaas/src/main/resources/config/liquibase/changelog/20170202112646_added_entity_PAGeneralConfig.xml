@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+    <property name="now" value="GETDATE()" dbms="mssql"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle,mssql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity PAGeneralConfig.
+    -->
+    <changeSet id="20170202112646-1" author="jhipster">
+        <createTable tableName="pa_general_config">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="hdfsurl" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sparkurl" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_script" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_inseriesformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_outseriesformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_inputfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_expressionfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_outputfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_seriesgcolindex" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_seriesstart" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_seriesend" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="dr_seriesnxt" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_inputfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_outputfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_entityfld" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_seriesfld" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_inseriesformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_outseriesformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_isheader" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_script" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="df_skipfldindexes" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_inputfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_outputfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_saxcodefldindex" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_subseqinterval" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_subseqintervalthreshhold" type="integer">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_script" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_tempopfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="ss_inputdirname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_ipaddr" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_mysqlpwd" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_mysqldb" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_loadlocalinfile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_daydumppath" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_updquery" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_insertquery" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_script" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_command" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="sq_localinfiile" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <column name="pastatus" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+</databaseChangeLog>

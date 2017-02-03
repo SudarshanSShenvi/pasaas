@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns='http://www.ehcache.org/v3'
+         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.0.xsd">
+
+    <cache-template name="simple">
+        <expiry>
+            <ttl unit="seconds">3600</ttl>
+        </expiry>
+        <heap>100</heap>
+    </cache-template>
+
+    <cache alias="com.pervazive.kheddah.domain.User" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.Authority" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.User.authorities" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PersistentToken" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.User.persistentTokens" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.social.SocialUserConnection" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PABusinessPlan" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PABusinessPlan.paorgbps" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAErrorMessages" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PANotification" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAErrorMessage" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.pabporgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.paproorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.paempros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.panotpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAFileUpload" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAAccPrecision" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAAccPrecision.paorgaps" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAReport" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAPrediction" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAAlarmActuality" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PASaxCode" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PASaxCodeTmp" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAPredictionScore" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PARawAlarmData" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAReliabilityConf" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAReliabilityScore" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAGeneralConfig" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.parsorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.parcorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.papsorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.pasctorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.pascorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.paaaorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.papreorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.pareporgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.paaporgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.pafuorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.pafupros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.paappros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.paprepros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.paaapros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.pascpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.pasctpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.papspros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.parcpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.parspros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAPMTRequest" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PADataConnector" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAScheduler" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PASchedulerInterval" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAAlarmRCA" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAAlarmRCA.pAorganizations" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PANEDetails" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.papmtorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.padcorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.paschorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.pasciorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.paarcorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAOrganization.panedorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.papmtpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.padcorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.paschorgs" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.pascipros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.paarcpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.panedpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.padcpros" uses-template="simple"/>
+
+    <cache alias="com.pervazive.kheddah.domain.PAProject.paschpros" uses-template="simple"/>
+
+    <!-- jhipster-needle-ehcache-add-entry -->
+</config>

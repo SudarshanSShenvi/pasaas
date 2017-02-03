@@ -1,0 +1,35 @@
+{
+    "pasaasApp": {
+        "pAAlarmActuality" : {
+            "home": {
+                "title": "PA Alarm Actualities",
+                "createLabel": "Create a new PA Alarm Actuality",
+                "createOrEditLabel": "Create or edit a PA Alarm Actuality",
+                "search": "Search for PA Alarm Actuality"
+            },
+            "created": "A new PA Alarm Actuality is created with identifier {{ param }}",
+            "updated": "A PA Alarm Actuality is updated with identifier {{ param }}",
+            "deleted": "A PA Alarm Actuality is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Alarm Actuality {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Alarm Actuality"
+            },
+            "nename": "Nename",
+            "faulttype": "Faulttype",
+            "severity": "Severity",
+            "siteid": "Siteid",
+            "sitepriority": "Sitepriority",
+            "predictionmatched": "Predictionmatched",
+            "occured": "Occured",
+            "pmtcreated": "Pmtcreated",
+            "totalevents": "Totalevents",
+            "failedcountmatch": "Failedcountmatch",
+            "nofailcountmatch": "Nofailcountmatch",
+            "pastatus": "Pastatus",
+            "paorgaa": "Paorgaa",
+            "paproaa": "Paproaa"
+        }
+    }
+}

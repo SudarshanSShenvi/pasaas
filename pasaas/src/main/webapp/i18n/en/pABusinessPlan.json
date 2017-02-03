@@ -1,0 +1,27 @@
+{
+    "pasaasApp": {
+        "pABusinessPlan" : {
+            "home": {
+                "title": "PA Business Plans",
+                "createLabel": "Create a new PA Business Plan",
+                "createOrEditLabel": "Create or edit a PA Business Plan",
+                "search": "Search for PA Business Plan"
+            },
+            "created": "A new PA Business Plan is created with identifier {{ param }}",
+            "updated": "A PA Business Plan is updated with identifier {{ param }}",
+            "deleted": "A PA Business Plan is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Business Plan {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Business Plan"
+            },
+            "businessplan": "Businessplan",
+            "users": "Users",
+            "description": "Description",
+            "pastatus": "Pastatus",
+            "projects": "Projects",
+            "paorgbp": "Paorgbp"
+        }
+    }
+}

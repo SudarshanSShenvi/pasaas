@@ -1,0 +1,84 @@
+<div>
+    <h2 data-translate="pasaasApp.pAFileUpload.home.title">PA File Uploads</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-file-upload.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pAFileUpload.home.createLabel">
+                        Create new PA File Upload
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="remotepwd"><span data-translate="pasaasApp.pAFileUpload.remotepwd">Remotepwd</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="portno"><span data-translate="pasaasApp.pAFileUpload.portno">Portno</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="filepath"><span data-translate="pasaasApp.pAFileUpload.filepath">Filepath</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="transfertype"><span data-translate="pasaasApp.pAFileUpload.transfertype">Transfertype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="remoteipaddr"><span data-translate="pasaasApp.pAFileUpload.remoteipaddr">Remoteipaddr</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="remoteuser"><span data-translate="pasaasApp.pAFileUpload.remoteuser">Remoteuser</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="scheduledprocess"><span data-translate="pasaasApp.pAFileUpload.scheduledprocess">Scheduledprocess</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mapreduce"><span data-translate="pasaasApp.pAFileUpload.mapreduce">Mapreduce</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="filetype"><span data-translate="pasaasApp.pAFileUpload.filetype">Filetype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="customseparator"><span data-translate="pasaasApp.pAFileUpload.customseparator">Customseparator</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pAFileUpload.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgfu.organization"><span data-translate="pasaasApp.pAFileUpload.paorgfu">Paorgfu</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paprofu.projectname"><span data-translate="pasaasApp.pAFileUpload.paprofu">Paprofu</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pAFileUpload in vm.pAFileUploads track by pAFileUpload.id">
+                    <td><a ui-sref="p-a-file-upload-detail({id:pAFileUpload.id})">{{pAFileUpload.id}}</a></td>
+                    <td>{{pAFileUpload.remotepwd}}</td>
+                    <td>{{pAFileUpload.portno}}</td>
+                    <td>{{pAFileUpload.filepath}}</td>
+                    <td>{{pAFileUpload.transfertype}}</td>
+                    <td>{{pAFileUpload.remoteipaddr}}</td>
+                    <td>{{pAFileUpload.remoteuser}}</td>
+                    <td>{{pAFileUpload.scheduledprocess}}</td>
+                    <td>{{pAFileUpload.mapreduce}}</td>
+                    <td>{{pAFileUpload.filetype}}</td>
+                    <td>{{pAFileUpload.customseparator}}</td>
+                    <td data-translate="{{'pasaasApp.PAStatus.' + pAFileUpload.pastatus}}">{{pAFileUpload.pastatus}}</td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pAFileUpload.paorgfu.id})">{{pAFileUpload.paorgfu.organization}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pAFileUpload.paprofu.id})">{{pAFileUpload.paprofu.projectname}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-file-upload-detail({id:pAFileUpload.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-file-upload.edit({id:pAFileUpload.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-file-upload.delete({id:pAFileUpload.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

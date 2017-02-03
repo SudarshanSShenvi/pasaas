@@ -1,0 +1,26 @@
+{
+    "pasaasApp": {
+        "pAReport" : {
+            "home": {
+                "title": "PA Reports",
+                "createLabel": "Create a new PA Report",
+                "createOrEditLabel": "Create or edit a PA Report",
+                "search": "Search for PA Report"
+            },
+            "created": "A new PA Report is created with identifier {{ param }}",
+            "updated": "A PA Report is updated with identifier {{ param }}",
+            "deleted": "A PA Report is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Report {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Report"
+            },
+            "reporttype": "Reporttype",
+            "reportname": "Reportname",
+            "reportparms": "Reportparms",
+            "pastatus": "Pastatus",
+            "paorgrep": "Paorgrep"
+        }
+    }
+}

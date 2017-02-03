@@ -1,0 +1,43 @@
+{
+    "pasaasApp": {
+        "pAOrganization" : {
+            "home": {
+                "title": "PA Organizations",
+                "createLabel": "Create a new PA Organization",
+                "createOrEditLabel": "Create or edit a PA Organization",
+                "search": "Search for PA Organization"
+            },
+            "created": "A new PA Organization is created with identifier {{ param }}",
+            "updated": "A PA Organization is updated with identifier {{ param }}",
+            "deleted": "A PA Organization is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Organization {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Organization"
+            },
+            "organization": "Organization",
+            "validfrom": "Validfrom",
+            "validto": "Validto",
+            "pastatus": "Pastatus",
+            "paproorg": "Paproorg",
+            "pabporg": "Pabporg",
+            "parsorg": "Parsorg",
+            "parcorg": "Parcorg",
+            "papsorg": "Papsorg",
+            "pasctorg": "Pasctorg",
+            "pascorg": "Pascorg",
+            "paaaorg": "Paaaorg",
+            "papreorg": "Papreorg",
+            "pareporg": "Pareporg",
+            "paaporg": "Paaporg",
+            "pafuorg": "Pafuorg",
+            "papmtorg": "Papmtorg",
+            "padcorg": "Padcorg",
+            "paschorg": "Paschorg",
+            "pasciorg": "Pasciorg",
+            "paarcorg": "Paarcorg",
+            "panedorg": "Panedorg"
+        }
+    }
+}

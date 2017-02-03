@@ -1,0 +1,137 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paproorg",
+            "otherEntityName": "pAProject",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgpro"
+        },
+        {
+            "relationshipName": "pabporg",
+            "otherEntityName": "pABusinessPlan",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "businessplan"
+        },
+        {
+            "relationshipName": "parsorg",
+            "otherEntityName": "pAReliabilityScore",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgrs"
+        },
+        {
+            "relationshipName": "parcorg",
+            "otherEntityName": "pAReliabilityConf",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgrc"
+        },
+        {
+            "relationshipName": "papsorg",
+            "otherEntityName": "pAPredictionScore",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgps"
+        },
+        {
+            "relationshipName": "pasctorg",
+            "otherEntityName": "pASaxCodeTmp",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgsct"
+        },
+        {
+            "relationshipName": "pascorg",
+            "otherEntityName": "pASaxCode",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgsc"
+        },
+        {
+            "relationshipName": "paaaorg",
+            "otherEntityName": "pAAlarmActuality",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgaa"
+        },
+        {
+            "relationshipName": "papreorg",
+            "otherEntityName": "pAPrediction",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgpre"
+        },
+        {
+            "relationshipName": "pareporg",
+            "otherEntityName": "pAReport",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgrep"
+        },
+        {
+            "relationshipName": "paaporg",
+            "otherEntityName": "pAAccPrecision",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgap"
+        },
+        {
+            "relationshipName": "pafuorg",
+            "otherEntityName": "pAFileUpload",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgfu"
+        },
+        {
+            "relationshipName": "papmtorg",
+            "otherEntityName": "pAPMTRequest",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgpmt"
+        },
+        {
+            "relationshipName": "padcorg",
+            "otherEntityName": "pADataConnector",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgdc"
+        },
+        {
+            "relationshipName": "paschorg",
+            "otherEntityName": "pAScheduler",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgsch"
+        },
+        {
+            "relationshipName": "pasciorg",
+            "otherEntityName": "pASchedulerInterval",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgsci"
+        },
+        {
+            "relationshipName": "paarcorg",
+            "otherEntityName": "pAAlarmRCA",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgarc"
+        },
+        {
+            "relationshipName": "panedorg",
+            "otherEntityName": "pANEDetails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paorgned"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "organization",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "validfrom",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "validto",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202090515",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_organization",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,91 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pADataConnector.detail.title">PA Data Connector</span> {{vm.pADataConnector.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pADataConnector.dcname">Dcname</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.dcname}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.dctype">Dctype</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.DCType.' + vm.pADataConnector.dctype}}">{{vm.pADataConnector.dctype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.urllink">Urllink</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.urllink}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.remoteuname">Remoteuname</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.remoteuname}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.remotepwd">Remotepwd</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.remotepwd}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.remoteip">Remoteip</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.remoteip}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.port">Port</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.port}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.localpath">Localpath</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.localpath}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.jsrpwd">Jsrpwd</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.jsrpwd}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.jsruser">Jsruser</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.jsruser}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.destinationpath">Destinationpath</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.destinationpath}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.retrieve">Retrieve</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.retrieve}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.retrievedays">Retrievedays</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.retrievedays}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.mode">Mode</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.mode}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.datamode">Datamode</span></dt>
+        <dd>
+            <span>{{vm.pADataConnector.datamode}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pADataConnector.pastatus}}">{{vm.pADataConnector.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.paorgdc">Paorgdc</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pADataConnector.paorgdc.id})">{{vm.pADataConnector.paorgdc.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pADataConnector.paprodc">Paprodc</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pADataConnector.paprodc.id})">{{vm.pADataConnector.paprodc.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-data-connector-detail.edit({id:vm.pADataConnector.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

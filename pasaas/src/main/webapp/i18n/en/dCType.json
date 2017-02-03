@@ -1,0 +1,11 @@
+{
+    "pasaasApp": {
+        "DCType" : {
+            "null": "",
+            "JSR": "JSR",
+            "RDBMS": "RDBMS",
+            "CSV": "CSV",
+            "TSV": "TSV"
+        }
+    }
+}

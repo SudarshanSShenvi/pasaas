@@ -1,0 +1,71 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAPrediction.detail.title">PA Prediction</span> {{vm.pAPrediction.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAPrediction.predictiondate">Predictiondate</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.predictiondate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.nename">Nename</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.nename}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.faulttype">Faulttype</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.faulttype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.severity">Severity</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.severity}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.siteid">Siteid</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.siteid}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.sitepriority">Sitepriority</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.sitepriority}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.totalprediction">Totalprediction</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.totalprediction}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.failcount">Failcount</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.failcount}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.nofailcount">Nofailcount</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.nofailcount}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.failprob">Failprob</span></dt>
+        <dd>
+            <span>{{vm.pAPrediction.failprob}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAPrediction.pastatus}}">{{vm.pAPrediction.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.paorgpre">Paorgpre</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAPrediction.paorgpre.id})">{{vm.pAPrediction.paorgpre.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPrediction.papropre">Papropre</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAPrediction.papropre.id})">{{vm.pAPrediction.papropre.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-prediction-detail.edit({id:vm.pAPrediction.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,105 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPAPMTRequestLabel" data-translate="pasaasApp.pAPMTRequest.home.createOrEditLabel">Create or edit a PAPMT Request</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAPMTRequest.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAPMTRequest.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.category" for="field_category">Category</label>
+            <select class="form-control" name="category" ng-model="vm.pAPMTRequest.category" id="field_category">
+                <option value="Cat1" data-translate="pasaasApp.PMTCategory.Cat1">Cat1</option>
+                <option value="Cat2" data-translate="pasaasApp.PMTCategory.Cat2">Cat2</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.pmtdescription" for="field_pmtdescription">Pmtdescription</label>
+            <input type="text" class="form-control" name="pmtdescription" id="field_pmtdescription"
+                    ng-model="vm.pAPMTRequest.pmtdescription"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.pmtreason" for="field_pmtreason">Pmtreason</label>
+            <input type="text" class="form-control" name="pmtreason" id="field_pmtreason"
+                    ng-model="vm.pAPMTRequest.pmtreason"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.pmttitle" for="field_pmttitle">Pmttitle</label>
+            <input type="text" class="form-control" name="pmttitle" id="field_pmttitle"
+                    ng-model="vm.pAPMTRequest.pmttitle"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.pmttype" for="field_pmttype">Pmttype</label>
+            <input type="text" class="form-control" name="pmttype" id="field_pmttype"
+                    ng-model="vm.pAPMTRequest.pmttype"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.siteid" for="field_siteid">Siteid</label>
+            <input type="text" class="form-control" name="siteid" id="field_siteid"
+                    ng-model="vm.pAPMTRequest.siteid"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.sitename" for="field_sitename">Sitename</label>
+            <input type="text" class="form-control" name="sitename" id="field_sitename"
+                    ng-model="vm.pAPMTRequest.sitename"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.sitepriority" for="field_sitepriority">Sitepriority</label>
+            <input type="text" class="form-control" name="sitepriority" id="field_sitepriority"
+                    ng-model="vm.pAPMTRequest.sitepriority"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.pmtstatus" for="field_pmtstatus">Pmtstatus</label>
+            <select class="form-control" name="pmtstatus" ng-model="vm.pAPMTRequest.pmtstatus" id="field_pmtstatus">
+                <option value="Open" data-translate="pasaasApp.PMTStatus.Open">Open</option>
+                <option value="Assigned" data-translate="pasaasApp.PMTStatus.Assigned">Assigned</option>
+                <option value="WIP" data-translate="pasaasApp.PMTStatus.WIP">WIP</option>
+                <option value="Resolved" data-translate="pasaasApp.PMTStatus.Resolved">Resolved</option>
+                <option value="Closed" data-translate="pasaasApp.PMTStatus.Closed">Closed</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPMTRequest.pmtpriority" for="field_pmtpriority">Pmtpriority</label>
+            <select class="form-control" name="pmtpriority" ng-model="vm.pAPMTRequest.pmtpriority" id="field_pmtpriority">
+                <option value="P1" data-translate="pasaasApp.PMTPriority.P1">P1</option>
+                <option value="P2" data-translate="pasaasApp.PMTPriority.P2">P2</option>
+                <option value="P3" data-translate="pasaasApp.PMTPriority.P3">P3</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAPMTRequest.paorgpmt" for="field_paorgpmt">Paorgpmt</label>
+            <select class="form-control" id="field_paorgpmt" name="paorgpmt" ng-model="vm.pAPMTRequest.paorgpmt" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAPMTRequest.papropmt" for="field_papropmt">Papropmt</label>
+            <select class="form-control" id="field_papropmt" name="papropmt" ng-model="vm.pAPMTRequest.papropmt" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

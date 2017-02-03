@@ -1,0 +1,73 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+	{
+            "relationshipName": "paorgps",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paprops",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+	],
+    "fields": [
+        {
+            "fieldName": "dist",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "alarmno",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "bcount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ccount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "bscore",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "cscore",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createdon",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "zaxis",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "severity",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "painterval",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202110847",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_prediction_score",
+    "pagination": "infinite-scroll"
+}

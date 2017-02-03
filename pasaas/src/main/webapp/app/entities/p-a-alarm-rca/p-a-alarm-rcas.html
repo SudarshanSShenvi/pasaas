@@ -1,0 +1,72 @@
+<div>
+    <h2 data-translate="pasaasApp.pAAlarmRCA.home.title">PA Alarm RCAS</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-alarm-rca.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pAAlarmRCA.home.createLabel">
+                        Create new PA Alarm RCA
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="alarmno"><span data-translate="pasaasApp.pAAlarmRCA.alarmno">Alarmno</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="alarmtext"><span data-translate="pasaasApp.pAAlarmRCA.alarmtext">Alarmtext</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="alarmtype"><span data-translate="pasaasApp.pAAlarmRCA.alarmtype">Alarmtype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="rcdetails"><span data-translate="pasaasApp.pAAlarmRCA.rcdetails">Rcdetails</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pAAlarmRCA.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paproarc.projectname"><span data-translate="pasaasApp.pAAlarmRCA.paproarc">Paproarc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgarc.organization"><span data-translate="pasaasApp.pAAlarmRCA.paorgarc">Paorgarc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pAAlarmRCA in vm.pAAlarmRCAS track by pAAlarmRCA.id">
+                    <td><a ui-sref="p-a-alarm-rca-detail({id:pAAlarmRCA.id})">{{pAAlarmRCA.id}}</a></td>
+                    <td>{{pAAlarmRCA.alarmno}}</td>
+                    <td>{{pAAlarmRCA.alarmtext}}</td>
+                    <td>{{pAAlarmRCA.alarmtype}}</td>
+                    <td>{{pAAlarmRCA.rcdetails}}</td>
+                    <td data-translate="{{'pasaasApp.PAStatus.' + pAAlarmRCA.pastatus}}">{{pAAlarmRCA.pastatus}}</td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pAAlarmRCA.paproarc.id})">{{pAAlarmRCA.paproarc.projectname}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pAAlarmRCA.paorgarc.id})">{{pAAlarmRCA.paorgarc.organization}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-alarm-rca-detail({id:pAAlarmRCA.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-alarm-rca.edit({id:pAAlarmRCA.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-alarm-rca.delete({id:pAAlarmRCA.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

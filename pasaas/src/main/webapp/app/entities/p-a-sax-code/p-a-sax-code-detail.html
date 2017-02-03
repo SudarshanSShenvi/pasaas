@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pASaxCode.detail.title">PA Sax Code</span> {{vm.pASaxCode.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pASaxCode.distalarm">Distalarm</span></dt>
+        <dd>
+            <span>{{vm.pASaxCode.distalarm}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCode.saxcode">Saxcode</span></dt>
+        <dd>
+            <span>{{vm.pASaxCode.saxcode}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCode.total">Total</span></dt>
+        <dd>
+            <span>{{vm.pASaxCode.total}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCode.painterval">Painterval</span></dt>
+        <dd>
+            <span>{{vm.pASaxCode.painterval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCode.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pASaxCode.pastatus}}">{{vm.pASaxCode.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCode.paorgsc">Paorgsc</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pASaxCode.paorgsc.id})">{{vm.pASaxCode.paorgsc.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pASaxCode.paprosc">Paprosc</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pASaxCode.paprosc.id})">{{vm.pASaxCode.paprosc.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-sax-code-detail.edit({id:vm.pASaxCode.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,76 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPASchedulerIntervalLabel" data-translate="pasaasApp.pASchedulerInterval.home.createOrEditLabel">Create or edit a PA Scheduler Interval</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pASchedulerInterval.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pASchedulerInterval.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASchedulerInterval.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                    ng-model="vm.pASchedulerInterval.type"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASchedulerInterval.hourval" for="field_hourval">Hourval</label>
+            <input type="number" class="form-control" name="hourval" id="field_hourval"
+                    ng-model="vm.pASchedulerInterval.hourval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASchedulerInterval.minutesval" for="field_minutesval">Minutesval</label>
+            <input type="number" class="form-control" name="minutesval" id="field_minutesval"
+                    ng-model="vm.pASchedulerInterval.minutesval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASchedulerInterval.schname" for="field_schname">Schname</label>
+            <input type="text" class="form-control" name="schname" id="field_schname"
+                    ng-model="vm.pASchedulerInterval.schname"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASchedulerInterval.dcname" for="field_dcname">Dcname</label>
+            <input type="text" class="form-control" name="dcname" id="field_dcname"
+                    ng-model="vm.pASchedulerInterval.dcname"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASchedulerInterval.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pASchedulerInterval.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pASchedulerInterval.paorgsci" for="field_paorgsci">Paorgsci</label>
+            <select class="form-control" id="field_paorgsci" name="paorgsci" ng-model="vm.pASchedulerInterval.paorgsci" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pASchedulerInterval.paprosci" for="field_paprosci">Paprosci</label>
+            <select class="form-control" id="field_paprosci" name="paprosci" ng-model="vm.pASchedulerInterval.paprosci" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

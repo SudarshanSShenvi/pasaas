@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity PANotification.
+    -->
+    <changeSet id="20170202085244-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paorgnot_id"
+                                 baseTableName="pa_notification"
+                                 constraintName="fk_panotification_paorgnot_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="papronot_id"
+                                 baseTableName="pa_notification"
+                                 constraintName="fk_panotification_papronot_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_project"/>
+
+    </changeSet>
+</databaseChangeLog>

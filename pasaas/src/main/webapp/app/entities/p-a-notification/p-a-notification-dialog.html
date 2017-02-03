@@ -1,0 +1,101 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPANotificationLabel" data-translate="pasaasApp.pANotification.home.createOrEditLabel">Create or edit a PA Notification</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pANotification.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pANotification.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANotification.notiftype" for="field_notiftype">Notiftype</label>
+            <select class="form-control" name="notiftype" ng-model="vm.pANotification.notiftype" id="field_notiftype">
+                <option value="Email" data-translate="pasaasApp.PANotifType.Email">Email</option>
+                <option value="Mobile" data-translate="pasaasApp.PANotifType.Mobile">Mobile</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANotification.msgto" for="field_msgto">Msgto</label>
+            <input type="text" class="form-control" name="msgto" id="field_msgto"
+                    ng-model="vm.pANotification.msgto"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANotification.msgcc" for="field_msgcc">Msgcc</label>
+            <input type="text" class="form-control" name="msgcc" id="field_msgcc"
+                    ng-model="vm.pANotification.msgcc"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANotification.msgsubject" for="field_msgsubject">Msgsubject</label>
+            <input type="text" class="form-control" name="msgsubject" id="field_msgsubject"
+                    ng-model="vm.pANotification.msgsubject"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANotification.msgbody" for="field_msgbody">Msgbody</label>
+            <input type="text" class="form-control" name="msgbody" id="field_msgbody"
+                    ng-model="vm.pANotification.msgbody"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANotification.msgtouchtime" for="field_msgtouchtime">Msgtouchtime</label>
+                <div class="input-group">
+                    <input id="field_msgtouchtime" type="text" class="form-control" name="msgtouchtime" datetime-picker="{{dateformat}}" ng-model="vm.pANotification.msgtouchtime" is-open="vm.datePickerOpenStatus.msgtouchtime"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('msgtouchtime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setMsgattachments($file, vm.pANotification)">
+            <label class="control-label" data-translate="pasaasApp.pANotification.msgattachments" for="field_msgattachments">Msgattachments</label>
+            <div>
+                <div ng-if="vm.pANotification.msgattachments" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.pANotification.msgattachmentsContentType, vm.pANotification.msgattachments)" data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.pANotification.msgattachmentsContentType}}, {{vm.byteSize(vm.pANotification.msgattachments)}}</span>
+                    <button type="button" ng-click="vm.pANotification.msgattachments=null;vm.pANotification.msgattachmentsContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setMsgattachments($file, vm.pANotification)" data-translate="entity.action.addblob">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="msgattachments" id="field_msgattachments"
+                    ng-model="vm.pANotification.msgattachments"
+                     />
+            <input type="hidden" class="form-control" name="msgattachmentsContentType" id="field_msgattachmentsContentType"
+                    ng-model="vm.pANotification.msgattachmentsContentType" />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pANotification.paorgnot" for="field_paorgnot">Paorgnot</label>
+            <select class="form-control" id="field_paorgnot" name="paorgnot" ng-model="vm.pANotification.paorgnot" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pANotification.papronot" for="field_papronot">Papronot</label>
+            <select class="form-control" id="field_papronot" name="papronot" ng-model="vm.pANotification.papronot" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,74 @@
+<div>
+    <h2 data-translate="pasaasApp.pAReliabilityScore.home.title">PA Reliability Scores</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-reliability-score.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pAReliabilityScore.home.createLabel">
+                        Create new PA Reliability Score
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="predictedalarms"><span data-translate="pasaasApp.pAReliabilityScore.predictedalarms">Predictedalarms</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="occuredalarms"><span data-translate="pasaasApp.pAReliabilityScore.occuredalarms">Occuredalarms</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="matchedalarms"><span data-translate="pasaasApp.pAReliabilityScore.matchedalarms">Matchedalarms</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="created"><span data-translate="pasaasApp.pAReliabilityScore.created">Created</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="predictedpercentage"><span data-translate="pasaasApp.pAReliabilityScore.predictedpercentage">Predictedpercentage</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pAReliabilityScore.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgrs.organization"><span data-translate="pasaasApp.pAReliabilityScore.paorgrs">Paorgrs</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paprors.projectname"><span data-translate="pasaasApp.pAReliabilityScore.paprors">Paprors</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pAReliabilityScore in vm.pAReliabilityScores track by pAReliabilityScore.id">
+                    <td><a ui-sref="p-a-reliability-score-detail({id:pAReliabilityScore.id})">{{pAReliabilityScore.id}}</a></td>
+                    <td>{{pAReliabilityScore.predictedalarms}}</td>
+                    <td>{{pAReliabilityScore.occuredalarms}}</td>
+                    <td>{{pAReliabilityScore.matchedalarms}}</td>
+                    <td>{{pAReliabilityScore.created | date:'medium'}}</td>
+                    <td>{{pAReliabilityScore.predictedpercentage}}</td>
+                    <td data-translate="{{'pasaasApp.PAStatus.' + pAReliabilityScore.pastatus}}">{{pAReliabilityScore.pastatus}}</td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pAReliabilityScore.paorgrs.id})">{{pAReliabilityScore.paorgrs.organization}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pAReliabilityScore.paprors.id})">{{pAReliabilityScore.paprors.projectname}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-reliability-score-detail({id:pAReliabilityScore.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-reliability-score.edit({id:pAReliabilityScore.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-reliability-score.delete({id:pAReliabilityScore.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

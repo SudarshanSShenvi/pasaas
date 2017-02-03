@@ -1,0 +1,94 @@
+<div>
+    <h2 data-translate="pasaasApp.pADataConnector.home.title">PA Data Connectors</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-data-connector.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pADataConnector.home.createLabel">
+                        Create new PA Data Connector
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dcname"><span data-translate="pasaasApp.pADataConnector.dcname">Dcname</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dctype"><span data-translate="pasaasApp.pADataConnector.dctype">Dctype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="urllink"><span data-translate="pasaasApp.pADataConnector.urllink">Urllink</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="remoteuname"><span data-translate="pasaasApp.pADataConnector.remoteuname">Remoteuname</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="remotepwd"><span data-translate="pasaasApp.pADataConnector.remotepwd">Remotepwd</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="remoteip"><span data-translate="pasaasApp.pADataConnector.remoteip">Remoteip</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="port"><span data-translate="pasaasApp.pADataConnector.port">Port</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="localpath"><span data-translate="pasaasApp.pADataConnector.localpath">Localpath</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="jsrpwd"><span data-translate="pasaasApp.pADataConnector.jsrpwd">Jsrpwd</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="jsruser"><span data-translate="pasaasApp.pADataConnector.jsruser">Jsruser</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="destinationpath"><span data-translate="pasaasApp.pADataConnector.destinationpath">Destinationpath</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="retrieve"><span data-translate="pasaasApp.pADataConnector.retrieve">Retrieve</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="retrievedays"><span data-translate="pasaasApp.pADataConnector.retrievedays">Retrievedays</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="mode"><span data-translate="pasaasApp.pADataConnector.mode">Mode</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="datamode"><span data-translate="pasaasApp.pADataConnector.datamode">Datamode</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pADataConnector.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgdc.organization"><span data-translate="pasaasApp.pADataConnector.paorgdc">Paorgdc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paprodc.projectname"><span data-translate="pasaasApp.pADataConnector.paprodc">Paprodc</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pADataConnector in vm.pADataConnectors track by pADataConnector.id">
+                    <td><a ui-sref="p-a-data-connector-detail({id:pADataConnector.id})">{{pADataConnector.id}}</a></td>
+                    <td>{{pADataConnector.dcname}}</td>
+                    <td data-translate="{{'pasaasApp.DCType.' + pADataConnector.dctype}}">{{pADataConnector.dctype}}</td>
+                    <td>{{pADataConnector.urllink}}</td>
+                    <td>{{pADataConnector.remoteuname}}</td>
+                    <td>{{pADataConnector.remotepwd}}</td>
+                    <td>{{pADataConnector.remoteip}}</td>
+                    <td>{{pADataConnector.port}}</td>
+                    <td>{{pADataConnector.localpath}}</td>
+                    <td>{{pADataConnector.jsrpwd}}</td>
+                    <td>{{pADataConnector.jsruser}}</td>
+                    <td>{{pADataConnector.destinationpath}}</td>
+                    <td>{{pADataConnector.retrieve}}</td>
+                    <td>{{pADataConnector.retrievedays}}</td>
+                    <td>{{pADataConnector.mode}}</td>
+                    <td>{{pADataConnector.datamode}}</td>
+                    <td data-translate="{{'pasaasApp.PAStatus.' + pADataConnector.pastatus}}">{{pADataConnector.pastatus}}</td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pADataConnector.paorgdc.id})">{{pADataConnector.paorgdc.organization}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pADataConnector.paprodc.id})">{{pADataConnector.paprodc.projectname}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-data-connector-detail({id:pADataConnector.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-data-connector.edit({id:pADataConnector.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-data-connector.delete({id:pADataConnector.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

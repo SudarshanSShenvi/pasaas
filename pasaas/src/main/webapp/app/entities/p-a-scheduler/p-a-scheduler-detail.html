@@ -1,0 +1,79 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAScheduler.detail.title">PA Scheduler</span> {{vm.pAScheduler.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAScheduler.type">Type</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.type}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.intervaltime">Intervaltime</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.intervaltime}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.hourval">Hourval</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.hourval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.minutesval">Minutesval</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.minutesval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.runsunday">Runsunday</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.runsunday}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.runmonday">Runmonday</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.runmonday}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.runtuesday">Runtuesday</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.runtuesday}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.runwednesday">Runwednesday</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.runwednesday}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.runthursday">Runthursday</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.runthursday}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.runfriday">Runfriday</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.runfriday}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.dcname">Dcname</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.dcname}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.runsaturday">Runsaturday</span></dt>
+        <dd>
+            <span>{{vm.pAScheduler.runsaturday}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAScheduler.pastatus}}">{{vm.pAScheduler.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.paorgsch">Paorgsch</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAScheduler.paorgsch.id})">{{vm.pAScheduler.paorgsch.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAScheduler.paprosch">Paprosch</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAScheduler.paprosch.id})">{{vm.pAScheduler.paprosch.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-scheduler-detail.edit({id:vm.pAScheduler.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,69 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgfu",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paprofu",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "remotepwd",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "portno",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "filepath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "transfertype",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remoteipaddr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remoteuser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "scheduledprocess",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "mapreduce",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "filetype",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "customseparator",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202101452",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_fileupload",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,172 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "hdfsurl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sparkurl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_script",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_inseriesformat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_outseriesformat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_inputfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_expressionfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_outputfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_seriesgcolindex",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dr_seriesstart",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "dr_seriesend",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "dr_seriesnxt",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "df_inputfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_outputfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_entityfld",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_seriesfld",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_inseriesformat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_outseriesformat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_isheader",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_script",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "df_skipfldindexes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ss_inputfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ss_outputfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ss_saxcodefldindex",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ss_subseqinterval",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ss_subseqintervalthreshhold",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "ss_script",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ss_tempopfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ss_inputdirname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_ipaddr",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_mysqlpwd",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_mysqldb",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_loadlocalinfile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_daydumppath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_updquery",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_insertquery",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_script",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_command",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sq_localinfiile",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202112646",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_general_config",
+    "pagination": "infinite-scroll"
+}

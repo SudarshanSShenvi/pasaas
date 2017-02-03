@@ -1,0 +1,35 @@
+{
+    "pasaasApp": {
+        "pAPredictionScore" : {
+            "home": {
+                "title": "PA Prediction Scores",
+                "createLabel": "Create a new PA Prediction Score",
+                "createOrEditLabel": "Create or edit a PA Prediction Score",
+                "search": "Search for PA Prediction Score"
+            },
+            "created": "A new PA Prediction Score is created with identifier {{ param }}",
+            "updated": "A PA Prediction Score is updated with identifier {{ param }}",
+            "deleted": "A PA Prediction Score is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Prediction Score {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Prediction Score"
+            },
+            "dist": "Dist",
+            "alarmno": "Alarmno",
+            "bcount": "Bcount",
+            "ccount": "Ccount",
+            "bscore": "Bscore",
+            "cscore": "Cscore",
+            "createdon": "Createdon",
+            "zaxis": "Zaxis",
+            "date": "Date",
+            "severity": "Severity",
+            "painterval": "Painterval",
+            "pastatus": "Pastatus",
+            "paorgps": "Paorgps",
+            "paprops": "Paprops"
+        }
+    }
+}

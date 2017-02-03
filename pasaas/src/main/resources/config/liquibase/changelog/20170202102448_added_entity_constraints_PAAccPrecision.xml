@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity PAAccPrecision.
+    -->
+    <changeSet id="20170202102448-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paproap_id"
+                                 baseTableName="pa_accprecision"
+                                 constraintName="fk_paacc_precision_paproap_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_project"/>
+
+        <addForeignKeyConstraint baseColumnNames="paorgap_id"
+                                 baseTableName="pa_accprecision"
+                                 constraintName="fk_paacc_precision_paorgap_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_organization"/>
+
+    </changeSet>
+</databaseChangeLog>

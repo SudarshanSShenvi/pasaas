@@ -1,0 +1,128 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgpro",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paempro",
+            "otherEntityName": "pAErrorMessage",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paproem"
+        },
+        {
+            "relationshipName": "panotpro",
+            "otherEntityName": "pANotification",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "papronot"
+        },
+        {
+            "relationshipName": "pafupro",
+            "otherEntityName": "pAFileUpload",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprofu"
+        },
+        {
+            "relationshipName": "paappro",
+            "otherEntityName": "pAAccPrecision",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paproap"
+        },
+        {
+            "relationshipName": "paprepro",
+            "otherEntityName": "pAPrediction",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "papropre"
+        },
+        {
+            "relationshipName": "paaapro",
+            "otherEntityName": "pAAlarmActuality",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paproaa"
+        },
+        {
+            "relationshipName": "pascpro",
+            "otherEntityName": "pASaxCode",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprosc"
+        },
+        {
+            "relationshipName": "pasctpro",
+            "otherEntityName": "pASaxCodeTmp",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprosct"
+        },
+        {
+            "relationshipName": "papspro",
+            "otherEntityName": "pAPredictionScore",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprops"
+        },
+        {
+            "relationshipName": "parcpro",
+            "otherEntityName": "pAReliabilityConf",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprorc"
+        },
+        {
+            "relationshipName": "parspro",
+            "otherEntityName": "pAReliabilityScore",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprors"
+        },
+        {
+            "relationshipName": "papmtpro",
+            "otherEntityName": "pAPMTRequest",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "papropmt"
+        },
+        {
+            "relationshipName": "pascipro",
+            "otherEntityName": "pASchedulerInterval",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprosci"
+        },
+        {
+            "relationshipName": "paarcpro",
+            "otherEntityName": "pAAlarmRCA",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paproarc"
+        },
+        {
+            "relationshipName": "panedpro",
+            "otherEntityName": "pANEDetails",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paproned"
+        },
+        {
+            "relationshipName": "padcpro",
+            "otherEntityName": "pADataConnector",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprodc"
+        },
+        {
+            "relationshipName": "paschpro",
+            "otherEntityName": "pAScheduler",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "paprosch"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "projectname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202091632",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_project",
+    "pagination": "infinite-scroll"
+}

@@ -1,0 +1,34 @@
+{
+    "pasaasApp": {
+        "pAPrediction" : {
+            "home": {
+                "title": "PA Predictions",
+                "createLabel": "Create a new PA Prediction",
+                "createOrEditLabel": "Create or edit a PA Prediction",
+                "search": "Search for PA Prediction"
+            },
+            "created": "A new PA Prediction is created with identifier {{ param }}",
+            "updated": "A PA Prediction is updated with identifier {{ param }}",
+            "deleted": "A PA Prediction is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Prediction {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Prediction"
+            },
+            "predictiondate": "Predictiondate",
+            "nename": "Nename",
+            "faulttype": "Faulttype",
+            "severity": "Severity",
+            "siteid": "Siteid",
+            "sitepriority": "Sitepriority",
+            "totalprediction": "Totalprediction",
+            "failcount": "Failcount",
+            "nofailcount": "Nofailcount",
+            "failprob": "Failprob",
+            "pastatus": "Pastatus",
+            "paorgpre": "Paorgpre",
+            "papropre": "Papropre"
+        }
+    }
+}

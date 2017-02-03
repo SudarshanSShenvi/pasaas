@@ -1,0 +1,116 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPAAlarmActualityLabel" data-translate="pasaasApp.pAAlarmActuality.home.createOrEditLabel">Create or edit a PA Alarm Actuality</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAAlarmActuality.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAAlarmActuality.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.nename" for="field_nename">Nename</label>
+            <input type="text" class="form-control" name="nename" id="field_nename"
+                    ng-model="vm.pAAlarmActuality.nename"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.faulttype" for="field_faulttype">Faulttype</label>
+            <input type="text" class="form-control" name="faulttype" id="field_faulttype"
+                    ng-model="vm.pAAlarmActuality.faulttype"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.severity" for="field_severity">Severity</label>
+            <input type="text" class="form-control" name="severity" id="field_severity"
+                    ng-model="vm.pAAlarmActuality.severity"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.siteid" for="field_siteid">Siteid</label>
+            <input type="text" class="form-control" name="siteid" id="field_siteid"
+                    ng-model="vm.pAAlarmActuality.siteid"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.sitepriority" for="field_sitepriority">Sitepriority</label>
+            <input type="text" class="form-control" name="sitepriority" id="field_sitepriority"
+                    ng-model="vm.pAAlarmActuality.sitepriority"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.predictionmatched" for="field_predictionmatched">Predictionmatched</label>
+            <input type="number" class="form-control" name="predictionmatched" id="field_predictionmatched"
+                    ng-model="vm.pAAlarmActuality.predictionmatched"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.occured" for="field_occured">Occured</label>
+                <div class="input-group">
+                    <input id="field_occured" type="text" class="form-control" name="occured" datetime-picker="{{dateformat}}" ng-model="vm.pAAlarmActuality.occured" is-open="vm.datePickerOpenStatus.occured"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('occured')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.pmtcreated" for="field_pmtcreated">Pmtcreated</label>
+            <input type="number" class="form-control" name="pmtcreated" id="field_pmtcreated"
+                    ng-model="vm.pAAlarmActuality.pmtcreated"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.totalevents" for="field_totalevents">Totalevents</label>
+            <input type="number" class="form-control" name="totalevents" id="field_totalevents"
+                    ng-model="vm.pAAlarmActuality.totalevents"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.failedcountmatch" for="field_failedcountmatch">Failedcountmatch</label>
+            <input type="number" class="form-control" name="failedcountmatch" id="field_failedcountmatch"
+                    ng-model="vm.pAAlarmActuality.failedcountmatch"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.nofailcountmatch" for="field_nofailcountmatch">Nofailcountmatch</label>
+            <input type="number" class="form-control" name="nofailcountmatch" id="field_nofailcountmatch"
+                    ng-model="vm.pAAlarmActuality.nofailcountmatch"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAlarmActuality.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAAlarmActuality.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAAlarmActuality.paorgaa" for="field_paorgaa">Paorgaa</label>
+            <select class="form-control" id="field_paorgaa" name="paorgaa" ng-model="vm.pAAlarmActuality.paorgaa" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAAlarmActuality.paproaa" for="field_paproaa">Paproaa</label>
+            <select class="form-control" id="field_paproaa" name="paproaa" ng-model="vm.pAAlarmActuality.paproaa" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

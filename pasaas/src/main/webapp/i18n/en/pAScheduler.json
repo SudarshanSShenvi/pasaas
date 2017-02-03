@@ -1,0 +1,36 @@
+{
+    "pasaasApp": {
+        "pAScheduler" : {
+            "home": {
+                "title": "PA Schedulers",
+                "createLabel": "Create a new PA Scheduler",
+                "createOrEditLabel": "Create or edit a PA Scheduler",
+                "search": "Search for PA Scheduler"
+            },
+            "created": "A new PA Scheduler is created with identifier {{ param }}",
+            "updated": "A PA Scheduler is updated with identifier {{ param }}",
+            "deleted": "A PA Scheduler is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Scheduler {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Scheduler"
+            },
+            "type": "Type",
+            "intervaltime": "Intervaltime",
+            "hourval": "Hourval",
+            "minutesval": "Minutesval",
+            "runsunday": "Runsunday",
+            "runmonday": "Runmonday",
+            "runtuesday": "Runtuesday",
+            "runwednesday": "Runwednesday",
+            "runthursday": "Runthursday",
+            "runfriday": "Runfriday",
+            "dcname": "Dcname",
+            "runsaturday": "Runsaturday",
+            "pastatus": "Pastatus",
+            "paorgsch": "Paorgsch",
+            "paprosch": "Paprosch"
+        }
+    }
+}

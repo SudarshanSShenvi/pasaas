@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity PAAlarmRCA.
+    -->
+    <changeSet id="20170203073225-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paproarc_id"
+                                 baseTableName="pa_alarm_rca"
+                                 constraintName="fk_paalarmrca_paproarc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_project"/>
+
+        <addForeignKeyConstraint baseColumnNames="paorgarc_id"
+                                 baseTableName="pa_alarm_rca"
+                                 constraintName="fk_paalarmrca_paorgarc_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_organization"/>
+
+    </changeSet>
+</databaseChangeLog>

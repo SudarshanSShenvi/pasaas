@@ -1,0 +1,33 @@
+{
+    "pasaasApp": {
+        "pAAccPrecision" : {
+            "home": {
+                "title": "PA Acc Precisions",
+                "createLabel": "Create a new PA Acc Precision",
+                "createOrEditLabel": "Create or edit a PA Acc Precision",
+                "search": "Search for PA Acc Precision"
+            },
+            "created": "A new PA Acc Precision is created with identifier {{ param }}",
+            "updated": "A PA Acc Precision is updated with identifier {{ param }}",
+            "deleted": "A PA Acc Precision is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Acc Precision {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Acc Precision"
+            },
+            "totalpredictions": "Totalpredictions",
+            "failpredictions": "Failpredictions",
+            "nofailpredictions": "Nofailpredictions",
+            "totalevents": "Totalevents",
+            "pfailmatched": "Pfailmatched",
+            "pnofailmatched": "Pnofailmatched",
+            "predictiondate": "Predictiondate",
+            "accuracyval": "Accuracyval",
+            "prcisionval": "Prcisionval",
+            "pastatus": "Pastatus",
+            "paproap": "Paproap",
+            "paorgap": "Paorgap"
+        }
+    }
+}

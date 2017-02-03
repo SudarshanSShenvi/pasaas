@@ -1,0 +1,75 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAPredictionScore.detail.title">PA Prediction Score</span> {{vm.pAPredictionScore.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAPredictionScore.dist">Dist</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.dist}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.alarmno">Alarmno</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.alarmno}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.bcount">Bcount</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.bcount}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.ccount">Ccount</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.ccount}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.bscore">Bscore</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.bscore}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.cscore">Cscore</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.cscore}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.createdon">Createdon</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.createdon | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.zaxis">Zaxis</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.zaxis}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.date">Date</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.severity">Severity</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.severity}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.painterval">Painterval</span></dt>
+        <dd>
+            <span>{{vm.pAPredictionScore.painterval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAPredictionScore.pastatus}}">{{vm.pAPredictionScore.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.paorgps">Paorgps</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAPredictionScore.paorgps.id})">{{vm.pAPredictionScore.paorgps.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAPredictionScore.paprops">Paprops</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAPredictionScore.paprops.id})">{{vm.pAPredictionScore.paprops.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-prediction-score-detail.edit({id:vm.pAPredictionScore.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

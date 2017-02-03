@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgrs",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paprors",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+	],
+    "fields": [
+        {
+            "fieldName": "predictedalarms",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "occuredalarms",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "matchedalarms",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "created",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "predictedpercentage",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202112223",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_reliabilityscore",
+    "pagination": "infinite-scroll"
+}

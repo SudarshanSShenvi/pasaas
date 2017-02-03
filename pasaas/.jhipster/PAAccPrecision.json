@@ -1,0 +1,65 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paproap",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        },
+        {
+            "relationshipName": "paorgap",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "totalpredictions",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "failpredictions",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nofailpredictions",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "totalevents",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pfailmatched",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pnofailmatched",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "predictiondate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "accuracyval",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "prcisionval",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202102448",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_accprecision",
+    "pagination": "infinite-scroll"
+}

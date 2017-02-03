@@ -1,0 +1,104 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPAAccPrecisionLabel" data-translate="pasaasApp.pAAccPrecision.home.createOrEditLabel">Create or edit a PA Acc Precision</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAAccPrecision.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAAccPrecision.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.totalpredictions" for="field_totalpredictions">Totalpredictions</label>
+            <input type="number" class="form-control" name="totalpredictions" id="field_totalpredictions"
+                    ng-model="vm.pAAccPrecision.totalpredictions"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.failpredictions" for="field_failpredictions">Failpredictions</label>
+            <input type="number" class="form-control" name="failpredictions" id="field_failpredictions"
+                    ng-model="vm.pAAccPrecision.failpredictions"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.nofailpredictions" for="field_nofailpredictions">Nofailpredictions</label>
+            <input type="number" class="form-control" name="nofailpredictions" id="field_nofailpredictions"
+                    ng-model="vm.pAAccPrecision.nofailpredictions"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.totalevents" for="field_totalevents">Totalevents</label>
+            <input type="number" class="form-control" name="totalevents" id="field_totalevents"
+                    ng-model="vm.pAAccPrecision.totalevents"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.pfailmatched" for="field_pfailmatched">Pfailmatched</label>
+            <input type="number" class="form-control" name="pfailmatched" id="field_pfailmatched"
+                    ng-model="vm.pAAccPrecision.pfailmatched"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.pnofailmatched" for="field_pnofailmatched">Pnofailmatched</label>
+            <input type="number" class="form-control" name="pnofailmatched" id="field_pnofailmatched"
+                    ng-model="vm.pAAccPrecision.pnofailmatched"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.predictiondate" for="field_predictiondate">Predictiondate</label>
+                <div class="input-group">
+                    <input id="field_predictiondate" type="text" class="form-control" name="predictiondate" datetime-picker="{{dateformat}}" ng-model="vm.pAAccPrecision.predictiondate" is-open="vm.datePickerOpenStatus.predictiondate"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('predictiondate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.accuracyval" for="field_accuracyval">Accuracyval</label>
+            <input type="number" class="form-control" name="accuracyval" id="field_accuracyval"
+                    ng-model="vm.pAAccPrecision.accuracyval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.prcisionval" for="field_prcisionval">Prcisionval</label>
+            <input type="number" class="form-control" name="prcisionval" id="field_prcisionval"
+                    ng-model="vm.pAAccPrecision.prcisionval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAAccPrecision.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAAccPrecision.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAAccPrecision.paproap" for="field_paproap">Paproap</label>
+            <select class="form-control" id="field_paproap" name="paproap" ng-model="vm.pAAccPrecision.paproap" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAAccPrecision.paorgap" for="field_paorgap">Paorgap</label>
+            <select class="form-control" id="field_paorgap" name="paorgap" ng-model="vm.pAAccPrecision.paorgap" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

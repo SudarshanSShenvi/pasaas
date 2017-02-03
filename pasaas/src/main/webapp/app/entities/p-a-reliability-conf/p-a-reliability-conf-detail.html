@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAReliabilityConf.detail.title">PA Reliability Conf</span> {{vm.pAReliabilityConf.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAReliabilityConf.bscore">Bscore</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityConf.bscore}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityConf.cscore">Cscore</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityConf.cscore}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityConf.dataset">Dataset</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityConf.dataset}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityConf.category">Category</span></dt>
+        <dd>
+            <span>{{vm.pAReliabilityConf.category}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityConf.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAReliabilityConf.pastatus}}">{{vm.pAReliabilityConf.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityConf.paorgrc">Paorgrc</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAReliabilityConf.paorgrc.id})">{{vm.pAReliabilityConf.paorgrc.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAReliabilityConf.paprorc">Paprorc</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAReliabilityConf.paprorc.id})">{{vm.pAReliabilityConf.paprorc.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-reliability-conf-detail.edit({id:vm.pAReliabilityConf.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

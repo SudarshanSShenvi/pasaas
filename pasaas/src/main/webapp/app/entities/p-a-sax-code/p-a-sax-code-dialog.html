@@ -1,0 +1,70 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPASaxCodeLabel" data-translate="pasaasApp.pASaxCode.home.createOrEditLabel">Create or edit a PA Sax Code</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pASaxCode.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pASaxCode.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCode.distalarm" for="field_distalarm">Distalarm</label>
+            <input type="text" class="form-control" name="distalarm" id="field_distalarm"
+                    ng-model="vm.pASaxCode.distalarm"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCode.saxcode" for="field_saxcode">Saxcode</label>
+            <input type="text" class="form-control" name="saxcode" id="field_saxcode"
+                    ng-model="vm.pASaxCode.saxcode"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCode.total" for="field_total">Total</label>
+            <input type="text" class="form-control" name="total" id="field_total"
+                    ng-model="vm.pASaxCode.total"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCode.painterval" for="field_painterval">Painterval</label>
+            <input type="text" class="form-control" name="painterval" id="field_painterval"
+                    ng-model="vm.pASaxCode.painterval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pASaxCode.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pASaxCode.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pASaxCode.paorgsc" for="field_paorgsc">Paorgsc</label>
+            <select class="form-control" id="field_paorgsc" name="paorgsc" ng-model="vm.pASaxCode.paorgsc" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pASaxCode.paprosc" for="field_paprosc">Paprosc</label>
+            <select class="form-control" id="field_paprosc" name="paprosc" ng-model="vm.pASaxCode.paprosc" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,76 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPANEDetailsLabel" data-translate="pasaasApp.pANEDetails.home.createOrEditLabel">Create or edit a PANE Details</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pANEDetails.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pANEDetails.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANEDetails.distinguishedname" for="field_distinguishedname">Distinguishedname</label>
+            <input type="text" class="form-control" name="distinguishedname" id="field_distinguishedname"
+                    ng-model="vm.pANEDetails.distinguishedname"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANEDetails.siteid" for="field_siteid">Siteid</label>
+            <input type="text" class="form-control" name="siteid" id="field_siteid"
+                    ng-model="vm.pANEDetails.siteid"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANEDetails.sitename" for="field_sitename">Sitename</label>
+            <input type="text" class="form-control" name="sitename" id="field_sitename"
+                    ng-model="vm.pANEDetails.sitename"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANEDetails.sitelocation" for="field_sitelocation">Sitelocation</label>
+            <input type="text" class="form-control" name="sitelocation" id="field_sitelocation"
+                    ng-model="vm.pANEDetails.sitelocation"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANEDetails.sitezone" for="field_sitezone">Sitezone</label>
+            <input type="text" class="form-control" name="sitezone" id="field_sitezone"
+                    ng-model="vm.pANEDetails.sitezone"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pANEDetails.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pANEDetails.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pANEDetails.paorgned" for="field_paorgned">Paorgned</label>
+            <select class="form-control" id="field_paorgned" name="paorgned" ng-model="vm.pANEDetails.paorgned" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pANEDetails.paproned" for="field_paproned">Paproned</label>
+            <select class="form-control" id="field_paproned" name="paproned" ng-model="vm.pANEDetails.paproned" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

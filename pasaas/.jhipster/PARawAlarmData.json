@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "alarmno",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "distname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "starteddate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170202111523",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_rawalarm_data",
+    "pagination": "infinite-scroll"
+}

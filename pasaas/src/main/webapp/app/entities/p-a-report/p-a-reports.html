@@ -1,0 +1,66 @@
+<div>
+    <h2 data-translate="pasaasApp.pAReport.home.title">PA Reports</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-report.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pAReport.home.createLabel">
+                        Create new PA Report
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reporttype"><span data-translate="pasaasApp.pAReport.reporttype">Reporttype</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reportname"><span data-translate="pasaasApp.pAReport.reportname">Reportname</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="reportparms"><span data-translate="pasaasApp.pAReport.reportparms">Reportparms</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pAReport.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgrep.organization"><span data-translate="pasaasApp.pAReport.paorgrep">Paorgrep</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pAReport in vm.pAReports track by pAReport.id">
+                    <td><a ui-sref="p-a-report-detail({id:pAReport.id})">{{pAReport.id}}</a></td>
+                    <td>{{pAReport.reporttype}}</td>
+                    <td>{{pAReport.reportname}}</td>
+                    <td>{{pAReport.reportparms}}</td>
+                    <td data-translate="{{'pasaasApp.PAStatus.' + pAReport.pastatus}}">{{pAReport.pastatus}}</td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pAReport.paorgrep.id})">{{pAReport.paorgrep.organization}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-report-detail({id:pAReport.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-report.edit({id:pAReport.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-report.delete({id:pAReport.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

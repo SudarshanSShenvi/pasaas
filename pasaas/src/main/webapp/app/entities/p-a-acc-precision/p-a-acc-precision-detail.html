@@ -1,0 +1,67 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAAccPrecision.detail.title">PA Acc Precision</span> {{vm.pAAccPrecision.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAAccPrecision.totalpredictions">Totalpredictions</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.totalpredictions}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.failpredictions">Failpredictions</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.failpredictions}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.nofailpredictions">Nofailpredictions</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.nofailpredictions}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.totalevents">Totalevents</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.totalevents}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.pfailmatched">Pfailmatched</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.pfailmatched}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.pnofailmatched">Pnofailmatched</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.pnofailmatched}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.predictiondate">Predictiondate</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.predictiondate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.accuracyval">Accuracyval</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.accuracyval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.prcisionval">Prcisionval</span></dt>
+        <dd>
+            <span>{{vm.pAAccPrecision.prcisionval}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAAccPrecision.pastatus}}">{{vm.pAAccPrecision.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.paproap">Paproap</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAAccPrecision.paproap.id})">{{vm.pAAccPrecision.paproap.projectname}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAccPrecision.paorgap">Paorgap</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAAccPrecision.paorgap.id})">{{vm.pAAccPrecision.paorgap.organization}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-acc-precision-detail.edit({id:vm.pAAccPrecision.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

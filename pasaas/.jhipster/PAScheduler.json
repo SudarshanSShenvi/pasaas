@@ -1,0 +1,77 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgsch",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paprosch",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "intervaltime",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "hourval",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "minutesval",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "runsunday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "runmonday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "runtuesday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "runwednesday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "runthursday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "runfriday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "dcname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "runsaturday",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170203072230",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_scheduler",
+    "pagination": "infinite-scroll"
+}

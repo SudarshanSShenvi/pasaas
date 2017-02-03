@@ -1,0 +1,74 @@
+<div>
+    <h2 data-translate="pasaasApp.pASchedulerInterval.home.title">PA Scheduler Intervals</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="p-a-scheduler-interval.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="pasaasApp.pASchedulerInterval.home.createLabel">
+                        Create new PA Scheduler Interval
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="type"><span data-translate="pasaasApp.pASchedulerInterval.type">Type</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="hourval"><span data-translate="pasaasApp.pASchedulerInterval.hourval">Hourval</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="minutesval"><span data-translate="pasaasApp.pASchedulerInterval.minutesval">Minutesval</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="schname"><span data-translate="pasaasApp.pASchedulerInterval.schname">Schname</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dcname"><span data-translate="pasaasApp.pASchedulerInterval.dcname">Dcname</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pASchedulerInterval.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paorgsci.organization"><span data-translate="pasaasApp.pASchedulerInterval.paorgsci">Paorgsci</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="paprosci.projectname"><span data-translate="pasaasApp.pASchedulerInterval.paprosci">Paprosci</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="pASchedulerInterval in vm.pASchedulerIntervals track by pASchedulerInterval.id">
+                    <td><a ui-sref="p-a-scheduler-interval-detail({id:pASchedulerInterval.id})">{{pASchedulerInterval.id}}</a></td>
+                    <td>{{pASchedulerInterval.type}}</td>
+                    <td>{{pASchedulerInterval.hourval}}</td>
+                    <td>{{pASchedulerInterval.minutesval}}</td>
+                    <td>{{pASchedulerInterval.schname}}</td>
+                    <td>{{pASchedulerInterval.dcname}}</td>
+                    <td data-translate="{{'pasaasApp.PAStatus.' + pASchedulerInterval.pastatus}}">{{pASchedulerInterval.pastatus}}</td>
+                    <td>
+                        <a ui-sref="p-a-organization-detail({id:pASchedulerInterval.paorgsci.id})">{{pASchedulerInterval.paorgsci.organization}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="p-a-project-detail({id:pASchedulerInterval.paprosci.id})">{{pASchedulerInterval.paprosci.projectname}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="p-a-scheduler-interval-detail({id:pASchedulerInterval.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-scheduler-interval.edit({id:pASchedulerInterval.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="p-a-scheduler-interval.delete({id:pASchedulerInterval.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

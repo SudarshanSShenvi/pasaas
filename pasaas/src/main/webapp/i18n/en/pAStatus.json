@@ -1,0 +1,10 @@
+{
+    "pasaasApp": {
+        "PAStatus" : {
+            "null": "",
+            "Active": "Active",
+            "Inactive": "Inactive",
+            "Delete": "Delete"
+        }
+    }
+}

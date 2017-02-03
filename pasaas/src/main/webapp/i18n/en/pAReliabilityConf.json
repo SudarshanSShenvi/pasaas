@@ -1,0 +1,28 @@
+{
+    "pasaasApp": {
+        "pAReliabilityConf" : {
+            "home": {
+                "title": "PA Reliability Confs",
+                "createLabel": "Create a new PA Reliability Conf",
+                "createOrEditLabel": "Create or edit a PA Reliability Conf",
+                "search": "Search for PA Reliability Conf"
+            },
+            "created": "A new PA Reliability Conf is created with identifier {{ param }}",
+            "updated": "A PA Reliability Conf is updated with identifier {{ param }}",
+            "deleted": "A PA Reliability Conf is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA Reliability Conf {{ id }}?"
+            },
+            "detail": {
+                "title": "PA Reliability Conf"
+            },
+            "bscore": "Bscore",
+            "cscore": "Cscore",
+            "dataset": "Dataset",
+            "category": "Category",
+            "pastatus": "Pastatus",
+            "paorgrc": "Paorgrc",
+            "paprorc": "Paprorc"
+        }
+    }
+}

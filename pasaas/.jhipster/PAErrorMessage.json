@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgem",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paproem",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "errorcode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "errormsg",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "errortime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "erroruser",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170202083802",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_errormessage",
+    "pagination": "infinite-scroll"
+}

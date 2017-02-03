@@ -1,0 +1,110 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPAPredictionLabel" data-translate="pasaasApp.pAPrediction.home.createOrEditLabel">Create or edit a PA Prediction</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAPrediction.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAPrediction.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.predictiondate" for="field_predictiondate">Predictiondate</label>
+                <div class="input-group">
+                    <input id="field_predictiondate" type="text" class="form-control" name="predictiondate" datetime-picker="{{dateformat}}" ng-model="vm.pAPrediction.predictiondate" is-open="vm.datePickerOpenStatus.predictiondate"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('predictiondate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.nename" for="field_nename">Nename</label>
+            <input type="text" class="form-control" name="nename" id="field_nename"
+                    ng-model="vm.pAPrediction.nename"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.faulttype" for="field_faulttype">Faulttype</label>
+            <input type="text" class="form-control" name="faulttype" id="field_faulttype"
+                    ng-model="vm.pAPrediction.faulttype"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.severity" for="field_severity">Severity</label>
+            <input type="text" class="form-control" name="severity" id="field_severity"
+                    ng-model="vm.pAPrediction.severity"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.siteid" for="field_siteid">Siteid</label>
+            <input type="text" class="form-control" name="siteid" id="field_siteid"
+                    ng-model="vm.pAPrediction.siteid"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.sitepriority" for="field_sitepriority">Sitepriority</label>
+            <input type="text" class="form-control" name="sitepriority" id="field_sitepriority"
+                    ng-model="vm.pAPrediction.sitepriority"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.totalprediction" for="field_totalprediction">Totalprediction</label>
+            <input type="text" class="form-control" name="totalprediction" id="field_totalprediction"
+                    ng-model="vm.pAPrediction.totalprediction"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.failcount" for="field_failcount">Failcount</label>
+            <input type="number" class="form-control" name="failcount" id="field_failcount"
+                    ng-model="vm.pAPrediction.failcount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.nofailcount" for="field_nofailcount">Nofailcount</label>
+            <input type="number" class="form-control" name="nofailcount" id="field_nofailcount"
+                    ng-model="vm.pAPrediction.nofailcount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.failprob" for="field_failprob">Failprob</label>
+            <input type="number" class="form-control" name="failprob" id="field_failprob"
+                    ng-model="vm.pAPrediction.failprob"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPrediction.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAPrediction.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAPrediction.paorgpre" for="field_paorgpre">Paorgpre</label>
+            <select class="form-control" id="field_paorgpre" name="paorgpre" ng-model="vm.pAPrediction.paorgpre" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAPrediction.papropre" for="field_papropre">Papropre</label>
+            <select class="form-control" id="field_papropre" name="papropre" ng-model="vm.pAPrediction.papropre" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,90 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgdc",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paprodc",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "dcname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dctype",
+            "fieldType": "DCType",
+            "fieldValues": "JSR, RDBMS, CSV, TSV"
+        },
+        {
+            "fieldName": "urllink",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remoteuname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remotepwd",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "remoteip",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "port",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "localpath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "jsrpwd",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "jsruser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "destinationpath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "retrieve",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "retrievedays",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "mode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "datamode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170203071420",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_dataconnector",
+    "pagination": "infinite-scroll"
+}

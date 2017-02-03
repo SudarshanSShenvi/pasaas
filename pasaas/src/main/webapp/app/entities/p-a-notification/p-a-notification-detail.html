@@ -1,0 +1,58 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pANotification.detail.title">PA Notification</span> {{vm.pANotification.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pANotification.notiftype">Notiftype</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PANotifType.' + vm.pANotification.notiftype}}">{{vm.pANotification.notiftype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.msgto">Msgto</span></dt>
+        <dd>
+            <span>{{vm.pANotification.msgto}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.msgcc">Msgcc</span></dt>
+        <dd>
+            <span>{{vm.pANotification.msgcc}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.msgsubject">Msgsubject</span></dt>
+        <dd>
+            <span>{{vm.pANotification.msgsubject}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.msgbody">Msgbody</span></dt>
+        <dd>
+            <span>{{vm.pANotification.msgbody}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.msgtouchtime">Msgtouchtime</span></dt>
+        <dd>
+            <span>{{vm.pANotification.msgtouchtime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.msgattachments">Msgattachments</span></dt>
+        <dd>
+            <div ng-if="vm.pANotification.msgattachments">
+                <a ng-click="vm.openFile(vm.pANotification.msgattachmentsContentType, vm.pANotification.msgattachments)" data-translate="entity.action.open">open</a>
+                {{vm.pANotification.msgattachmentsContentType}}, {{vm.byteSize(vm.pANotification.msgattachments)}}
+            </div>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.paorgnot">Paorgnot</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pANotification.paorgnot.id})">{{vm.pANotification.paorgnot.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pANotification.papronot">Papronot</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pANotification.papronot.id})">{{vm.pANotification.papronot.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-notification-detail.edit({id:vm.pANotification.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

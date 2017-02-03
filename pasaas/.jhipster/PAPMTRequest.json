@@ -1,0 +1,67 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgpmt",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "papropmt",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "category",
+            "fieldType": "PMTCategory",
+            "fieldValues": "Cat1, Cat2"
+        },
+        {
+            "fieldName": "pmtdescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pmtreason",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pmttitle",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pmttype",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "siteid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sitename",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sitepriority",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pmtstatus",
+            "fieldType": "PMTStatus",
+            "fieldValues": "Open, Assigned, WIP, Resolved, Closed"
+        },
+        {
+            "fieldName": "pmtpriority",
+            "fieldType": "PMTPriority",
+            "fieldValues": "P1, P2, P3"
+        }
+    ],
+    "changelogDate": "20170203063430",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_pmt_request",
+    "pagination": "infinite-scroll"
+}

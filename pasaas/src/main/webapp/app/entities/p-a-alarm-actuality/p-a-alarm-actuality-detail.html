@@ -1,0 +1,75 @@
+
+<div>
+    <h2><span data-translate="pasaasApp.pAAlarmActuality.detail.title">PA Alarm Actuality</span> {{vm.pAAlarmActuality.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.nename">Nename</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.nename}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.faulttype">Faulttype</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.faulttype}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.severity">Severity</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.severity}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.siteid">Siteid</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.siteid}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.sitepriority">Sitepriority</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.sitepriority}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.predictionmatched">Predictionmatched</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.predictionmatched}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.occured">Occured</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.occured | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.pmtcreated">Pmtcreated</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.pmtcreated}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.totalevents">Totalevents</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.totalevents}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.failedcountmatch">Failedcountmatch</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.failedcountmatch}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.nofailcountmatch">Nofailcountmatch</span></dt>
+        <dd>
+            <span>{{vm.pAAlarmActuality.nofailcountmatch}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.pastatus">Pastatus</span></dt>
+        <dd>
+            <span data-translate="{{'pasaasApp.PAStatus.' + vm.pAAlarmActuality.pastatus}}">{{vm.pAAlarmActuality.pastatus}}</span>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.paorgaa">Paorgaa</span></dt>
+        <dd>
+            <a ui-sref="p-a-organization-detail({id:vm.pAAlarmActuality.paorgaa.id})">{{vm.pAAlarmActuality.paorgaa.organization}}</a>
+        </dd>
+        <dt><span data-translate="pasaasApp.pAAlarmActuality.paproaa">Paproaa</span></dt>
+        <dd>
+            <a ui-sref="p-a-project-detail({id:vm.pAAlarmActuality.paproaa.id})">{{vm.pAAlarmActuality.paproaa.projectname}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="p-a-alarm-actuality-detail.edit({id:vm.pAAlarmActuality.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

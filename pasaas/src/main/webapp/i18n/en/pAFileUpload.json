@@ -1,0 +1,34 @@
+{
+    "pasaasApp": {
+        "pAFileUpload" : {
+            "home": {
+                "title": "PA File Uploads",
+                "createLabel": "Create a new PA File Upload",
+                "createOrEditLabel": "Create or edit a PA File Upload",
+                "search": "Search for PA File Upload"
+            },
+            "created": "A new PA File Upload is created with identifier {{ param }}",
+            "updated": "A PA File Upload is updated with identifier {{ param }}",
+            "deleted": "A PA File Upload is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete PA File Upload {{ id }}?"
+            },
+            "detail": {
+                "title": "PA File Upload"
+            },
+            "remotepwd": "Remotepwd",
+            "portno": "Portno",
+            "filepath": "Filepath",
+            "transfertype": "Transfertype",
+            "remoteipaddr": "Remoteipaddr",
+            "remoteuser": "Remoteuser",
+            "scheduledprocess": "Scheduledprocess",
+            "mapreduce": "Mapreduce",
+            "filetype": "Filetype",
+            "customseparator": "Customseparator",
+            "pastatus": "Pastatus",
+            "paorgfu": "Paorgfu",
+            "paprofu": "Paprofu"
+        }
+    }
+}

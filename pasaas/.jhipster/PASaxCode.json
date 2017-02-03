@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgsc",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "paprosc",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "distalarm",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "saxcode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "painterval",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pastatus",
+            "fieldType": "PAStatus",
+            "fieldValues": "Active, Inactive, Delete"
+        }
+    ],
+    "changelogDate": "20170202105345",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_saxcode",
+    "pagination": "infinite-scroll"
+}

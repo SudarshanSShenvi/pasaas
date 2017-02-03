@@ -1,0 +1,12 @@
+{
+    "pasaasApp": {
+        "PMTStatus" : {
+            "null": "",
+            "Open": "Open",
+            "Assigned": "Assigned",
+            "WIP": "WIP",
+            "Resolved": "Resolved",
+            "Closed": "Closed"
+        }
+    }
+}

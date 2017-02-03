@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity PASchedulerInterval.
+    -->
+    <changeSet id="20170203072814-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="paorgsci_id"
+                                 baseTableName="pa_scheduler_interval"
+                                 constraintName="fk_pascheduler_interval_paorgsci_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="paprosci_id"
+                                 baseTableName="pa_scheduler_interval"
+                                 constraintName="fk_pascheduler_interval_paprosci_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pa_project"/>
+
+    </changeSet>
+</databaseChangeLog>

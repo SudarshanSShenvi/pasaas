@@ -1,0 +1,9 @@
+{
+    "pasaasApp": {
+        "PANotifType" : {
+            "null": "",
+            "Email": "Email",
+            "Mobile": "Mobile"
+        }
+    }
+}

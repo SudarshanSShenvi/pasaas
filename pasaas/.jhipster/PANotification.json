@@ -1,0 +1,54 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "paorgnot",
+            "otherEntityName": "pAOrganization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "organization"
+        },
+        {
+            "relationshipName": "papronot",
+            "otherEntityName": "pAProject",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "projectname"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "notiftype",
+            "fieldType": "PANotifType",
+            "fieldValues": "Email, Mobile"
+        },
+        {
+            "fieldName": "msgto",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "msgcc",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "msgsubject",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "msgbody",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "msgtouchtime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "msgattachments",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "changelogDate": "20170202085244",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "pa_notification",
+    "pagination": "infinite-scroll"
+}

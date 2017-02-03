@@ -1,0 +1,120 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPAPredictionScoreLabel" data-translate="pasaasApp.pAPredictionScore.home.createOrEditLabel">Create or edit a PA Prediction Score</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAPredictionScore.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAPredictionScore.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.dist" for="field_dist">Dist</label>
+            <input type="text" class="form-control" name="dist" id="field_dist"
+                    ng-model="vm.pAPredictionScore.dist"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.alarmno" for="field_alarmno">Alarmno</label>
+            <input type="number" class="form-control" name="alarmno" id="field_alarmno"
+                    ng-model="vm.pAPredictionScore.alarmno"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.bcount" for="field_bcount">Bcount</label>
+            <input type="number" class="form-control" name="bcount" id="field_bcount"
+                    ng-model="vm.pAPredictionScore.bcount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.ccount" for="field_ccount">Ccount</label>
+            <input type="number" class="form-control" name="ccount" id="field_ccount"
+                    ng-model="vm.pAPredictionScore.ccount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.bscore" for="field_bscore">Bscore</label>
+            <input type="number" class="form-control" name="bscore" id="field_bscore"
+                    ng-model="vm.pAPredictionScore.bscore"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.cscore" for="field_cscore">Cscore</label>
+            <input type="number" class="form-control" name="cscore" id="field_cscore"
+                    ng-model="vm.pAPredictionScore.cscore"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.createdon" for="field_createdon">Createdon</label>
+                <div class="input-group">
+                    <input id="field_createdon" type="text" class="form-control" name="createdon" datetime-picker="{{dateformat}}" ng-model="vm.pAPredictionScore.createdon" is-open="vm.datePickerOpenStatus.createdon"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('createdon')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.zaxis" for="field_zaxis">Zaxis</label>
+            <input type="number" class="form-control" name="zaxis" id="field_zaxis"
+                    ng-model="vm.pAPredictionScore.zaxis"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.date" for="field_date">Date</label>
+                <div class="input-group">
+                    <input id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.pAPredictionScore.date" is-open="vm.datePickerOpenStatus.date"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.severity" for="field_severity">Severity</label>
+            <input type="text" class="form-control" name="severity" id="field_severity"
+                    ng-model="vm.pAPredictionScore.severity"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.painterval" for="field_painterval">Painterval</label>
+            <input type="text" class="form-control" name="painterval" id="field_painterval"
+                    ng-model="vm.pAPredictionScore.painterval"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAPredictionScore.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAPredictionScore.pastatus" id="field_pastatus">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAPredictionScore.paorgps" for="field_paorgps">Paorgps</label>
+            <select class="form-control" id="field_paorgps" name="paorgps" ng-model="vm.pAPredictionScore.paorgps" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAPredictionScore.paprops" for="field_paprops">Paprops</label>
+            <select class="form-control" id="field_paprops" name="paprops" ng-model="vm.pAPredictionScore.paprops" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
