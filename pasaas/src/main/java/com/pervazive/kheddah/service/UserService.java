@@ -3,6 +3,7 @@ package com.pervazive.kheddah.service;
 import com.pervazive.kheddah.domain.Authority;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.AuthorityRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PersistentTokenRepository;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.AuthoritiesConstants;
@@ -44,6 +45,9 @@ public class UserService {
 
     @Inject
     private AuthorityRepository authorityRepository;
+    
+    @Inject
+    private PAOrganizationRepository organizationRepository;
 
     public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);
@@ -187,6 +191,7 @@ public class UserService {
     public Optional<User> getUserWithAuthoritiesByLogin(String login) {
         return userRepository.findOneByLogin(login).map(user -> {
             user.getAuthorities().size();
+            user.getOrganizations().size();
             return user;
         });
     }
@@ -195,6 +200,7 @@ public class UserService {
     public User getUserWithAuthorities(Long id) {
         User user = userRepository.findOne(id);
         user.getAuthorities().size(); // eagerly load the association
+        user.getOrganizations().size(); // eagerly load the association
         return user;
     }
 
@@ -205,6 +211,7 @@ public class UserService {
         if (optionalUser.isPresent()) {
           user = optionalUser.get();
             user.getAuthorities().size(); // eagerly load the association
+            user.getOrganizations().size(); // eagerly load the association
          }
          return user;
     }

@@ -3,9 +3,11 @@ package com.pervazive.kheddah.service.dto;
 import com.pervazive.kheddah.config.Constants;
 
 import com.pervazive.kheddah.domain.Authority;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 
 import org.hibernate.validator.constraints.Email;
+import org.springframework.social.google.api.plus.Organization;
 
 import javax.validation.constraints.*;
 import java.util.Set;
@@ -36,6 +38,8 @@ public class UserDTO {
     private String langKey;
 
     private Set<String> authorities;
+    
+    private Set<String> organizations;
 
     public UserDTO() {
     }
@@ -44,11 +48,14 @@ public class UserDTO {
         this(user.getLogin(), user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getLangKey(),
             user.getAuthorities().stream().map(Authority::getName)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toSet()), 
+                user.getOrganizations().stream().map(PAOrganization::getOrganization)
+                .collect(Collectors.toSet())
+        );
     }
 
     public UserDTO(String login, String firstName, String lastName,
-        String email, boolean activated, String langKey, Set<String> authorities) {
+        String email, boolean activated, String langKey, Set<String> authorities, Set<String> organizations) {
 
         this.login = login;
         this.firstName = firstName;
@@ -57,6 +64,7 @@ public class UserDTO {
         this.activated = activated;
         this.langKey = langKey;
         this.authorities = authorities;
+        this.organizations = organizations;
     }
 
     public String getLogin() {
@@ -85,6 +93,10 @@ public class UserDTO {
 
     public Set<String> getAuthorities() {
         return authorities;
+    }
+    
+    public Set<String> getOrganizations() {
+        return organizations;
     }
 
     @Override
