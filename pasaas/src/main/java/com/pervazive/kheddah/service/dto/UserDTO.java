@@ -4,6 +4,7 @@ import com.pervazive.kheddah.config.Constants;
 
 import com.pervazive.kheddah.domain.Authority;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 
 import org.hibernate.validator.constraints.Email;
@@ -14,7 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * A DTO representing a user, with his authorities.
+ * A DTO representing a user, with his authorities, projects and organization
  */
 public class UserDTO {
 
@@ -40,6 +41,8 @@ public class UserDTO {
     private Set<String> authorities;
     
     private Set<String> organizations;
+    
+    private Set<String> projects;
 
     public UserDTO() {
     }
@@ -50,12 +53,14 @@ public class UserDTO {
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()), 
                 user.getOrganizations().stream().map(PAOrganization::getOrganization)
-                .collect(Collectors.toSet())
+                .collect(Collectors.toSet()), 
+                		user.getProjects().stream().map(PAProject::getProjectname)
+                        .collect(Collectors.toSet())
         );
     }
 
     public UserDTO(String login, String firstName, String lastName,
-        String email, boolean activated, String langKey, Set<String> authorities, Set<String> organizations) {
+        String email, boolean activated, String langKey, Set<String> authorities, Set<String> organizations, Set<String> projects) {
 
         this.login = login;
         this.firstName = firstName;
@@ -65,6 +70,7 @@ public class UserDTO {
         this.langKey = langKey;
         this.authorities = authorities;
         this.organizations = organizations;
+        this.projects = projects;
     }
 
     public String getLogin() {
@@ -97,6 +103,10 @@ public class UserDTO {
     
     public Set<String> getOrganizations() {
         return organizations;
+    }
+    
+    public Set<String> getProjects() {
+        return projects;
     }
 
     @Override

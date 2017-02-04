@@ -94,6 +94,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PAOrganization> organizations = new HashSet<>();
     
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+        name = "pa_user_project",
+        joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")})
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PAProject> projects = new HashSet<>();
     
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "user")
@@ -203,6 +211,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setOrganizations(Set<PAOrganization> organizations) {
         this.organizations = organizations;
+    }
+    
+    public Set<PAProject> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<PAProject> projects) {
+        this.projects = projects;
     }
     
     public Set<PersistentToken> getPersistentTokens() {

@@ -1,15 +1,14 @@
 package com.pervazive.kheddah.service;
 
-import com.pervazive.kheddah.domain.Authority;
-import com.pervazive.kheddah.domain.User;
-import com.pervazive.kheddah.repository.AuthorityRepository;
-import com.pervazive.kheddah.repository.PAOrganizationRepository;
-import com.pervazive.kheddah.repository.PersistentTokenRepository;
-import com.pervazive.kheddah.repository.UserRepository;
-import com.pervazive.kheddah.security.AuthoritiesConstants;
-import com.pervazive.kheddah.security.SecurityUtils;
-import com.pervazive.kheddah.service.util.RandomUtil;
-import com.pervazive.kheddah.web.rest.vm.ManagedUserVM;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -17,10 +16,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import javax.inject.Inject;
-import java.util.*;
+import com.pervazive.kheddah.domain.Authority;
+import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.AuthorityRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+import com.pervazive.kheddah.repository.PAProjectRepository;
+import com.pervazive.kheddah.repository.PersistentTokenRepository;
+import com.pervazive.kheddah.repository.UserRepository;
+import com.pervazive.kheddah.security.AuthoritiesConstants;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.util.RandomUtil;
+import com.pervazive.kheddah.web.rest.vm.ManagedUserVM;
 
 /**
  * Service class for managing users.
@@ -48,6 +54,9 @@ public class UserService {
     
     @Inject
     private PAOrganizationRepository organizationRepository;
+    
+    @Inject
+    private PAProjectRepository projectRepository;
 
     public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);
@@ -192,6 +201,7 @@ public class UserService {
         return userRepository.findOneByLogin(login).map(user -> {
             user.getAuthorities().size();
             user.getOrganizations().size();
+            user.getProjects().size();
             return user;
         });
     }
@@ -201,6 +211,7 @@ public class UserService {
         User user = userRepository.findOne(id);
         user.getAuthorities().size(); // eagerly load the association
         user.getOrganizations().size(); // eagerly load the association
+        user.getProjects().size();
         return user;
     }
 
@@ -212,6 +223,7 @@ public class UserService {
           user = optionalUser.get();
             user.getAuthorities().size(); // eagerly load the association
             user.getOrganizations().size(); // eagerly load the association
+            user.getProjects().size();
          }
          return user;
     }

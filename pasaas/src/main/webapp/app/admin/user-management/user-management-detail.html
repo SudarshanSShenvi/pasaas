@@ -28,6 +28,20 @@
             </ul>
         </dd>
     </dl>
+    <dt><span data-translate="userManagement.organizations">Organizations</span></dt>
+        <dd>
+            <ul class="list-unstyled">
+                <li ng-repeat="organization in vm.user.organizations"><span>{{organization}}</span></li>
+            </ul>
+        </dd>
+    </dl>
+    <dt><span data-translate="userManagement.projects">Projects</span></dt>
+        <dd>
+            <ul class="list-unstyled">
+                <li ng-repeat="project in vm.user.projects"><span>{{project}}</span></li>
+            </ul>
+        </dd>
+    </dl>
     <button type="submit"
             ui-sref="user-management"
             class="btn btn-info">

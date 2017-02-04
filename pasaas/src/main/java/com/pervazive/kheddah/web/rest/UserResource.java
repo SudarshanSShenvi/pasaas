@@ -144,7 +144,7 @@ public class UserResource {
     public ResponseEntity<List<ManagedUserVM>> getAllUsers(@ApiParam Pageable pageable)
         throws URISyntaxException {
         //Page<User> page = userRepository.findAllWithAuthorities(pageable);
-    	Page<User> page = userRepository.findAllWithAuthoritiesAndOrganizations(pageable);
+    	Page<User> page = userRepository.findAllWithAuthoritiesProjectsAndOrganizations(pageable);
         List<ManagedUserVM> managedUserVMs = page.getContent().stream()
             .map(ManagedUserVM::new)
             .collect(Collectors.toList());

@@ -34,9 +34,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
      countQuery = "select count(user) from User user")
      Page<User> findAllWithOrganizations(Pageable pageable);*/
 
-    @Query(value = "select distinct user from User user left join fetch user.organizations left join fetch user.authorities",
+    @Query(value = "select distinct user from User user left join fetch user.organizations left join fetch user.authorities left join fetch user.projects",
     countQuery = "select count(user) from User user")
-    Page<User> findAllWithAuthoritiesAndOrganizations(Pageable pageable);
+    Page<User> findAllWithAuthoritiesProjectsAndOrganizations(Pageable pageable);
 
 
 }
