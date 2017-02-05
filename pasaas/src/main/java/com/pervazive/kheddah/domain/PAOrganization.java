@@ -1,16 +1,29 @@
 package com.pervazive.kheddah.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pervazive.kheddah.domain.enumeration.PAStatus;
 
 /**
@@ -127,8 +140,17 @@ public class PAOrganization implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PANEDetails> panedorgs = new HashSet<>();
-
-    public Long getId() {
+    
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+        name = "pa_user_organization",
+        joinColumns = {@JoinColumn(name = "organization_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<User> pausers = new HashSet<>();
+    
+   public Long getId() {
         return id;
     }
 
@@ -624,6 +646,14 @@ public class PAOrganization implements Serializable {
 
     public void setPanedorgs(Set<PANEDetails> pANEDetails) {
         this.panedorgs = pANEDetails;
+    }
+    
+    public Set<User> getPAUsers() {
+        return pausers;
+    }
+
+    public void setPAUsers(Set<User> pausers) {
+        this.pausers = pausers;
     }
 
     @Override

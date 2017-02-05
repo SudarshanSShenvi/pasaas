@@ -2,7 +2,9 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.service.PAOrganizationService;
+import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -21,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing PAOrganization.
@@ -33,6 +36,9 @@ public class PAOrganizationResource {
         
     @Inject
     private PAOrganizationService pAOrganizationService;
+    
+    @Inject
+    private PAOrganizationRepository pAOrganizationRepository;
 
     /**
      * POST  /p-a-organizations : Create a new pAOrganization.
@@ -85,12 +91,20 @@ public class PAOrganizationResource {
      */
     @GetMapping("/p-a-organizations")
     @Timed
-    public ResponseEntity<List<PAOrganization>> getAllPAOrganizations(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAOrganizations");
-        Page<PAOrganization> page = pAOrganizationService.findAll(pageable);
+        Page<PAOrganization> page = pAOrganizationRepository.findAllPAUsers(pageable);
+        List<PAOrganizationDTO> paOrganization = page.getContent().stream()
+            .map(PAOrganizationDTO::new)
+            .collect(Collectors.toList());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-organizations");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(paOrganization, headers, HttpStatus.OK);
+        
+        //ORIGINAL Implementation
+        //Page<PAOrganization> page = pAOrganizationService.findAll(pageable);
+        //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-organizations");
+        //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
