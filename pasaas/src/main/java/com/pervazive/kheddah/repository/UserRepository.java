@@ -25,6 +25,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findOneByEmail(String email);
 
     Optional<User> findOneByLogin(String login);
+    
+    @Query("select distinct user from User user where user.login = ?1")
+    User findOneByLoginName(String login);
 
     /*@Query(value = "select distinct user from User user left join fetch user.authorities",
         countQuery = "select count(user) from User user")

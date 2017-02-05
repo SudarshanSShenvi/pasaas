@@ -1,27 +1,28 @@
 package com.pervazive.kheddah.service.impl;
 
-import com.pervazive.kheddah.service.PAOrganizationService;
-import com.pervazive.kheddah.web.rest.util.PaginationUtil;
-import com.pervazive.kheddah.web.rest.vm.ManagedUserVM;
-import com.pervazive.kheddah.domain.PAOrganization;
-import com.pervazive.kheddah.domain.User;
-import com.pervazive.kheddah.repository.PAOrganizationRepository;
-import com.pervazive.kheddah.security.SecurityUtils;
+import java.time.ZonedDateTime;
+import java.util.Iterator;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.pervazive.kheddah.domain.PABusinessPlan;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.domain.enumeration.PAStatus;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+import com.pervazive.kheddah.repository.PAProjectRepository;
+import com.pervazive.kheddah.repository.UserRepository;
+import com.pervazive.kheddah.service.PAOrganizationService;
 
 /**
  * Service Implementation for managing PAOrganization.
@@ -34,7 +35,12 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     
     @Inject
     private PAOrganizationRepository pAOrganizationRepository;
+    
+    @Inject
+    private UserRepository userRepository;
 
+    @Inject
+    private PAProjectRepository pAProjectRepository;
     /**
      * Save a pAOrganization.
      *
@@ -56,8 +62,8 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     @Transactional(readOnly = true) 
     public Page<PAOrganization> findAll(Pageable pageable) {
         log.debug("Request to get all PAOrganizations");
-        Page<PAOrganization> result = pAOrganizationRepository.findAll(pageable);
-        //Page<PAOrganization> result = pAOrganizationRepository.findAllPAUsers(pageable);
+        //Page<PAOrganization> result = pAOrganizationRepository.findAll(pageable);
+        Page<PAOrganization> result = pAOrganizationRepository.findAllPAUsers(pageable);
         return result;
     }
 
@@ -84,12 +90,40 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
         pAOrganizationRepository.delete(id);
     }
     
-    /*@Transactional(readOnly = true)
-    public List<PAOrganization> getOrgsWithUsers(Pageable pageable) {
-    	Page<PAOrganization> page = pAOrganizationRepository.findAllPAUsers(pageable);
-        List<PAOrganization> paOrganization = page.getContent().stream()
-            .map(PAOrganization::new)
-            .collect(Collectors.toList());
-        return paOrganization;
-    }*/
+    
+    public void updateOrganizationwithUsers(Long id, String organizationname, ZonedDateTime validfrom, ZonedDateTime validto,
+			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers) {
+
+            Optional.of(pAOrganizationRepository
+                .findOne(id))
+                .ifPresent(organization -> {
+                	organization.setOrganization(organizationname);
+                	organization.setValidfrom(validfrom);
+                	organization.setValidto(validto);
+                	organization.setPastatus(pastatus);
+                	organization.setPabporg(pabporg);
+                	
+                	 Set<User> managedUsers = organization.getPAUsers();
+                	 managedUsers.clear();
+                	 pausers.forEach(
+                		pauser -> managedUsers.add(userRepository.findOneByLoginName(pauser))
+                     );
+                	 
+                	 /*Set<PAProject> managedProjects = organization.getPaproorgs();
+                	 managedProjects.clear();
+                	 paprojects.forEach(
+                			 paproject -> managedProjects.add(pAProjectRepository.findOne(id))
+                     );*/
+                	
+                	log.debug("Changed Information for Organization: {}", organization);
+                });
+    }
+    
+    @Transactional(readOnly = true)
+    public PAOrganization getOrganizationWithUser(Long id) {
+    	PAOrganization pAOrganization = pAOrganizationRepository.findOne(id);
+    	pAOrganization.getPAUsers().size(); // eagerly load the association
+        return pAOrganization;
+    }
+    
 }

@@ -2,11 +2,13 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
+import com.pervazive.kheddah.web.rest.vm.ManagedUserVM;
 
 import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,8 +40,8 @@ public class PAOrganizationResource {
     @Inject
     private PAOrganizationService pAOrganizationService;
     
-    @Inject
-    private PAOrganizationRepository pAOrganizationRepository;
+    /*@Inject
+    private PAOrganizationRepository pAOrganizationRepository;*/
 
     /**
      * POST  /p-a-organizations : Create a new pAOrganization.
@@ -71,15 +74,26 @@ public class PAOrganizationResource {
      */
     @PutMapping("/p-a-organizations")
     @Timed
-    public ResponseEntity<PAOrganization> updatePAOrganization(@RequestBody PAOrganization pAOrganization) throws URISyntaxException {
-        log.debug("REST request to update PAOrganization : {}", pAOrganization);
-        if (pAOrganization.getId() == null) {
-            return createPAOrganization(pAOrganization);
-        }
-        PAOrganization result = pAOrganizationService.save(pAOrganization);
+    public ResponseEntity<PAOrganizationDTO> updatePAOrganization(@RequestBody PAOrganizationDTO pAOrganization) throws URISyntaxException {
+        log.debug("REST request to update PAOrganizationDTO : {}", pAOrganization);
+        /*Iterator<String> userList = pAOrganization.getPausers().iterator();
+        while(userList.hasNext()) {
+        	 log.debug("**** CHECK THIS ***** "+userList.toString());
+        }*/
+        /*if (pAOrganization.getId() == null) {
+            return createPAOrganization(pAOrganizationDTO);
+        }*/
+       /* PAOrganization result = pAOrganizationService.save(pAOrganization);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("pAOrganization", pAOrganization.getId().toString()))
-            .body(result);
+            .body(result);*/
+        
+        pAOrganizationService.updateOrganizationwithUsers(pAOrganization.getId(), pAOrganization.getOrganization(), pAOrganization.getValidfrom(), 
+        		pAOrganization.getValidto(), pAOrganization.getPastatus(), pAOrganization.getPabporg(), pAOrganization.getPausers());
+
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createAlert("userManagement.updated", pAOrganization.getOrganization()))
+            .body(new PAOrganizationDTO(pAOrganizationService.getOrganizationWithUser(pAOrganization.getId())));
     }
 
     /**
@@ -94,7 +108,7 @@ public class PAOrganizationResource {
     public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAOrganizations");
-        Page<PAOrganization> page = pAOrganizationRepository.findAllPAUsers(pageable);
+        Page<PAOrganization> page = pAOrganizationService.findAll(pageable);
         List<PAOrganizationDTO> paOrganization = page.getContent().stream()
             .map(PAOrganizationDTO::new)
             .collect(Collectors.toList());

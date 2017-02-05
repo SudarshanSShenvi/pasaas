@@ -52,12 +52,6 @@ public class UserService {
     @Inject
     private AuthorityRepository authorityRepository;
     
-    @Inject
-    private PAOrganizationRepository organizationRepository;
-    
-    @Inject
-    private PAProjectRepository projectRepository;
-
     public Optional<User> activateRegistration(String key) {
         log.debug("Activating user for activation key {}", key);
         return userRepository.findOneByActivationKey(key)

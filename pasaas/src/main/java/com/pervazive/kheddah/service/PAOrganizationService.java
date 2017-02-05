@@ -1,9 +1,14 @@
 package com.pervazive.kheddah.service;
 
-import com.pervazive.kheddah.domain.PAOrganization;
+import java.time.ZonedDateTime;
+import java.util.Set;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
+
+import com.pervazive.kheddah.domain.PABusinessPlan;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.enumeration.PAStatus;
 
 /**
  * Service Interface for managing PAOrganization.
@@ -41,5 +46,8 @@ public interface PAOrganizationService {
      */
     void delete(Long id);
     
-    //List<PAOrganization> getOrgsWithUsers(Pageable pageable);
+    public void updateOrganizationwithUsers(Long id, String organizationname, ZonedDateTime validfrom, ZonedDateTime validto,
+			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers) ;
+    
+    public PAOrganization getOrganizationWithUser(Long id);
 }

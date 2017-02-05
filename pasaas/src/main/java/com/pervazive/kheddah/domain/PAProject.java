@@ -32,8 +32,18 @@ public class PAProject implements Serializable {
 
     @ManyToOne
     private PAOrganization paorgpro;
+    
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+        name = "pa_user_project",
+        joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},
+        inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")})
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<User> pausers = new HashSet<>();
 
-    @OneToMany(mappedBy = "paproem")
+
+	@OneToMany(mappedBy = "paproem")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PAErrorMessage> paempros = new HashSet<>();
@@ -589,6 +599,14 @@ public class PAProject implements Serializable {
     public void setPaschpros(Set<PAScheduler> pASchedulers) {
         this.paschpros = pASchedulers;
     }
+    
+    public Set<User> getPausers() {
+		return pausers;
+	}
+
+	public void setPausers(Set<User> pausers) {
+		this.pausers = pausers;
+	}
 
     @Override
     public boolean equals(Object o) {

@@ -1,9 +1,15 @@
 package com.pervazive.kheddah.service;
 
+import com.pervazive.kheddah.domain.PABusinessPlan;
 import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.domain.enumeration.PAStatus;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Service Interface for managing PAProject.
@@ -40,4 +46,6 @@ public interface PAProjectService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+    
+
 }
