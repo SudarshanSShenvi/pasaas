@@ -1,6 +1,8 @@
 package com.pervazive.kheddah.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pervazive.kheddah.domain.enumeration.PAStatus;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,6 +32,11 @@ public class PAProject implements Serializable {
     @Column(name = "description")
     private String description;
 
+    
+    //TODO - from DB level to UI
+    //private PAStatus pastatus;
+    
+    
     @ManyToOne
     private PAOrganization paorgpro;
     

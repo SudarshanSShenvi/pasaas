@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.PAProjectService;
+import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.service.dto.PAProjectDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -76,15 +77,23 @@ public class PAProjectResource {
      */
     @PutMapping("/p-a-projects")
     @Timed
-    public ResponseEntity<PAProject> updatePAProject(@RequestBody PAProject pAProject) throws URISyntaxException {
+    public ResponseEntity<PAProjectDTO> updatePAProject(@RequestBody PAProjectDTO pAProject) throws URISyntaxException {
         log.debug("REST request to update PAProject : {}", pAProject);
-        if (pAProject.getId() == null) {
+        /*if (pAProject.getId() == null) {
             return createPAProject(pAProject);
-        }
-        PAProject result = pAProjectService.save(pAProject);
+        }*/
+        /*PAProject result = pAProjectService.save(pAProject);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("pAProject", pAProject.getId().toString()))
-            .body(result);
+            .body(new PAProjectDTO(result));*/
+        
+        pAProjectService.updateProjectwithUsers(pAProject.getId(), pAProject.getProjectname(), pAProject.getDescription(), 
+        		pAProject.getPaorgpro(), pAProject.getPausers());
+        
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createAlert("userManagement.updated", pAProject.getProjectname()))
+            .body(new PAProjectDTO(pAProjectService.getProjectWithUser(pAProject.getId())));
+
     }
 
     /**

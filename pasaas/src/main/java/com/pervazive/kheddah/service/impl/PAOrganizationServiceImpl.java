@@ -39,8 +39,8 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     @Inject
     private UserRepository userRepository;
 
-    @Inject
-    private PAProjectRepository pAProjectRepository;
+/*    @Inject
+    private PAProjectRepository pAProjectRepository;*/
     /**
      * Save a pAOrganization.
      *
@@ -105,15 +105,19 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
                 	
                 	 Set<User> managedUsers = organization.getPAUsers();
                 	 managedUsers.clear();
+                	 if(pausers != null ){
                 	 pausers.forEach(
                 		pauser -> managedUsers.add(userRepository.findOneByLoginName(pauser))
                      );
+                	 }
                 	 
-                	 /*Set<PAProject> managedProjects = organization.getPaproorgs();
+                	 /*if(paprojects != null ){
+                     Set<PAProject> managedProjects = organization.getPaproorgs();
                 	 managedProjects.clear();
                 	 paprojects.forEach(
-                			 paproject -> managedProjects.add(pAProjectRepository.findOne(id))
-                     );*/
+                			 paproject -> managedProjects.add(pAProjectRepository.findByProjectName(paproject))
+                     );
+                	 }*/
                 	
                 	log.debug("Changed Information for Organization: {}", organization);
                 });
@@ -123,7 +127,7 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     public PAOrganization getOrganizationWithUser(Long id) {
     	PAOrganization pAOrganization = pAOrganizationRepository.findOne(id);
     	pAOrganization.getPAUsers().size(); // eagerly load the association
-        return pAOrganization;
+    	return pAOrganization;
     }
     
 }

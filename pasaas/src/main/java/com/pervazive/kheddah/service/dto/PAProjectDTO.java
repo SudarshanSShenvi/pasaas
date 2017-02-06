@@ -4,18 +4,20 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 
 public class PAProjectDTO {
 	
-	public PAProjectDTO(Long id, String projectname, String description, Set<String> pausers) {
+	public PAProjectDTO(Long id, String projectname, String description, PAOrganization paorgpro, Set<String> pausers) {
 		super();
 		this.id = id;
 		this.projectname = projectname;
 		this.description = description;
-		
+		this.paorgpro = paorgpro;
 		this.pausers = pausers;
+		
 	}
 	
 	public PAProjectDTO(){
@@ -23,7 +25,7 @@ public class PAProjectDTO {
 	}
 	
 	public PAProjectDTO(PAProject paProjectDTO){
-		this(paProjectDTO.getId(), paProjectDTO.getProjectname(), paProjectDTO.getDescription(), 
+		this(paProjectDTO.getId(), paProjectDTO.getProjectname(), paProjectDTO.getDescription(), paProjectDTO.getPaorgpro(),
 				paProjectDTO.getPausers().stream().map(User::getLogin).collect(Collectors.toSet()));
 	}
 	
@@ -32,7 +34,7 @@ public class PAProjectDTO {
 	private Long id;
 	private String projectname;
 	private String description;
-	//private PAOrganization paorgpro;
+	private PAOrganization paorgpro;
 	private Set<String> pausers = new HashSet<>();
 	
 	public Long getId() {
@@ -53,12 +55,12 @@ public class PAProjectDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	/*public PAOrganization getPaorgpro() {
+	public PAOrganization getPaorgpro() {
 		return paorgpro;
 	}
 	public void setPaorgpro(PAOrganization paorgpro) {
 		this.paorgpro = paorgpro;
-	}*/
+	}
 	public Set<String> getPausers() {
 		return pausers;
 	}

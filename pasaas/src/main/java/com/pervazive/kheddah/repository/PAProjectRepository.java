@@ -17,4 +17,7 @@ public interface PAProjectRepository extends JpaRepository<PAProject,Long> {
 	@Query(value = "select distinct project from PAProject project left join fetch project.pausers",
 		    countQuery = "select count(project) from PAProject project")
 		    Page<PAProject> findAllPAUsers(Pageable pageable);
+
+	@Query(value = "select distinct project from PAProject project where project.projectname = ?1")
+	PAProject findByProjectName(String paproject);
 }

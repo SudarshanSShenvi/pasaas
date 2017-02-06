@@ -1,17 +1,23 @@
 package com.pervazive.kheddah.service.impl;
 
-import com.pervazive.kheddah.service.PAProjectService;
-import com.pervazive.kheddah.domain.PAProject;
-import com.pervazive.kheddah.repository.PAProjectRepository;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.List;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.PAProjectRepository;
+import com.pervazive.kheddah.repository.UserRepository;
+import com.pervazive.kheddah.service.PAProjectService;
 
 /**
  * Service Implementation for managing PAProject.
@@ -25,6 +31,9 @@ public class PAProjectServiceImpl implements PAProjectService{
     @Inject
     private PAProjectRepository pAProjectRepository;
 
+    @Inject
+    private UserRepository userRepository;
+    
     /**
      * Save a pAProject.
      *
@@ -72,4 +81,35 @@ public class PAProjectServiceImpl implements PAProjectService{
         log.debug("Request to delete PAProject : {}", id);
         pAProjectRepository.delete(id);
     }
+    
+
+	@Override
+	public void updateProjectwithUsers(Long id, String projectname, String description,
+			PAOrganization paorgpro, Set<String> pausers) {
+		Optional.of(pAProjectRepository
+                .findOne(id))
+                .ifPresent(project -> {
+                	project.setId(id);
+                	project.setDescription(description);
+                	project.setProjectname(projectname);
+                	project.setPaorgpro(paorgpro);
+                	
+                	 Set<User> managedUsers = project.getPausers();
+                	 managedUsers.clear();
+                	 if(pausers != null ){
+                	 pausers.forEach(
+                		pauser -> managedUsers.add(userRepository.findOneByLoginName(pauser))
+                     );
+                	 }
+                	 log.debug("Changed Information for Organization: {}", project);
+                });
+		
+	}
+	
+	 @Transactional(readOnly = true)
+	    public PAProject getProjectWithUser(Long id) {
+		 PAProject pAProject = pAProjectRepository.findOne(id);
+		 pAProject.getPausers().size(); // eagerly load the association
+	    return pAProject;
+	    }
 }
