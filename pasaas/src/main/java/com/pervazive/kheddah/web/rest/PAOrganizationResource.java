@@ -92,7 +92,7 @@ public class PAOrganizationResource {
         		pAOrganization.getValidto(), pAOrganization.getPastatus(), pAOrganization.getPabporg(), pAOrganization.getPausers());
 
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createAlert("userManagement.updated", pAOrganization.getOrganization()))
+            .headers(HeaderUtil.createAlert("pAOrganization.updated", pAOrganization.getOrganization()))
             .body(new PAOrganizationDTO(pAOrganizationService.getOrganizationWithUser(pAOrganization.getId())));
     }
 

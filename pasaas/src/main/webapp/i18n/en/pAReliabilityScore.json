@@ -19,7 +19,7 @@
             "predictedalarms": "Predictedalarms",
             "occuredalarms": "Occuredalarms",
             "matchedalarms": "Matchedalarms",
-            "created": "Created",
+            //"created": "Created",
             "predictedpercentage": "Predictedpercentage",
             "pastatus": "Pastatus",
             "paorgrs": "Paorgrs",

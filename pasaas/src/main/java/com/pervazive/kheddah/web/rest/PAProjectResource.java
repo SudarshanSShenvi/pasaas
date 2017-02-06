@@ -91,7 +91,7 @@ public class PAProjectResource {
         		pAProject.getPaorgpro(), pAProject.getPausers());
         
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createAlert("userManagement.updated", pAProject.getProjectname()))
+            .headers(HeaderUtil.createAlert("pAProject.updated", pAProject.getProjectname()))
             .body(new PAProjectDTO(pAProjectService.getProjectWithUser(pAProject.getId())));
 
     }
@@ -113,7 +113,7 @@ public class PAProjectResource {
         List<PAProjectDTO> paProjectDTO = page.getContent().stream()
             .map(PAProjectDTO::new)
             .collect(Collectors.toList());
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-organizations");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-projects");
         return new ResponseEntity<>(paProjectDTO, headers, HttpStatus.OK);
         
         //ORIGINAL IMPLEMENTATION
