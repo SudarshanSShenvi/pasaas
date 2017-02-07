@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAReliabilityConfService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReliabilityConf;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAReliabilityConfRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PAReliabilityConfServiceImpl implements PAReliabilityConfService{
     @Inject
     private PAReliabilityConfRepository pAReliabilityConfRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAReliabilityConf.
      *
@@ -44,8 +48,9 @@ public class PAReliabilityConfServiceImpl implements PAReliabilityConfService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAReliabilityConf> findAll(Pageable pageable) {
+    public Page<PAReliabilityConf> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAReliabilityConfs");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAReliabilityConf> result = pAReliabilityConfRepository.findAll(pageable);
         return result;
     }

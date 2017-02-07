@@ -24,7 +24,7 @@ public interface PANotificationService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PANotification> findAll(Pageable pageable);
+    Page<PANotification> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pANotification.

@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PASaxCodeService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PASaxCode;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PASaxCodeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PASaxCodeServiceImpl implements PASaxCodeService{
     @Inject
     private PASaxCodeRepository pASaxCodeRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pASaxCode.
      *
@@ -44,8 +48,9 @@ public class PASaxCodeServiceImpl implements PASaxCodeService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PASaxCode> findAll(Pageable pageable) {
+    public Page<PASaxCode> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PASaxCodes");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PASaxCode> result = pASaxCodeRepository.findAll(pageable);
         return result;
     }

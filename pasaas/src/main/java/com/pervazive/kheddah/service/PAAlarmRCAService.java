@@ -24,7 +24,7 @@ public interface PAAlarmRCAService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAAlarmRCA> findAll(Pageable pageable);
+    Page<PAAlarmRCA> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAAlarmRCA.

@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAAccPrecisionService;
 import com.pervazive.kheddah.domain.PAAccPrecision;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PAAccPrecisionRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,6 +28,8 @@ public class PAAccPrecisionServiceImpl implements PAAccPrecisionService{
     @Inject
     private PAAccPrecisionRepository pAAccPrecisionRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAAccPrecision.
      *
@@ -44,8 +49,9 @@ public class PAAccPrecisionServiceImpl implements PAAccPrecisionService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAAccPrecision> findAll(Pageable pageable) {
+    public Page<PAAccPrecision> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAAccPrecisions");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAAccPrecision> result = pAAccPrecisionRepository.findAll(pageable);
         return result;
     }

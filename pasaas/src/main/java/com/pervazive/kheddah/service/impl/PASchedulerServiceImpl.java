@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PASchedulerService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAScheduler;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PASchedulerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PASchedulerServiceImpl implements PASchedulerService{
     @Inject
     private PASchedulerRepository pASchedulerRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAScheduler.
      *
@@ -44,8 +48,9 @@ public class PASchedulerServiceImpl implements PASchedulerService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAScheduler> findAll(Pageable pageable) {
+    public Page<PAScheduler> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PASchedulers");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAScheduler> result = pASchedulerRepository.findAll(pageable);
         return result;
     }

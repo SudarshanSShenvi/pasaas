@@ -24,7 +24,7 @@ public interface PAPredictionScoreService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAPredictionScore> findAll(Pageable pageable);
+    Page<PAPredictionScore> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAPredictionScore.

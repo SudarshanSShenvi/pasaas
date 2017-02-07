@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAAlarmRCAService;
 import com.pervazive.kheddah.domain.PAAlarmRCA;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PAAlarmRCARepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,6 +28,8 @@ public class PAAlarmRCAServiceImpl implements PAAlarmRCAService{
     @Inject
     private PAAlarmRCARepository pAAlarmRCARepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAAlarmRCA.
      *
@@ -44,8 +49,9 @@ public class PAAlarmRCAServiceImpl implements PAAlarmRCAService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAAlarmRCA> findAll(Pageable pageable) {
+    public Page<PAAlarmRCA> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAAlarmRCAS");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAAlarmRCA> result = pAAlarmRCARepository.findAll(pageable);
         return result;
     }

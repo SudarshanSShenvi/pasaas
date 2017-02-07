@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PASchedulerIntervalService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PASchedulerInterval;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PASchedulerIntervalRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PASchedulerIntervalServiceImpl implements PASchedulerIntervalServic
     @Inject
     private PASchedulerIntervalRepository pASchedulerIntervalRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pASchedulerInterval.
      *
@@ -44,8 +48,9 @@ public class PASchedulerIntervalServiceImpl implements PASchedulerIntervalServic
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PASchedulerInterval> findAll(Pageable pageable) {
+    public Page<PASchedulerInterval> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PASchedulerIntervals");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PASchedulerInterval> result = pASchedulerIntervalRepository.findAll(pageable);
         return result;
     }

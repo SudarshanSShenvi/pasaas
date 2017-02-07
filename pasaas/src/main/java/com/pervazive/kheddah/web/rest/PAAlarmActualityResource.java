@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -85,10 +87,10 @@ public class PAAlarmActualityResource {
      */
     @GetMapping("/p-a-alarm-actualities")
     @Timed
-    public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAAlarmActualities");
-        Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable);
+        Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable, request.getUserPrincipal().getName());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-alarm-actualities");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

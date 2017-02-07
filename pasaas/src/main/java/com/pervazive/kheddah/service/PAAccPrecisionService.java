@@ -24,7 +24,7 @@ public interface PAAccPrecisionService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAAccPrecision> findAll(Pageable pageable);
+    Page<PAAccPrecision> findAll(Pageable pageable, String pausers);
 
     /**
      *  Get the "id" pAAccPrecision.

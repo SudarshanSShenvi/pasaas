@@ -24,7 +24,7 @@ public interface PANEDetailsService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PANEDetails> findAll(Pageable pageable);
+    Page<PANEDetails> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pANEDetails.

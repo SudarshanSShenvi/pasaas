@@ -24,7 +24,7 @@ public interface PADataConnectorService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PADataConnector> findAll(Pageable pageable);
+    Page<PADataConnector> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pADataConnector.

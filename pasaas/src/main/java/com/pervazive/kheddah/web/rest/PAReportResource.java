@@ -17,6 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -85,10 +87,10 @@ public class PAReportResource {
      */
     @GetMapping("/p-a-reports")
     @Timed
-    public ResponseEntity<List<PAReport>> getAllPAReports(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAReport>> getAllPAReports(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAReports");
-        Page<PAReport> page = pAReportService.findAll(pageable);
+        Page<PAReport> page = pAReportService.findAll(pageable, request.getUserPrincipal().getName());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reports");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

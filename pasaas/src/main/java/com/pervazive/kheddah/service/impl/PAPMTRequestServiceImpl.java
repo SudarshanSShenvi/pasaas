@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAPMTRequestService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPMTRequest;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAPMTRequestRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PAPMTRequestServiceImpl implements PAPMTRequestService{
     @Inject
     private PAPMTRequestRepository pAPMTRequestRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAPMTRequest.
      *
@@ -44,8 +48,9 @@ public class PAPMTRequestServiceImpl implements PAPMTRequestService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAPMTRequest> findAll(Pageable pageable) {
+    public Page<PAPMTRequest> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAPMTRequests");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAPMTRequest> result = pAPMTRequestRepository.findAll(pageable);
         return result;
     }

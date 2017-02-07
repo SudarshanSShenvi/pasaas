@@ -24,7 +24,7 @@ public interface PASaxCodeTmpService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PASaxCodeTmp> findAll(Pageable pageable);
+    Page<PASaxCodeTmp> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pASaxCodeTmp.

@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAPredictionService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPrediction;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAPredictionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PAPredictionServiceImpl implements PAPredictionService{
     @Inject
     private PAPredictionRepository pAPredictionRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAPrediction.
      *
@@ -44,8 +48,9 @@ public class PAPredictionServiceImpl implements PAPredictionService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAPrediction> findAll(Pageable pageable) {
+    public Page<PAPrediction> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAPredictions");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAPrediction> result = pAPredictionRepository.findAll(pageable);
         return result;
     }

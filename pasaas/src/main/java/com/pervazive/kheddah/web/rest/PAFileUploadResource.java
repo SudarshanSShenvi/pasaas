@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.terracotta.context.annotations.ContextAttribute;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAFileUpload;
@@ -103,7 +104,7 @@ public class PAFileUploadResource {
 
     public ResponseEntity<List<PAFileUpload>> getAllPAFileUploads(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
-        log.debug("REST request to get a page of PAFileUploads ====="+ request.getUserPrincipal().getName());
+        log.debug("REST request to get a page of PAFileUploads "+ request.getUserPrincipal().getName());
 
         Page<PAFileUpload> page = pAFileUploadService.findAll(pageable, request.getUserPrincipal().getName());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-file-uploads");

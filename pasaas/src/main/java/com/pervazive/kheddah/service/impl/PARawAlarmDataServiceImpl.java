@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PARawAlarmDataService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PARawAlarmData;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PARawAlarmDataRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PARawAlarmDataServiceImpl implements PARawAlarmDataService{
     @Inject
     private PARawAlarmDataRepository pARawAlarmDataRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pARawAlarmData.
      *
@@ -44,8 +48,9 @@ public class PARawAlarmDataServiceImpl implements PARawAlarmDataService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PARawAlarmData> findAll(Pageable pageable) {
+    public Page<PARawAlarmData> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PARawAlarmData");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PARawAlarmData> result = pARawAlarmDataRepository.findAll(pageable);
         return result;
     }

@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,11 +106,11 @@ public class PAProjectResource {
      */
     @GetMapping("/p-a-projects")
     @Timed
-    public ResponseEntity<List<PAProjectDTO>> getAllPAProjects(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAProjectDTO>> getAllPAProjects(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAProjects");
         
-        Page<PAProject> page = pAProjectService.findAll(pageable);
+        Page<PAProject> page = pAProjectService.findAll(pageable, request.getUserPrincipal().getName());
         List<PAProjectDTO> paProjectDTO = page.getContent().stream()
             .map(PAProjectDTO::new)
             .collect(Collectors.toList());

@@ -24,7 +24,7 @@ public interface PAErrorMessageService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAErrorMessage> findAll(Pageable pageable);
+    Page<PAErrorMessage> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAErrorMessage.

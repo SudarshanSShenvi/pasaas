@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.repository;
 
 import com.pervazive.kheddah.domain.PAGeneralConfig;
+import com.pervazive.kheddah.domain.PAOrganization;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 
 import java.util.List;

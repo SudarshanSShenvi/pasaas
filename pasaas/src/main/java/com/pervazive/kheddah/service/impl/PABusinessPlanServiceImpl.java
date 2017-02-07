@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PABusinessPlanService;
 import com.pervazive.kheddah.domain.PABusinessPlan;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PABusinessPlanRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;

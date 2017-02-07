@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PANEDetailsService;
 import com.pervazive.kheddah.domain.PANEDetails;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PANEDetailsRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,6 +28,8 @@ public class PANEDetailsServiceImpl implements PANEDetailsService{
     @Inject
     private PANEDetailsRepository pANEDetailsRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pANEDetails.
      *
@@ -44,8 +49,9 @@ public class PANEDetailsServiceImpl implements PANEDetailsService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PANEDetails> findAll(Pageable pageable) {
+    public Page<PANEDetails> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PANEDetails");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PANEDetails> result = pANEDetailsRepository.findAll(pageable);
         return result;
     }

@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAErrorMessageService;
 import com.pervazive.kheddah.domain.PAErrorMessage;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PAErrorMessageRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,6 +28,8 @@ public class PAErrorMessageServiceImpl implements PAErrorMessageService{
     @Inject
     private PAErrorMessageRepository pAErrorMessageRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAErrorMessage.
      *
@@ -44,8 +49,9 @@ public class PAErrorMessageServiceImpl implements PAErrorMessageService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAErrorMessage> findAll(Pageable pageable) {
+    public Page<PAErrorMessage> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAErrorMessages");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAErrorMessage> result = pAErrorMessageRepository.findAll(pageable);
         return result;
     }

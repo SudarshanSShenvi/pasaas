@@ -24,7 +24,7 @@ public interface PAReliabilityConfService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAReliabilityConf> findAll(Pageable pageable);
+    Page<PAReliabilityConf> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAReliabilityConf.

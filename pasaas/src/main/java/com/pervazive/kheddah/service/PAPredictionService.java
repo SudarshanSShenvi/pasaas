@@ -24,7 +24,7 @@ public interface PAPredictionService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAPrediction> findAll(Pageable pageable);
+    Page<PAPrediction> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAPrediction.

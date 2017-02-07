@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PANotificationService;
 import com.pervazive.kheddah.domain.PANotification;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PANotificationRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,7 +27,8 @@ public class PANotificationServiceImpl implements PANotificationService{
     
     @Inject
     private PANotificationRepository pANotificationRepository;
-
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pANotification.
      *
@@ -44,8 +48,9 @@ public class PANotificationServiceImpl implements PANotificationService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PANotification> findAll(Pageable pageable) {
+    public Page<PANotification> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PANotifications");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PANotification> result = pANotificationRepository.findAll(pageable);
         return result;
     }

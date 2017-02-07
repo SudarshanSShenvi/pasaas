@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PADataConnectorService;
 import com.pervazive.kheddah.domain.PADataConnector;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PADataConnectorRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,6 +28,8 @@ public class PADataConnectorServiceImpl implements PADataConnectorService{
     @Inject
     private PADataConnectorRepository pADataConnectorRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pADataConnector.
      *
@@ -44,8 +49,9 @@ public class PADataConnectorServiceImpl implements PADataConnectorService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PADataConnector> findAll(Pageable pageable) {
+    public Page<PADataConnector> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PADataConnectors");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PADataConnector> result = pADataConnectorRepository.findAll(pageable);
         return result;
     }

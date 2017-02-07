@@ -24,7 +24,7 @@ public interface PASchedulerService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAScheduler> findAll(Pageable pageable);
+    Page<PAScheduler> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAScheduler.

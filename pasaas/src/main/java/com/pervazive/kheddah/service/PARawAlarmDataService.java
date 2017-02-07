@@ -24,7 +24,7 @@ public interface PARawAlarmDataService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PARawAlarmData> findAll(Pageable pageable);
+    Page<PARawAlarmData> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pARawAlarmData.

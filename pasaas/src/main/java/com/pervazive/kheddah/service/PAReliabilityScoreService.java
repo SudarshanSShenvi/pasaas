@@ -24,7 +24,7 @@ public interface PAReliabilityScoreService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAReliabilityScore> findAll(Pageable pageable);
+    Page<PAReliabilityScore> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAReliabilityScore.

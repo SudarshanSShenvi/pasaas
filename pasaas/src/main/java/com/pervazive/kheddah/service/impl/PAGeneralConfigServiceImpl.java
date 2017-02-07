@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAGeneralConfigService;
 import com.pervazive.kheddah.domain.PAGeneralConfig;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PAGeneralConfigRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,6 +27,7 @@ public class PAGeneralConfigServiceImpl implements PAGeneralConfigService{
     
     @Inject
     private PAGeneralConfigRepository pAGeneralConfigRepository;
+
 
     /**
      * Save a pAGeneralConfig.

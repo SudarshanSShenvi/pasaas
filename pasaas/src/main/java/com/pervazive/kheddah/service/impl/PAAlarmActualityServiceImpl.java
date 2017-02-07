@@ -2,7 +2,10 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAAlarmActualityService;
 import com.pervazive.kheddah.domain.PAAlarmActuality;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.repository.PAAlarmActualityRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,6 +28,8 @@ public class PAAlarmActualityServiceImpl implements PAAlarmActualityService{
     @Inject
     private PAAlarmActualityRepository pAAlarmActualityRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAAlarmActuality.
      *
@@ -44,8 +49,9 @@ public class PAAlarmActualityServiceImpl implements PAAlarmActualityService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAAlarmActuality> findAll(Pageable pageable) {
+    public Page<PAAlarmActuality> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAAlarmActualities");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAAlarmActuality> result = pAAlarmActualityRepository.findAll(pageable);
         return result;
     }

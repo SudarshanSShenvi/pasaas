@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAPredictionScoreService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAPredictionScoreRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,8 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
     
     @Inject
     private PAPredictionScoreRepository pAPredictionScoreRepository;
-
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAPredictionScore.
      *
@@ -44,8 +47,9 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAPredictionScore> findAll(Pageable pageable) {
+    public Page<PAPredictionScore> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAPredictionScores");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
         return result;
     }

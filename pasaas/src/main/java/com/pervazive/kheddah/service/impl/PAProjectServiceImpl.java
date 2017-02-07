@@ -1,5 +1,6 @@
 package com.pervazive.kheddah.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAProjectRepository;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.service.PAProjectService;
@@ -33,6 +35,9 @@ public class PAProjectServiceImpl implements PAProjectService{
 
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     
     /**
      * Save a pAProject.
@@ -53,8 +58,9 @@ public class PAProjectServiceImpl implements PAProjectService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAProject> findAll(Pageable pageable) {
+    public Page<PAProject> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAProjects");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAProject> result = pAProjectRepository.findAllPAUsers(pageable);
         return result;
     }

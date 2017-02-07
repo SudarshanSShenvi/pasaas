@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAReliabilityScoreService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReliabilityScore;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAReliabilityScoreRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +27,8 @@ public class PAReliabilityScoreServiceImpl implements PAReliabilityScoreService{
     @Inject
     private PAReliabilityScoreRepository pAReliabilityScoreRepository;
 
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAReliabilityScore.
      *
@@ -44,8 +48,9 @@ public class PAReliabilityScoreServiceImpl implements PAReliabilityScoreService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAReliabilityScore> findAll(Pageable pageable) {
+    public Page<PAReliabilityScore> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAReliabilityScores");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAReliabilityScore> result = pAReliabilityScoreRepository.findAll(pageable);
         return result;
     }

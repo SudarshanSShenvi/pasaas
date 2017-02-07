@@ -42,7 +42,7 @@ public interface PAProjectService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAProject> findAll(Pageable pageable);
+    Page<PAProject> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAProject.

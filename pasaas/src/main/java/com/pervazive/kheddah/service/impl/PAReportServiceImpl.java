@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PAReportService;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReport;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAReportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,8 @@ public class PAReportServiceImpl implements PAReportService{
     
     @Inject
     private PAReportRepository pAReportRepository;
-
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     /**
      * Save a pAReport.
      *
@@ -44,8 +47,9 @@ public class PAReportServiceImpl implements PAReportService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAReport> findAll(Pageable pageable) {
+    public Page<PAReport> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAReports");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PAReport> result = pAReportRepository.findAll(pageable);
         return result;
     }

@@ -24,7 +24,7 @@ public interface PAPMTRequestService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<PAPMTRequest> findAll(Pageable pageable);
+    Page<PAPMTRequest> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAPMTRequest.

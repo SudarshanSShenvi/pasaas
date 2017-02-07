@@ -19,7 +19,6 @@ public interface PAFileUploadRepository extends JpaRepository<PAFileUpload,Long>
 	@Query(value = "select distinct fileupload from PAFileUpload fileupload Where fileupload.paorgfu.id = ?1")
 	Page<PAFileUpload> findByPaorgfu(Pageable pageable, Long id);
 	
-	//@Query(value = "select distinct fileupload from PAFileUpload fileupload Where fileupload.paorgfu = ?1")
 	Page<PAFileUpload> findByPaorgfuIn(List<PAOrganization> paOrganization, Pageable pageable);
 
 }
