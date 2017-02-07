@@ -108,15 +108,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .disable()
         .and()
             .authorizeRequests()
+            .antMatchers(org.springframework.http.HttpMethod.OPTIONS, "/api/**").permitAll()
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()
             .antMatchers("/api/account/reset_password/init").permitAll()
             .antMatchers("/api/account/reset_password/finish").permitAll()
             .antMatchers("/api/profile-info").permitAll()
-            .antMatchers("/api/p-*").authenticated()  //added to expose apis for UI integration
-            //.antMatchers("/api/**").authenticated()
-            .antMatchers("/api/**").permitAll()
+            .antMatchers("/api/**").authenticated()
             
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
             .antMatchers("/v2/api-docs/**").permitAll()

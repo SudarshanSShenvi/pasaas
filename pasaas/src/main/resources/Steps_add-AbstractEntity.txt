@@ -1,0 +1,17 @@
+created_by
+created_date
+last_modified_by
+ast_modified_date
+
+ALTER TABLE `pasaas`.`pa_organization` 
+ADD COLUMN `created_by` VARCHAR(50) NOT NULL AFTER `pabporg_id`,
+ADD COLUMN `created_date` TIMESTAMP NOT NULL AFTER `created_by`,
+ADD COLUMN `last_modified_by` VARCHAR(50) NULL AFTER `created_date`,
+ADD COLUMN `last_modified_date` TIMESTAMP NULL AFTER `last_modified_by`;
+
+ALTER TABLE `pasaas`.`pa_project` 
+ADD COLUMN `created_by` VARCHAR(50) NOT NULL AFTER `paorgpro_id`,
+ADD COLUMN `created_date` TIMESTAMP NOT NULL AFTER `created_by`,
+ADD COLUMN `last_modified_by` VARCHAR(50) NULL AFTER `created_date`,
+ADD COLUMN `last_modified_date` TIMESTAMP NULL AFTER `last_modified_by`;
+// ADD PASTATUS
