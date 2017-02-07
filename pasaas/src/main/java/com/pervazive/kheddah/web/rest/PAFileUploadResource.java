@@ -101,9 +101,9 @@ public class PAFileUploadResource {
     @GetMapping("/p-a-file-uploads")
     @Timed
 
-    public ResponseEntity<List<PAFileUpload>> getAllPAFileUploads(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAFileUpload>> getAllPAFileUploads(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
-        log.debug("REST request to get a page of PAFileUploads ====="+ getUserPrincipal().getName());
+        log.debug("REST request to get a page of PAFileUploads ====="+ request.getUserPrincipal().getName());
 
         Page<PAFileUpload> page = pAFileUploadService.findAll(pageable, request.getUserPrincipal().getName());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-file-uploads");

@@ -58,12 +58,13 @@ public class PAFileUploadServiceImpl implements PAFileUploadService{
     	
     	List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
     	for (int i = 0; i < organizationames.size(); i++) {
-    		
-    		 log.debug("Request to get all PAFileUploads ****"+organizationames.get(i).getId());
+    		 log.debug("Request to get all PAFileUploads ****"+organizationames.get(i).getOrganization());
 		}
     	// log.debug("Request to get all PAFileUploads ****"+paOrganization.getOrganizations());
         //Page<PAFileUpload> result = pAFileUploadRepository.findAll(pageable);
-        Page<PAFileUpload> result = pAFileUploadRepository.findByPaorgfu(pageable, organizationames.get(0).getId());
+        //Page<PAFileUpload> result = pAFileUploadRepository.findByPaorgfu(pageable, organizationames.get(0).getId());
+        
+        Page<PAFileUpload> result = pAFileUploadRepository.findByPaorgfuIn(organizationames, pageable);
         return result;
     }
 
