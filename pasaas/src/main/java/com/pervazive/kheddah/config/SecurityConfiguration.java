@@ -110,7 +110,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .disable()
         .and()
             .authorizeRequests()
-            .antMatchers(org.springframework.http.HttpMethod.OPTIONS, "/api/**").permitAll()
+            .antMatchers(org.springframework.http.HttpMethod.OPTIONS, "/api/**").permitAll() //FOR CORS
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()
