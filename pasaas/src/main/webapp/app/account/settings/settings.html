@@ -28,6 +28,7 @@
                                ng-show="form.firstName.$error.maxlength" data-translate="settings.messages.validate.firstname.maxlength">
                             Your first name cannot be longer than 50 characters.
                         </p>
+                    
                     </div>
                 </div>
                 <div class="form-group">
@@ -73,10 +74,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                
                     <label for="langKey" data-translate="settings.form.language">Language</label>
                     <select id="langKey" name="langKey" class="form-control" ng-model="vm.settingsAccount.langKey" ng-controller="JhiLanguageController as languageVm" ng-options="code as (code | findLanguageFromKey) for code in languageVm.languages"></select>
                 </div>
-
+                <label for="organization" data-translate="settings.form.organizations">Organizations</label>
+                 <select id="organization" class="form-control" multiple name="organization" ng-model="vm.settingsAccount.organizations"
+                    ng-options="organization as organization for organization in vm.settingsAccount.organizations" readonly>
+            </select>
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="settings.form.button">Save</button>
             </form>
         </div>

@@ -1,17 +1,24 @@
 package com.pervazive.kheddah.service.impl;
 
-import com.pervazive.kheddah.service.PAFileUploadService;
-import com.pervazive.kheddah.domain.PAFileUpload;
-import com.pervazive.kheddah.repository.PAFileUploadRepository;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.List;
+import com.pervazive.kheddah.domain.PAFileUpload;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.PAFileUploadRepository;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+import com.pervazive.kheddah.service.PAFileUploadService;
 
 /**
  * Service Implementation for managing PAFileUpload.
@@ -24,6 +31,9 @@ public class PAFileUploadServiceImpl implements PAFileUploadService{
     
     @Inject
     private PAFileUploadRepository pAFileUploadRepository;
+    
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
 
     /**
      * Save a pAFileUpload.
@@ -44,9 +54,16 @@ public class PAFileUploadServiceImpl implements PAFileUploadService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAFileUpload> findAll(Pageable pageable) {
-        log.debug("Request to get all PAFileUploads");
-        Page<PAFileUpload> result = pAFileUploadRepository.findAll(pageable);
+    public Page<PAFileUpload> findAll(Pageable pageable, String pausers) {
+    	
+    	List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
+    	for (int i = 0; i < organizationames.size(); i++) {
+    		
+    		 log.debug("Request to get all PAFileUploads ****"+organizationames.get(i).getId());
+		}
+    	// log.debug("Request to get all PAFileUploads ****"+paOrganization.getOrganizations());
+        //Page<PAFileUpload> result = pAFileUploadRepository.findAll(pageable);
+        Page<PAFileUpload> result = pAFileUploadRepository.findByPaorgfu(pageable, organizationames.get(0).getId());
         return result;
     }
 
