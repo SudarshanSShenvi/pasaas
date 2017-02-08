@@ -51,7 +51,8 @@ public class PAReliabilityConfServiceImpl implements PAReliabilityConfService{
     public Page<PAReliabilityConf> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAReliabilityConfs");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAReliabilityConf> result = pAReliabilityConfRepository.findAll(pageable);
+        Page<PAReliabilityConf> result = pAReliabilityConfRepository.findByPaorgrcIn(organizationames, pageable);
+        //Page<PAReliabilityConf> result = pAReliabilityConfRepository.findAll(pageable);
         return result;
     }
 

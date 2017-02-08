@@ -61,7 +61,8 @@ public class PAProjectServiceImpl implements PAProjectService{
     public Page<PAProject> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAProjects");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAProject> result = pAProjectRepository.findAllPAUsers(pageable);
+        //Page<PAProject> result = pAProjectRepository.findAllPAUsers(pageable);
+        Page<PAProject> result = pAProjectRepository.findByPaorgproIn(organizationames, pageable);
         return result;
     }
 

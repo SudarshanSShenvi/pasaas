@@ -52,7 +52,7 @@ public class PAAlarmRCAServiceImpl implements PAAlarmRCAService{
     public Page<PAAlarmRCA> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAAlarmRCAS");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAAlarmRCA> result = pAAlarmRCARepository.findAll(pageable);
+        Page<PAAlarmRCA> result = pAAlarmRCARepository.findByPaorgarcIn(organizationames, pageable);
         return result;
     }
 

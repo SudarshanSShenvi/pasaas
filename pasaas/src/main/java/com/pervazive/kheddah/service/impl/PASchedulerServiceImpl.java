@@ -51,7 +51,7 @@ public class PASchedulerServiceImpl implements PASchedulerService{
     public Page<PAScheduler> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PASchedulers");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAScheduler> result = pASchedulerRepository.findAll(pageable);
+        Page<PAScheduler> result = pASchedulerRepository.findByPaorgschIn(organizationames, pageable);
         return result;
     }
 

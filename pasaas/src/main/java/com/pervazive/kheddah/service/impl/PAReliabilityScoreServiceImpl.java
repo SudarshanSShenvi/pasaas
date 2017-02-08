@@ -51,7 +51,8 @@ public class PAReliabilityScoreServiceImpl implements PAReliabilityScoreService{
     public Page<PAReliabilityScore> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAReliabilityScores");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAReliabilityScore> result = pAReliabilityScoreRepository.findAll(pageable);
+        Page<PAReliabilityScore> result = pAReliabilityScoreRepository.findByPaorgrsIn(organizationames, pageable);
+        //Page<PAReliabilityScore> result = pAReliabilityScoreRepository.findAll(pageable);
         return result;
     }
 

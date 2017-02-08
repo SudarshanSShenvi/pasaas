@@ -50,7 +50,8 @@ public class PAReportServiceImpl implements PAReportService{
     public Page<PAReport> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAReports");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAReport> result = pAReportRepository.findAll(pageable);
+        Page<PAReport> result = pAReportRepository.findByPaorgrepIn(organizationames, pageable);
+        //Page<PAReport> result = pAReportRepository.findAll(pageable);
         return result;
     }
 

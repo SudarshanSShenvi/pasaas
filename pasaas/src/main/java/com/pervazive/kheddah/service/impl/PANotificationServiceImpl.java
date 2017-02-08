@@ -51,7 +51,8 @@ public class PANotificationServiceImpl implements PANotificationService{
     public Page<PANotification> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PANotifications");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PANotification> result = pANotificationRepository.findAll(pageable);
+        //Page<PANotification> result = pANotificationRepository.findAll(pageable);
+        Page<PANotification> result = pANotificationRepository.findByPaorgnotIn(organizationames, pageable);
         return result;
     }
 

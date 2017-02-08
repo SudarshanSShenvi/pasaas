@@ -52,7 +52,7 @@ public class PAAlarmActualityServiceImpl implements PAAlarmActualityService{
     public Page<PAAlarmActuality> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAAlarmActualities");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAAlarmActuality> result = pAAlarmActualityRepository.findAll(pageable);
+        Page<PAAlarmActuality> result = pAAlarmActualityRepository.findByPaorgaaIn(organizationames, pageable);
         return result;
     }
 

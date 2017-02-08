@@ -52,6 +52,7 @@ public class PARawAlarmDataServiceImpl implements PARawAlarmDataService{
         log.debug("Request to get all PARawAlarmData");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
         Page<PARawAlarmData> result = pARawAlarmDataRepository.findAll(pageable);
+        
         return result;
     }
 

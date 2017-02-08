@@ -50,7 +50,8 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
     public Page<PAPredictionScore> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAPredictionScores");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
+        Page<PAPredictionScore> result = pAPredictionScoreRepository.findByPaorgpsIn(organizationames, pageable);
+        //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
         return result;
     }
 

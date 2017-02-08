@@ -51,7 +51,7 @@ public class PAPredictionServiceImpl implements PAPredictionService{
     public Page<PAPrediction> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAPredictions");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAPrediction> result = pAPredictionRepository.findAll(pageable);
+        Page<PAPrediction> result = pAPredictionRepository.findByPaorgpreIn(organizationames, pageable);
         return result;
     }
 

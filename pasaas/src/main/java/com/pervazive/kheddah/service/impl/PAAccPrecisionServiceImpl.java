@@ -52,7 +52,8 @@ public class PAAccPrecisionServiceImpl implements PAAccPrecisionService{
     public Page<PAAccPrecision> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAAccPrecisions");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAAccPrecision> result = pAAccPrecisionRepository.findAll(pageable);
+        Page<PAAccPrecision> result = pAAccPrecisionRepository.findByPaorgapIn(organizationames, pageable);
+        //Page<PAAccPrecision> result = pAAccPrecisionRepository.findAll(pageable);
         return result;
     }
 

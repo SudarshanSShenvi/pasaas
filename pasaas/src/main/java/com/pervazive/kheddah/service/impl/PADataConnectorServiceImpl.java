@@ -52,7 +52,8 @@ public class PADataConnectorServiceImpl implements PADataConnectorService{
     public Page<PADataConnector> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PADataConnectors");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PADataConnector> result = pADataConnectorRepository.findAll(pageable);
+        Page<PADataConnector> result = pADataConnectorRepository.findByPaorgdc(organizationames, pageable);
+        //Page<PADataConnector> result = pADataConnectorRepository.findAll(pageable);
         return result;
     }
 

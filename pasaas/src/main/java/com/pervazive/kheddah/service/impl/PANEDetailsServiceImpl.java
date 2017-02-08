@@ -52,7 +52,8 @@ public class PANEDetailsServiceImpl implements PANEDetailsService{
     public Page<PANEDetails> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PANEDetails");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PANEDetails> result = pANEDetailsRepository.findAll(pageable);
+        Page<PANEDetails> result = pANEDetailsRepository.findByPaorgnedIn(organizationames, pageable);
+        //Page<PANEDetails> result = pANEDetailsRepository.findAll(pageable);
         return result;
     }
 

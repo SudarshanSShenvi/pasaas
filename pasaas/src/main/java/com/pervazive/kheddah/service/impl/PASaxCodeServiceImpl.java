@@ -51,7 +51,8 @@ public class PASaxCodeServiceImpl implements PASaxCodeService{
     public Page<PASaxCode> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PASaxCodes");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PASaxCode> result = pASaxCodeRepository.findAll(pageable);
+        Page<PASaxCode> result = pASaxCodeRepository.findByPaorgscIn(organizationames, pageable);
+        //Page<PASaxCode> result = pASaxCodeRepository.findAll(pageable);
         return result;
     }
 

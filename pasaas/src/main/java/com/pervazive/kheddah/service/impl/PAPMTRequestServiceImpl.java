@@ -51,7 +51,8 @@ public class PAPMTRequestServiceImpl implements PAPMTRequestService{
     public Page<PAPMTRequest> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAPMTRequests");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAPMTRequest> result = pAPMTRequestRepository.findAll(pageable);
+        Page<PAPMTRequest> result = pAPMTRequestRepository.findByPaorgpmtIn(organizationames, pageable);
+        //Page<PAPMTRequest> result = pAPMTRequestRepository.findAll(pageable);
         return result;
     }
 

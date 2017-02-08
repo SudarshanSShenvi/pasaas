@@ -51,7 +51,8 @@ public class PASaxCodeTmpServiceImpl implements PASaxCodeTmpService{
     public Page<PASaxCodeTmp> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PASaxCodeTmps");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findAll(pageable);
+        Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findByPaorgsctIn(organizationames, pageable);
+        //Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findAll(pageable);
         return result;
     }
 

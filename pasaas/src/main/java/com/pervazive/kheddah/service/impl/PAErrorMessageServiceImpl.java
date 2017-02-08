@@ -52,7 +52,8 @@ public class PAErrorMessageServiceImpl implements PAErrorMessageService{
     public Page<PAErrorMessage> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAErrorMessages");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAErrorMessage> result = pAErrorMessageRepository.findAll(pageable);
+        Page<PAErrorMessage> result = pAErrorMessageRepository.findByPaorgem(organizationames, pageable);
+        //Page<PAErrorMessage> result = pAErrorMessageRepository.findAll(pageable);
         return result;
     }
 

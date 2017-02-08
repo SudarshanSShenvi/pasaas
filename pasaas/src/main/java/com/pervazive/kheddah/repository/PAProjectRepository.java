@@ -22,5 +22,5 @@ public interface PAProjectRepository extends JpaRepository<PAProject,Long> {
 	@Query(value = "select distinct project from PAProject project where project.projectname = ?1")
 	PAProject findByProjectName(String paproject);
 	
-	List<PAProject> findByPaorgproIn(List<PAOrganization> paOrganization, Pageable pageable);
+	Page<PAProject> findByPaorgproIn(List<PAOrganization> paOrganization, Pageable pageable);
 }
