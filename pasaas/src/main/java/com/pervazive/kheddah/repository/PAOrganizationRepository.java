@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.*;
 
 import java.util.List;
 import java.util.Set;
+import java.lang.String;
 
 /**
  * Spring Data JPA repository for the PAOrganization entity.
@@ -21,4 +22,6 @@ public interface PAOrganizationRepository extends JpaRepository<PAOrganization,L
 			
 			@Query(value = "select distinct organization from PAOrganization organization left join fetch organization.pausers as pau where pau.login =?1")
 			List<PAOrganization> findOrgsByPAUser(String pausers);
+			
+			Page<PAOrganization> findByOrganizationIn(List<PAOrganization> organization, Pageable page);
 }

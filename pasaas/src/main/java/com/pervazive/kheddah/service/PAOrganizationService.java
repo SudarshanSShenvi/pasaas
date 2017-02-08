@@ -30,6 +30,8 @@ public interface PAOrganizationService {
      *  @return the list of entities
      */
     Page<PAOrganization> findAll(Pageable pageable);
+    
+    Page<PAOrganization> findAll(Pageable pageable, String user);
 
     /**
      *  Get the "id" pAOrganization.

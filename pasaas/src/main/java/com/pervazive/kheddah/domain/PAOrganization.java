@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -61,6 +62,7 @@ public class PAOrganization extends AbstractAuditingEntity implements Serializab
     private Set<PAProject> paproorgs = new HashSet<>();
 
     @ManyToOne
+    @NotNull
     private PABusinessPlan pabporg;
 
     @OneToMany(mappedBy = "paorgrs")

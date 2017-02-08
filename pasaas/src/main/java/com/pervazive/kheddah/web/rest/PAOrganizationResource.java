@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
+import com.pervazive.kheddah.security.AuthoritiesConstants;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -18,9 +19,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Iterator;
@@ -105,10 +109,13 @@ public class PAOrganizationResource {
      */
     @GetMapping("/p-a-organizations")
     @Timed
+    @Secured(AuthoritiesConstants.SUPERADMIN)
     public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAOrganizations");
+        
         Page<PAOrganization> page = pAOrganizationService.findAll(pageable);
+        
         List<PAOrganizationDTO> paOrganization = page.getContent().stream()
             .map(PAOrganizationDTO::new)
             .collect(Collectors.toList());
@@ -119,6 +126,22 @@ public class PAOrganizationResource {
         //Page<PAOrganization> page = pAOrganizationService.findAll(pageable);
         //HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-organizations");
         //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/p-a-organizations/mt")
+    @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
+    public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable, HttpServletRequest request)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAOrganizations");
+        Page<PAOrganization> page = pAOrganizationService.findAll(pageable, request.getUserPrincipal().getName());
+        List<PAOrganizationDTO> paOrganization = page.getContent().stream()
+            .map(PAOrganizationDTO::new)
+            .collect(Collectors.toList());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-organizations");
+        return new ResponseEntity<>(paOrganization, headers, HttpStatus.OK);
+        
+       
     }
 
     /**

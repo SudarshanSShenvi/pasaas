@@ -2,6 +2,7 @@ package com.pervazive.kheddah.service.impl;
 
 import java.time.ZonedDateTime;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -38,6 +39,9 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
 
 /*    @Inject
     private PAProjectRepository pAProjectRepository;*/
@@ -64,6 +68,15 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
         log.debug("Request to get all PAOrganizations");
         //Page<PAOrganization> result = pAOrganizationRepository.findAll(pageable);
         Page<PAOrganization> result = pAOrganizationRepository.findAllPAUsers(pageable);
+        return result;
+    }
+    
+    @Transactional(readOnly = true) 
+    public Page<PAOrganization> findAll(Pageable pageable, String pausers) {
+        log.debug("Request to get all PAOrganizations");
+        List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
+        //Page<PAOrganization> result = pAOrganizationRepository.findAll(pageable);
+        Page<PAOrganization> result = pAOrganizationRepository.findByOrganizationIn(organizationames, pageable);
         return result;
     }
 
