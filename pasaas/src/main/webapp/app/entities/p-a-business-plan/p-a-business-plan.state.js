@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/p-a-business-plan',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_SUPERADMIN'],
                 pageTitle: 'pasaasApp.pABusinessPlan.home.title'
             },
             views: {

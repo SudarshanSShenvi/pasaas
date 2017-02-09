@@ -1,7 +1,6 @@
 package com.pervazive.kheddah.service.impl;
 
 import java.time.ZonedDateTime;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -11,17 +10,16 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pervazive.kheddah.domain.PABusinessPlan;
 import com.pervazive.kheddah.domain.PAOrganization;
-import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.domain.enumeration.PAStatus;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
-import com.pervazive.kheddah.repository.PAProjectRepository;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.service.PAOrganizationService;
 
@@ -75,8 +73,9 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     public Page<PAOrganization> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAOrganizations");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
+        log.debug("PAOrganizations: SIZE ======================= "+organizationames.size());
         //Page<PAOrganization> result = pAOrganizationRepository.findAll(pageable);
-        Page<PAOrganization> result = pAOrganizationRepository.findByOrganizationIn(organizationames, pageable);
+        Page<PAOrganization> result = new PageImpl<PAOrganization>(organizationames);
         return result;
     }
 

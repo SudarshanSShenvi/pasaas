@@ -3,6 +3,7 @@ package com.pervazive.kheddah.repository;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
@@ -24,4 +25,5 @@ public interface PAOrganizationRepository extends JpaRepository<PAOrganization,L
 			List<PAOrganization> findOrgsByPAUser(String pausers);
 			
 			Page<PAOrganization> findByOrganizationIn(List<PAOrganization> organization, Pageable page);
+			
 }

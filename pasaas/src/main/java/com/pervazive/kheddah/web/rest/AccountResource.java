@@ -1,9 +1,10 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PersistentToken;
 import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PersistentTokenRepository;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.SecurityUtils;
@@ -50,6 +51,8 @@ public class AccountResource {
 
     @Inject
     private MailService mailService;
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
 
     /**
      * POST  /register : register the user.
@@ -115,7 +118,13 @@ public class AccountResource {
      */
     @GetMapping("/account")
     @Timed
-    public ResponseEntity<UserDTO> getAccount() {
+    public ResponseEntity<UserDTO> getAccount(HttpServletRequest request) {
+    	
+    	//IF loop to be moved to Angular
+    	if(request.getUserPrincipal() != null){
+    	List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(request.getUserPrincipal().getName());
+    	request.getSession().setAttribute("organizationsess", organizationames);
+    	}
         return Optional.ofNullable(userService.getUserWithAuthorities())
             .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));

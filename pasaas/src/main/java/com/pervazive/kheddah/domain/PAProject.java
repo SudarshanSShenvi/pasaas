@@ -41,7 +41,7 @@ public class PAProject implements Serializable {
     private PAOrganization paorgpro;
     
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "pa_user_project",
         joinColumns = {@JoinColumn(name = "project_id", referencedColumnName = "id")},

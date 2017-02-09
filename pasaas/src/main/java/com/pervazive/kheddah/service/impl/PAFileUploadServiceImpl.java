@@ -67,6 +67,23 @@ public class PAFileUploadServiceImpl implements PAFileUploadService{
         Page<PAFileUpload> result = pAFileUploadRepository.findByPaorgfuIn(organizationames, pageable);
         return result;
     }
+    
+    @Transactional(readOnly = true) 
+    public Page<PAFileUpload> findAll(Pageable pageable, List<PAOrganization> paOrganizations) {
+    	
+    	//List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
+    	for (int i = 0; i < paOrganizations.size(); i++) {
+    		 log.debug("Request to get all PAFileUploads ****"+paOrganizations.get(i).getOrganization().toString());
+		}
+    	// log.debug("Request to get all PAFileUploads ****"+paOrganization.getOrganizations());
+        //Page<PAFileUpload> result = pAFileUploadRepository.findAll(pageable);
+        //Page<PAFileUpload> result = pAFileUploadRepository.findByPaorgfu(pageable, organizationames.get(0).getId());
+        
+        Page<PAFileUpload> result = pAFileUploadRepository.findByPaorgfuIn(paOrganizations, pageable);
+        return result;
+    }
+    
+
 
     /**
      *  Get one pAFileUpload by id.

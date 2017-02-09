@@ -107,7 +107,7 @@ public class PAOrganizationResource {
      * @return the ResponseEntity with status 200 (OK) and the list of pAOrganizations in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @GetMapping("/p-a-organizations")
+    @GetMapping("/p-a-organizations/suops")
     @Timed
     @Secured(AuthoritiesConstants.SUPERADMIN)
     public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable)
@@ -128,13 +128,18 @@ public class PAOrganizationResource {
         //return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
-    @GetMapping("/p-a-organizations/mt")
+    @GetMapping("/p-a-organizations")
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAOrganizations");
         Page<PAOrganization> page = pAOrganizationService.findAll(pageable, request.getUserPrincipal().getName());
+        if (page.getContent().isEmpty()) {
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert("paorganization", "emptyorganization", "No Organizations Associated. Please contact admin to include you as part of an Organization"))
+                .body(null);
+        } 
         List<PAOrganizationDTO> paOrganization = page.getContent().stream()
             .map(PAOrganizationDTO::new)
             .collect(Collectors.toList());

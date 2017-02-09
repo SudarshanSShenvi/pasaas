@@ -1,11 +1,13 @@
 package com.pervazive.kheddah.service;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.pervazive.kheddah.domain.PAFileUpload;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 
 /**
@@ -29,6 +31,8 @@ public interface PAFileUploadService {
      */
     //Page<PAFileUpload> findAll(Pageable pageable);
     Page<PAFileUpload> findAll(Pageable pageable, String user);
+    
+    Page<PAFileUpload> findAll(Pageable pageable, List<PAOrganization> paOrganizations);
 
     /**
      *  Get the "id" pAFileUpload.
