@@ -1,6 +1,8 @@
 package com.pervazive.kheddah.service;
 
 import com.pervazive.kheddah.domain.PAErrorMessage;
+import com.pervazive.kheddah.domain.PAOrganization;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -25,6 +27,8 @@ public interface PAErrorMessageService {
      *  @return the list of entities
      */
     Page<PAErrorMessage> findAll(Pageable pageable, String user);
+    
+    Page<PAErrorMessage> findAll(Pageable pageable, List<PAOrganization> organizationnames);
 
     /**
      *  Get the "id" pAErrorMessage.

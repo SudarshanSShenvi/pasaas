@@ -15,7 +15,7 @@ import com.pervazive.kheddah.domain.enumeration.PAStatus;
 @Entity
 @Table(name = "pa_general_config")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class PAGeneralConfig implements Serializable {
+public class PAGeneralConfig extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

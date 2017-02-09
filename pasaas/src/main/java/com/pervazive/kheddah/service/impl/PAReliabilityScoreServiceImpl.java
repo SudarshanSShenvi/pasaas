@@ -57,6 +57,20 @@ public class PAReliabilityScoreServiceImpl implements PAReliabilityScoreService{
     }
 
     /**
+     *  Get all the pAReliabilityScores.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PAReliabilityScore> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+        log.debug("Request to get all PAReliabilityScores");
+        Page<PAReliabilityScore> result = pAReliabilityScoreRepository.findByPaorgrsIn(organizationames, pageable);
+        //Page<PAReliabilityScore> result = pAReliabilityScoreRepository.findAll(pageable);
+        return result;
+    }
+    
+    /**
      *  Get one pAReliabilityScore by id.
      *
      *  @param id the id of the entity

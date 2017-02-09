@@ -79,6 +79,14 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
         return result;
     }
 
+    @Transactional(readOnly = true) 
+    public Page<PAOrganization> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+        log.debug("PAOrganizations: SIZE ======================= "+organizationames.size());
+        //Page<PAOrganization> result = pAOrganizationRepository.findAll(pageable);
+        Page<PAOrganization> result = new PageImpl<PAOrganization>(organizationames);
+        return result;
+    }
+    
     /**
      *  Get one pAOrganization by id.
      *

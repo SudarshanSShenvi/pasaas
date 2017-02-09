@@ -24,6 +24,7 @@
             <column name="organization_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
+            <column name="default_org" type="varchar(5)" defaultValue="Yes"/>
         </createTable>
         
         <addPrimaryKey columnNames="user_id, organization_id" tableName="pa_user_organization"/>
@@ -62,6 +63,84 @@
                                  constraintName="fk_user_pro_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pa_user"/> 
+                                 
+    <addColumn tableName="pa_organization">
+        <column name="created_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_organization">
+        <column name="created_date" type="timestamp" defaultValueDate="${now}"/>
+    </addColumn>
+	<addColumn tableName="pa_organization">
+        <column name="last_modified_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_organization">
+        <column name="last_modified_date" type="timestamp"/>
+    </addColumn>
+    
+    <addColumn tableName="pa_project">
+        <column name="created_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_project">
+        <column name="created_date" type="timestamp" defaultValueDate="${now}"/>
+    </addColumn>
+	<addColumn tableName="pa_project">
+        <column name="last_modified_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_project">
+        <column name="last_modified_date" type="timestamp"/>
+    </addColumn>
+    
+    <addColumn tableName="pa_general_config">
+        <column name="created_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_general_config">
+        <column name="created_date" type="timestamp" defaultValueDate="${now}"/>
+    </addColumn>
+	<addColumn tableName="pa_general_config">
+        <column name="last_modified_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_general_config">
+        <column name="last_modified_date" type="timestamp"/>
+    </addColumn>
+    
+       <addColumn tableName="pa_pmt_request">
+        <column name="created_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_pmt_request">
+        <column name="created_date" type="timestamp" defaultValueDate="${now}"/>
+    </addColumn>
+	<addColumn tableName="pa_pmt_request">
+        <column name="last_modified_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_pmt_request">
+        <column name="last_modified_date" type="timestamp"/>
+    </addColumn>
+    
+   <addColumn tableName="pa_report">
+        <column name="created_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_report">
+        <column name="created_date" type="timestamp" defaultValueDate="${now}"/>
+    </addColumn>
+	<addColumn tableName="pa_report">
+        <column name="last_modified_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_report">
+        <column name="last_modified_date" type="timestamp"/>
+    </addColumn>
+    
+   <addColumn tableName="pa_businessplan">
+        <column name="created_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_businessplan">
+        <column name="created_date" type="timestamp" defaultValueDate="${now}"/>
+    </addColumn>
+	<addColumn tableName="pa_businessplan">
+        <column name="last_modified_by" type="varchar(50)"/>
+    </addColumn>
+	<addColumn tableName="pa_businessplan">
+        <column name="last_modified_date" type="timestamp"/>
+    </addColumn>
 
         <loadData encoding="UTF-8"
                   file="config/liquibase/users-2.csv"

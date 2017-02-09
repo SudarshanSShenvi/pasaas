@@ -38,7 +38,7 @@ import io.swagger.annotations.ApiParam;
  */
 @RestController
 @RequestMapping("/api")
-@Secured(AuthoritiesConstants.SUPERADMIN)
+
 public class PABusinessPlanResource {
 
     private final Logger log = LoggerFactory.getLogger(PABusinessPlanResource.class);
@@ -55,6 +55,7 @@ public class PABusinessPlanResource {
      */
     @PostMapping("/p-a-business-plans")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<PABusinessPlan> createPABusinessPlan(@RequestBody PABusinessPlan pABusinessPlan) throws URISyntaxException {
         log.debug("REST request to save PABusinessPlan : {}", pABusinessPlan);
         if (pABusinessPlan.getId() != null) {
@@ -77,6 +78,7 @@ public class PABusinessPlanResource {
      */
     @PutMapping("/p-a-business-plans")
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<PABusinessPlan> updatePABusinessPlan(@RequestBody PABusinessPlan pABusinessPlan) throws URISyntaxException {
         log.debug("REST request to update PABusinessPlan : {}", pABusinessPlan);
         if (pABusinessPlan.getId() == null) {
@@ -97,6 +99,7 @@ public class PABusinessPlanResource {
      */
     @GetMapping("/p-a-business-plans")
     @Timed
+    @Secured(AuthoritiesConstants.USER)
     public ResponseEntity<List<PABusinessPlan>> getAllPABusinessPlans(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PABusinessPlans");
@@ -113,6 +116,7 @@ public class PABusinessPlanResource {
      */
     @GetMapping("/p-a-business-plans/{id}")
     @Timed
+    @Secured(AuthoritiesConstants.USER)
     public ResponseEntity<PABusinessPlan> getPABusinessPlan(@PathVariable Long id) {
         log.debug("REST request to get PABusinessPlan : {}", id);
         PABusinessPlan pABusinessPlan = pABusinessPlanService.findOne(id);
@@ -131,6 +135,7 @@ public class PABusinessPlanResource {
      */
     @DeleteMapping("/p-a-business-plans/{id}")
     @Timed
+    @Secured(AuthoritiesConstants.SUPERADMIN)
     public ResponseEntity<Void> deletePABusinessPlan(@PathVariable Long id) {
         log.debug("REST request to delete PABusinessPlan : {}", id);
         pABusinessPlanService.delete(id);

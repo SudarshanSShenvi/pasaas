@@ -55,6 +55,20 @@ public class PAReliabilityConfServiceImpl implements PAReliabilityConfService{
         //Page<PAReliabilityConf> result = pAReliabilityConfRepository.findAll(pageable);
         return result;
     }
+    
+    /**
+     *  Get all the pAReliabilityConfs.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PAReliabilityConf> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+        log.debug("Request to get all PAReliabilityConfs");
+        Page<PAReliabilityConf> result = pAReliabilityConfRepository.findByPaorgrcIn(organizationames, pageable);
+        //Page<PAReliabilityConf> result = pAReliabilityConfRepository.findAll(pageable);
+        return result;
+    }
 
     /**
      *  Get one pAReliabilityConf by id.

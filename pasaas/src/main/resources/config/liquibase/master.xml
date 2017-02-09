@@ -5,8 +5,6 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/User_Org_Project_rel2.xml" relativeToChangelogFile="false"/>
-    <!-- <include file="classpath:config/liquibase/changelog/User_Org_Project_rel3.xml" relativeToChangelogFile="false"/> -->
     <include file="classpath:config/liquibase/changelog/20170202082052_added_entity_PABusinessPlan.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170202085244_added_entity_PANotification.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170202083802_added_entity_PAErrorMessage.xml" relativeToChangelogFile="false"/>
@@ -30,6 +28,7 @@
     <include file="classpath:config/liquibase/changelog/20170203072814_added_entity_PASchedulerInterval.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170203073225_added_entity_PAAlarmRCA.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170203074331_added_entity_PANEDetails.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/User_Org_Project_rel2.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170202085244_added_entity_constraints_PANotification.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170202083802_added_entity_constraints_PAErrorMessage.xml" relativeToChangelogFile="false"/>

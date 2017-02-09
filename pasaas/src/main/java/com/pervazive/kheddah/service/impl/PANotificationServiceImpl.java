@@ -55,6 +55,20 @@ public class PANotificationServiceImpl implements PANotificationService{
         Page<PANotification> result = pANotificationRepository.findByPaorgnotIn(organizationames, pageable);
         return result;
     }
+    
+    /**
+     *  Get all the pANotifications.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PANotification> findAll(Pageable pageable, List<PAOrganization> organizationames ) {
+        log.debug("Request to get all PANotifications");
+        //Page<PANotification> result = pANotificationRepository.findAll(pageable);
+        Page<PANotification> result = pANotificationRepository.findByPaorgnotIn(organizationames, pageable);
+        return result;
+    }
 
     /**
      *  Get one pANotification by id.

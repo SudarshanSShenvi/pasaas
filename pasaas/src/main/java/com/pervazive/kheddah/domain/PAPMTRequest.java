@@ -19,7 +19,7 @@ import com.pervazive.kheddah.domain.enumeration.PMTPriority;
 @Entity
 @Table(name = "pa_pmt_request")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class PAPMTRequest implements Serializable {
+public class PAPMTRequest extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

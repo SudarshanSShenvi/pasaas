@@ -55,6 +55,20 @@ public class PASaxCodeTmpServiceImpl implements PASaxCodeTmpService{
         //Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findAll(pageable);
         return result;
     }
+    
+    /**
+     *  Get all the pASaxCodeTmps.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PASaxCodeTmp> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+        log.debug("Request to get all PASaxCodeTmps");
+        Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findByPaorgsctIn(organizationames, pageable);
+        //Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findAll(pageable);
+        return result;
+    }
 
     /**
      *  Get one pASaxCodeTmp by id.

@@ -55,6 +55,19 @@ public class PAAlarmRCAServiceImpl implements PAAlarmRCAService{
         Page<PAAlarmRCA> result = pAAlarmRCARepository.findByPaorgarcIn(organizationames, pageable);
         return result;
     }
+    
+    /**
+     *  Get all the pAAlarmRCAS.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PAAlarmRCA> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+        log.debug("Request to get all PAAlarmRCAS");
+        Page<PAAlarmRCA> result = pAAlarmRCARepository.findByPaorgarcIn(organizationames, pageable);
+        return result;
+    }
 
     /**
      *  Get one pAAlarmRCA by id.

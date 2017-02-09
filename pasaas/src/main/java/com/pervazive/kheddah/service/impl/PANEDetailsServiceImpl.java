@@ -56,6 +56,20 @@ public class PANEDetailsServiceImpl implements PANEDetailsService{
         //Page<PANEDetails> result = pANEDetailsRepository.findAll(pageable);
         return result;
     }
+    
+    /**
+     *  Get all the pANEDetails.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PANEDetails> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+        log.debug("Request to get all PANEDetails");
+        Page<PANEDetails> result = pANEDetailsRepository.findByPaorgnedIn(organizationames, pageable);
+        //Page<PANEDetails> result = pANEDetailsRepository.findAll(pageable);
+        return result;
+    }
 
     /**
      *  Get one pANEDetails by id.
