@@ -52,7 +52,7 @@ public class PAErrorMessageServiceImpl implements PAErrorMessageService{
     public Page<PAErrorMessage> findAll(Pageable pageable, String pausers) {
         log.debug("Request to get all PAErrorMessages");
         List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(pausers);
-        Page<PAErrorMessage> result = pAErrorMessageRepository.findByPaorgem(organizationames, pageable);
+        Page<PAErrorMessage> result = pAErrorMessageRepository.findByPaorgemIn(organizationames, pageable);
         //Page<PAErrorMessage> result = pAErrorMessageRepository.findAll(pageable);
         return result;
     }
@@ -66,7 +66,7 @@ public class PAErrorMessageServiceImpl implements PAErrorMessageService{
     @Transactional(readOnly = true) 
     public Page<PAErrorMessage> findAll(Pageable pageable, List<PAOrganization> organizationames) {
         log.debug("Request to get all PAErrorMessages");
-        Page<PAErrorMessage> result = pAErrorMessageRepository.findByPaorgem(organizationames, pageable);
+        Page<PAErrorMessage> result = pAErrorMessageRepository.findByPaorgemIn(organizationames, pageable);
         //Page<PAErrorMessage> result = pAErrorMessageRepository.findAll(pageable);
         return result;
     }

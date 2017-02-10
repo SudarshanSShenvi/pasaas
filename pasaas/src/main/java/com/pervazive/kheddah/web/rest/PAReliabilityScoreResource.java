@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReliabilityScore;
 import com.pervazive.kheddah.service.PAReliabilityScoreService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -90,7 +91,7 @@ public class PAReliabilityScoreResource {
     public ResponseEntity<List<PAReliabilityScore>> getAllPAReliabilityScores(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAReliabilityScores");
-        Page<PAReliabilityScore> page = pAReliabilityScoreService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PAReliabilityScore> page = pAReliabilityScoreService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reliability-scores");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

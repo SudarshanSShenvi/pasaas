@@ -120,6 +120,7 @@ public class UserService {
         user.setLogin(managedUserVM.getLogin());
         user.setFirstName(managedUserVM.getFirstName());
         user.setLastName(managedUserVM.getLastName());
+        user.setDefaultOrganization(managedUserVM.getDefaultOrganization());
         user.setEmail(managedUserVM.getEmail());
         if (managedUserVM.getLangKey() == null) {
             user.setLangKey("en"); // default language
@@ -153,7 +154,7 @@ public class UserService {
         });
     }
 
-    public void updateUser(Long id, String login, String firstName, String lastName, String email,
+    public void updateUser(Long id, String login, String firstName, String lastName, String defaultOrganization, String email,
         boolean activated, String langKey, Set<String> authorities) {
 
         Optional.of(userRepository
@@ -164,6 +165,7 @@ public class UserService {
                 user.setLastName(lastName);
                 user.setEmail(email);
                 user.setActivated(activated);
+                user.setDefaultOrganization(defaultOrganization);
                 user.setLangKey(langKey);
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();

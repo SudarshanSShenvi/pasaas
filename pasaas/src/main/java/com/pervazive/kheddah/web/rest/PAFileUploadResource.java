@@ -32,6 +32,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAFileUpload;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.service.PAFileUploadService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -49,7 +50,9 @@ public class PAFileUploadResource {
         
     @Inject
     private PAFileUploadService pAFileUploadService;
-    
+  
+    @Inject
+    private UserRepository userRepository;
    
     /**
      * POST  /p-a-file-uploads : Create a new pAFileUpload.
@@ -107,6 +110,9 @@ public class PAFileUploadResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of PAFileUploads "+ request.getUserPrincipal().getName());
 
+        
+        
+        userRepository.findOneByLogin(request.getUserPrincipal().getName()).get().getDefaultOrganization();
         Page<PAFileUpload> page = pAFileUploadService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-file-uploads");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

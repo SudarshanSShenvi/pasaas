@@ -11,6 +11,15 @@
                 <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
                 </div>
+                **
+           <!--  <div class="form-group">
+            <label data-translate="pasaasApp.pAProject.paorgpro" for="field_paorgpro">Paorgpro</label>
+            <select class="form-control" id="field_paorgpro" name="paorgpro" 
+            ng-model="vm.pAProject.paorgpro" 
+            ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id">
+                <option value=""></option><a class="alert-link" ui-sref="changeOrganization">Change Org</a>
+            </select>
+        	</div> -->
 
                 <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
                     If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").

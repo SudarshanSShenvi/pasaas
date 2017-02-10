@@ -2,6 +2,7 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PADataConnector;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.service.PADataConnectorService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -90,7 +91,7 @@ public class PADataConnectorResource {
     public ResponseEntity<List<PADataConnector>> getAllPADataConnectors(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PADataConnectors");
-        Page<PADataConnector> page = pADataConnectorService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PADataConnector> page = pADataConnectorService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-data-connectors");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

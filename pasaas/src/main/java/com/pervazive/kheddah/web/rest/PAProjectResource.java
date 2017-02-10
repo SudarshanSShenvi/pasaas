@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
@@ -110,7 +111,7 @@ public class PAProjectResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of PAProjects");
         
-        Page<PAProject> page = pAProjectService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PAProject> page = pAProjectService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         List<PAProjectDTO> paProjectDTO = page.getContent().stream()
             .map(PAProjectDTO::new)
             .collect(Collectors.toList());

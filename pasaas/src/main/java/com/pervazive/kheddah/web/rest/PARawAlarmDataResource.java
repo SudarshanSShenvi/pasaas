@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PARawAlarmData;
 import com.pervazive.kheddah.service.PARawAlarmDataService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -90,7 +91,7 @@ public class PARawAlarmDataResource {
     public ResponseEntity<List<PARawAlarmData>> getAllPARawAlarmData(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PARawAlarmData");
-        Page<PARawAlarmData> page = pARawAlarmDataService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PARawAlarmData> page = pARawAlarmDataService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-raw-alarm-data");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

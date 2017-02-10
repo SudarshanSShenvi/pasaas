@@ -1,5 +1,6 @@
 package com.pervazive.kheddah.service;
 
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAScheduler;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,7 @@ public interface PASchedulerService {
      */
     Page<PAScheduler> findAll(Pageable pageable, String user);
 
+    Page<PAScheduler> findAll(Pageable pageable, List<PAOrganization> organizationnames);
     /**
      *  Get the "id" pAScheduler.
      *

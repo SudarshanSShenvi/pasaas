@@ -146,7 +146,7 @@ public class PAOrganization extends AbstractAuditingEntity implements Serializab
     private Set<PANEDetails> panedorgs = new HashSet<>();
     
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "pa_user_organization",
         joinColumns = {@JoinColumn(name = "organization_id", referencedColumnName = "id")},

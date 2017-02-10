@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.service;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.domain.Page;
@@ -32,6 +33,8 @@ public interface PAOrganizationService {
     Page<PAOrganization> findAll(Pageable pageable);
     
     Page<PAOrganization> findAll(Pageable pageable, String user);
+    
+    Page<PAOrganization> findAll(Pageable pageable, List<PAOrganization> organizationnames);
 
     /**
      *  Get the "id" pAOrganization.

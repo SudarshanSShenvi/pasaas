@@ -2,6 +2,7 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PANotification;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.service.PANotificationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -90,7 +91,7 @@ public class PANotificationResource {
     public ResponseEntity<List<PANotification>> getAllPANotifications(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PANotifications");
-        Page<PANotification> page = pANotificationService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PANotification> page = pANotificationService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-notifications");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPrediction;
 import com.pervazive.kheddah.service.PAPredictionService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -90,7 +91,7 @@ public class PAPredictionResource {
     public ResponseEntity<List<PAPrediction>> getAllPAPredictions(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAPredictions");
-        Page<PAPrediction> page = pAPredictionService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PAPrediction> page = pAPredictionService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-predictions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

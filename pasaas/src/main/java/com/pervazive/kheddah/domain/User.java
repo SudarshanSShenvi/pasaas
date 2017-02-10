@@ -50,6 +50,18 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(max = 50)
     @Column(name = "last_name", length = 50)
     private String lastName;
+    
+    public String getDefaultOrganization() {
+		return defaultOrganization;
+	}
+
+	public void setDefaultOrganization(String defaultOrganization) {
+		this.defaultOrganization = defaultOrganization;
+	}
+
+	@Size(max = 255)
+    @Column(name = "default_organization", length = 255)
+    private String defaultOrganization;
 
     @Email
     @Size(max = 100)

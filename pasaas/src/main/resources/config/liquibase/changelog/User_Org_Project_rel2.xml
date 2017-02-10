@@ -24,7 +24,6 @@
             <column name="organization_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="default_org" type="varchar(5)" defaultValue="Yes"/>
         </createTable>
         
         <addPrimaryKey columnNames="user_id, organization_id" tableName="pa_user_organization"/>

@@ -1,6 +1,8 @@
 package com.pervazive.kheddah.service;
 
 import com.pervazive.kheddah.domain.PANotification;
+import com.pervazive.kheddah.domain.PAOrganization;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -25,6 +27,8 @@ public interface PANotificationService {
      *  @return the list of entities
      */
     Page<PANotification> findAll(Pageable pageable, String user);
+    
+    Page<PANotification> findAll(Pageable pageable, List<PAOrganization> organizationnames);
 
     /**
      *  Get the "id" pANotification.

@@ -2,6 +2,7 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAAlarmActuality;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.service.PAAlarmActualityService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -90,7 +91,7 @@ public class PAAlarmActualityResource {
     public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAAlarmActualities");
-        Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-alarm-actualities");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

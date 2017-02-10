@@ -145,6 +145,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Joe",                  // firstName
             "Shmoe",                // lastName
+            "Organization", 			//orgs 
             "joe@example.com",      // e-mail
             true,                   // activated
             "en",                   // langKey
@@ -176,6 +177,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Funky",                // firstName
             "One",                  // lastName
+            "Organization", 			//orgs 
             "funky@example.com",    // e-mail
             true,                   // activated
             "en",                   // langKey
@@ -207,6 +209,7 @@ public class AccountResourceIntTest {
             "password",         // password
             "Bob",              // firstName
             "Green",            // lastName
+            "Organization", 			//orgs 
             "invalid",          // e-mail <-- invalid
             true,               // activated
             "en",               // langKey
@@ -238,6 +241,7 @@ public class AccountResourceIntTest {
             "123",              // password with only 3 digits
             "Bob",              // firstName
             "Green",            // lastName
+            "Organization", 			//orgs 
             "bob@example.com",  // e-mail
             true,               // activated
             "en",               // langKey
@@ -270,6 +274,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Alice",                // firstName
             "Something",            // lastName
+            "Organization", 			//orgs 
             "alice@example.com",    // e-mail
             true,                   // activated
             "en",                   // langKey
@@ -283,7 +288,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate login, different e-mail
-        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(), validUser.getDefaultOrganization(),
             "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getOrganizations(), validUser.getProjects(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -314,6 +319,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "John",                 // firstName
             "Doe",                  // lastName
+            "Organization", 			//orgs 
             "john@example.com",     // e-mail
             true,                   // activated
             "en",                   // langKey
@@ -327,7 +333,7 @@ public class AccountResourceIntTest {
         );
 
         // Duplicate e-mail, different login
-        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(),
+        ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(), validUser.getDefaultOrganization(),
             validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(),  validUser.getOrganizations(), validUser.getProjects(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
 
         // Good user
@@ -357,6 +363,7 @@ public class AccountResourceIntTest {
             "password",             // password
             "Bad",                  // firstName
             "Guy",                  // lastName
+            "Organization", 			//orgs 
             "badguy@example.com",   // e-mail
             true,                   // activated
             "en",                   // langKey
@@ -388,6 +395,7 @@ public class AccountResourceIntTest {
             "funky-log!n",          // login <-- invalid
             "Funky",                // firstName
             "One",                  // lastName
+            "Organization", 			//orgs 
             "funky@example.com",    // e-mail
             true,                   // activated
             "en",                   // langKey

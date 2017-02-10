@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PASaxCodeTmp;
 import com.pervazive.kheddah.service.PASaxCodeTmpService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -90,7 +91,7 @@ public class PASaxCodeTmpResource {
     public ResponseEntity<List<PASaxCodeTmp>> getAllPASaxCodeTmps(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PASaxCodeTmps");
-        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-code-tmps");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

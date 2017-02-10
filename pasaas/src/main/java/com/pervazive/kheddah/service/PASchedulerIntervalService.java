@@ -1,5 +1,6 @@
 package com.pervazive.kheddah.service;
 
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PASchedulerInterval;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,8 @@ public interface PASchedulerIntervalService {
      *  @return the list of entities
      */
     Page<PASchedulerInterval> findAll(Pageable pageable, String user);
+    
+    Page<PASchedulerInterval> findAll(Pageable pageable, List<PAOrganization> organizationnames);
 
     /**
      *  Get the "id" pASchedulerInterval.

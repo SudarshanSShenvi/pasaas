@@ -1,5 +1,6 @@
 package com.pervazive.kheddah.service;
 
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPrediction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +26,8 @@ public interface PAPredictionService {
      *  @return the list of entities
      */
     Page<PAPrediction> findAll(Pageable pageable, String user);
+    
+    Page<PAPrediction> findAll(Pageable pageable, List<PAOrganization> organizationnmaes);
 
     /**
      *  Get the "id" pAPrediction.

@@ -130,11 +130,11 @@ public class PAOrganizationResource {
     
     @GetMapping("/p-a-organizations")
     @Timed
-    @Secured(AuthoritiesConstants.ADMIN)
+    //@Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAOrganizations");
-        Page<PAOrganization> page = pAOrganizationService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PAOrganization> page = pAOrganizationService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         if (page.getContent().isEmpty()) {
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert("paorganization", "emptyorganization", "No Organizations Associated. Please contact admin to include you as part of an Organization"))

@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -120,16 +121,26 @@ public class AccountResource {
     @Timed
     public ResponseEntity<UserDTO> getAccount(HttpServletRequest request) {
     	
-    	//IF loop to be moved to Angular
-    	if(request.getUserPrincipal() != null){
-    	List<PAOrganization> organizationames = paOrganizationRepository.findOrgsByPAUser(request.getUserPrincipal().getName());
-    	request.getSession().setAttribute("organizationsess", organizationames);
-    	}
+    //IF loop to be moved to Angular
+ 	if(request.getUserPrincipal() != null){
+    	String defaultOrganization = null;
+    	Optional<User> loggedInUser = userRepository.findOneByLogin(request.getUserPrincipal().getName()); 
+        if(loggedInUser.isPresent() && defaultOrganization == null ) {
+        	defaultOrganization = loggedInUser.get().getDefaultOrganization();
+        	if(defaultOrganization == null || defaultOrganization.length() ==0) {
+        		return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ERROR", "DefaultOrganizationNotSet", "Default Organization NOT set.")).body(null);
+        	}
+        	request.getSession().setAttribute("organizationsess", paOrganizationRepository.findByOrganization(defaultOrganization));
+        	log.debug("SETTING VALUES HERE session ID "+request.getSession());
+        	log.debug("SETTING VALUES HERE Session set "+request.getSession().getAttribute("organizationsess"));
+        }
+    }
+    	
         return Optional.ofNullable(userService.getUserWithAuthorities())
             .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
-
+    
     /**
      * POST  /account : update the current user information.
      *

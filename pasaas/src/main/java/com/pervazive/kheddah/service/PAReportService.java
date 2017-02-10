@@ -1,5 +1,6 @@
 package com.pervazive.kheddah.service;
 
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReport;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,7 @@ public interface PAReportService {
      */
     Page<PAReport> findAll(Pageable pageable, String user);
 
+    Page<PAReport> findAll(Pageable pageable, List<PAOrganization> organizationnames);
     /**
      *  Get the "id" pAReport.
      *

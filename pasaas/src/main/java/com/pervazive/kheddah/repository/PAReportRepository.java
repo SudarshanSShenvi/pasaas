@@ -16,4 +16,7 @@ import com.pervazive.kheddah.domain.PAReport;
 public interface PAReportRepository extends JpaRepository<PAReport,Long> {
 
 	Page<PAReport> findByPaorgrepIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	//Page<PAReport> findByPaorgrep(PAOrganization paorgrep);
+	
 }

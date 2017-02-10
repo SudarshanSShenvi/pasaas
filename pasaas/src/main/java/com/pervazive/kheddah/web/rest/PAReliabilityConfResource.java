@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReliabilityConf;
 import com.pervazive.kheddah.service.PAReliabilityConfService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -90,7 +91,7 @@ public class PAReliabilityConfResource {
     public ResponseEntity<List<PAReliabilityConf>> getAllPAReliabilityConfs(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAReliabilityConfs");
-        Page<PAReliabilityConf> page = pAReliabilityConfService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PAReliabilityConf> page = pAReliabilityConfService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reliability-confs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

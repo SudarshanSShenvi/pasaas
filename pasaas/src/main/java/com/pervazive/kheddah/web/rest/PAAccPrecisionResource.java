@@ -2,6 +2,7 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAAccPrecision;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.service.PAAccPrecisionService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -90,7 +91,7 @@ public class PAAccPrecisionResource {
     public ResponseEntity<List<PAAccPrecision>> getAllPAAccPrecisions(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAAccPrecisions");
-        Page<PAAccPrecision> page = pAAccPrecisionService.findAll(pageable, request.getUserPrincipal().getName());
+        Page<PAAccPrecision> page = pAAccPrecisionService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-acc-precisions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

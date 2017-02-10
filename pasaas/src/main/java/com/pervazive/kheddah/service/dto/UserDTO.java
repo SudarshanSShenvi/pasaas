@@ -10,6 +10,7 @@ import com.pervazive.kheddah.domain.User;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.social.google.api.plus.Organization;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,6 +29,9 @@ public class UserDTO {
 
     @Size(max = 50)
     private String lastName;
+    
+    @Size(max = 255)
+    private String defaultOrganization;
 
     @Email
     @Size(min = 5, max = 100)
@@ -48,7 +52,7 @@ public class UserDTO {
     }
 
     public UserDTO(User user) {
-        this(user.getLogin(), user.getFirstName(), user.getLastName(),
+        this(user.getLogin(), user.getFirstName(), user.getLastName(), user.getDefaultOrganization(),
             user.getEmail(), user.getActivated(), user.getLangKey(),
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()), 
@@ -59,12 +63,13 @@ public class UserDTO {
         );
     }
 
-    public UserDTO(String login, String firstName, String lastName,
+    public UserDTO(String login, String firstName, String lastName, String defaultOrganization,
         String email, boolean activated, String langKey, Set<String> authorities, Set<String> organizations, Set<String> projects) {
 
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.defaultOrganization = defaultOrganization;
         this.email = email;
         this.activated = activated;
         this.langKey = langKey;
@@ -85,7 +90,15 @@ public class UserDTO {
         return lastName;
     }
 
-    public String getEmail() {
+    public String getDefaultOrganization() {
+		return defaultOrganization;
+	}
+
+	public void setDefaultOrganization(String defaultOrganization) {
+		this.defaultOrganization = defaultOrganization;
+	}
+
+	public String getEmail() {
         return email;
     }
 
