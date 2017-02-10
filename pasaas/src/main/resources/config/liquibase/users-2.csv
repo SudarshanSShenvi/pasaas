@@ -1,3 +1,10 @@
 id;login;password_hash;first_name;last_name;email;activated;lang_key;created_by;last_modified_by;created_date;default_organization
 5;pervazivesu;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Super;Administrator;suadmin@localhost;true;en;system;system;2017-02-03 15:04:24;Pervazive
 6;manager;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Manager;Manager;manager@localhost;true;en;system;system;2017-02-03 15:04:24;Pervazive
+7;vodauser1;$2a$10$A4OU0B43zyzikl9DC3Fe2OtTvCYicozyKQENlsBjTIe65KuLdcYku;Vodafone;User1;vodauser1@gmail.com;true;en;system;system;2017-02-10 13:26:01;Vodafone
+8;vodaadmin1;$2a$10$oZAcPzDXwbyiNIPlXVkt7OihzIvHTMt40LDkIAfOPB8UZ12VFEWOK;Vodafone;Admin1;vodaadmin1@gmail.com;true;en;system;system;2017-02-10 13:45:52;Vodafone
+9;vodauser2;$2a$10$CYNxZpsDEdGp7fnFJUw.veCPCY.e33eUbYtQjFjIuiEkOBAD7uoOm;Vodafone;User2;vodauser2@gmail.com;true;en;system;system;2017-02-10 13:47:25;Vodafone
+10;airuser1;$2a$10$.CTu9MTbeAjGW0Nek0/jd.2Pg/xnPPXeRHY7c8ur5PednEEbUElCy;Airtel;User1;airuser1@gmail.com;true;en;system;system;2017-02-10 13:49:05;Airtel
+11;airuser2;$2a$10$OB5sT04r0YsG6oNVc3b00ur3kWuQ8zq7tfWcAdBYXKF1RMjW50tLK;Airtel;User2;airuser2@gmail.com;true;en;system;system;2017-02-10 13:50:37;Airtel
+12;airadmin1;$2a$10$PBpSrnbjAV4gUSfuqBK.Su43.6cuaGDIdwPy/7HAMGYIv3SczjJ8m;Airtel;admin1;airadmin1@gmail.com;true;en;system;system;2017-02-10 13:58:39;Airtel
+

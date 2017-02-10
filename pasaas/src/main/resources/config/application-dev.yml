@@ -78,7 +78,7 @@ jhipster:
             key: e9b2b801246ed2dd48153f97290c24a2331e4926
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: pasaas@localhost
-        baseUrl: http://127.0.0.1:8080
+        baseUrl: http://127.0.0.1:8088/
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:
