@@ -103,8 +103,7 @@ public class HDFSOpsResource {
 				}
         	}
          } catch (IOException e) {
-    	   e.printStackTrace();
-			//new ResponseEntity<>(fsStatus, null, HttpStatus.BAD_REQUEST);
+    	   new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
         
 
