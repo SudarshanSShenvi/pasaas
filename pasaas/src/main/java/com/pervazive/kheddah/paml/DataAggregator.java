@@ -70,7 +70,7 @@ public class DataAggregator implements Serializable {
 																						// data
 
 	public static void main(String[] args) throws Exception {
-		String parms[] = {"1", "hdfs://spark:8020/BD_PVZ/alarmInput","6:12", "2", "CUSTOMDATE#MM/dd/yyyy HH:mm", "CUSTOMDATE#yyyy-MM-dd HH:mm:ss", "0,1,2", "true"};
+		String parms[] = {"1", "hdfs://spark:8020/ppa-repo/fmdata","6:12", "2", "CUSTOMDATE#MM/dd/yyyy HH:mm", "CUSTOMDATE#yyyy-MM-dd HH:mm:ss", "0,1,2", "true"};
 		//new DataAggregator().init(args);
 		
 		new DataAggregator().init(parms);
@@ -215,13 +215,14 @@ public class DataAggregator implements Serializable {
 	private JavaPairRDD<String, String> mapPairFuntion() throws IOException {
 		SparkConf conf = new SparkConf().setAppName(PREDICTION_ID
 				+ " - DataAggregator");
-		conf.setSparkHome("spark://10.10.10.124:7077");
+		//conf.setMaster("spark://spark:7077");
 		conf.setMaster("yarn-client");
 		conf.set("spark.hadoop.yarn.resourcemanager.hostname", "10.10.10.124");
 		conf.set("spark.hadoop.yarn.resourcemanager.address", "10.10.10.124:8032");
-		
+		//conf.set("HADOOP_HOME", "/opt/hadoop/install/hadoop-2.5.1");
 		JavaSparkContext sc = new JavaSparkContext(conf);
-
+		
+		
 		JavaRDD<String> file = sc.textFile(ARGS_INPUT_FILE).cache();
 
 		final int inSeriesFormatIndex;
