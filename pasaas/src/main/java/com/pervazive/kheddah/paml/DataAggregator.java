@@ -6,6 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.apache.hadoop.conf.Configuration;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -13,9 +16,12 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pervazive.kheddah.paml.util.DataFormatter;
 import com.pervazive.kheddah.paml.util.TimeFormatter;
+import com.pervazive.kheddah.service.HDFSFileOperationsService;
+import com.pervazive.kheddah.service.impl.HDFSFileOperationsServiceImpl;
 
 import scala.Serializable;
 import scala.Tuple2;
@@ -35,6 +41,9 @@ import scala.Tuple2;
  * 
  */
 public class DataAggregator implements Serializable {
+	
+	
+	
 
 	private String IGNORE_CASE = "IgnoreCase";
 	private long PREDICTION_ID = 0;
@@ -70,13 +79,17 @@ public class DataAggregator implements Serializable {
 																						// data
 
 	public static void main(String[] args) throws Exception {
-		String parms[] = {"1", "hdfs://spark:8020/ppa-repo/fmdata","6:12", "2", "CUSTOMDATE#MM/dd/yyyy HH:mm", "CUSTOMDATE#yyyy-MM-dd HH:mm:ss", "0,1,2", "true"};
-		//new DataAggregator().init(args);
 		
-		new DataAggregator().init(parms);
+		
+		//String parms[] = {"1", "hdfs://spark:8020/ppa-repo/fmdata","13:6", "30", "UNIXTIME", "CUSTOMDATE#yyyy-MM-dd HH:mm:ss", "0,1,2,3,4,5,7,15,16,17,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55", "true"};
+		//new DataAggregator().init(args);
+		//new DataAggregator().init(parms);
 	}
 
-	public int init(String[] args) throws Exception {
+	
+
+	public int init(String[] args, SparkConf sparkConf) throws Exception {
+		
 		if (args.length < 6) {
 			System.err
 					.println("Usage:"
@@ -118,7 +131,7 @@ public class DataAggregator implements Serializable {
 		else
 			isFirstRowHeader = false;
 
-		JavaPairRDD<String, String> mapToPair = mapPairFuntion();
+		JavaPairRDD<String, String> mapToPair = mapPairFuntion(sparkConf);
 
 		JavaPairRDD<String, String> filteredData = reducedByKeyFuntion(mapToPair);
 
@@ -212,15 +225,15 @@ public class DataAggregator implements Serializable {
 
 	}
 
-	private JavaPairRDD<String, String> mapPairFuntion() throws IOException {
-		SparkConf conf = new SparkConf().setAppName(PREDICTION_ID
+	private JavaPairRDD<String, String> mapPairFuntion(SparkConf sparkConf) throws IOException {
+		sparkConf.setAppName(PREDICTION_ID
 				+ " - DataAggregator");
-		//conf.setMaster("spark://spark:7077");
-		conf.setMaster("yarn-client");
-		conf.set("spark.hadoop.yarn.resourcemanager.hostname", "10.10.10.124");
-		conf.set("spark.hadoop.yarn.resourcemanager.address", "10.10.10.124:8032");
+
+		//conf.setMaster("yarn-client");
+		//conf.set("spark.hadoop.yarn.resourcemanager.hostname", "10.10.10.124");
+		//conf.set("spark.hadoop.yarn.resourcemanager.address", "10.10.10.124:8032");
 		//conf.set("HADOOP_HOME", "/opt/hadoop/install/hadoop-2.5.1");
-		JavaSparkContext sc = new JavaSparkContext(conf);
+		JavaSparkContext sc = new JavaSparkContext(sparkConf);
 		
 		
 		JavaRDD<String> file = sc.textFile(ARGS_INPUT_FILE).cache();

@@ -457,10 +457,21 @@ public class DataRollup implements Serializable {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new DataRollup().init(args);
+		//String parms[] = {"1", "hdfs://spark:8020/ppa-repo/fmdatafeed","CUSTOMDATE#yyyy-MM-dd HH:mm:ss", "CUSTOMDATE#yyyy-MM-dd HH:mm:ss",
+			//	"2015-03-01 00:00:00", "2015-03-31 23:59:59", "2015-03-02 23:59:59", "hdfs://spark:8020/ppa-repo/conf/expression.txt", "2"};
+		/*predictTrainingStartDate="2015-03-01 00:00:00"
+				predictTrainingEndDate="2015-03-31 23:59:59"
+				predictTrainingIntervalDate="2015-03-02 00:00:00"
+				predictBaseStartDate="2015-03-28 00:00:00"
+				predictBaseEndDate="2015-03-31 23:59:59"
+				predictBaseIntervalDate="2015-03-29 00:00:00"
+				predictDate="01/04/2015 00:00:00"*/
+
+		//new DataRollup().init(args);
+		//new DataRollup().init(parms);
 	}
 
-	public int init(String[] args) throws Exception {
+	public int init(String[] args, SparkConf sparkConf) throws Exception {
 		if (args.length < 7) {
 			System.err
 					.println("Usage:"
@@ -505,10 +516,9 @@ public class DataRollup implements Serializable {
 		} else
 			seriesgroupcol = EMPTY;
 
-		SparkConf conf = new SparkConf();
-		conf.setAppName(PREDICTION_ID + " - DataRollup");
+		sparkConf.setAppName(PREDICTION_ID + " - DataRollup");
 
-		JavaSparkContext sc = new JavaSparkContext(conf);
+		JavaSparkContext sc = new JavaSparkContext(sparkConf);
 
 		JavaRDD<String> expressionFile = sc.textFile(EXPRRESSION_FILE).cache();
 
@@ -540,7 +550,7 @@ public class DataRollup implements Serializable {
 		seriesInterval = new Double(getInterval(seriesArgFormatType,
 				SERIES_START, SERIES_NEXT, customDateFormat));
 
-		String url = ARGS_INPUT_FILE + seriesInterval;
+		String url = ARGS_INPUT_FILE +"/"+ seriesInterval;
 
 		reduceSubSequenceList.setName("result").saveAsObjectFile(url);
 

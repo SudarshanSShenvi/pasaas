@@ -14,6 +14,7 @@ import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -193,15 +194,14 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	   */
 	  public void deleteFile(String file, Configuration conf) throws IOException {
 	    FileSystem fileSystem = FileSystem.get(conf);
-
 	    Path path = new Path(file);
+	    System.out.println("attempting delete of :"+file);
 	    if (!fileSystem.exists(path)) {
 	      System.out.println("File " + file + " does not exists");
 	      return;
 	    }
 
 	    fileSystem.delete(new Path(file), true);
-
 	    fileSystem.close();
 	  }
 
@@ -222,6 +222,33 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	    fileSystem.mkdirs(path);
 	    fileSystem.close();
 	  }
+	  
+	  public void copyHdfsFile(String hdfsSource, String hdfsDest, Configuration conf) throws IOException {
+		    FileSystem fileSystem = FileSystem.get(conf);
+		    FileStatus[] fileListStatus =  fileSystem.listStatus(new Path(hdfsSource));
+		    if(fileListStatus.length > 0) {
+		    	for(FileStatus filestat : fileListStatus){
+		    		FileUtil.copy(fileSystem, filestat.getPath(), fileSystem, new Path(hdfsDest), true, conf);
+		    	}
+		    }
+		    /*Path sourcePath = new Path(hdfsDest);
+		    FSDataInputStream in = fileSystem.open(sourcePath);
+		    Path destPath = new Path(hdfsDest);
+			// Create a new file and write data to it.
+		    FSDataOutputStream out = fileSystem.create(destPath);
+		    InputStream inval = new BufferedInputStream(in);
+
+		    byte[] b = new byte[1024];
+		    int numBytes = 0;
+		    while ((numBytes = inval.read(b)) > 0) {
+		      out.write(b, 0, numBytes);
+		    }
+
+		    // Close all the file descriptors
+		    inval.close();
+		    out.close();*/
+		    fileSystem.close();
+		  }
 	  
 /*	  public static void main(String[] args) {
 		  String hdfsURL = "hdfs://spark:8020"; //value to be fetched from general config 

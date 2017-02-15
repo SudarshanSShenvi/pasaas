@@ -75,11 +75,14 @@ public class SubSequenceGenerator implements Serializable {
 	 */
 
 	public static void main(String[] args) throws Exception {
-		new SubSequenceGenerator().run(args);
+		
+		//String parms[] = {"1", "hdfs://spark:8020/ppa-repo/temp/TD", "hdfs://spark:8020/ppa-repo/temp/5DW", "2", "5", "0"};
+		//new SubSequenceGenerator().run(args);
+		//new SubSequenceGenerator().run(parms);
 	}
 
 	// @Override
-	public int run(String[] args) throws Exception {
+	public int run(String[] args, SparkConf sparkConf) throws Exception {
 
 		if (args.length < 4) {
 			System.err
@@ -96,9 +99,10 @@ public class SubSequenceGenerator implements Serializable {
 		SUB_SEQ_INTERVAL = args[4].trim();
 		SUB_SEQ_INTERVAL_THRESHOLD = args[5].trim();
 
-		SparkConf conf = new SparkConf().setAppName(PREDICTION_ID
+		sparkConf.setAppName(PREDICTION_ID
 				+ " - SubSequenceGenerator");
-		JavaSparkContext sc = new JavaSparkContext(conf);
+		
+		JavaSparkContext sc = new JavaSparkContext(sparkConf);
 		JavaPairRDD<String, BucketedValues> mapToPair = mapPairFunction(sc);
 
 		List<String> reduceSubSequenceCode = reduceByKeyFunc(mapToPair);
