@@ -6,22 +6,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-import org.apache.hadoop.conf.Configuration;
+import org.apache.spark.JobExecutionStatus;
 import org.apache.spark.SparkConf;
+import org.apache.spark.SparkJobInfo;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.JavaSparkStatusTracker;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.pervazive.kheddah.paml.util.DataFormatter;
 import com.pervazive.kheddah.paml.util.TimeFormatter;
-import com.pervazive.kheddah.service.HDFSFileOperationsService;
-import com.pervazive.kheddah.service.impl.HDFSFileOperationsServiceImpl;
 
 import scala.Serializable;
 import scala.Tuple2;
@@ -44,16 +41,29 @@ public class DataAggregator implements Serializable {
 	
 	
 	
+	public DataAggregator(long predictionID, Boolean isFirstRowHeader, String skipFieldIndexes,
+			String outTimeFormat, String inTimeFormat, String timeSeriesField, String entityField,
+			String inputFilesPath) {
+		super();
+		this.predictionID = predictionID;
+		this.isFirstRowHeader = isFirstRowHeader;
+		this.skipFieldIndexes = skipFieldIndexes;
+		this.outTimeFormat = outTimeFormat;
+		this.inTimeFormat = inTimeFormat;
+		this.timeSeriesField = timeSeriesField;
+		this.entityField = entityField;
+		this.inputFilesPath = inputFilesPath;
+	}
 
-	private String IGNORE_CASE = "IgnoreCase";
-	private long PREDICTION_ID = 0;
-	private String ARGS_ISHEADER;
-	private String ARGS_SKIP_FIELD_INDEXES;
-	private String ARGS_OUT_SERIES_FORMAT;
-	private String ARGS_IN_SERIES_FORMAT;
-	private String ARGS_SERIES_FIELD;
-	private String ARGS_ENTITY_FIELD;
-	private String ARGS_INPUT_FILE;
+	private String ignoreCase = "IgnoreCase";
+	private long predictionID = 0;
+	private Boolean isFirstRowHeader = true;
+	private String skipFieldIndexes;
+	private String outTimeFormat;
+	private String inTimeFormat;
+	private String timeSeriesField;
+	private String entityField;
+	private String inputFilesPath;
 
 	public static final char TAB_SEPARATOR = '\t';
 	public static final char COMMA_SEPARATOR = ',';
@@ -65,7 +75,7 @@ public class DataAggregator implements Serializable {
 	public static final SimpleDateFormat formatter = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
 
-	public static boolean isFirstRowHeader = true;
+	//public static boolean isFirstRowHeader = true;
 	public static final String COMMA_BTW_DQOUTE_REGEX = ",(?!(([^\"]*\"){2})*[^\"]*$)"; // Move
 																						// it
 																						// to
@@ -88,67 +98,94 @@ public class DataAggregator implements Serializable {
 
 	
 
-	public int init(String[] args, SparkConf sparkConf) throws Exception {
+	public int init(SparkConf sparkConf) throws Exception {
 		
-		if (args.length < 6) {
+		/*if (args.length < 6) {
 			System.err
 					.println("Usage:"
 							+ DataAggregator.class
 							+ " <<"
-							+ ARGS_INPUT_FILE
+							+ inputFilesPath
 							+ ">> "
 							// + " <<"
 							// + ARGS_OUTPUT_FILE
 							// + ">> "
 							+ " <<"
-							+ ARGS_ENTITY_FIELD
+							+ entityField
 							+ ">> "
 							+ " <<"
-							+ ARGS_SERIES_FIELD
+							+ timeSeriesField
 							+ ">> "
 							+ " <<"
-							+ ARGS_IN_SERIES_FORMAT
+							+ inTimeFormat
 							+ " (UNIXTIME/SINCE1971LONG/CUSTOMDATE#YYYY-MM-SS/INCH/CM/METER)>> "
 							+ " <<"
-							+ ARGS_OUT_SERIES_FORMAT
+							+ outTimeFormat
 							+ " (UNIXTIME/SINCE1971LONG/CUSTOMDATE#YYYY-MM-SS/INCH/CM/METER)>> "
-							+ " <<" + ARGS_SKIP_FIELD_INDEXES
-							+ "(comma separated)>> " + " <<" + ARGS_ISHEADER
+							+ " <<" + skipFieldIndexes
+							+ "(comma separated)>> " + " <<" + isFirstRowHeader
 							+ " >> ");
 
 			return (Integer) null;
 		}
-		PREDICTION_ID = Long.parseLong(args[0].trim());
-		ARGS_INPUT_FILE = args[1].trim();
-		ARGS_ENTITY_FIELD = args[2].trim();
-		ARGS_SERIES_FIELD = args[3].trim();
-		ARGS_IN_SERIES_FORMAT = args[4].trim();
-		ARGS_OUT_SERIES_FORMAT = args[5].trim();
-		ARGS_SKIP_FIELD_INDEXES = args[6].trim();
+		predictionID = Long.parseLong(args[0].trim());
+		inputFilesPath = args[1].trim();
+		entityField = args[2].trim();
+		timeSeriesField = args[3].trim();
+		inTimeFormat = args[4].trim();
+		outTimeFormat = args[5].trim();
+		skipFieldIndexes = args[6].trim();*/
 
-		if (args.length == 8)
+/*		if (args.length == 8)
 			isFirstRowHeader = Boolean.parseBoolean(args[7].trim());
 		else
-			isFirstRowHeader = false;
+			isFirstRowHeader = false;*/
+		
+		sparkConf.setAppName(predictionID
+				+ " - DataAggregator");
 
-		JavaPairRDD<String, String> mapToPair = mapPairFuntion(sparkConf);
+		//conf.setMaster("yarn-client");
+		//conf.set("spark.hadoop.yarn.resourcemanager.hostname", "10.10.10.124");
+		//conf.set("spark.hadoop.yarn.resourcemanager.address", "10.10.10.124:8032");
+		//conf.set("HADOOP_HOME", "/opt/hadoop/install/hadoop-2.5.1");
+		JavaSparkContext sc = new JavaSparkContext(sparkConf);
+
+		//getStatus("Step 1 : ",sc);
+		
+		JavaPairRDD<String, String> mapToPair = mapPairFuntion(sc);
+		//getStatus("Step 2 : ",sc);
 
 		JavaPairRDD<String, String> filteredData = reducedByKeyFuntion(mapToPair);
-
+		//getStatus("Step 3 : ",sc);
 		JavaPairRDD<String, String> aggregatorData = filteredData
 				.filter(new Function<Tuple2<String, String>, Boolean>() {
 					public Boolean call(Tuple2<String, String> v1)
 							throws Exception {
 						// TODO Auto-generated method stub
-						return v1._1.equalsIgnoreCase(IGNORE_CASE) ? false
+						return v1._1.equalsIgnoreCase(ignoreCase) ? false
 								: true;
 					}
 				});
 
+		//getStatus("Step 4 : ",sc);
 		aggregatorData.setName("text1").saveAsObjectFile(
-				ARGS_INPUT_FILE + FEED_OUTPUT_SUFFIX);
-
+				inputFilesPath + FEED_OUTPUT_SUFFIX);
+		//getStatus("Step 5 : ",sc);
+		sc.stop();
+		
 		return 0;
+	}
+
+	private void getStatus(String step, JavaSparkContext sc) {
+		
+		JavaSparkStatusTracker jsst = sc.statusTracker();
+		int[] activeJobs = jsst.getActiveJobIds();
+		for (int i = 0; i < activeJobs.length; i++) {
+			SparkJobInfo sji = jsst.getJobInfo(i);
+			JobExecutionStatus jes = sji.status();
+			System.out.println(step+"=============> "+jes.name());
+		}
+		
 	}
 
 	/**
@@ -225,18 +262,10 @@ public class DataAggregator implements Serializable {
 
 	}
 
-	private JavaPairRDD<String, String> mapPairFuntion(SparkConf sparkConf) throws IOException {
-		sparkConf.setAppName(PREDICTION_ID
-				+ " - DataAggregator");
-
-		//conf.setMaster("yarn-client");
-		//conf.set("spark.hadoop.yarn.resourcemanager.hostname", "10.10.10.124");
-		//conf.set("spark.hadoop.yarn.resourcemanager.address", "10.10.10.124:8032");
-		//conf.set("HADOOP_HOME", "/opt/hadoop/install/hadoop-2.5.1");
-		JavaSparkContext sc = new JavaSparkContext(sparkConf);
+	private JavaPairRDD<String, String> mapPairFuntion(JavaSparkContext sc) throws IOException {
 		
 		
-		JavaRDD<String> file = sc.textFile(ARGS_INPUT_FILE).cache();
+		JavaRDD<String> file = sc.textFile(inputFilesPath).cache();
 
 		final int inSeriesFormatIndex;
 		final int outSeriesFormatIndex;
@@ -246,27 +275,27 @@ public class DataAggregator implements Serializable {
 		final List<String> entityIndexes = new ArrayList<String>();
 
 		DataFormatter
-				.concatStringToArray(entityIndexes, ARGS_ENTITY_FIELD, ':');
+				.concatStringToArray(entityIndexes, entityField, ':');
 
-		final int seriesFldIndex = Integer.parseInt(ARGS_SERIES_FIELD);
+		final int seriesFldIndex = Integer.parseInt(timeSeriesField);
 
-		inSeriesFormatIndex = getSeriesFormatValue(ARGS_IN_SERIES_FORMAT);
-		outSeriesFormatIndex = getSeriesFormatValue(ARGS_OUT_SERIES_FORMAT);
+		inSeriesFormatIndex = getSeriesFormatValue(inTimeFormat);
+		outSeriesFormatIndex = getSeriesFormatValue(outTimeFormat);
 
 		if (inSeriesFormatIndex == -1 || outSeriesFormatIndex == -1)
 			throw new IOException("Series format is not supported");
 		if (inSeriesFormatIndex == CUSTOMDATE)
-			seriesFldCustomFormatTmp = ARGS_IN_SERIES_FORMAT.split("#")[1]
+			seriesFldCustomFormatTmp = inTimeFormat.split("#")[1]
 					.trim();
 		if (outSeriesFormatIndex == CUSTOMDATE)
-			seriesOutFldCustomFormatTemp = ARGS_OUT_SERIES_FORMAT.split("#")[1]
+			seriesOutFldCustomFormatTemp = outTimeFormat.split("#")[1]
 					.trim();
 
 		final String seriesOutFldCustomFormat = seriesOutFldCustomFormatTemp;
 		final String seriesFldCustomFormat = seriesFldCustomFormatTmp;
 
 		String removalFldStr = EMPTY;
-		removalFldStr = ARGS_SKIP_FIELD_INDEXES;
+		removalFldStr = skipFieldIndexes;
 		List<String> removalFlds = new ArrayList<String>();
 		final List<Integer> removalFldsI = new ArrayList<Integer>();
 		DataFormatter.concatStringToArray(removalFlds, removalFldStr,
@@ -280,14 +309,14 @@ public class DataAggregator implements Serializable {
 					List<String> cols = new ArrayList<String>();
 					StringBuilder valueSb = new StringBuilder(512);
 					StringBuilder entityFldsb = new StringBuilder(128);
-					boolean isFirstRowHeader = DataAggregator.isFirstRowHeader;
+					//boolean isFirstRowHeader = DataAggregator.isFirstRowHeader;
 
 					public Tuple2<String, String> call(String line)
 							throws IOException {
 
 						if (isFirstRowHeader) {
 							isFirstRowHeader = false;
-							return new Tuple2<String, String>(IGNORE_CASE, null);
+							return new Tuple2<String, String>(ignoreCase, null);
 						}
 
 						cols.clear();
@@ -313,10 +342,10 @@ public class DataAggregator implements Serializable {
 								entityFldsb.append('_');
 							aEntityCol = cols.get(Integer.parseInt(entityIndex));
 							if (null == aEntityCol)
-								return new Tuple2<String, String>(IGNORE_CASE,
+								return new Tuple2<String, String>(ignoreCase,
 										null);
 							if (aEntityCol.trim().length() == 0)
-								return new Tuple2<String, String>(IGNORE_CASE,
+								return new Tuple2<String, String>(ignoreCase,
 										null);
 							entityFldsb.append(aEntityCol);
 						}
@@ -326,17 +355,17 @@ public class DataAggregator implements Serializable {
 							 * TODO:// Report Bad Data, Create another file for
 							 * exception records
 							 */
-							return new Tuple2<String, String>(IGNORE_CASE, null);
+							return new Tuple2<String, String>(ignoreCase, null);
 						}
 
 						double seriesFld = Long.MIN_VALUE;
 						try {
 							String seriesFldStr = cols.get(seriesFldIndex);
 							if (null == seriesFldStr)
-								return new Tuple2<String, String>(IGNORE_CASE,
+								return new Tuple2<String, String>(ignoreCase,
 										null);
 							if (seriesFldStr.trim().length() == 0)
-								return new Tuple2<String, String>(IGNORE_CASE,
+								return new Tuple2<String, String>(ignoreCase,
 										null);
 							seriesFld = convertSeriesUnit(inSeriesFormatIndex,
 									seriesFldStr, seriesFldCustomFormat);
@@ -348,7 +377,7 @@ public class DataAggregator implements Serializable {
 							 * TODO:// Report Bad Data, Create another file for
 							 * exception records
 							 */
-							return new Tuple2<String, String>(IGNORE_CASE, null);
+							return new Tuple2<String, String>(ignoreCase, null);
 						}
 
 						int index = -1;

@@ -35,14 +35,25 @@ import scala.Tuple2;
  *
  */
 public class SubSequenceGenerator implements Serializable {
+	public SubSequenceGenerator(String inputFile, String outputFile, String saxcodeField, String subSeqInterval,
+			String subSeqIntervalThreshold, long predictionId) {
+		super();
+		this.inputFile = inputFile;
+		this.outputFile = outputFile;
+		this.saxcodeField = saxcodeField;
+		this.subSeqInterval = subSeqInterval;
+		this.subSeqIntervalThreshold = subSeqIntervalThreshold;
+		this.predictionId = predictionId;
+	}
+
 	private String IGNORE_CASE = "IgnoreCase";
 
-	private String ARGS_INPUT_FILE;
-	private String ARGS_OUTPUT_FILE;
-	private String SAX_CODE_FIELD;
-	private String SUB_SEQ_INTERVAL;
-	private String SUB_SEQ_INTERVAL_THRESHOLD;
-	private long PREDICTION_ID = 0;
+	private String inputFile;
+	private String outputFile;
+	private String saxcodeField;
+	private String subSeqInterval;
+	private String subSeqIntervalThreshold;
+	private long predictionId = 0;
 	public static final char TAB_SEPARATOR = '\t';
 	public static final char COMMA_SEPARATOR = ',';
 	public static final char LINE_SEPARATOR = '\n';
@@ -82,9 +93,9 @@ public class SubSequenceGenerator implements Serializable {
 	}
 
 	// @Override
-	public int run(String[] args, SparkConf sparkConf) throws Exception {
+	public int run(SparkConf sparkConf) throws Exception {
 
-		if (args.length < 4) {
+/*		if (args.length < 4) {
 			System.err
 					.println("Usage:"
 							+ SubSequenceGenerator.class
@@ -92,14 +103,14 @@ public class SubSequenceGenerator implements Serializable {
 			System.exit(1);
 
 		}
-		PREDICTION_ID = Long.parseLong(args[0].trim());
-		ARGS_INPUT_FILE = args[1].trim();
-		ARGS_OUTPUT_FILE = args[2].trim();
-		SAX_CODE_FIELD = args[3].trim();
-		SUB_SEQ_INTERVAL = args[4].trim();
-		SUB_SEQ_INTERVAL_THRESHOLD = args[5].trim();
+		predictionId = Long.parseLong(args[0].trim());
+		inputFile = args[1].trim();
+		outputFile = args[2].trim();
+		saxcodeField = args[3].trim();
+		subSeqInterval = args[4].trim();
+		subSeqIntervalThreshold = args[5].trim();*/
 
-		sparkConf.setAppName(PREDICTION_ID
+		sparkConf.setAppName(predictionId
 				+ " - SubSequenceGenerator");
 		
 		JavaSparkContext sc = new JavaSparkContext(sparkConf);
@@ -110,7 +121,8 @@ public class SubSequenceGenerator implements Serializable {
 		JavaRDD<String> reduceSubSequenceList = sc
 				.parallelize(reduceSubSequenceCode);
 
-		reduceSubSequenceList.coalesce(1).saveAsTextFile(ARGS_OUTPUT_FILE);
+		reduceSubSequenceList.coalesce(1).saveAsTextFile(outputFile);
+		sc.stop();
 		return 0;
 
 	}
@@ -118,7 +130,7 @@ public class SubSequenceGenerator implements Serializable {
 	private JavaPairRDD<String, BucketedValues> mapPairFunction(
 			JavaSparkContext sc) {
 
-		JavaRDD<Tuple2<String, String>> file = sc.objectFile(ARGS_INPUT_FILE);
+		JavaRDD<Tuple2<String, String>> file = sc.objectFile(inputFile);
 
 		JavaPairRDD<String, BucketedValues> mapToPairValues = file
 				.mapToPair(new PairFunction<Tuple2<String, String>, String, BucketedValues>() {
@@ -176,10 +188,10 @@ public class SubSequenceGenerator implements Serializable {
 		List<String> cols = new ArrayList<String>();
 		List<String> rows = new ArrayList<String>();
 
-		subSequenceInterval = Integer.parseInt(SUB_SEQ_INTERVAL);
+		subSequenceInterval = Integer.parseInt(subSeqInterval);
 		subSequnceIntervalThreshold = Integer
-				.parseInt(SUB_SEQ_INTERVAL_THRESHOLD);
-		saxCodeFldIndex = Integer.parseInt(SAX_CODE_FIELD);
+				.parseInt(subSeqIntervalThreshold);
+		saxCodeFldIndex = Integer.parseInt(saxcodeField);
 
 		Map<String, Count> subSequenceMap = new HashMap<String, Count>();
 		StringBuilder subSequnceSb = new StringBuilder(1024);
@@ -248,7 +260,7 @@ public class SubSequenceGenerator implements Serializable {
 
 					.append(TAB_SEPARATOR).append(subSeq).append(TAB_SEPARATOR)
 							.append(threshold.count).append(TAB_SEPARATOR)
-							.append(PREDICTION_ID);
+							.append(predictionId);
 					if (!requiredColumnStr.equalsIgnoreCase("")) {
 						subSequnceSb.append(requiredColumnStr);
 					}

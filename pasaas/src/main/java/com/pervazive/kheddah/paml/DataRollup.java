@@ -45,16 +45,31 @@ import scala.Tuple2;
  *
  */
 public class DataRollup implements Serializable {
+	public DataRollup(long predictionId, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
+			String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds) {
+		super();
+		this.predictionId = predictionId;
+		this.exprFile = exprFile;
+		this.seriesNext = seriesNext;
+		this.seriesEnd = seriesEnd;
+		this.seriesStart = seriesStart;
+		this.outSeriesFormat = outSeriesFormat;
+		this.inSeriesFormat = inSeriesFormat;
+		this.inputFile = inputFile;
+		this.requiredFlds = requiredFlds;
+	}
+
 	private String IGNORE_CASE = "IgnoreCase";
-	private long PREDICTION_ID = 0;
-	private static String EXPRRESSION_FILE = "expr-file";
-	private static String SERIES_NEXT = "series-next";
-	private static String SERIES_END = "series-end";
-	private static String SERIES_START = "series-start";
-	private static String ARGS_OUT_SERIES_FORMAT = "out-series-format";
-	private static String ARGS_IN_SERIES_FORMAT = "in-series-format";
-	private static String ARGS_INPUT_FILE = "input-file";
+	private long predictionId = 0;
+	private String exprFile = "expr-file";
+	private String seriesNext = "series-next";
+	private String seriesEnd = "series-end";
+	private String seriesStart = "series-start";
+	private String outSeriesFormat = "out-series-format";
+	private String inSeriesFormat = "in-series-format";
+	private String inputFile = "input-file";
 	private String seriesgroupcol = "seriesgroupcol";
+	private String requiredFlds = "";
 	public static final char TAB_SEPARATOR = '\t';
 	public static final char COMMA_SEPARATOR = ',';
 	public static final char LINE_SEPARATOR = '\n';
@@ -109,7 +124,7 @@ public class DataRollup implements Serializable {
 		 * JavaPairRDD<Text, Text> file = sc.sequenceFile(args[0].trim(),
 		 * Text.class, Text.class);
 		 */
-		JavaRDD<Tuple2<String, String>> file = sc.objectFile(ARGS_INPUT_FILE);
+		JavaRDD<Tuple2<String, String>> file = sc.objectFile(inputFile);
 		JavaPairRDD<String, String> mapToPair = file
 				.mapToPair(new PairFunction<Tuple2<String, String>, String, String>() {
 					public Tuple2<String, String> call(
@@ -154,24 +169,24 @@ public class DataRollup implements Serializable {
 
 		BufferedReader reader = null;
 
-		seriesArgFormatType = getSeriesFormatValue(ARGS_IN_SERIES_FORMAT);
-		seriesStoreFormatType = getSeriesFormatValue(ARGS_OUT_SERIES_FORMAT);
+		seriesArgFormatType = getSeriesFormatValue(inSeriesFormat);
+		seriesStoreFormatType = getSeriesFormatValue(outSeriesFormat);
 
 		if (seriesArgFormatType == -1 || seriesStoreFormatType == -1)
 			throw new IOException("Series format is not supported");
 
 		if (seriesArgFormatType == 3)
-			customDateFormat = ARGS_IN_SERIES_FORMAT.split("#")[1].trim();
+			customDateFormat = inSeriesFormat.split("#")[1].trim();
 		try {
 			seriesInterval = new Double(getInterval(seriesArgFormatType,
-					SERIES_START, SERIES_NEXT, customDateFormat));
+					seriesStart, seriesNext, customDateFormat));
 			seriesStartVal = new Double(convertSeriesUnit(seriesArgFormatType,
-					SERIES_START, customDateFormat));
+					seriesStart, customDateFormat));
 			seriesEndVal = new Double(convertSeriesUnit(seriesArgFormatType,
-					SERIES_END, customDateFormat));
+					seriesEnd, customDateFormat));
 		} catch (ParseException e) {
-			System.out.println("Error in parsing the datetime" + SERIES_START
-					+ " or " + SERIES_NEXT);
+			System.out.println("Error in parsing the datetime" + seriesStart
+					+ " or " + seriesNext);
 			e.printStackTrace(System.out);
 		}
 
@@ -189,7 +204,7 @@ public class DataRollup implements Serializable {
 						TAB_SEPARATOR);
 				if (exprFlds.size() != 3)
 					throw new IOException("Bad Expression Line:" + exprLine
-							+ "\n" + EXPRRESSION_FILE);
+							+ "\n" + exprFile);
 				applyExpressions.add(new Expr(exprFlds.get(0), exprFlds.get(1),
 						exprFlds.get(2), exprEngine));
 			}
@@ -471,37 +486,39 @@ public class DataRollup implements Serializable {
 		//new DataRollup().init(parms);
 	}
 
-	public int init(String[] args, SparkConf sparkConf) throws Exception {
-		if (args.length < 7) {
+	public int init(SparkConf sparkConf) throws Exception {
+		/*if (args.length < 7) {
 			System.err
 					.println("Usage:"
 							+ DataRollup.class
 							+ " <<"
-							+ ARGS_INPUT_FILE
+							+ inputFile
 							+ ">>"
 							+ " <<"
-							+ ARGS_IN_SERIES_FORMAT
+							+ inSeriesFormat
 							+ " (UNIXTIME/SINCE1971LONG/CUSTOMDATE#YYYY-MM-SS/INCH/CM/METER)>>"
 							+ " <<"
-							+ ARGS_OUT_SERIES_FORMAT
+							+ outSeriesFormat
 							+ " (UNIXTIME/SINCE1971LONG/CUSTOMDATE#YYYY-MM-SS/INCH/CM/METER)>>"
-							+ " <<" + SERIES_START + ">>" + " <<" + SERIES_END
-							+ ">>" + " <<" + SERIES_NEXT + ">>" + " <<"
-							+ EXPRRESSION_FILE + ">>"
+							+ " <<" + seriesStartt + ">>" + " <<" + seriesEnd
+							+ ">>" + " <<" + seriesNext + ">>" + " <<"
+							+ exprFile + ">>"
 							// + " <<dummy-outputfile>> "
 							+ "[series-group-column-index]");
 			return -1;
-		}
+		}*/
 
-		PREDICTION_ID = Long.parseLong(args[0].trim());
-		ARGS_INPUT_FILE = args[1].trim();
-		ARGS_IN_SERIES_FORMAT = args[2].trim();
-		ARGS_OUT_SERIES_FORMAT = args[3].trim();
-		SERIES_START = args[4].trim();
-		SERIES_END = args[5].trim();
-		SERIES_NEXT = args[6].trim();
-		EXPRRESSION_FILE = args[7].trim();
-		String requiredFlds = args[8].trim();
+		/*predictionId = Long.parseLong(args[0].trim());
+		inputFile = args[1].trim();
+		inSeriesFormat = args[2].trim();
+		outSeriesFormat = args[3].trim();
+		seriesStartt = args[4].trim();
+		seriesEnd = args[5].trim();
+		seriesNext = args[6].trim();
+		exprFile = args[7].trim();
+		String requiredFlds = args[8].trim();*/
+/*		String parms2[] = {"1", "hdfs://spark:8020/ppa-repo/fmdatafeed","CUSTOMDATE#yyyy-MM-dd HH:mm:ss", "CUSTOMDATE#yyyy-MM-dd HH:mm:ss",
+				"2015-03-01 00:00:00", "2015-03-31 23:59:59", "2015-03-02 23:59:59", "hdfs://spark:8020/ppa-repo/conf/expression.txt", "2"};*/
 
 		if (requiredFlds.contains(",")) {
 			DataFormatter.concatStringToArray(requiredColumns, requiredFlds,
@@ -510,17 +527,17 @@ public class DataRollup implements Serializable {
 			requiredColumns.add(requiredFlds);
 		}
 
-		if (args.length == 9) {
+		/*if (args.length == 9) {
 			// seriesgroupcol = args[7].trim();
 			seriesgroupcol = "hdfs://spark:8020/user/hadoop/dummy";
-		} else
+		} else*/
 			seriesgroupcol = EMPTY;
 
-		sparkConf.setAppName(PREDICTION_ID + " - DataRollup");
+		sparkConf.setAppName(predictionId + " - DataRollup");
 
 		JavaSparkContext sc = new JavaSparkContext(sparkConf);
-
-		JavaRDD<String> expressionFile = sc.textFile(EXPRRESSION_FILE).cache();
+		
+		JavaRDD<String> expressionFile = sc.textFile(exprFile).cache();
 
 		List<String> applyExpressionsL = new ArrayList<String>();
 		for (String expr : expressionFile.collect()) {
@@ -544,16 +561,18 @@ public class DataRollup implements Serializable {
 		int seriesArgFormatType;
 		String customDateFormat = EMPTY;
 
-		seriesArgFormatType = getSeriesFormatValue(ARGS_IN_SERIES_FORMAT);
+		seriesArgFormatType = getSeriesFormatValue(inSeriesFormat);
 		if (seriesArgFormatType == 3)
-			customDateFormat = ARGS_IN_SERIES_FORMAT.split("#")[1].trim();
+			customDateFormat = inSeriesFormat.split("#")[1].trim();
 		seriesInterval = new Double(getInterval(seriesArgFormatType,
-				SERIES_START, SERIES_NEXT, customDateFormat));
+				seriesStart, seriesNext, customDateFormat));
 
-		String url = ARGS_INPUT_FILE +"/"+ seriesInterval;
+		String url = inputFile +"/"+ seriesInterval;
 
 		reduceSubSequenceList.setName("result").saveAsObjectFile(url);
 
+		sc.stop();
+		//sc.close();
 		return 0;
 
 	}

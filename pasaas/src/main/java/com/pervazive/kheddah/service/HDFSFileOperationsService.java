@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
@@ -29,6 +30,8 @@ public interface HDFSFileOperationsService {
 	   * @throws IOException
 	   */
 	  public void readFile(String file, Configuration conf) throws IOException;
+	  
+	  public List<String> readFileO(String file, Configuration conf) throws IOException;
 
 	  /**
 	   * delete a directory in hdfs

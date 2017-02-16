@@ -2,12 +2,16 @@ package com.pervazive.kheddah.service.impl;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
@@ -165,6 +169,33 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	    out.close();
 	    fileSystem.close();
 	  }
+	  
+	  public List<String> readFileO(String file, Configuration conf) throws IOException {
+		    FileSystem fileSystem = FileSystem.get(conf);
+
+		    Path path = new Path(file);
+		    if (!fileSystem.exists(path)) {
+		      System.out.println("File " + file + " does not exists");
+		      return null;
+		    }
+
+		    FSDataInputStream in = fileSystem.open(path);
+		    BufferedReader br=new BufferedReader(new InputStreamReader(in));
+		    
+		    List<String> tsvString = new ArrayList<String>();
+		    String line=br.readLine();
+		    tsvString.add(line);
+	        while (line != null){
+	                System.out.println(line);
+	                line=br.readLine();
+	                tsvString.add(line);
+	        }
+	        br.close();
+		    in.close();
+		    fileSystem.close();
+		    
+		    return tsvString;
+		  }
 	  
 	  /**
 	   * read a file from hdfs
