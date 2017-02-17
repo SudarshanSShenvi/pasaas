@@ -430,24 +430,10 @@
             <artifactId>spring-social-twitter</artifactId>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        
         <dependency>
 			<groupId>org.apache.hadoop</groupId>
 			<artifactId>hadoop-client</artifactId>
-			<version>2.7.2</version>
-			<exclusions>
-				<exclusion>
-	                 <artifactId>slf4j-log4j12</artifactId>
-	                  <groupId>org.slf4j</groupId>
-	             </exclusion>
-               <exclusion>
-                 <artifactId>servlet-api</artifactId>
-                   <groupId>javax.servlet</groupId>
-               </exclusion>
-            </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-yarn-common</artifactId>
 			<version>2.7.2</version>
 			<exclusions>
 				<exclusion>
@@ -466,10 +452,10 @@
     		<version>2.1.0</version>
 		<exclusions>
 			<exclusion>
-	                 <artifactId>slf4j-log4j12</artifactId>
-	                  <groupId>org.slf4j</groupId>
+	             <artifactId>slf4j-log4j12</artifactId>
+	             <groupId>org.slf4j</groupId>
 	             </exclusion>
-				<exclusion>
+	        	<exclusion>
                  <artifactId>servlet-api</artifactId>
                    <groupId>javax.servlet</groupId>
                </exclusion>
@@ -483,68 +469,7 @@
             </exclusion>
             </exclusions>
 		</dependency>
-		<!-- <dependency>
-    		<groupId>org.apache.spark</groupId>
-    		<artifactId>spark-yarn_2.11</artifactId>
-    		<version>1.5.1</version>
-    		<exclusions>
-			<exclusion>
-	                 <artifactId>slf4j-log4j12</artifactId>
-	                  <groupId>org.slf4j</groupId>
-	             </exclusion>
-				<exclusion>
-                 <artifactId>servlet-api</artifactId>
-                   <groupId>javax.servlet</groupId>
-               </exclusion>
-               <exclusion>
-                <groupId>org.glassfish</groupId>
-                <artifactId>javax.servlet</artifactId>
-            </exclusion>
-            <exclusion>
-                <groupId>org.eclipse.jetty.orbit</groupId>
-                <artifactId>javax.servlet</artifactId>
-            </exclusion>
-            </exclusions>
-	</dependency> -->
-	<!-- THIS IS IMPORTANT TO SORT OUT -->
-		 <dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.6.5</version>
-		</dependency> 
-		 <dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>21.0</version>
-			<exclusions>
-				<exclusion>
-	                 <artifactId>slf4j-log4j12</artifactId>
-	                  <groupId>org.slf4j</groupId>
-	             </exclusion>
-            </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-jexl</artifactId>
-			<version>2.0</version>
-			<exclusions>
-				<exclusion>
-	                 <artifactId>slf4j-log4j12</artifactId>
-	                  <groupId>org.slf4j</groupId>
-	             </exclusion>
-            </exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.google.protobuf</groupId>
-			<artifactId>protobuf-java</artifactId>
-			<version>2.6.1</version>
-			<exclusions>
-				<exclusion>
-	                 <artifactId>slf4j-log4j12</artifactId>
-	                  <groupId>org.slf4j</groupId>
-	             </exclusion>
-            </exclusions>
-		</dependency>
+        
     </dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>

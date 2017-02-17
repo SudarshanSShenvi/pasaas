@@ -91,7 +91,8 @@ public class PASaxCodeResource {
     public ResponseEntity<List<PASaxCode>> getAllPASaxCodes(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PASaxCodes");
-        Page<PASaxCode> page = pASaxCodeService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        @SuppressWarnings("unchecked")
+		Page<PASaxCode> page = pASaxCodeService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-codes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

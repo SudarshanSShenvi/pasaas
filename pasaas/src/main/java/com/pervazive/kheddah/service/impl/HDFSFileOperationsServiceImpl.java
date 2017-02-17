@@ -185,10 +185,12 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 		    List<String> tsvString = new ArrayList<String>();
 		    String line=br.readLine();
 		    tsvString.add(line);
-	        while (line != null){
-	                System.out.println(line);
+		    int readLines = 0;
+	        while (line != null && readLines < 1000){
+	                //System.out.println(line);
 	                line=br.readLine();
 	                tsvString.add(line);
+	                readLines++;
 	        }
 	        br.close();
 		    in.close();

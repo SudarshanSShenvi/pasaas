@@ -30,7 +30,7 @@ public class PASaxCode implements Serializable {
     private String saxcode;
 
     @Column(name = "total")
-    private String total;
+    private Long total;
 
     @Column(name = "painterval")
     private String painterval;
@@ -79,16 +79,16 @@ public class PASaxCode implements Serializable {
         this.saxcode = saxcode;
     }
 
-    public String getTotal() {
+    public Long getTotal() {
         return total;
     }
 
-    public PASaxCode total(String total) {
+    public PASaxCode total(Long total) {
         this.total = total;
         return this;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 

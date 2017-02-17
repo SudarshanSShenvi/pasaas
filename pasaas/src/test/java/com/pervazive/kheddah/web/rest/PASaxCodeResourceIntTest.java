@@ -45,8 +45,8 @@ public class PASaxCodeResourceIntTest {
     private static final String DEFAULT_SAXCODE = "AAAAAAAAAA";
     private static final String UPDATED_SAXCODE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_TOTAL = "AAAAAAAAAA";
-    private static final String UPDATED_TOTAL = "BBBBBBBBBB";
+    private static final Long DEFAULT_TOTAL = 1L;
+    private static final Long UPDATED_TOTAL = 2L;
 
     private static final String DEFAULT_PAINTERVAL = "AAAAAAAAAA";
     private static final String UPDATED_PAINTERVAL = "BBBBBBBBBB";

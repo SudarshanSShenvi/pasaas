@@ -118,7 +118,7 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 			sparkConf.set("spark.executor.memory", "8G");
 			sparkConf.set("spark.driver.memory", "8G");
 			sparkConf.set("spark.driver.allowMultipleContexts", "true");
-			String[] jar = {"/opt/pasaas-product/Apache-Spark/spark-2.1.0-bin-hadoop2.7/jars/pasaas.jar"
+			String[] jar = {"/opt/pasaas-product/Apache-Spark/spark-2.1.0-bin-hadoop2.7/jars/paml-1.0.jar"
 					,"/opt/pasaas-product/Apache-Spark/spark-2.1.0-bin-hadoop2.7/jars/commons-jexl-2.1.1.jar"
 			};
 			
@@ -191,7 +191,7 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 					hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD/_SUCCESS", hadoopConf);
 		        	SubSequenceGenerator subSequenceGenerator = new SubSequenceGenerator(inputFile, outputFile, saxcodeField, subSeqInterval, subSeqIntervalThreshold, predictionId);
 		        			subSequenceGenerator.run(sparkConf);
-		        			hdfsFileOperationsService.readFile("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf);
+		        			//hdfsFileOperationsService.readFile("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf);
 		  				return 0L;
 		  		  
 		        }
@@ -220,7 +220,7 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		        				String[] vals = tsvString.get(i).split("\t");
 		        				paSaxCode.setDistalarm(vals[0]);
 		        				paSaxCode.setSaxcode(vals[1]);
-		        				paSaxCode.setTotal(vals[2]);
+		        				paSaxCode.setTotal(Long.parseLong(vals[2]));
 		        				paSaxCode.setPainterval(vals[3]);
 		        				paSaxCode.setPaorgsc(pAOrganization);
 		        				paSaxCode.setPaprosc(pAProject);
