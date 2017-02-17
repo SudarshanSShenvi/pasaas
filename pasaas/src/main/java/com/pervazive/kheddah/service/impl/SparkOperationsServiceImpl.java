@@ -10,6 +10,8 @@ import javax.inject.Inject;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.spark.SparkConf;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,7 @@ import com.pervazive.kheddah.domain.enumeration.PAStatus;
 import com.pervazive.kheddah.paml.DataAggregator;
 import com.pervazive.kheddah.paml.DataRollup;
 import com.pervazive.kheddah.paml.SubSequenceGenerator;
+import com.pervazive.kheddah.repository.PASaxCodeTmpRepository;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PASaxCodeService;
 import com.pervazive.kheddah.service.SparkOperationsService;
@@ -28,11 +31,16 @@ import com.pervazive.kheddah.service.SparkOperationsService;
 @Transactional
 public class SparkOperationsServiceImpl implements SparkOperationsService {
 	
+    private final Logger log = LoggerFactory.getLogger(SparkOperationsServiceImpl.class);
+	
 	@Inject
 	HDFSFileOperationsService hdfsFileOperationsService;
 	
 	@Inject
 	PASaxCodeService paSaxCodeService;
+	
+	@Inject
+	PASaxCodeTmpRepository paSaxCodeTmpRepository;
 	
 	public static Configuration hadoopConf = null;
 	
@@ -114,7 +122,7 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 			sparkConf.set("spark.kryoserializer.buffer.mb", "1024");
 			sparkConf.set("spark.akka.frameSize", "2047");*/
 			//sparkConf.set("spark.executor.cores", "2");
-			//sparkConf.set("spark.ui.enabled", "false");
+			sparkConf.set("spark.ui.enabled", "false");
 			sparkConf.set("spark.executor.memory", "8G");
 			sparkConf.set("spark.driver.memory", "8G");
 			sparkConf.set("spark.driver.allowMultipleContexts", "true");
@@ -146,6 +154,12 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		  		  
 		  				hdfsFileOperationsService.deleteFile("/ppa-repo/fmdatafeed", hadoopConf);
 		  				dataAggregator.init(sparkConf);
+		  				
+		  				DataAggregator dataAggregator1 = new DataAggregator(Long.parseLong(predictionId), isFirstRowHeader, skipindexes, 
+				  				  sourceTimeFormat, destTimeFormat, timeCol, entityCol, "hdfs://spark:8020/ppa-repo/temp/4DD");
+				  		  
+				  				hdfsFileOperationsService.deleteFile("/ppa-repo/temp/4DDfeed", hadoopConf);
+				  				dataAggregator1.init(sparkConf);
 		  				return 0L;
 		  		  
 		        }
@@ -167,6 +181,11 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		        public Long call() throws Exception {
 		        	DataRollup dataRollup = new DataRollup(predictionId, exprFile, seriesNext, seriesEnd, seriesStart, outSeriesFormat, inSeriesFormat, inputFile, requiredFlds);
 		  		  		dataRollup.init(sparkConf);
+		  		  		
+		  		  	
+		  	    			
+		  		  	DataRollup dataRollup1 = new DataRollup(predictionId, exprFile, "2015-03-29 00:00:00", "2015-03-31 00:00:00", "2015-03-28 00:00:00",  outSeriesFormat, inSeriesFormat, "hdfs://spark:8020/ppa-repo/temp/4DDfeed", requiredFlds);
+	  		  		dataRollup1.init(sparkConf);
 		  				return 0L;
 		  		  
 		        }
@@ -184,15 +203,24 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		    Future<Long> future1 = executorService.submit(new Callable<Long>() {
 		        @Override
 		        public Long call() throws Exception {
-		        	hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD", hadoopConf);
+		        	/*hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD", hadoopConf);
 					hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/5DW", hadoopConf);
 					hdfsFileOperationsService.mkdir("hdfs://spark:8020/ppa-repo/temp/TD", hadoopConf);
 					hdfsFileOperationsService.copyHdfsFile("hdfs://spark:8020/ppa-repo/fmdatafeed/8.64E7/", "hdfs://spark:8020/ppa-repo/temp/TD", hadoopConf);
 					hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD/_SUCCESS", hadoopConf);
 		        	SubSequenceGenerator subSequenceGenerator = new SubSequenceGenerator(inputFile, outputFile, saxcodeField, subSeqInterval, subSeqIntervalThreshold, predictionId);
-		        			subSequenceGenerator.run(sparkConf);
-		        			//hdfsFileOperationsService.readFile("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf);
-		  				return 0L;
+		        	subSequenceGenerator.run(sparkConf);*/
+		        			
+        			hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD4", hadoopConf);
+					hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/4DW", hadoopConf);
+					hdfsFileOperationsService.mkdir("hdfs://spark:8020/ppa-repo/temp/TD4", hadoopConf);
+					hdfsFileOperationsService.copyHdfsFile("hdfs://spark:8020/ppa-repo/temp/4DDfeed/8.64E7/", "hdfs://spark:8020/ppa-repo/temp/TD4", hadoopConf);
+					hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD4/_SUCCESS", hadoopConf);
+					SubSequenceGenerator subSequenceGenerator1 = new SubSequenceGenerator("hdfs://spark:8020/ppa-repo/temp/TD4", "hdfs://spark:8020/ppa-repo/temp/4DW", saxcodeField, 
+							"4", subSeqIntervalThreshold, predictionId);
+		        	subSequenceGenerator1.run(sparkConf);
+		        	
+		  			return 0L;
 		  		  
 		        }
 		    });
@@ -213,25 +241,51 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		    Future<Long> future1 = executorService.submit(new Callable<Long>() {
 		        @Override
 		        public Long call() throws Exception {
-		        			List<String> tsvString = hdfsFileOperationsService.readFileO("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf);
-		        			for (int i = 0; i < tsvString.size(); i++) {
-		        				PASaxCode paSaxCode = new PASaxCode();
-		        				
-		        				String[] vals = tsvString.get(i).split("\t");
-		        				paSaxCode.setDistalarm(vals[0]);
-		        				paSaxCode.setSaxcode(vals[1]);
-		        				paSaxCode.setTotal(Long.parseLong(vals[2]));
-		        				paSaxCode.setPainterval(vals[3]);
-		        				paSaxCode.setPaorgsc(pAOrganization);
-		        				paSaxCode.setPaprosc(pAProject);
-		        				paSaxCode.setPastatus(PAStatus.Active);
-		        				System.out.println("Create NOW");
-		        				paSaxCodeService.save(paSaxCode);
-							}
-		        			
-		  				return 0L;
-		  		  
-		        }
+		        	String path = hdfsFileOperationsService.passFileForUpload("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf).getAbsolutePath();
+		        	log.debug("in here wiht "+path);
+		        	paSaxCodeTmpRepository.saveCSV(path, 1L, 1L);
+		        	log.debug("OUT OF HERE");
+		        	/*List<String> tsvString = hdfsFileOperationsService.readFileO("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf);
+		        			// Get Length
+		        			// Scan first 1000 entries get(INDEX)
+		        			// Send to do chunk
+		        			// Compare with length - Rerun until done
+		        			int startIndex = 0;
+		        			int endIndex = 1000;
+		        			int processedCount = 0;
+		        			if(tsvString.size() > 0) {
+		        				log.debug("Total Records ", tsvString.size());
+		        				while(processedCount < tsvString.size() ) {
+	        						List<String> tmpTSV = tsvString.subList(startIndex, endIndex);
+		        					doThisInChunks(tmpTSV);
+		        					processedCount = processedCount+tmpTSV.size();
+		        					log.debug("Processed RECORDS ", processedCount);
+		        					startIndex = endIndex; 
+		        					log.debug("startIndex ", startIndex);
+		        					endIndex = endIndex + 1000; 
+		        					log.debug("endIndex ", endIndex);
+		        					tmpTSV = null;
+		        			}	}
+		        	*/		
+		        		return 0L;
+		  		}
+
+				private void doThisInChunks(List<String> tsvString) {
+					for (int i = 0; i < tsvString.size(); i++) {
+        				String[] vals = tsvString.get(i).split("\t");
+        				PASaxCode paSaxCode = new PASaxCode();
+        				paSaxCode.setDistalarm(vals[0]);
+        				paSaxCode.setSaxcode(vals[1]);
+        				paSaxCode.setTotal(Long.parseLong(vals[2]));
+        				paSaxCode.setPainterval(vals[3]);
+        				paSaxCode.setPaorgsc(pAOrganization);
+        				paSaxCode.setPaprosc(pAProject);
+        				paSaxCode.setPastatus(PAStatus.Active);
+        				paSaxCodeService.save(paSaxCode);
+        			}
+					
+					
+				}
 		    });
 	}
 

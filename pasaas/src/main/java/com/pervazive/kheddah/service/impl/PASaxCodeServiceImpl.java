@@ -36,7 +36,7 @@ public class PASaxCodeServiceImpl implements PASaxCodeService{
      * @return the persisted entity
      */
     public PASaxCode save(PASaxCode pASaxCode) {
-        log.debug("Request to save PASaxCode : {}", pASaxCode);
+        //log.debug("Request to save PASaxCode : {}", pASaxCode);
         PASaxCode result = pASaxCodeRepository.save(pASaxCode);
         return result;
     }

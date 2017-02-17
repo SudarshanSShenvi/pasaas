@@ -199,6 +199,36 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 		    return tsvString;
 		  }
 	  
+	  
+	  public File passFileForUpload(String file, Configuration conf) throws IOException {
+		    FileSystem fileSystem = FileSystem.get(conf);
+
+		    Path path = new Path(file);
+		    if (!fileSystem.exists(path)) {
+		      System.out.println("File " + file + " does not exists");
+		      return null;
+		    }
+
+		    FSDataInputStream in = fileSystem.open(path);
+		    
+		    File loadFile = new File("loadtsv");
+		    
+			    OutputStream out = new BufferedOutputStream(new FileOutputStream(loadFile));
+
+			    byte[] b = new byte[1024];
+			    int numBytes = 0;
+			    while ((numBytes = in.read(b)) > 0) {
+			      out.write(b, 0, numBytes);
+			    }
+
+			    in.close();
+			    out.close();
+			    fileSystem.close();
+			    
+			    
+		    return loadFile;
+		  }
+	  
 	  /**
 	   * read a file from hdfs
 	   * @param file
