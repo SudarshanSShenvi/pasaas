@@ -8,17 +8,15 @@ import org.apache.spark.SparkConf;
  */
 public interface SparkOperationsService {
 	
-	public void triggerDataAggregation(String predictionId, String inputDir, String entityCol, String timeCol,
-			  String sourceTimeFormat, String destTimeFormat, String skipindexes, Boolean isFirstRowHeader, SparkConf sparkConf, Configuration hadoopConf) ;
+	public void triggerTrainingOperation(long predictionId, String inputDir, String entityCol, String timeCol,
+			  String sourceTimeFormat, String destTimeFormat, String skipindexes, Boolean isFirstRowHeader, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
+				String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds, String patInputFile, String outputFile, String saxcodeField, String subSeqInterval,
+				String subSeqIntervalThreshold, SparkConf sparkConf, Configuration hadoopConf) ;
 	
-	public void triggerDataRollup(long predictionId, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
-			String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds,  SparkConf sparkConf, Configuration hadoopConf);
-	
-	 public void triggerPatterns(String inputFile, String outputFile, String saxcodeField, String subSeqInterval,
-				String subSeqIntervalThreshold, long predictionId, SparkConf sparkConf, Configuration hadoopConf );
-	 
-	 public void triggerUpload(Configuration hadoopConf );
-	
+	public void triggerPredictionOperation(long predictionId, String inputDir, String entityCol, String timeCol,
+				  String sourceTimeFormat, String destTimeFormat, String skipindexes, Boolean isFirstRowHeader, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
+					String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds, String patInputFile, String outputFile, String saxcodeField, String subSeqInterval,
+					String subSeqIntervalThreshold, SparkConf sparkConf, Configuration hadoopConf) ;
 	public Configuration setHadoopConfigurations();
 	public SparkConf setSparkConfigurations();
 	
