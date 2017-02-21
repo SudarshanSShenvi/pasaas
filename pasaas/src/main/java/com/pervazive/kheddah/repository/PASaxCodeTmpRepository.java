@@ -23,4 +23,7 @@ public interface PASaxCodeTmpRepository extends JpaRepository<PASaxCodeTmp,Long>
 	@Query(value = "load data local infile :filePath into table pasaas.pa_saxcode_tmp fields terminated by '\t' lines terminated by '\n' (distalarm, saxcode, total, painterval, @paorgsct_id, @paprosct_id, @pastatus)"
 			+ " SET paorgsct_id = :orgId, paprosct_id = :projId, pastatus = 'Active'", nativeQuery = true)
 	void saveCSV(@Param("filePath") String filePath, @Param("orgId") Long orgId, @Param("projId") Long projId);
+	
+	@Query(value = "delete from pasaas.pa_saxcode_tmp where paorgsct_id = :orgId AND paprosct_id = :projId", nativeQuery = true )
+	void deleteAllByOrgAndProject(@Param("orgId") Long orgId, @Param("projId") Long projId);
 }

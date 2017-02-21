@@ -54,6 +54,16 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <createIndex indexName="idx_pa_saxcode_distalarm"
+            tableName="pa_saxcode"
+            unique="false">
+            <column name="distalarm" type="varchar(255)"/>
+        </createIndex>
+        <createIndex indexName="idx_pa_saxcode_saxcode"
+            tableName="pa_saxcode"
+            unique="false">
+            <column name="saxcode" type="varchar(255)"/>
+        </createIndex>
         
     </changeSet>
 </databaseChangeLog>

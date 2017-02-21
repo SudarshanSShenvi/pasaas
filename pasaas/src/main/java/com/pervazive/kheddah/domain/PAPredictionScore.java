@@ -41,7 +41,7 @@ public class PAPredictionScore implements Serializable {
     private Float bscore;
 
     @Column(name = "cscore")
-    private Integer cscore;
+    private Float cscore;
 
     @Column(name = "createdon")
     private ZonedDateTime createdon;
@@ -141,16 +141,16 @@ public class PAPredictionScore implements Serializable {
         this.bscore = bscore;
     }
 
-    public Integer getCscore() {
+    public Float getCscore() {
         return cscore;
     }
 
-    public PAPredictionScore cscore(Integer cscore) {
+    public PAPredictionScore cscore(Float cscore) {
         this.cscore = cscore;
         return this;
     }
 
-    public void setCscore(Integer cscore) {
+    public void setCscore(Float cscore) {
         this.cscore = cscore;
     }
 

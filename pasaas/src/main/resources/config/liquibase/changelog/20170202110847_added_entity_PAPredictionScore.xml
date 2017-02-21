@@ -44,7 +44,7 @@
                 <constraints nullable="true" />
             </column>
             
-            <column name="cscore" type="integer">
+            <column name="cscore" type="${floatType}">
                 <constraints nullable="true" />
             </column>
             
@@ -83,6 +83,15 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="pa_prediction_score" columnName="createdon" columnDataType="datetime"/>
-        
+        <createIndex indexName="idx_pa_prediction_score_bscore"
+            tableName="pa_prediction_score"
+            unique="false">
+            <column name="bscore" type="${floatType}"/>
+        </createIndex>
+        <createIndex indexName="idx_pa_prediction_score_cscore"
+            tableName="pa_prediction_score"
+            unique="false">
+            <column name="cscore" type="${floatType}"/>
+        </createIndex>
     </changeSet>
 </databaseChangeLog>

@@ -60,8 +60,8 @@ public class PAPredictionScoreResourceIntTest {
     private static final Float DEFAULT_BSCORE = 1F;
     private static final Float UPDATED_BSCORE = 2F;
 
-    private static final Integer DEFAULT_CSCORE = 1;
-    private static final Integer UPDATED_CSCORE = 2;
+    private static final Float DEFAULT_CSCORE = 1F;
+    private static final Float UPDATED_CSCORE = 2F;
 
     private static final ZonedDateTime DEFAULT_CREATEDON = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_CREATEDON = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);

@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pervazive.kheddah.paml.DataAggregator;
 import com.pervazive.kheddah.paml.DataRollup;
 import com.pervazive.kheddah.paml.SubSequenceGenerator;
+import com.pervazive.kheddah.repository.PAPredictionScoreRepository;
+import com.pervazive.kheddah.repository.PASaxCodeRepository;
 import com.pervazive.kheddah.repository.PASaxCodeTmpRepository;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PASaxCodeService;
@@ -36,6 +38,12 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 	
 	@Inject
 	PASaxCodeTmpRepository paSaxCodeTmpRepository;
+	
+	@Inject
+	PASaxCodeRepository paSaxCodeRepository;
+	
+	@Inject
+	PAPredictionScoreRepository paPredictionScoreRepository;
 	
 	public static Configuration hadoopConf = null;
 	
@@ -103,11 +111,13 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		        	SubSequenceGenerator subSequenceGenerator = new SubSequenceGenerator(patInputFile, outputFile, saxcodeField, subSeqInterval, subSeqIntervalThreshold, predictionId);
 		        	subSequenceGenerator.run(sparkConf, "Training - Patterns");
 		        	String path = hdfsFileOperationsService.passFileForUpload("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf).getAbsolutePath();
-		        	log.debug("in here wiht "+path);
+		        	log.debug("Attempting Delete ");
 		        	paSaxCodeTmpRepository.deleteAllInBatch();
-		        	log.debug("Done with Deletion "+path);
+		        	log.debug("Done with Deletion ");
 		        	paSaxCodeTmpRepository.saveCSV(path, 1L, 1L);
-		  				return 0L;
+		        	paSaxCodeRepository.updateCustomResult();
+		        	paSaxCodeRepository.addNewPatterns();
+		  			return 0L;
 		  		}
 		    });
 		    
@@ -147,8 +157,12 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 									subSeqInterval, subSeqIntervalThreshold, predictionId);
 				        	subSequenceGenerator1.run(sparkConf, "Prediction - patterns");
 				        	String path = hdfsFileOperationsService.passFileForUpload("hdfs://spark:8020/ppa-repo/temp/4DW/part-00000", hadoopConf).getAbsolutePath();
-				        	log.debug("in here wiht "+path);
-				        	//paSaxCodeTmpRepository.saveCSV(path, 1L, 1L);
+				        	log.debug("in here with "+path);
+				        	paSaxCodeTmpRepository.deleteAllInBatch();
+				        	paSaxCodeTmpRepository.saveCSV(path, 1L, 1L);
+				        	log.debug("Attempting New Prediction creations ");
+				        	paPredictionScoreRepository.createPredictionsForDay();
+				        	//log.debug("Predictions Uploaded "+path);
 		  				return 0L;
 		  		  
 		        }

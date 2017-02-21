@@ -1,7 +1,7 @@
 {
     "home": {
-        "title": "Welcome, Java Hipster!",
-        "subtitle": "This is your homepage",
+        "title": "PERVAZIVE PREDICTIVE ANALYTICS",
+        "subtitle": "Telecom Analytics",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
@@ -13,7 +13,7 @@
             "chat": "JHipster public chat room",
             "follow": "follow @java_hipster on Twitter"
         },
-        "like": "If you like JHipster, don't forget to give us a star on",
-        "github": "GitHub"
+        "like": "If you like Pervazive Products, don't forget to like us on",
+        "facebook": "facebook"
     }
 }
