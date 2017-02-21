@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
+import java.lang.Float;
 
 /**
  * Spring Data JPA repository for the PAPredictionScore entity.
@@ -29,4 +30,10 @@ public interface PAPredictionScoreRepository extends JpaRepository<PAPredictionS
 			+ "RIGHT OUTER JOIN pasaas.pa_saxcode_tmp b ON a.distalarm = b.distalarm AND a.saxcode = CONCAT(b.saxcode, 'c'))"
 			+ " AS BB where AA.distalarm = BB.distalarm and AA.saxcode = BB.saxcode", nativeQuery = true)
 	void createPredictionsForDay();
+	
+	//@Query("select paPredictionScore from PAPredictionScore paPredictionScore where paPredictionScore.cscore>?1")
+	Page<PAPredictionScore> findByCscoreBetween(Float cscorestart, Float cscoreend, Pageable pageable);
+	
+	//@Query("select paPredictionScore from PAPredictionScore paPredictionScore where paPredictionScore.bscore>?1")
+	Page<PAPredictionScore> findByBscoreBetween(Float bscorestart, Float bscoreend, Pageable pageable);
 }

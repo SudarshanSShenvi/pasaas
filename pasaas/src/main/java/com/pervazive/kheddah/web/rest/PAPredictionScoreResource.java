@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
 import com.pervazive.kheddah.service.PAPredictionScoreService;
+import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
+import com.pervazive.kheddah.service.dto.PAPredictionScoreDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -24,6 +26,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing PAPredictionScore.
@@ -94,6 +97,33 @@ public class PAPredictionScoreResource {
         Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/p-a-prediction-scoresfailing/{probStart}/{probEnd:.+}")
+    @Timed
+    public ResponseEntity<List<PAPredictionScoreDTO>> getAllFailingHighProbElements(@PathVariable String probStart, @PathVariable String probEnd, @ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug(probStart +" : "+probEnd + " - REST request to get a page of PAPredictionScores"+ Float.parseFloat(probStart) +" : "+Float.parseFloat(probEnd));
+        Page<PAPredictionScore> page = pAPredictionScoreService.findFailuresAbove(pageable, Float.parseFloat(probStart), Float.parseFloat(probEnd));
+        
+        List<PAPredictionScoreDTO> paPredictionScoreDTOs = page.getContent().stream()
+                .map(PAPredictionScoreDTO::new)
+                .collect(Collectors.toList());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scoresfailing");
+        return new ResponseEntity<>(paPredictionScoreDTOs, headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/p-a-prediction-scoresstable/{probStart}/{probEnd:.+}")
+    @Timed
+    public ResponseEntity<List<PAPredictionScoreDTO>> getAllStableHighProbElements(@PathVariable String probStart, @PathVariable String probEnd, @ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug(probStart +" : "+probEnd + " - REST request to get a page of PAPredictionScores"+ Float.parseFloat(probStart) +" : "+Float.parseFloat(probEnd));
+        Page<PAPredictionScore> page = pAPredictionScoreService.findStableAbove(pageable, Float.parseFloat(probStart), Float.parseFloat(probEnd));
+        List<PAPredictionScoreDTO> paPredictionScoreDTOs = page.getContent().stream()
+                .map(PAPredictionScoreDTO::new)
+                .collect(Collectors.toList());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scoresstable");
+        return new ResponseEntity<>(paPredictionScoreDTOs, headers, HttpStatus.OK);
     }
 
     /**

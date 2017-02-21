@@ -28,6 +28,9 @@ public interface PAPredictionScoreService {
     Page<PAPredictionScore> findAll(Pageable pageable, String user);
     
     Page<PAPredictionScore> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    
+    public Page<PAPredictionScore> findFailuresAbove(Pageable pageable,  Float probValStart, Float probValEnd );
+    public Page<PAPredictionScore> findStableAbove(Pageable pageable,  Float probValStart, Float probValEnd);
 
     /**
      *  Get the "id" pAPredictionScore.

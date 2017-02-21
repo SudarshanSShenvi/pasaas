@@ -69,6 +69,35 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
         return result;
     }
     
+    
+    /**
+     *  Get all the pAPredictionScores.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PAPredictionScore> findFailuresAbove(Pageable pageable,  Float probValStart, Float probValEnd ) {
+        log.debug("Request to get all PAPredictionScores");
+        Page<PAPredictionScore> result = pAPredictionScoreRepository.findByCscoreBetween(probValStart, probValEnd,  pageable);
+        //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
+        return result;
+    }
+    
+    /**
+     *  Get all the pAPredictionScores.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
+    public Page<PAPredictionScore> findStableAbove(Pageable pageable,  Float probValStart, Float probValEnd) {
+        log.debug("Request to get all PAPredictionScores");
+        Page<PAPredictionScore> result = pAPredictionScoreRepository.findByBscoreBetween(probValStart, probValEnd, pageable);
+        //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
+        return result;
+    }
+    
     /**
      *  Get one pAPredictionScore by id.
      *

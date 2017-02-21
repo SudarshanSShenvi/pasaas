@@ -37,10 +37,10 @@ public class PAPredictionScore implements Serializable {
     @Column(name = "ccount")
     private Integer ccount;
 
-    @Column(name = "bscore")
+    @Column(name = "bscore", precision=4)
     private Float bscore;
 
-    @Column(name = "cscore")
+    @Column(name = "cscore", precision=4)
     private Float cscore;
 
     @Column(name = "createdon")
