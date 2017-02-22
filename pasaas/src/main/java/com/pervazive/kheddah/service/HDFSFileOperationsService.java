@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface HDFSFileOperationsService {
 
-	public Configuration init(String hdfsURL, String basedirectiory, String user );
+	public Configuration init(String user );
 	
 	/**
 	   * create a existing file from local filesystem to hdfs
@@ -49,6 +49,8 @@ public interface HDFSFileOperationsService {
 	   * @throws IOException
 	   */
 	  public void mkdir(String dir, Configuration conf) throws IOException;
+	  
+	  public void mkdirStructure(String project, String organizationName) throws IOException;
 	  
 	  public void copyHdfsFile(String hdfsSource, String hdfsDest, Configuration conf) throws IOException;
 

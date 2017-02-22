@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
+import java.lang.String;
 
 /**
  * Spring Data JPA repository for the PAProject entity.
@@ -23,4 +24,5 @@ public interface PAProjectRepository extends JpaRepository<PAProject,Long> {
 	PAProject findByProjectName(String paproject);
 	
 	Page<PAProject> findByPaorgproIn(List<PAOrganization> paOrganization, Pageable pageable);
+		
 }

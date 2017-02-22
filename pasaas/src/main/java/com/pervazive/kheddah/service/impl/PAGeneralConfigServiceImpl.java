@@ -3,6 +3,7 @@ package com.pervazive.kheddah.service.impl;
 import com.pervazive.kheddah.service.PAGeneralConfigService;
 import com.pervazive.kheddah.domain.PAGeneralConfig;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.enumeration.PAStatus;
 import com.pervazive.kheddah.repository.PAGeneralConfigRepository;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
 
@@ -64,6 +65,20 @@ public class PAGeneralConfigServiceImpl implements PAGeneralConfigService{
     public PAGeneralConfig findOne(Long id) {
         log.debug("Request to get PAGeneralConfig : {}", id);
         PAGeneralConfig pAGeneralConfig = pAGeneralConfigRepository.findOne(id);
+        return pAGeneralConfig;
+    }
+    
+    
+    /**
+     *  Get one pAGeneralConfig by id.
+     *
+     *  @param id the id of the entity
+     *  @return the entity
+     */
+    @Transactional(readOnly = true) 
+    public PAGeneralConfig findByStatus() {
+        log.debug("Request to get PAGeneralConfig by Active Status : {}");
+        PAGeneralConfig pAGeneralConfig = pAGeneralConfigRepository.findByPastatus(PAStatus.Active);
         return pAGeneralConfig;
     }
 

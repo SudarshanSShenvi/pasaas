@@ -255,6 +255,29 @@
                 <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
             </select>
         </div>
+        
+               <div class="form-group" ngf-drop ngf-change="vm.setMsgattachments($file, vm.pAGeneralConfig)">
+            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.exprfile" for="field_msgattachments">Expression File</label>
+            <div>
+                <div ng-if="vm.pAGeneralConfig.exprfile" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.pAGeneralConfig.exprfileContentType, vm.pAGeneralConfig.exprfile" data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.pAGeneralConfig.exprfileContentType}}, {{vm.byteSize(vm.pAGeneralConfig.exprfile)}}</span>
+                    <button type="button" ng-click="vm.pAGeneralConfig.exprfile=null;vm.pAGeneralConfig.exprfileContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setMsgattachments($file, vm.pAGeneralConfig)" data-translate="entity.action.addblob">
+                    Add Attachment
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="exprfile" id="field_exprfile"
+                    ng-model="vm.pAGeneralConfig.exprfile"
+                     />
+            <input type="hidden" class="form-control" name="exprfileContentType" id="field_exprfileContentType"
+                    ng-model="vm.pAGeneralConfig.exprfileContentType" />
+        </div>
 
     </div>
     <div class="modal-footer">

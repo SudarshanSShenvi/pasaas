@@ -40,6 +40,17 @@
         function onSaveError () {
             vm.isSaving = false;
         }
+        
+        vm.setMsgattachments = function ($file, pAGeneralConfig) {
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                    	pAGeneralConfig.msgattachments = base64Data;
+                    	pAGeneralConfig.msgattachmentsContentType = $file.type;
+                    });
+                });
+            }
+        };
 
 
     }

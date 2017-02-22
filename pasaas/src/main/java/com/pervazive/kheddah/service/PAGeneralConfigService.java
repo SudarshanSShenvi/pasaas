@@ -33,6 +33,8 @@ public interface PAGeneralConfigService {
      *  @return the entity
      */
     PAGeneralConfig findOne(Long id);
+    
+    public PAGeneralConfig findByStatus();
 
     /**
      *  Delete the "id" pAGeneralConfig.

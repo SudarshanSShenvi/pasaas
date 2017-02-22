@@ -35,6 +35,59 @@
             <column name="paorgpro_id" type="bigint">
                 <constraints nullable="true" />
             </column>
+            
+             <column name="pastatus" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="objectentity" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+			 <column name="timeseriesentity" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="feedindateformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="feedoutdateformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+			<column name="feedfirstlineheader" type="varchar(10)">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="feedskipindexes" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="rollindateformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="rolloutdateformat" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="rollseriesgroupindex" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="rollseriesstart" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="rollseriesend" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="rollseriesnxt" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+ 			<column name="patternfldindex" type="integer">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="patterntraininterval" type="integer">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="patternpredictinterval" type="integer">
+                <constraints nullable="true" />
+            </column>
+ 			<column name="patternintervalthreshhold" type="integer">
+                <constraints nullable="true" />
+            </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>

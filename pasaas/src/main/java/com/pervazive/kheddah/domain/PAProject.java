@@ -8,6 +8,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -31,11 +32,59 @@ public class PAProject extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "description")
     private String description;
+    
+    @Column(name = "objectentity")
+    private String objectentity;		// ==> 13:6 (Column identifier)
+    
+    @Column(name = "timeseriesentity")
+   	private String timeseriesentity; 	// ==> 30   (Time identifier )
+    
+    @Column(name = "feedindateformat")
+   	private String feedindateformat; 	// ==> UNIXTIME
+    
+    @Column(name = "feedoutdateformat")
+   	private String feedoutdateformat;	// ==> CUSTOMDATE#yyyy-MM-dd HH:mm:ss
+    
+    @Column(name = "feedfirstlineheader")
+    private boolean feedfirstlineheader = false; 	//	==> FirstLine Header true/false
+    
+    
+    @Column(name = "feedskipindexes")
+	private String feedskipindexes;		// ==> skip indexes out of computations
+    
+    @Column(name = "rollindateformat")
+	private String rollindateformat; 	// ==> CUSTOMDATE#yyyy-MM-dd HH:mm:ss
+    
+    @Column(name = "rolloutdateformat")
+   	private String rolloutdateformat; 	// ==> CUSTOMDATE#yyyy-MM-dd HH:mm:ss
+    
+    @Column(name = "rollseriesgroupindex")
+   	private String rollseriesgroupindex;	// ==> 2
+    
+    @Column(name = "rollseriesstart")
+   	private ZonedDateTime rollseriesstart;	//	==> 2015-03-01 00:00:00
+    
+    @Column(name = "rollseriesend")
+   	private ZonedDateTime rollseriesend;		//==> 2015-03-31 00:00:00
+    
+    @Column(name = "rollseriesnxt")
+   	private ZonedDateTime rollseriesnxt;		//==> 2015-03-02 00:00:00
+    
+    @Column(name = "patternfldindex")
+	private Integer patternfldindex;	//==> 2
+    
+    @Column(name = "patterntraininterval")
+	private Integer patterntraininterval;	//==> 5
+    
+    @Column(name = "patternpredictinterval")
+	private Integer patternpredictinterval;	//==> 4
+    
+    @Column(name = "patternintervalthreshhold")
+	private Integer patternintervalthreshhold; //==> 0
 
-    
-    //TODO - from DB level to UI
-    //private PAStatus pastatus;
-    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pastatus")
+    private PAStatus pastatus;
     
     @ManyToOne
     private PAOrganization paorgpro;
@@ -643,4 +692,140 @@ public class PAProject extends AbstractAuditingEntity implements Serializable {
             ", description='" + description + "'" +
             '}';
     }
+
+	public String getObjectentity() {
+		return objectentity;
+	}
+
+	public void setObjectentity(String objectentity) {
+		this.objectentity = objectentity;
+	}
+
+	public String getTimeseriesentity() {
+		return timeseriesentity;
+	}
+
+	public void setTimeseriesentity(String timeseriesentity) {
+		this.timeseriesentity = timeseriesentity;
+	}
+
+	public String getFeedindateformat() {
+		return feedindateformat;
+	}
+
+	public void setFeedindateformat(String feedindateformat) {
+		this.feedindateformat = feedindateformat;
+	}
+
+	public String getFeedoutdateformat() {
+		return feedoutdateformat;
+	}
+
+	public void setFeedoutdateformat(String feedoutdateformat) {
+		this.feedoutdateformat = feedoutdateformat;
+	}
+
+	public boolean getFeedfirstlineheader() {
+		return feedfirstlineheader;
+	}
+
+	public void setFeedfirstlineheader(boolean feedfirstlineheader) {
+		this.feedfirstlineheader = feedfirstlineheader;
+	}
+
+	public String getFeedskipindexes() {
+		return feedskipindexes;
+	}
+
+	public void setFeedskipindexes(String feedskipindexes) {
+		this.feedskipindexes = feedskipindexes;
+	}
+
+	public String getRollindateformat() {
+		return rollindateformat;
+	}
+
+	public void setRollindateformat(String rollindateformat) {
+		this.rollindateformat = rollindateformat;
+	}
+
+	public String getRolloutdateformat() {
+		return rolloutdateformat;
+	}
+
+	public void setRolloutdateformat(String rolloutdateformat) {
+		this.rolloutdateformat = rolloutdateformat;
+	}
+
+	public String getRollseriesgroupindex() {
+		return rollseriesgroupindex;
+	}
+
+	public void setRollseriesgroupindex(String rollseriesgroupindex) {
+		this.rollseriesgroupindex = rollseriesgroupindex;
+	}
+
+	public ZonedDateTime getRollseriesstart() {
+		return rollseriesstart;
+	}
+
+	public void setRollseriesstart(ZonedDateTime rollseriesstart) {
+		this.rollseriesstart = rollseriesstart;
+	}
+
+	public ZonedDateTime getRollseriesend() {
+		return rollseriesend;
+	}
+
+	public void setRollseriesend(ZonedDateTime rollseriesend) {
+		this.rollseriesend = rollseriesend;
+	}
+
+	public ZonedDateTime getRollseriesnxt() {
+		return rollseriesnxt;
+	}
+
+	public void setRollseriesnxt(ZonedDateTime rollseriesnxt) {
+		this.rollseriesnxt = rollseriesnxt;
+	}
+
+	public Integer getPatternfldindex() {
+		return patternfldindex;
+	}
+
+	public void setPatternfldindex(Integer patternfldindex) {
+		this.patternfldindex = patternfldindex;
+	}
+
+	public Integer getPatterntraininterval() {
+		return patterntraininterval;
+	}
+
+	public void setPatterntraininterval(Integer patterntraininterval) {
+		this.patterntraininterval = patterntraininterval;
+	}
+
+	public Integer getPatternpredictinterval() {
+		return patternpredictinterval;
+	}
+
+	public void setPatternpredictinterval(Integer patternpredictinterval) {
+		this.patternpredictinterval = patternpredictinterval;
+	}
+
+	public Integer getPatternintervalthreshhold() {
+		return patternintervalthreshhold;
+	}
+
+	public void setPatternintervalthreshhold(Integer patternintervalthreshhold) {
+		this.patternintervalthreshhold = patternintervalthreshhold;
+	}
+
+	public PAStatus getPastatus() {
+		return pastatus;
+	}
+
+	public void setPastatus(PAStatus pastatus) {
+		this.pastatus = pastatus;
+	}
 }

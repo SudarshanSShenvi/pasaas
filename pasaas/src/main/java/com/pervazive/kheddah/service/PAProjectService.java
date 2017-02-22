@@ -45,8 +45,8 @@ public interface PAProjectService {
     Page<PAProject> findAll(Pageable pageable, String user);
     
     Page<PAProject> findAll(Pageable pageable, List<PAOrganization> organizattionnames);
-
-    /**
+    
+        /**
      *  Get the "id" pAProject.
      *
      *  @param id the id of the entity

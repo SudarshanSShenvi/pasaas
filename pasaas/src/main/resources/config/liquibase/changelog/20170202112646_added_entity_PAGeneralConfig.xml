@@ -27,156 +27,46 @@
             <column name="hdfsurl" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="sparkurl" type="varchar(255)">
+			<column name="sparkurl" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_script" type="varchar(255)">
+			<column name="hdfsbasedir" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_inseriesformat" type="varchar(255)">
+			<column name="trainingfeeddir" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_outseriesformat" type="varchar(255)">
+			<column name="predictfeeddir" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_inputfile" type="varchar(255)">
+			<column name="trainingrollupinfile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_expressionfile" type="varchar(255)">
+			<column name="predictrollupinfile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_outputfile" type="varchar(255)">
+			<column name="expressionfilepath" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_seriesgcolindex" type="varchar(255)">
+			<column name="trainingpatternoutfile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_seriesstart" type="integer">
+			<column name="predictpatternoutfile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_seriesend" type="integer">
+			<column name="trainingpatterntmpoutfile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="dr_seriesnxt" type="integer">
+			<column name="predictpatterntmpoutfile" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="df_inputfile" type="varchar(255)">
+			<column name="sqltmpuploadpath" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="df_outputfile" type="varchar(255)">
+            <column name="exprfile" type="longblob">
                 <constraints nullable="true" />
             </column>
-            
-            <column name="df_entityfld" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="df_seriesfld" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="df_inseriesformat" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="df_outseriesformat" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="df_isheader" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="df_script" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="df_skipfldindexes" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_inputfile" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_outputfile" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_saxcodefldindex" type="integer">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_subseqinterval" type="integer">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_subseqintervalthreshhold" type="integer">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_script" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_tempopfile" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="ss_inputdirname" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_ipaddr" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_mysqlpwd" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_mysqldb" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_loadlocalinfile" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_daydumppath" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_updquery" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_insertquery" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_script" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_command" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-            
-            <column name="sq_localinfiile" type="varchar(255)">
+            <column name="exprfile_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             

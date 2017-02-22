@@ -198,43 +198,6 @@ public class PAGeneralConfigResourceIntTest {
         PAGeneralConfig pAGeneralConfig = new PAGeneralConfig()
                 .hdfsurl(DEFAULT_HDFSURL)
                 .sparkurl(DEFAULT_SPARKURL)
-                .dr_script(DEFAULT_DR_SCRIPT)
-                .dr_inseriesformat(DEFAULT_DR_INSERIESFORMAT)
-                .dr_outseriesformat(DEFAULT_DR_OUTSERIESFORMAT)
-                .dr_inputfile(DEFAULT_DR_INPUTFILE)
-                .dr_expressionfile(DEFAULT_DR_EXPRESSIONFILE)
-                .dr_outputfile(DEFAULT_DR_OUTPUTFILE)
-                .dr_seriesgcolindex(DEFAULT_DR_SERIESGCOLINDEX)
-                .dr_seriesstart(DEFAULT_DR_SERIESSTART)
-                .dr_seriesend(DEFAULT_DR_SERIESEND)
-                .dr_seriesnxt(DEFAULT_DR_SERIESNXT)
-                .df_inputfile(DEFAULT_DF_INPUTFILE)
-                .df_outputfile(DEFAULT_DF_OUTPUTFILE)
-                .df_entityfld(DEFAULT_DF_ENTITYFLD)
-                .df_seriesfld(DEFAULT_DF_SERIESFLD)
-                .df_inseriesformat(DEFAULT_DF_INSERIESFORMAT)
-                .df_outseriesformat(DEFAULT_DF_OUTSERIESFORMAT)
-                .df_isheader(DEFAULT_DF_ISHEADER)
-                .df_script(DEFAULT_DF_SCRIPT)
-                .df_skipfldindexes(DEFAULT_DF_SKIPFLDINDEXES)
-                .ss_inputfile(DEFAULT_SS_INPUTFILE)
-                .ss_outputfile(DEFAULT_SS_OUTPUTFILE)
-                .ss_saxcodefldindex(DEFAULT_SS_SAXCODEFLDINDEX)
-                .ss_subseqinterval(DEFAULT_SS_SUBSEQINTERVAL)
-                .ss_subseqintervalthreshhold(DEFAULT_SS_SUBSEQINTERVALTHRESHHOLD)
-                .ss_script(DEFAULT_SS_SCRIPT)
-                .ss_tempopfile(DEFAULT_SS_TEMPOPFILE)
-                .ss_inputdirname(DEFAULT_SS_INPUTDIRNAME)
-                .sq_ipaddr(DEFAULT_SQ_IPADDR)
-                .sq_mysqlpwd(DEFAULT_SQ_MYSQLPWD)
-                .sq_mysqldb(DEFAULT_SQ_MYSQLDB)
-                .sq_loadlocalinfile(DEFAULT_SQ_LOADLOCALINFILE)
-                .sq_daydumppath(DEFAULT_SQ_DAYDUMPPATH)
-                .sq_updquery(DEFAULT_SQ_UPDQUERY)
-                .sq_insertquery(DEFAULT_SQ_INSERTQUERY)
-                .sq_script(DEFAULT_SQ_SCRIPT)
-                .sq_command(DEFAULT_SQ_COMMAND)
-                .sq_localinfiile(DEFAULT_SQ_LOCALINFIILE)
                 .pastatus(DEFAULT_PASTATUS);
         return pAGeneralConfig;
     }
@@ -262,43 +225,6 @@ public class PAGeneralConfigResourceIntTest {
         PAGeneralConfig testPAGeneralConfig = pAGeneralConfigList.get(pAGeneralConfigList.size() - 1);
         assertThat(testPAGeneralConfig.getHdfsurl()).isEqualTo(DEFAULT_HDFSURL);
         assertThat(testPAGeneralConfig.getSparkurl()).isEqualTo(DEFAULT_SPARKURL);
-        assertThat(testPAGeneralConfig.getDr_script()).isEqualTo(DEFAULT_DR_SCRIPT);
-        assertThat(testPAGeneralConfig.getDr_inseriesformat()).isEqualTo(DEFAULT_DR_INSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDr_outseriesformat()).isEqualTo(DEFAULT_DR_OUTSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDr_inputfile()).isEqualTo(DEFAULT_DR_INPUTFILE);
-        assertThat(testPAGeneralConfig.getDr_expressionfile()).isEqualTo(DEFAULT_DR_EXPRESSIONFILE);
-        assertThat(testPAGeneralConfig.getDr_outputfile()).isEqualTo(DEFAULT_DR_OUTPUTFILE);
-        assertThat(testPAGeneralConfig.getDr_seriesgcolindex()).isEqualTo(DEFAULT_DR_SERIESGCOLINDEX);
-        assertThat(testPAGeneralConfig.getDr_seriesstart()).isEqualTo(DEFAULT_DR_SERIESSTART);
-        assertThat(testPAGeneralConfig.getDr_seriesend()).isEqualTo(DEFAULT_DR_SERIESEND);
-        assertThat(testPAGeneralConfig.getDr_seriesnxt()).isEqualTo(DEFAULT_DR_SERIESNXT);
-        assertThat(testPAGeneralConfig.getDf_inputfile()).isEqualTo(DEFAULT_DF_INPUTFILE);
-        assertThat(testPAGeneralConfig.getDf_outputfile()).isEqualTo(DEFAULT_DF_OUTPUTFILE);
-        assertThat(testPAGeneralConfig.getDf_entityfld()).isEqualTo(DEFAULT_DF_ENTITYFLD);
-        assertThat(testPAGeneralConfig.getDf_seriesfld()).isEqualTo(DEFAULT_DF_SERIESFLD);
-        assertThat(testPAGeneralConfig.getDf_inseriesformat()).isEqualTo(DEFAULT_DF_INSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDf_outseriesformat()).isEqualTo(DEFAULT_DF_OUTSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDf_isheader()).isEqualTo(DEFAULT_DF_ISHEADER);
-        assertThat(testPAGeneralConfig.getDf_script()).isEqualTo(DEFAULT_DF_SCRIPT);
-        assertThat(testPAGeneralConfig.getDf_skipfldindexes()).isEqualTo(DEFAULT_DF_SKIPFLDINDEXES);
-        assertThat(testPAGeneralConfig.getSs_inputfile()).isEqualTo(DEFAULT_SS_INPUTFILE);
-        assertThat(testPAGeneralConfig.getSs_outputfile()).isEqualTo(DEFAULT_SS_OUTPUTFILE);
-        assertThat(testPAGeneralConfig.getSs_saxcodefldindex()).isEqualTo(DEFAULT_SS_SAXCODEFLDINDEX);
-        assertThat(testPAGeneralConfig.getSs_subseqinterval()).isEqualTo(DEFAULT_SS_SUBSEQINTERVAL);
-        assertThat(testPAGeneralConfig.getSs_subseqintervalthreshhold()).isEqualTo(DEFAULT_SS_SUBSEQINTERVALTHRESHHOLD);
-        assertThat(testPAGeneralConfig.getSs_script()).isEqualTo(DEFAULT_SS_SCRIPT);
-        assertThat(testPAGeneralConfig.getSs_tempopfile()).isEqualTo(DEFAULT_SS_TEMPOPFILE);
-        assertThat(testPAGeneralConfig.getSs_inputdirname()).isEqualTo(DEFAULT_SS_INPUTDIRNAME);
-        assertThat(testPAGeneralConfig.getSq_ipaddr()).isEqualTo(DEFAULT_SQ_IPADDR);
-        assertThat(testPAGeneralConfig.getSq_mysqlpwd()).isEqualTo(DEFAULT_SQ_MYSQLPWD);
-        assertThat(testPAGeneralConfig.getSq_mysqldb()).isEqualTo(DEFAULT_SQ_MYSQLDB);
-        assertThat(testPAGeneralConfig.getSq_loadlocalinfile()).isEqualTo(DEFAULT_SQ_LOADLOCALINFILE);
-        assertThat(testPAGeneralConfig.getSq_daydumppath()).isEqualTo(DEFAULT_SQ_DAYDUMPPATH);
-        assertThat(testPAGeneralConfig.getSq_updquery()).isEqualTo(DEFAULT_SQ_UPDQUERY);
-        assertThat(testPAGeneralConfig.getSq_insertquery()).isEqualTo(DEFAULT_SQ_INSERTQUERY);
-        assertThat(testPAGeneralConfig.getSq_script()).isEqualTo(DEFAULT_SQ_SCRIPT);
-        assertThat(testPAGeneralConfig.getSq_command()).isEqualTo(DEFAULT_SQ_COMMAND);
-        assertThat(testPAGeneralConfig.getSq_localinfiile()).isEqualTo(DEFAULT_SQ_LOCALINFIILE);
         assertThat(testPAGeneralConfig.getPastatus()).isEqualTo(DEFAULT_PASTATUS);
     }
 
@@ -449,43 +375,6 @@ public class PAGeneralConfigResourceIntTest {
         updatedPAGeneralConfig
                 .hdfsurl(UPDATED_HDFSURL)
                 .sparkurl(UPDATED_SPARKURL)
-                .dr_script(UPDATED_DR_SCRIPT)
-                .dr_inseriesformat(UPDATED_DR_INSERIESFORMAT)
-                .dr_outseriesformat(UPDATED_DR_OUTSERIESFORMAT)
-                .dr_inputfile(UPDATED_DR_INPUTFILE)
-                .dr_expressionfile(UPDATED_DR_EXPRESSIONFILE)
-                .dr_outputfile(UPDATED_DR_OUTPUTFILE)
-                .dr_seriesgcolindex(UPDATED_DR_SERIESGCOLINDEX)
-                .dr_seriesstart(UPDATED_DR_SERIESSTART)
-                .dr_seriesend(UPDATED_DR_SERIESEND)
-                .dr_seriesnxt(UPDATED_DR_SERIESNXT)
-                .df_inputfile(UPDATED_DF_INPUTFILE)
-                .df_outputfile(UPDATED_DF_OUTPUTFILE)
-                .df_entityfld(UPDATED_DF_ENTITYFLD)
-                .df_seriesfld(UPDATED_DF_SERIESFLD)
-                .df_inseriesformat(UPDATED_DF_INSERIESFORMAT)
-                .df_outseriesformat(UPDATED_DF_OUTSERIESFORMAT)
-                .df_isheader(UPDATED_DF_ISHEADER)
-                .df_script(UPDATED_DF_SCRIPT)
-                .df_skipfldindexes(UPDATED_DF_SKIPFLDINDEXES)
-                .ss_inputfile(UPDATED_SS_INPUTFILE)
-                .ss_outputfile(UPDATED_SS_OUTPUTFILE)
-                .ss_saxcodefldindex(UPDATED_SS_SAXCODEFLDINDEX)
-                .ss_subseqinterval(UPDATED_SS_SUBSEQINTERVAL)
-                .ss_subseqintervalthreshhold(UPDATED_SS_SUBSEQINTERVALTHRESHHOLD)
-                .ss_script(UPDATED_SS_SCRIPT)
-                .ss_tempopfile(UPDATED_SS_TEMPOPFILE)
-                .ss_inputdirname(UPDATED_SS_INPUTDIRNAME)
-                .sq_ipaddr(UPDATED_SQ_IPADDR)
-                .sq_mysqlpwd(UPDATED_SQ_MYSQLPWD)
-                .sq_mysqldb(UPDATED_SQ_MYSQLDB)
-                .sq_loadlocalinfile(UPDATED_SQ_LOADLOCALINFILE)
-                .sq_daydumppath(UPDATED_SQ_DAYDUMPPATH)
-                .sq_updquery(UPDATED_SQ_UPDQUERY)
-                .sq_insertquery(UPDATED_SQ_INSERTQUERY)
-                .sq_script(UPDATED_SQ_SCRIPT)
-                .sq_command(UPDATED_SQ_COMMAND)
-                .sq_localinfiile(UPDATED_SQ_LOCALINFIILE)
                 .pastatus(UPDATED_PASTATUS);
 
         restPAGeneralConfigMockMvc.perform(put("/api/p-a-general-configs")
@@ -499,43 +388,6 @@ public class PAGeneralConfigResourceIntTest {
         PAGeneralConfig testPAGeneralConfig = pAGeneralConfigList.get(pAGeneralConfigList.size() - 1);
         assertThat(testPAGeneralConfig.getHdfsurl()).isEqualTo(UPDATED_HDFSURL);
         assertThat(testPAGeneralConfig.getSparkurl()).isEqualTo(UPDATED_SPARKURL);
-        assertThat(testPAGeneralConfig.getDr_script()).isEqualTo(UPDATED_DR_SCRIPT);
-        assertThat(testPAGeneralConfig.getDr_inseriesformat()).isEqualTo(UPDATED_DR_INSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDr_outseriesformat()).isEqualTo(UPDATED_DR_OUTSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDr_inputfile()).isEqualTo(UPDATED_DR_INPUTFILE);
-        assertThat(testPAGeneralConfig.getDr_expressionfile()).isEqualTo(UPDATED_DR_EXPRESSIONFILE);
-        assertThat(testPAGeneralConfig.getDr_outputfile()).isEqualTo(UPDATED_DR_OUTPUTFILE);
-        assertThat(testPAGeneralConfig.getDr_seriesgcolindex()).isEqualTo(UPDATED_DR_SERIESGCOLINDEX);
-        assertThat(testPAGeneralConfig.getDr_seriesstart()).isEqualTo(UPDATED_DR_SERIESSTART);
-        assertThat(testPAGeneralConfig.getDr_seriesend()).isEqualTo(UPDATED_DR_SERIESEND);
-        assertThat(testPAGeneralConfig.getDr_seriesnxt()).isEqualTo(UPDATED_DR_SERIESNXT);
-        assertThat(testPAGeneralConfig.getDf_inputfile()).isEqualTo(UPDATED_DF_INPUTFILE);
-        assertThat(testPAGeneralConfig.getDf_outputfile()).isEqualTo(UPDATED_DF_OUTPUTFILE);
-        assertThat(testPAGeneralConfig.getDf_entityfld()).isEqualTo(UPDATED_DF_ENTITYFLD);
-        assertThat(testPAGeneralConfig.getDf_seriesfld()).isEqualTo(UPDATED_DF_SERIESFLD);
-        assertThat(testPAGeneralConfig.getDf_inseriesformat()).isEqualTo(UPDATED_DF_INSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDf_outseriesformat()).isEqualTo(UPDATED_DF_OUTSERIESFORMAT);
-        assertThat(testPAGeneralConfig.getDf_isheader()).isEqualTo(UPDATED_DF_ISHEADER);
-        assertThat(testPAGeneralConfig.getDf_script()).isEqualTo(UPDATED_DF_SCRIPT);
-        assertThat(testPAGeneralConfig.getDf_skipfldindexes()).isEqualTo(UPDATED_DF_SKIPFLDINDEXES);
-        assertThat(testPAGeneralConfig.getSs_inputfile()).isEqualTo(UPDATED_SS_INPUTFILE);
-        assertThat(testPAGeneralConfig.getSs_outputfile()).isEqualTo(UPDATED_SS_OUTPUTFILE);
-        assertThat(testPAGeneralConfig.getSs_saxcodefldindex()).isEqualTo(UPDATED_SS_SAXCODEFLDINDEX);
-        assertThat(testPAGeneralConfig.getSs_subseqinterval()).isEqualTo(UPDATED_SS_SUBSEQINTERVAL);
-        assertThat(testPAGeneralConfig.getSs_subseqintervalthreshhold()).isEqualTo(UPDATED_SS_SUBSEQINTERVALTHRESHHOLD);
-        assertThat(testPAGeneralConfig.getSs_script()).isEqualTo(UPDATED_SS_SCRIPT);
-        assertThat(testPAGeneralConfig.getSs_tempopfile()).isEqualTo(UPDATED_SS_TEMPOPFILE);
-        assertThat(testPAGeneralConfig.getSs_inputdirname()).isEqualTo(UPDATED_SS_INPUTDIRNAME);
-        assertThat(testPAGeneralConfig.getSq_ipaddr()).isEqualTo(UPDATED_SQ_IPADDR);
-        assertThat(testPAGeneralConfig.getSq_mysqlpwd()).isEqualTo(UPDATED_SQ_MYSQLPWD);
-        assertThat(testPAGeneralConfig.getSq_mysqldb()).isEqualTo(UPDATED_SQ_MYSQLDB);
-        assertThat(testPAGeneralConfig.getSq_loadlocalinfile()).isEqualTo(UPDATED_SQ_LOADLOCALINFILE);
-        assertThat(testPAGeneralConfig.getSq_daydumppath()).isEqualTo(UPDATED_SQ_DAYDUMPPATH);
-        assertThat(testPAGeneralConfig.getSq_updquery()).isEqualTo(UPDATED_SQ_UPDQUERY);
-        assertThat(testPAGeneralConfig.getSq_insertquery()).isEqualTo(UPDATED_SQ_INSERTQUERY);
-        assertThat(testPAGeneralConfig.getSq_script()).isEqualTo(UPDATED_SQ_SCRIPT);
-        assertThat(testPAGeneralConfig.getSq_command()).isEqualTo(UPDATED_SQ_COMMAND);
-        assertThat(testPAGeneralConfig.getSq_localinfiile()).isEqualTo(UPDATED_SQ_LOCALINFIILE);
         assertThat(testPAGeneralConfig.getPastatus()).isEqualTo(UPDATED_PASTATUS);
     }
 

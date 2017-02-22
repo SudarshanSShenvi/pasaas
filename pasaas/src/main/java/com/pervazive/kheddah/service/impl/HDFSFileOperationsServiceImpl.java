@@ -13,6 +13,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -24,25 +26,35 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pervazive.kheddah.domain.PAGeneralConfig;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
+import com.pervazive.kheddah.service.PAGeneralConfigService;
+import com.pervazive.kheddah.service.PAProjectService;
 
 @Service
 @Transactional
 public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 
+	@Inject
+	PAGeneralConfigService paGeneralConfigService;
+	
+	@Inject
+	PAProjectService paProjectService;
+	
 	public HDFSFileOperationsServiceImpl() {
 		
 	}
 	
-	String hdfsURL = "hdfs://spark:8020"; //value to be fetched from general config 
-	String basedirectiory = "/user/pervazive/"; //value to be fetched from general config 
+	//String hdfsURL = "hdfs://spark:8020"; //value to be fetched from general config 
+	//String basedirectiory = "/user/pervazive/"; //value to be fetched from general config 
 	
-	public Configuration init(String hdfsURL, String basedirectiory, String user ){
+	public Configuration init( String user ){
 		Configuration conf = new Configuration();
-		if(hdfsURL == null) hdfsURL = this.hdfsURL;
-		if(basedirectiory == null) basedirectiory = this.basedirectiory;
+		PAGeneralConfig paGeneralConfig =paGeneralConfigService.findByStatus();
+		String hdfsURL = paGeneralConfig.getHdfsurl();
+		String basedirectiory = paGeneralConfig.getHdfsbasedir();
 		conf.set("fs.defaultFS", hdfsURL+basedirectiory);
-		//conf.set("hadoop.job.ugi", "hadoop");
 		return conf;
 	}
 	/**
@@ -284,6 +296,66 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	    }
 	    fileSystem.mkdirs(path);
 	    fileSystem.close();
+	  }
+	  
+	  /**
+	   * create directory in hdfs
+	   * @param dir
+	   * @throws IOException
+	   */
+	  public void mkdirStructure(String projectName, String organizationName) throws IOException {
+
+		  PAGeneralConfig paGeneralConfig = paGeneralConfigService.findByStatus();
+			String hdfsURL = paGeneralConfig.getHdfsurl();
+			String hdfsBaseDir = paGeneralConfig.getHdfsbasedir();
+			String trainingFeedDir = paGeneralConfig.getTrainingfeeddir();
+			String expressionFilePath = paGeneralConfig.getExpressionfilepath();
+			String predictionFeedDir = paGeneralConfig.getPredictfeeddir();
+			String trainingRollInDir = paGeneralConfig.getTrainingrollupinfile();
+			String predictRollInDir = paGeneralConfig.getPredictrollupinfile();
+			String traningPatternOutFile = paGeneralConfig.getTrainingpatternoutfile();
+			String traningPatternTmpOutFile = paGeneralConfig.getTrainingpatterntmpoutfile();
+			String predictPatternOutFile = paGeneralConfig.getPredictpatternoutfile();
+			String predictPatternTmpOutFile = paGeneralConfig.getPredictpatterntmpoutfile();
+		 //For organization - hdfsURL/basedirectiory/organizationname/projectname
+		  Configuration configuration = new Configuration();
+		  configuration.set("fs.defaultFS", hdfsURL+hdfsBaseDir);
+		FileSystem fileSystem = FileSystem.get(configuration); //create directory when organization is created and create project under it when project is created 
+		
+		 /**
+	     * Default File structure to be created
+	     * hdfsurl 	|
+		 *			| -- /user/pervazive/organization/project  	|
+		 *		     										| -- /ppa-repo
+		 *							    					| -- /ppa-repo/traindata
+		 *							    					| -- /ppa-repo/traindatafeed
+		 *							    					| -- /ppa-repo/predictdata
+		 *							    					| -- /ppa-repo/predictdatafeed
+		 *							    					| -- /ppa-repo/conf
+		 *							    					| -- /ppa-repo/traindata/temp
+		 *							    					| -- /ppa-repo/traindata/temp/trainDW
+		 *							    					| -- /ppa-repo/traindata/temp/trainTD (PATTERN RESULT)
+		 *							    					| -- /ppa-repo/predictdata/temp
+		 *							    					| -- /ppa-repo/predictdata/temp/predictDW
+		 *							    					| -- /ppa-repo/predictdata/temp/predictTD (PREDICTION RESULT)
+	     */
+		
+		
+		fileSystem.mkdirs(new Path(organizationName));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/ppa-repo"));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+expressionFilePath));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+trainingFeedDir));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictionFeedDir));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+trainingRollInDir));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictRollInDir));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+trainingFeedDir+"/temp"));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictionFeedDir+"/temp"));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+traningPatternOutFile));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+traningPatternTmpOutFile));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictPatternOutFile));
+		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictPatternTmpOutFile));
+		fileSystem.close();
 	  }
 	  
 	  public void copyHdfsFile(String hdfsSource, String hdfsDest, Configuration conf) throws IOException {
