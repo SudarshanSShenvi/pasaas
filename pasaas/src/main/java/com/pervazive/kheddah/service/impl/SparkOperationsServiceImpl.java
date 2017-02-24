@@ -1,5 +1,8 @@
 package com.pervazive.kheddah.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.TimeZone;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pervazive.kheddah.domain.PAGeneralConfig;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.paml.DataAggregator;
 import com.pervazive.kheddah.paml.DataRollup;
 import com.pervazive.kheddah.paml.SubSequenceGenerator;
@@ -21,6 +26,8 @@ import com.pervazive.kheddah.repository.PAPredictionScoreRepository;
 import com.pervazive.kheddah.repository.PASaxCodeRepository;
 import com.pervazive.kheddah.repository.PASaxCodeTmpRepository;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
+import com.pervazive.kheddah.service.PAGeneralConfigService;
+import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.PASaxCodeService;
 import com.pervazive.kheddah.service.SparkOperationsService;
 
@@ -44,6 +51,13 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 	
 	@Inject
 	PAPredictionScoreRepository paPredictionScoreRepository;
+	
+	@Inject
+	PAProjectService paProjectService;
+	
+	@Inject
+	PAGeneralConfigService paGeneralConfigService;
+	
 	
 	public static Configuration hadoopConf = null;
 	
@@ -83,34 +97,55 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		sparkConf = null;
 	}
 	
-	  public void triggerTrainingOperation(long predictionId, String inputDir, String entityCol, String timeCol,
-			  String sourceTimeFormat, String destTimeFormat, String skipindexes, Boolean isFirstRowHeader, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
-				String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds, String patInputFile, String outputFile, String saxcodeField, String subSeqInterval,
-				String subSeqIntervalThreshold, SparkConf sparkConf, Configuration hadoopConf ) {
-		  
-		  //Read Items from Configuration
-		  // GET Organization and Project Name as parameters here
+	  public void triggerTrainingOperation(long predictionId, SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization   ) {
 		   ExecutorService executorService = Executors.newFixedThreadPool(8);
-		    // Start thread 1
-		    Future<Long> future1 = executorService.submit(new Callable<Long>() {
+		   Future<Long> future1 = executorService.submit(new Callable<Long>() {
 		        @Override
 		        public Long call() throws Exception {
-		        	DataAggregator dataAggregator = new DataAggregator(predictionId, isFirstRowHeader, skipindexes, 
-		  				sourceTimeFormat, destTimeFormat, timeCol, entityCol, inputDir);
-		  		  		hdfsFileOperationsService.deleteFile("/ppa-repo/fmdatafeed", hadoopConf);
-		  				dataAggregator.init(sparkConf, "Training - data aggregation");
-		  				
-		  				hdfsFileOperationsService.deleteFile("/ppa-repo/fmdatafeed/8.64E7", hadoopConf);
-		  				DataRollup dataRollup = new DataRollup(predictionId, exprFile, seriesNext, seriesEnd, seriesStart, outSeriesFormat, inSeriesFormat, inputFile, requiredFlds);
-		  		  		dataRollup.init(sparkConf, "Training - data rollup");
-		  		  	hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD", hadoopConf);
-					hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/5DW", hadoopConf);
-					hdfsFileOperationsService.mkdir("hdfs://spark:8020/ppa-repo/temp/TD", hadoopConf);
-					hdfsFileOperationsService.copyHdfsFile("hdfs://spark:8020/ppa-repo/fmdatafeed/8.64E7/", "hdfs://spark:8020/ppa-repo/temp/TD", hadoopConf);
-					hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD/_SUCCESS", hadoopConf);
-		        	SubSequenceGenerator subSequenceGenerator = new SubSequenceGenerator(patInputFile, outputFile, saxcodeField, subSeqInterval, subSeqIntervalThreshold, predictionId);
+		        	PAProject paProject = paProjectService.findProjectByName(projectName);
+		        	PAGeneralConfig  paGeneralConfig = paGeneralConfigService.findByStatus();
+		        	String baseURL = paGeneralConfig.getHdfsurl()+"/"+paGeneralConfig.getHdfsbasedir()+"/"+organization+"/"+projectName;
+		        	
+		        	DataAggregator dataAggregator = new DataAggregator(1, paProject.getFeedfirstlineheader(), paProject.getFeedskipindexes(), 
+		        			paProject.getFeedoutdateformat(), paProject.getFeedindateformat(),  paProject.getTimeseriesentity(), 
+		        			paProject.getObjectentity(), baseURL+paGeneralConfig.getTrainingfeeddir(), baseURL + paGeneralConfig.getTrainingrollupinfile());
+		        	hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getTrainingrollupinfile(), hadoopConf);
+		  			dataAggregator.init(sparkConf, "Training - data aggregation");
+
+		  			hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getTrainingrollupinfile()+"/8.64E7", hadoopConf);
+		  			
+		  			
+		  			log.debug("===========> DATA ROLLUP PARMS ");
+		  			log.debug("===========> "+baseURL+paGeneralConfig.getExpressionfilepath()+"/expression.txt");
+		  			log.debug("===========> "+paProject.getRollseriesnxt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		  			log.debug("===========> "+paProject.getRollseriesstart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		  			log.debug("===========> "+paProject.getRollseriesend().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		  			log.debug("===========> "+paProject.getRollindateformat());
+		  			log.debug("===========> "+baseURL+paGeneralConfig.getTrainingrollupinfile());
+		  			log.debug("===========> "+paProject.getRollseriesgroupindex());
+		  			
+		  			
+		  			
+		  			
+		  			
+		  			DataRollup dataRollup = new DataRollup(1, baseURL+paGeneralConfig.getExpressionfilepath()+"/expression.txt", 
+		  					paProject.getRollseriesnxt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+				  			paProject.getRollseriesend().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), 
+				  			paProject.getRollseriesstart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+		  					paProject.getRolloutdateformat(), paProject.getRollindateformat(), baseURL+paGeneralConfig.getTrainingrollupinfile(), paProject.getRollseriesgroupindex());
+	  		  		dataRollup.init(sparkConf, "Training - data rollup");
+		  		  		
+		  		  	hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getTrainingpatternoutfile(), hadoopConf);
+					hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getTrainingpatterntmpoutfile(), hadoopConf);
+					hdfsFileOperationsService.mkdir(baseURL+paGeneralConfig.getTrainingpatternoutfile(), hadoopConf);
+					hdfsFileOperationsService.copyHdfsFile(baseURL+paGeneralConfig.getTrainingrollupinfile()+"/8.64E7/", baseURL+paGeneralConfig.getTrainingpatternoutfile(), hadoopConf);
+					hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getTrainingpatternoutfile()+"/_SUCCESS", hadoopConf);
+		        	
+					SubSequenceGenerator subSequenceGenerator = new SubSequenceGenerator(baseURL+paGeneralConfig.getTrainingpatternoutfile(), baseURL+paGeneralConfig.getTrainingpatterntmpoutfile(), 
+							paProject.getPatternfldindex().toString(), paProject.getPatterntraininterval().toString(), paProject.getPatternintervalthreshhold().toString(), 1L);
+					
 		        	subSequenceGenerator.run(sparkConf, "Training - Patterns");
-		        	String path = hdfsFileOperationsService.passFileForUpload("hdfs://spark:8020/ppa-repo/temp/5DW/part-00000", hadoopConf).getAbsolutePath();
+		        	String path = hdfsFileOperationsService.passFileForUpload(baseURL+paGeneralConfig.getTrainingpatterntmpoutfile()+"/part-00000", hadoopConf).getAbsolutePath();
 		        	log.debug("Attempting Delete ");
 		        	paSaxCodeTmpRepository.deleteAllInBatch();
 		        	log.debug("Done with Deletion ");
@@ -126,51 +161,58 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 	  
 	 
 	  
-	  public void triggerPredictionOperation(long predictionId, String inputDir, String entityCol, String timeCol,
-			  String sourceTimeFormat, String destTimeFormat, String skipindexes, Boolean isFirstRowHeader, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
-				String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds, String patInputFile, String outputFile, String saxcodeField, String subSeqInterval,
-				String subSeqIntervalThreshold, SparkConf sparkConf, Configuration hadoopConf ) {
+	  public void triggerPredictionOperation(long predictionId, SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization  ) {
 		  
-		  //Read Items from Configuration
-		  // GET Organization and Project Name as parameters here
-		  
-		   ExecutorService executorService = Executors.newFixedThreadPool(8);
-		    // Start thread 1
+		  ExecutorService executorService = Executors.newFixedThreadPool(8);
 		    Future<Long> future1 = executorService.submit(new Callable<Long>() {
 		        @Override
 		        public Long call() throws Exception {
-		        	DataAggregator dataAggregator = new DataAggregator(predictionId, isFirstRowHeader, skipindexes, 
-				  				  sourceTimeFormat, destTimeFormat, timeCol, entityCol, inputDir);
-				  		  	hdfsFileOperationsService.deleteFile("/ppa-repo/temp/4DDfeed", hadoopConf);
+		        			        	
+		        	PAProject paProject = paProjectService.findProjectByName(projectName);
+		        	PAGeneralConfig  paGeneralConfig = paGeneralConfigService.findByStatus();
+		        	String baseURL = paGeneralConfig.getHdfsurl()+"/"+paGeneralConfig.getHdfsbasedir()+"/"+organization+"/"+projectName;
+		        	
+		        	log.debug("===========> DATA ROLLUP PARMS ");
+		  			log.debug("===========> "+baseURL+paGeneralConfig.getExpressionfilepath()+"/expression.txt");
+		  			log.debug("===========> "+paProject.getRollseriesnxt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		  			log.debug("===========> "+paProject.getRollseriesstart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		  			log.debug("===========> "+paProject.getRollseriesend().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		  			log.debug("===========> "+paProject.getRollindateformat());
+		  			log.debug("===========> "+baseURL+paGeneralConfig.getTrainingrollupinfile());
+		  			log.debug("===========> "+paProject.getRollseriesgroupindex());
+		        	
+		        	DataAggregator dataAggregator = new DataAggregator(1, paProject.getFeedfirstlineheader(), paProject.getFeedskipindexes(), 
+		        			paProject.getFeedoutdateformat(), paProject.getFeedindateformat(),  paProject.getTimeseriesentity(), 
+		        			paProject.getObjectentity(), baseURL+paGeneralConfig.getPredictfeeddir(), baseURL + paGeneralConfig.getPredictrollupinfile());
+		        	
+				  		  	hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getPredictrollupinfile(), hadoopConf);
 				  			dataAggregator.init(sparkConf, "Prediction - data aggregation");
+				  			hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getPredictrollupinfile()+"/8.64E7", hadoopConf);
 				  			
-				  			hdfsFileOperationsService.deleteFile("/ppa-repo/temp/4DDfeed/8.64E7", hadoopConf);
-				  			DataRollup dataRollup = new DataRollup(predictionId, exprFile, seriesNext, seriesEnd, seriesStart, outSeriesFormat, inSeriesFormat, inputFile, requiredFlds);
+				  			DataRollup dataRollup = new DataRollup(1, baseURL+paGeneralConfig.getExpressionfilepath()+"/expression.txt", 
+				  					paProject.getRollseriesnxt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+						  			paProject.getRollseriesend().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), 
+						  			paProject.getRollseriesstart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+				  					paProject.getRolloutdateformat(), paProject.getRollindateformat(), baseURL+paGeneralConfig.getPredictrollupinfile(), paProject.getRollseriesgroupindex());
 				  		  	dataRollup.init(sparkConf, "Prediction - data rollup");
 				  		  		
-				  		  	hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD4", hadoopConf);
-							hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/4DW", hadoopConf);
-							hdfsFileOperationsService.mkdir("hdfs://spark:8020/ppa-repo/temp/TD4", hadoopConf);
-							hdfsFileOperationsService.copyHdfsFile("hdfs://spark:8020/ppa-repo/temp/4DDfeed/8.64E7/", "hdfs://spark:8020/ppa-repo/temp/TD4", hadoopConf);
-							hdfsFileOperationsService.deleteFile("hdfs://spark:8020/ppa-repo/temp/TD4/_SUCCESS", hadoopConf);
-							SubSequenceGenerator subSequenceGenerator1 = new SubSequenceGenerator(patInputFile, outputFile, saxcodeField, 
-									subSeqInterval, subSeqIntervalThreshold, predictionId);
-				        	subSequenceGenerator1.run(sparkConf, "Prediction - patterns");
-				        	String path = hdfsFileOperationsService.passFileForUpload("hdfs://spark:8020/ppa-repo/temp/4DW/part-00000", hadoopConf).getAbsolutePath();
-				        	log.debug("in here with "+path);
+				  		  	hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getPredictpatternoutfile(), hadoopConf);
+							hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getPredictpatterntmpoutfile(), hadoopConf);
+							hdfsFileOperationsService.mkdir(baseURL+paGeneralConfig.getPredictpatternoutfile(), hadoopConf);
+							hdfsFileOperationsService.copyHdfsFile(baseURL+paGeneralConfig.getPredictrollupinfile()+"/8.64E7/", baseURL+paGeneralConfig.getPredictpatternoutfile(), hadoopConf);
+							hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getPredictpatternoutfile()+"/_SUCCESS", hadoopConf);
+							
+							SubSequenceGenerator subSequenceGenerator = new SubSequenceGenerator(baseURL+paGeneralConfig.getPredictpatternoutfile(), baseURL+paGeneralConfig.getPredictpatterntmpoutfile(), 
+									paProject.getPatternfldindex().toString(), paProject.getPatternpredictinterval().toString(), paProject.getPatternintervalthreshhold().toString(), 1L);
+				        	subSequenceGenerator.run(sparkConf, "Prediction - patterns");
+				        	
+				        	String path = hdfsFileOperationsService.passFileForUpload(baseURL+paGeneralConfig.getPredictpatterntmpoutfile()+"/part-00000", hadoopConf).getAbsolutePath();
 				        	paSaxCodeTmpRepository.deleteAllInBatch();
 				        	paSaxCodeTmpRepository.saveCSV(path, 1L, 1L);
 				        	log.debug("Attempting New Prediction creations ");
 				        	paPredictionScoreRepository.createPredictionsForDay();
-				        	//log.debug("Predictions Uploaded "+path);
-		  				return 0L;
-		  		  
+				        	return 0L;
 		        }
 		    });
-		    
-		   
 	  }
-	  
-	  
-
 }

@@ -53,7 +53,7 @@ public interface PAProjectService {
      *  @return the entity
      */
     PAProject findOne(Long id);
-
+    public PAProject findProjectByName(String projectName);
     /**
      *  Delete the "id" pAProject.
      *

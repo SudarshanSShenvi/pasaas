@@ -350,8 +350,7 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictionFeedDir));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+trainingRollInDir));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictRollInDir));
-		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+trainingFeedDir+"/temp"));
-		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictionFeedDir+"/temp"));
+		//fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/temp"));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+traningPatternOutFile));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+traningPatternTmpOutFile));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictPatternOutFile));

@@ -8,15 +8,9 @@ import org.apache.spark.SparkConf;
  */
 public interface SparkOperationsService {
 	
-	public void triggerTrainingOperation(long predictionId, String inputDir, String entityCol, String timeCol,
-			  String sourceTimeFormat, String destTimeFormat, String skipindexes, Boolean isFirstRowHeader, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
-				String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds, String patInputFile, String outputFile, String saxcodeField, String subSeqInterval,
-				String subSeqIntervalThreshold, SparkConf sparkConf, Configuration hadoopConf) ;
+	public void triggerTrainingOperation(long predictionId, SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization  ) ;
 	
-	public void triggerPredictionOperation(long predictionId, String inputDir, String entityCol, String timeCol,
-				  String sourceTimeFormat, String destTimeFormat, String skipindexes, Boolean isFirstRowHeader, String exprFile, String seriesNext, String seriesEnd, String seriesStart,
-					String outSeriesFormat, String inSeriesFormat, String inputFile, String requiredFlds, String patInputFile, String outputFile, String saxcodeField, String subSeqInterval,
-					String subSeqIntervalThreshold, SparkConf sparkConf, Configuration hadoopConf) ;
+	public void triggerPredictionOperation(long predictionId,  SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization  ) ;
 	public Configuration setHadoopConfigurations();
 	public SparkConf setSparkConfigurations();
 	

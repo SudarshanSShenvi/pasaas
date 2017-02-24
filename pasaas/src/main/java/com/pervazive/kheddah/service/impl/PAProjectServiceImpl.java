@@ -92,6 +92,19 @@ public class PAProjectServiceImpl implements PAProjectService{
         return pAProject;
     }
     
+    /**
+     *  Get one pAProject by id.
+     *
+     *  @param id the id of the entity
+     *  @return the entity
+     */
+    @Transactional(readOnly = true) 
+    public PAProject findProjectByName(String projectName) {
+        log.debug("Request to get PAProject : {}");
+        PAProject pAProject = pAProjectRepository.findByProjectName(projectName);
+        return pAProject;
+    }
+    
     
     /**
      *  Delete the  pAProject by id.
