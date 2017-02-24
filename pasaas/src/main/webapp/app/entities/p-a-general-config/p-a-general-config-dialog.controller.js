@@ -5,14 +5,16 @@
         .module('pasaasApp')
         .controller('PAGeneralConfigDialogController', PAGeneralConfigDialogController);
 
-    PAGeneralConfigDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PAGeneralConfig'];
+    PAGeneralConfigDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PAGeneralConfig', 'DataUtils'];
 
-    function PAGeneralConfigDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PAGeneralConfig) {
+    function PAGeneralConfigDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PAGeneralConfig, DataUtils) {
         var vm = this;
 
         vm.pAGeneralConfig = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.byteSize = DataUtils.byteSize;
+        vm.openFile = DataUtils.openFile;
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -45,8 +47,8 @@
             if ($file) {
                 DataUtils.toBase64($file, function(base64Data) {
                     $scope.$apply(function() {
-                    	pAGeneralConfig.msgattachments = base64Data;
-                    	pAGeneralConfig.msgattachmentsContentType = $file.type;
+                    	pAGeneralConfig.exprfile = base64Data;
+                    	pAGeneralConfig.exprfileContentType = $file.type;
                     });
                 });
             }

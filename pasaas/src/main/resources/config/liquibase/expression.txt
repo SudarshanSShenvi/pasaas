@@ -1,0 +1,2 @@
+f9	AGGR	COUNT
+f8	EXPR	f9>0

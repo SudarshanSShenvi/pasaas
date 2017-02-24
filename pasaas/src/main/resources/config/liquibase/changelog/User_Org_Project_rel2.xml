@@ -184,6 +184,12 @@
                   file="config/liquibase/generalconfig.csv"
                   separator=";"
                   tableName="pa_general_config"/>
+                  
+        <update tableName="pa_general_config">
+        <column name="exprfile_content_type" value="text/plain"/>
+            <column name="exprfile" valueBlobFile="../expression.txt" />
+        <where>id=1</where>
+    </update>
   </changeSet>
 
 </databaseChangeLog>
