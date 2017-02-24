@@ -15,6 +15,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -27,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pervazive.kheddah.domain.PAGeneralConfig;
-import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAGeneralConfigService;
 import com.pervazive.kheddah.service.PAProjectService;
@@ -317,6 +317,7 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 			String traningPatternTmpOutFile = paGeneralConfig.getTrainingpatterntmpoutfile();
 			String predictPatternOutFile = paGeneralConfig.getPredictpatternoutfile();
 			String predictPatternTmpOutFile = paGeneralConfig.getPredictpatterntmpoutfile();
+			byte[] expressionFile = paGeneralConfig.getExprfile();
 		 //For organization - hdfsURL/basedirectiory/organizationname/projectname
 		  Configuration configuration = new Configuration();
 		  configuration.set("fs.defaultFS", hdfsURL+hdfsBaseDir);
@@ -355,7 +356,10 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+traningPatternTmpOutFile));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictPatternOutFile));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+predictPatternTmpOutFile));
-		fileSystem.close();
+		FSDataOutputStream out = fileSystem.create(new Path(organizationName+"/"+projectName+"/"+expressionFilePath+"/expression.txt"));
+	    out.write(expressionFile);
+	    out.close();
+	    fileSystem.close();
 	  }
 	  
 	  public void copyHdfsFile(String hdfsSource, String hdfsDest, Configuration conf) throws IOException {
