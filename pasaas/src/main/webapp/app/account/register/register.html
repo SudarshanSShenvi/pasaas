@@ -1,4 +1,215 @@
 <div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="panel panel-default">
+			<div class="panel-heading" align="center">
+				<h1>predict<span class="text-success">ION<sup><b>T</b></sup></span></h1>
+				<h2>Predictive Analytics for Telecommunications</h2>
+				<h4>About the Predictive Analytics application for Telecom in a Sentence.</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-6 col-md-offset-3" align="center">
+					<p><h3><b>Register</b></h3></p>
+					
+					<p>Create account to see it in action</p>
+					<p>&nbsp;</p>
+
+					<form name="form_register" novalidate>
+						
+						<div class="col-md-6">
+							
+							<div class="form-group row">
+								<!-- <div class="col-md-4">
+									<label for="name">Name :</label>
+									<div 
+									  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+									  	ng-show="form_register.name.$valid && form_register.name.$dirty"
+									></div>
+									<div 
+									 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+									 	ng-show="form_register.name.$invalid && form_register.name.$dirty"
+									></div> 
+								</div> -->
+								<div class="col-md-12">
+									<input 
+										class="form-control" 
+										type="text" 
+										name="name"
+										ng-model="user.name"
+										placeholder="Enter Name"
+										required
+									>
+									<div 
+										ng-show="form_register.name.$error.required && form_register.name.$dirty"
+										class="alert alert-danger"
+									>
+										Name is required
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<!-- <div class="col-md-4">
+									<label for="email_id_company">Company Email :</label>
+									<div 
+									  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+									  	ng-show="form_register.email_id_company.$valid && form_register.email_id_company.$dirty"
+									></div>
+									<div 
+									 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+									 	ng-show="form_register.email_id_company.$invalid && form_register.email_id_company.$dirty"
+									></div> 
+								</div> -->
+								<div class="col-md-12">
+										<!-- type="date"  -->
+										<!-- type="number"  -->
+									<input 
+										class="form-control" 
+										type="email" 
+										name="email_id_company"
+										ng-model="user.email_id_company"
+										placeholder="Enter Company Email"
+										required
+									>
+									<div 
+										ng-show="form_register.email_id_company.$error.required && form_register.email_id_company.$dirty"
+										class="alert alert-danger"
+									>
+										Company Email is required
+									</div>
+									<div 
+										ng-show="form_register.email_id_company.$invalid && form_register.email_id_company.$dirty"
+										class="alert alert-danger"
+									>
+										Enter Valid Company Email
+									</div>
+								</div>
+							</div>
+							
+							
+						</div>
+						<div class="col-md-6">
+							
+							<div class="form-group row">
+								<!-- <div class="col-md-4">
+									<label for="contact_number">Contact Number :</label>
+									<div 
+									  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+									  	ng-show="form_register.contact_number.$valid && form_register.contact_number.$dirty"
+									></div>
+									<div 
+									 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+									 	ng-show="form_register.contact_number.$invalid && form_register.contact_number.$dirty"
+									></div> 
+								</div> -->
+								<div class="col-md-12">
+										<!-- type="date"  -->
+										<!-- type="email"  -->
+									<input 
+										class="form-control" 
+										type="number" 
+										name="contact_number"
+										ng-model="user.contact_number"
+										placeholder="Enter Contact Number"
+										required
+									>
+									<div 
+										ng-show="form_register.contact_number.$error.required && form_register.contact_number.$dirty"
+										class="alert alert-danger"
+									>
+										Contact Number is required
+									</div>
+									<div 
+										ng-show="form_register.contact_number.$invalid && form_register.contact_number.$dirty"
+										class="alert alert-danger"
+									>
+										Enter Valid Contact Number
+									</div>
+								</div>
+							</div>
+							
+
+							<div class="form-group row">
+								<!-- <div class="col-md-4">
+									<label for="password">Password :</label>
+									<div 
+									  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+									  	ng-show="form_register.password.$valid && form_register.password.$dirty"
+									></div>
+									<div 
+									 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+									 	ng-show="form_register.password.$invalid && form_register.password.$dirty"
+									></div> 
+								</div> -->
+								<div class="col-md-12">
+									<input 
+										class="form-control" 
+										type="password" 
+										name="password"
+										ng-model="user.password"
+										placeholder="Enter Password"
+										required
+									>
+									<div 
+										ng-show="form_register.password.$error.required && form_register.password.$dirty"
+										class="alert alert-danger"
+									>
+										Password is required
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group row">
+								<div class="col-md-12 checkbox" align="left">
+									<label>
+										<input 
+											type="checkbox" 
+											name="terms_and_policy"
+											ng-model="user.terms_and_policy"
+										>
+										Agree the terms and policy
+									</label>
+									<div 
+										ng-show="form_register.terms_and_policy.$error.required && form_register.terms_and_policy.$dirty"
+										class="alert alert-danger"
+									>
+										Terms and Policy is required
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-md-12">
+									<p>
+										<button 
+											class="btn btn-block btn-success"
+											ng-click="submit_form(user)"
+											ng-disabled="form_register.$invalid"
+										>Register</button>
+									</p>
+									<p>Already have an account?</p>
+									<p><button class="btn btn-block btn-default" ui-sref="company_pages.pdf1">Login</button></p>
+								</div>
+							</div>
+														
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-12">
+								<p>PredictION<sup>T</sup> - Predictive Analytics for Telecom &copy; 2015-16</p>
+							</div>
+						</div>
+						
+					</form>
+					<pre>{{user|json}}</pre>
+
+				</div>
+			</div>
+			<div class="panel-footer"></div>
+		</div>
+	</div>
+<div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1 data-translate="register.title">Registration</h1>
