@@ -1,10 +1,16 @@
 .custome_font_size_label{
-
 	font-size: 11px;
 }
 
 .custome_font_size_input{
 	font-size: 11px;
-
-
 }
+
+.pa-0px-marginRow{
+   margin-bottom:0px !important; 
+ } 
+ 
+.pa-525px-maxht{
+   max-height: 525px;
+} 
+

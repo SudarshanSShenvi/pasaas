@@ -1,135 +1,35 @@
+
+<!-- <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            ng-click="vm.cancel()">&times;</button>
+    <h4 class="modal-title" data-translate="login.title">Sign in</h4>
+</div> -->
 <div>
-	<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="wrapper wrapper-content animated fadeInRight pa-0px-marginRow pa-525px-maxht">
 		<div class="panel panel-default">
-			<div class="panel-heading" align="center">
+			<div class="panel-heading  row pa-0px-marginRow" align="center">
 				<h1>predict<span class="text-primary">ION<sup><b>T</b></sup></span></h1>
 				<h2>Predictive Analytics for Telecommunications</h2>
-				<h4>About the Predictive Analytics application for Telecom in a Sentence.</h4>
+				<!-- <h4>About the Predictive Analytics application for Telecom in a Sentence.</h4> -->
 			</div>
 			<div class="panel-body">
-				<div class="col-md-4 col-md-offset-4" align="center">
+				<div class="col-md-8 col-md-offset-2" align="center">
 					<p><h3><b>Welcome</b></h3></p>
 					<p>Foresee Forewarn Forearm</p>
 					<p>Login in. To see it in action.</p>
 					<p>&nbsp;</p>
-
-					<form name="form_login">
-
-						<div class="form-group row">
-							<!-- <div class="col-md-4">
-								<label for="email_id">Email ID :</label>
-								<div 
-								  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
-								  	ng-show="form_login.email_id.$valid && form_login.email_id.$dirty"
-								></div>
-								<div 
-								 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
-								 	ng-show="form_login.email_id.$invalid && form_login.email_id.$dirty"
-								></div> 
-							</div> -->
-							<div class="col-md-12">
-									<!-- type="date"  -->
-									<!-- type="number"  -->
-								<input 
-									class="form-control" 
-									type="email" 
-									name="email_id"
-									ng-model="user.email_id"
-									placeholder="Enter Email ID"
-									required
-								>
-								<div 
-									ng-show="form_login.email_id.$error.required && form_login.email_id.$dirty"
-									class="alert alert-danger"
-								>
-									Email ID is required
-								</div>
-								<div 
-									ng-show="form_login.email_id.$invalid && form_login.email_id.$dirty"
-									class="alert alert-danger"
-								>
-									Enter Valid Email ID
-								</div>
-							</div>
-						</div>
-						
-						
-						<div class="form-group row">
-							<!-- <div class="col-md-4">
-								<label for="password">Password :</label>
-								<div 
-								  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
-								  	ng-show="form_login.password.$valid && form_login.password.$dirty"
-								></div>
-								<div 
-								 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
-								 	ng-show="form_login.password.$invalid && form_login.password.$dirty"
-								></div> 
-							</div> -->
-							<div class="col-md-12">
-								<input 
-									class="form-control" 
-									type="password" 
-									name="password"
-									ng-model="user.password"
-									placeholder="Enter Password"
-									required
-								>
-								<div 
-									ng-show="form_login.password.$error.required && form_login.password.$dirty"
-									class="alert alert-danger"
-								>
-									Password is required
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-md-12">
-								<button class="btn btn-block btn-primary">Login</button>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-md-12">
-								<p><a ui-sref="company_pages.pdf2">Forgot password?</a></p>
-								<p>Do not have an account?</p>
-								<p><button class="btn btn-block btn-default" ui-sref="company_pages.pdf6">Create an account</button></p>
-								<p>PredictION<sup>T</sup> - Predictive Analytics for Telecom &copy; 2015-16</p>
-							</div>
-						</div>
-						
-					</form>
-
-				</div>
-			</div>
-			<div class="panel-footer"></div>
-		</div>
-	</div>
-
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-            ng-click="vm.cancel()">&times;</button>
-    <h4 class="modal-title" data-translate="login.title">Sign in</h4>
-</div>
-<div class="modal-body">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <h1 data-translate="login.title">Sign in</h1>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4 col-md-offset-4" align="center">
             <div class="alert alert-danger" ng-show="vm.authenticationError" data-translate="login.messages.error.authentication">
                 <strong>Failed to sign in!</strong> Please check your credentials and try again.
             </div>
         </div>
-        <div class="col-md-6">
-            <form class="form" role="form" ng-submit="vm.login($event)">
+			<form class="form" role="form" ng-submit="vm.login($event)">
                 <div class="form-group">
-                    <label for="username" data-translate="global.form.username">Login</label>
+                    <!-- <label for="username" data-translate="global.form.username">Username</label>  -->
                     <input type="text" class="form-control" id="username" placeholder="{{'global.form.username.placeholder' | translate}}" ng-model="vm.username">
                 </div>
                 <div class="form-group">
-                    <label for="password" data-translate="login.form.password">Password</label>
+                    <!-- <label for="password" data-translate="login.form.password">Password</label> --> 
                     <input type="password" class="form-control" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
                            ng-model="vm.password">
                 </div>
@@ -139,22 +39,22 @@
                         <span data-translate="login.form.rememberme">Remember me</span>
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary" data-translate="login.form.button">Sign in</button>
+                <button class="btn btn-block btn-primary" type="submit" class="btn btn-primary" data-translate="login.form.button">Login</button>
             </form>
-            <p></p>
-            <div class="alert alert-warning">
+            <div class="form-group">
                 <a class="alert-link" href="" ng-click="vm.requestResetPassword()" data-translate="login.password.forgot">Did you forget your password?</a>
             </div>
-            <div class="alert alert-warning" data-translate="global.messages.info.register" translate-compile>
+            <div class="form-group" data-translate="global.messages.info.register" translate-compile>
                 You don't have an account yet? <a class="alert-link" href="" ng-click="vm.register()">Register a new account</a>
-            </div>
-        </div>
-        <div class="col-md-6">
+            </div>	
+		<!--  <div class="form-group">
             <br/>
             <jh-social ng-provider="google"></jh-social>
             <jh-social ng-provider="facebook"></jh-social>
             <jh-social ng-provider="twitter"></jh-social>
-            <!-- jhipster-needle-add-social-button -->
-        </div>
-    </div>
-</div>
+            
+        </div> -->
+				</div>
+			</div>
+		</div>
+	</div>
