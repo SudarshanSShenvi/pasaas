@@ -1,6 +1,12 @@
 <div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+<div class="wrapper wrapper-content animated fadeInRight row" align="center">
+		<div class="panel panel-default">
+			<div class="panel-heading" align="center">
+				<h1>predict<span class="text-success">ION<sup><b>T</b></sup></span></h1>
+				<h2>Predictive Analytics for Telecommunications</h2>
+			</div>
+			
+			<div class="col-md-4 col-md-offset-4" align="center">
             <h1 data-translate="reset.request.title">Reset your password</h1>
 
             <div class="alert alert-danger" data-translate="reset.request.messages.notfound" ng-show="vm.errorEmailNotExists">
@@ -17,7 +23,7 @@
 
             <form ng-show="!vm.success" name="form" role="form" novalidate ng-submit="vm.requestReset()" show-validation>
                 <div class="form-group">
-                    <label class="control-label" for="email" data-translate="global.form.email">E-mail</label>
+                    <!-- <label class="control-label" for="email" data-translate="global.form.email">E-mail</label> -->
                     <input type="email" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
                            ng-model="vm.resetAccount.email" ng-minlength=5 ng-maxlength=100 required>
                     <div ng-show="form.email.$dirty && form.email.$invalid">
@@ -39,9 +45,12 @@
                         </p>
                     </div>
                 </div>
-                <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="reset.request.form.button">Reset</button>
+                <button type="submit" ng-disabled="form.$invalid" class="btn btn-block btn-primary" data-translate="reset.request.form.button">Reset</button>
             </form>
 
         </div>
+		</div>
     </div>
 </div>
+
+

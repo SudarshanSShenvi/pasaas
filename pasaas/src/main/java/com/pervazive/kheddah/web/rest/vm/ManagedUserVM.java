@@ -23,6 +23,8 @@ public class ManagedUserVM extends UserDTO {
     private ZonedDateTime createdDate;
 
     private String lastModifiedBy;
+    
+    private String defaultOrganization;
 
     private ZonedDateTime lastModifiedDate;
 
@@ -40,6 +42,7 @@ public class ManagedUserVM extends UserDTO {
         this.lastModifiedBy = user.getLastModifiedBy();
         this.lastModifiedDate = user.getLastModifiedDate();
         this.password = null;
+        this.defaultOrganization = user.getDefaultOrganization();
     }
 
     public ManagedUserVM(Long id, String login, String password, String firstName, String lastName, String defaultOrganization,
