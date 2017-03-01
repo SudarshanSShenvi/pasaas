@@ -77,7 +77,8 @@ jhipster:
         maxPoolSize: 50
         queueCapacity: 10000
     cors: #By default CORS are not enabled. Uncomment to enable.
-        allowed-origins: "http://pervazive.gurusoftwares.in"
+        # allowed-origins: "http://pervazive.gurusoftwares.in"
+        allowed-origins: "http://10.10.10.176"
         allowed-methods: GET, PUT, POST, DELETE, OPTIONS
         allowed-headers: "*"
         exposed-headers:
