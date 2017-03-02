@@ -89,7 +89,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private ZonedDateTime resetDate = null;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "pa_user_authority",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
@@ -98,7 +98,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Set<Authority> authorities = new HashSet<>();
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "pa_user_organization",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
@@ -107,7 +107,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private Set<PAOrganization> organizations = new HashSet<>();
     
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "pa_user_project",
         joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

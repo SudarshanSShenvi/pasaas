@@ -127,12 +127,13 @@ public class AccountResource {
     	Optional<User> loggedInUser = userRepository.findOneByLogin(request.getUserPrincipal().getName()); 
         if(loggedInUser.isPresent() && defaultOrganization == null ) {
         	defaultOrganization = loggedInUser.get().getDefaultOrganization();
-        	if(defaultOrganization == null || defaultOrganization.length() ==0) {
-        		return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ERROR", "DefaultOrganizationNotSet", "Default Organization NOT set.")).body(null);
+        	if(defaultOrganization != null) {
+        		request.getSession().setAttribute("organizationsess", paOrganizationRepository.findByOrganization(defaultOrganization));
+        		log.debug("SETTING VALUES HERE Session set "+request.getSession().getAttribute("organizationsess"));
+        	//	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ERROR", "DefaultOrganizationNotSet", "Default Organization NOT set.")).body(null);
         	}
-        	request.getSession().setAttribute("organizationsess", paOrganizationRepository.findByOrganization(defaultOrganization));
-        	log.debug("SETTING VALUES HERE session ID "+request.getSession());
-        	log.debug("SETTING VALUES HERE Session set "+request.getSession().getAttribute("organizationsess"));
+        	
+        	
         }
     }
     	

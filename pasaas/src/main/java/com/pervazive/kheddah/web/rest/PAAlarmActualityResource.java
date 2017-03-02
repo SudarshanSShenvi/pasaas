@@ -90,7 +90,9 @@ public class PAAlarmActualityResource {
     @Timed
     public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
-        log.debug("REST request to get a page of PAAlarmActualities");
+        log.debug("REST request to get a page of PAAlarmActualities : " +request.getSession().getAttribute("organizationsess"));
+        if(request.getSession().getAttribute("organizationsess") == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createAlert("error.organizationmissing", "Create one to proceed")).body(null);
         Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-alarm-actualities");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

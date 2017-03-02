@@ -19,6 +19,7 @@ management:
 spring:
     application:
         name: pasaas
+        url: http://analytics.pervazive.com/pasaas
     profiles:
         # The commented value for `active` can be replaced with valid Spring profiles to load.
         # Otherwise, it will be filled in by maven when building the WAR file
@@ -43,18 +44,18 @@ spring:
     social:
         # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
         google:
-            clientId: xxx
-            clientSecret: xxx
+            clientId: 965701719982-vnchd2sb7r5hlvr6m31ge2bkenq2d4k2.apps.googleusercontent.com
+            clientSecret: 4l_nAfWc7ujjEFwjtjal8KYh
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            clientId: xxx
-            clientSecret: xxx
+            clientId: 260789520999403
+            clientSecret: 0aa8c69d8b808bef63d4315a45a99803
 
         # see https://apps.twitter.com/app/
         twitter:
-            clientId: xxx
-            clientSecret: xxx
+            clientId: hRkj3wYYrcryHdpnijI1pGHfg
+            clientSecret: WkU5e4u0vTyA5iQa8ENIEwrRh8hhGU2avkBNS5X8S5M0KW46ae
 
         # jhipster-needle-add-social-configuration
 
@@ -77,8 +78,7 @@ jhipster:
         maxPoolSize: 50
         queueCapacity: 10000
     cors: #By default CORS are not enabled. Uncomment to enable.
-        # allowed-origins: "http://pervazive.gurusoftwares.in"
-        allowed-origins: "http://10.10.10.176"
+        allowed-origins: "http://pervazive.gurusoftwares.in"
         allowed-methods: GET, PUT, POST, DELETE, OPTIONS
         allowed-headers: "*"
         exposed-headers:

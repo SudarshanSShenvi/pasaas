@@ -24,7 +24,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://10.10.10.176:3306/pasaasmt?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://10.10.10.176:3306/pasaas?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: root
         password: tizam0
@@ -49,10 +49,16 @@ spring:
         jcache:
             config: ehcache.xml
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.gmail.com
+        port: 587
+        username: notify@pervazive.com
+        password: notify@123
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
     messages:
         cache-seconds: 1
     thymeleaf:
@@ -77,8 +83,8 @@ jhipster:
             # security key (this key should be unique for your application, and kept secret)
             key: e9b2b801246ed2dd48153f97290c24a2331e4926
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: pasaas@localhost
-        baseUrl: http://127.0.0.1:8088/
+        from: notify@pervazive.com
+        baseUrl: http://analytics.pervazive.com/pasaas
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:

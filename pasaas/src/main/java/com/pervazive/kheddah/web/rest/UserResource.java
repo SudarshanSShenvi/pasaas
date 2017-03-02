@@ -2,6 +2,8 @@ package com.pervazive.kheddah.web.rest;
 
 import com.pervazive.kheddah.config.Constants;
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAReport;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.AuthoritiesConstants;
@@ -22,6 +24,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -141,10 +145,13 @@ public class UserResource {
      */
     @GetMapping("/users")
     @Timed
-    public ResponseEntity<List<ManagedUserVM>> getAllUsers(@ApiParam Pageable pageable)
+    public ResponseEntity<List<ManagedUserVM>> getAllUsers(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         //Page<User> page = userRepository.findAllWithAuthorities(pageable);
-    	Page<User> page = userRepository.findAllWithAuthoritiesProjectsAndOrganizations(pageable);
+    	//Page<User> page = userRepository.findAllWithAuthoritiesProjectsAndOrganizations(pageable);
+    	Set<PAOrganization> orgSet = new HashSet<PAOrganization>((List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+    	Page<User> page = userRepository.findByOrganizationsIn( orgSet , pageable);
+    	
         List<ManagedUserVM> managedUserVMs = page.getContent().stream()
             .map(ManagedUserVM::new)
             .collect(Collectors.toList());

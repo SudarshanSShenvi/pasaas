@@ -2,8 +2,10 @@ package com.pervazive.kheddah.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
@@ -28,6 +30,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.UserRepository;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.service.dto.PAProjectDTO;
@@ -47,6 +52,9 @@ public class PAProjectResource {
         
     @Inject
     private PAProjectService pAProjectService;
+    
+    @Inject
+    private UserRepository userRepository;
 
     /**
      * POST  /p-a-projects : Create a new pAProject.
@@ -62,7 +70,13 @@ public class PAProjectResource {
         if (pAProject.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAProject", "idexists", "A new pAProject cannot already have an ID")).body(null);
         }
+        
+        Set<User> pausers = new HashSet<User>();
+        User currentUser = userRepository.findOneByLoginName(SecurityUtils.getCurrentUserLogin());
+        pausers.add(currentUser);
+        pAProject.setPausers(pausers);
         PAProject result = pAProjectService.save(pAProject);
+        
         return ResponseEntity.created(new URI("/api/p-a-projects/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("pAProject", result.getId().toString()))
             .body(result);

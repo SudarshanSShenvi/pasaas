@@ -90,7 +90,9 @@ public class PAAccPrecisionResource {
     @Timed
     public ResponseEntity<List<PAAccPrecision>> getAllPAAccPrecisions(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
-        log.debug("REST request to get a page of PAAccPrecisions");
+        log.debug("REST request to get a page of PAAccPrecisions : " +request.getSession().getAttribute("organizationsess"));
+        if(request.getSession().getAttribute("organizationsess") == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAlarmActuality", "Organization missing", "Create one to proceed")).body(null);
         Page<PAAccPrecision> page = pAAccPrecisionService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-acc-precisions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
