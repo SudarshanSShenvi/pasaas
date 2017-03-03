@@ -17,7 +17,7 @@ import java.util.Objects;
  * A PAProject.
  */
 @Entity
-@Table(name = "pa_project")
+@Table(name = "pa_project", uniqueConstraints=@UniqueConstraint(columnNames={"projectname","paorgpro_id"}))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class PAProject extends AbstractAuditingEntity implements Serializable {
 

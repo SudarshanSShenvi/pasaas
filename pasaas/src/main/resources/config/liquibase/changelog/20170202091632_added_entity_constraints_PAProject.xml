@@ -13,6 +13,8 @@
                                  constraintName="fk_paproject_paorgpro_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pa_organization"/>
-
+        <addUniqueConstraint columnNames="projectname, paorgpro_id"
+            				 constraintName="u_project_org"
+            				 tableName="pa_project"/>
     </changeSet>
 </databaseChangeLog>
