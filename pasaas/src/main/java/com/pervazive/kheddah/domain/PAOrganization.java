@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
@@ -33,7 +34,7 @@ import com.pervazive.kheddah.domain.enumeration.PAStatus;
  * A PAOrganization.
  */
 @Entity
-@Table(name = "pa_organization")
+@Table(name = "pa_organization", uniqueConstraints=@UniqueConstraint(columnNames={"organization"}))
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class PAOrganization extends AbstractAuditingEntity implements Serializable {
 
