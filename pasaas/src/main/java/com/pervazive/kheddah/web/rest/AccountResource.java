@@ -125,19 +125,16 @@ public class AccountResource {
  	if(request.getUserPrincipal() != null){
     	String defaultOrganization = null;
     	Optional<User> loggedInUser = userRepository.findOneByLogin(request.getUserPrincipal().getName()); 
-        if(loggedInUser.isPresent() && defaultOrganization == null ) {
+        if(SecurityUtils.currentOrganization ==null && loggedInUser.isPresent()) {
         	defaultOrganization = loggedInUser.get().getDefaultOrganization();
-        	if(defaultOrganization != null) {
-        		request.getSession().setAttribute("organizationsess", paOrganizationRepository.findByOrganization(defaultOrganization));
-        		log.debug("SETTING VALUES HERE Session set "+request.getSession().getAttribute("organizationsess"));
-        	//	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ERROR", "DefaultOrganizationNotSet", "Default Organization NOT set.")).body(null);
-        	}
-        	
-        	
+        	if(defaultOrganization == null) {
+        		return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("ERROR", "DefaultOrganizationNotSet", "Default Organization NOT set.")).body(null);
+        	}	
+        		SecurityUtils.currentOrganization = defaultOrganization;
+        		log.debug("CURRENT ORGANIZATION "+SecurityUtils.currentOrganization);
         }
     }
-    	
-        return Optional.ofNullable(userService.getUserWithAuthorities())
+    	return Optional.ofNullable(userService.getUserWithAuthorities())
             .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }

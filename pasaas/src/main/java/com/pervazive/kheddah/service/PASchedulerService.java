@@ -27,7 +27,7 @@ public interface PASchedulerService {
      */
     Page<PAScheduler> findAll(Pageable pageable, String user);
 
-    Page<PAScheduler> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAScheduler> findAll(Pageable pageable, PAOrganization paOrganization);
     /**
      *  Get the "id" pAScheduler.
      *

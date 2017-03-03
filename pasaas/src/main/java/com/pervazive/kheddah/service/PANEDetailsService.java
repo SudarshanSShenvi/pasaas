@@ -28,7 +28,7 @@ public interface PANEDetailsService {
      */
     Page<PANEDetails> findAll(Pageable pageable, String user);
     
-    Page<PANEDetails> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PANEDetails> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pANEDetails.

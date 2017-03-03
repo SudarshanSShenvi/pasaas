@@ -63,9 +63,9 @@ public class PAPMTRequestServiceImpl implements PAPMTRequestService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAPMTRequest> findAll(Pageable pageable, List<PAOrganization> organizationames ) {
+    public Page<PAPMTRequest> findAll(Pageable pageable, PAOrganization paOrganization ) {
         log.debug("Request to get all PAPMTRequests");
-        Page<PAPMTRequest> result = pAPMTRequestRepository.findByPaorgpmtIn(organizationames, pageable);
+        Page<PAPMTRequest> result = pAPMTRequestRepository.findByPaorgpmt(paOrganization, pageable);
         //Page<PAPMTRequest> result = pAPMTRequestRepository.findAll(pageable);
         return result;
     }

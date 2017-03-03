@@ -1,9 +1,12 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PANEDetails;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PANEDetailsService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -36,6 +39,10 @@ public class PANEDetailsResource {
         
     @Inject
     private PANEDetailsService pANEDetailsService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-ane-details : Create a new pANEDetails.
@@ -88,10 +95,13 @@ public class PANEDetailsResource {
      */
     @GetMapping("/p-ane-details")
     @Timed
-    public ResponseEntity<List<PANEDetails>> getAllPANEDetails(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PANEDetails>> getAllPANEDetails(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PANEDetails");
-        Page<PANEDetails> page = pANEDetailsService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pANEDetails", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PANEDetails> page = pANEDetailsService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-ane-details");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

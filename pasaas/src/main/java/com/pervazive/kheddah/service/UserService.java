@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pervazive.kheddah.domain.Authority;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.AuthorityRepository;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
@@ -45,6 +46,9 @@ public class UserService {
 
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
 
     @Inject
     private PersistentTokenRepository persistentTokenRepository;
@@ -136,6 +140,12 @@ public class UserService {
                 authority -> authorities.add(authorityRepository.findOne(authority))
             );
             user.setAuthorities(authorities);
+        }if (managedUserVM.getOrganizations() != null) {
+            Set<PAOrganization> organizations = new HashSet<>();
+            managedUserVM.getOrganizations().forEach(
+            		organization -> organizations.add(paOrganizationRepository.findByOrganization(organization))
+            );
+            user.setOrganizations(organizations);
         }
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
         user.setPassword(encryptedPassword);

@@ -16,4 +16,6 @@ import com.pervazive.kheddah.domain.PAOrganization;
 public interface PANEDetailsRepository extends JpaRepository<PANEDetails,Long> {
 
 	Page<PANEDetails> findByPaorgnedIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PANEDetails> findByPaorgned(PAOrganization paOrganization, Pageable pageable);
 }

@@ -1,18 +1,16 @@
 package com.pervazive.kheddah.web.rest;
 
-import com.pervazive.kheddah.config.Constants;
-import com.codahale.metrics.annotation.Timed;
-import com.pervazive.kheddah.domain.PAOrganization;
-import com.pervazive.kheddah.domain.PAReport;
-import com.pervazive.kheddah.domain.User;
-import com.pervazive.kheddah.repository.UserRepository;
-import com.pervazive.kheddah.security.AuthoritiesConstants;
-import com.pervazive.kheddah.service.MailService;
-import com.pervazive.kheddah.service.UserService;
-import com.pervazive.kheddah.web.rest.vm.ManagedUserVM;
-import com.pervazive.kheddah.web.rest.util.HeaderUtil;
-import com.pervazive.kheddah.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,15 +19,31 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.config.Constants;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.User;
+import com.pervazive.kheddah.repository.PAOrganizationRepository;
+import com.pervazive.kheddah.repository.UserRepository;
+import com.pervazive.kheddah.security.AuthoritiesConstants;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.MailService;
+import com.pervazive.kheddah.service.PAOrganizationService;
+import com.pervazive.kheddah.service.UserService;
+import com.pervazive.kheddah.web.rest.util.HeaderUtil;
+import com.pervazive.kheddah.web.rest.util.PaginationUtil;
+import com.pervazive.kheddah.web.rest.vm.ManagedUserVM;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.*;
-import java.util.stream.Collectors;
+import io.swagger.annotations.ApiParam;
 
 /**
  * REST controller for managing users.
@@ -69,6 +83,9 @@ public class UserResource {
 
     @Inject
     private UserService userService;
+    
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
 
     /**
      * POST  /users  : Creates a new user.
@@ -85,7 +102,7 @@ public class UserResource {
     @PostMapping("/users")
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)
-    public ResponseEntity<?> createUser(@RequestBody ManagedUserVM managedUserVM) throws URISyntaxException {
+    public ResponseEntity<?> createUser(@RequestBody ManagedUserVM managedUserVM, HttpServletRequest request) throws URISyntaxException {
         log.debug("REST request to save User : {}", managedUserVM);
 
         //Lowercase the user login before comparing with database
@@ -98,6 +115,20 @@ public class UserResource {
                 .headers(HeaderUtil.createFailureAlert("userManagement", "emailexists", "Email already in use"))
                 .body(null);
         } else {
+        	
+        	//List<PAOrganization> organizationList = (List<PAOrganization>) request.getSession().getAttribute("organizationsess");
+        	Set<String> orgsUser = new HashSet<String>();
+        	/*String organization = null;
+        	
+        	for (int i = 0; i < organizationList.size(); i++) { // Always has one
+        		organization = organizationList.get(i).getOrganization(); 
+        		log.debug("ORGS - ", organization);
+        		
+			}*/
+        	orgsUser.add(SecurityUtils.currentOrganization);
+			managedUserVM.setOrganizations(orgsUser);
+			managedUserVM.setDefaultOrganization(SecurityUtils.currentOrganization);
+			
             User newUser = userService.createUser(managedUserVM);
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
@@ -149,7 +180,8 @@ public class UserResource {
         throws URISyntaxException {
         //Page<User> page = userRepository.findAllWithAuthorities(pageable);
     	//Page<User> page = userRepository.findAllWithAuthoritiesProjectsAndOrganizations(pageable);
-    	Set<PAOrganization> orgSet = new HashSet<PAOrganization>((List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+    	Set<PAOrganization> orgSet = new HashSet<PAOrganization>();
+    	orgSet.add(paOrganizationRepository.findByOrganization(SecurityUtils.currentOrganization)); 
     	Page<User> page = userRepository.findByOrganizationsIn( orgSet , pageable);
     	
         List<ManagedUserVM> managedUserVMs = page.getContent().stream()

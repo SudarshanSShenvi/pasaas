@@ -15,4 +15,6 @@ import com.pervazive.kheddah.domain.PAOrganization;
 @SuppressWarnings("unused")
 public interface PAAlarmActualityRepository extends JpaRepository<PAAlarmActuality,Long> {
 	Page<PAAlarmActuality> findByPaorgaaIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAAlarmActuality> findByPaorgaa(PAOrganization paorgaa, Pageable pageable);
 }

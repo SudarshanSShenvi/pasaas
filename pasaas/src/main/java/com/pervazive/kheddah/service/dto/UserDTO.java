@@ -121,6 +121,18 @@ public class UserDTO {
     public Set<String> getProjects() {
         return projects;
     }
+    
+    public void setAuthorities(Set<String> authorities) {
+        this.authorities = authorities;
+    }
+    
+    public void setOrganizations(Set<String> organizations) {
+        this.organizations= organizations;
+    }
+    
+    public void setProjects(Set<String> projects ) {
+        this.projects = projects;
+    }
 
     @Override
     public String toString() {

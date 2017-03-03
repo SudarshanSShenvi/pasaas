@@ -64,9 +64,9 @@ public class PAErrorMessageServiceImpl implements PAErrorMessageService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAErrorMessage> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PAErrorMessage> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PAErrorMessages");
-        Page<PAErrorMessage> result = pAErrorMessageRepository.findByPaorgemIn(organizationames, pageable);
+        Page<PAErrorMessage> result = pAErrorMessageRepository.findByPaorgem(paOrganization, pageable);
         //Page<PAErrorMessage> result = pAErrorMessageRepository.findAll(pageable);
         return result;
     }

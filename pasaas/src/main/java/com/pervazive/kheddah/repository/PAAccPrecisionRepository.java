@@ -17,4 +17,6 @@ public interface PAAccPrecisionRepository extends JpaRepository<PAAccPrecision,L
 
 	
 	Page<PAAccPrecision> findByPaorgapIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAAccPrecision> findByPaorgap(PAOrganization paorgap, Pageable pageable);
 }

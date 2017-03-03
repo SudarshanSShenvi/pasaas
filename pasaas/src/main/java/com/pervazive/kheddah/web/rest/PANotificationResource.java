@@ -1,9 +1,12 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PANotification;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PANotificationService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -36,6 +39,10 @@ public class PANotificationResource {
         
     @Inject
     private PANotificationService pANotificationService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-notifications : Create a new pANotification.
@@ -88,10 +95,13 @@ public class PANotificationResource {
      */
     @GetMapping("/p-a-notifications")
     @Timed
-    public ResponseEntity<List<PANotification>> getAllPANotifications(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PANotification>> getAllPANotifications(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PANotifications");
-        Page<PANotification> page = pANotificationService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pANotification", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PANotification> page = pANotificationService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-notifications");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

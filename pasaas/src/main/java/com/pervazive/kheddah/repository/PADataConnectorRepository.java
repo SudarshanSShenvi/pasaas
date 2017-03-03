@@ -15,4 +15,6 @@ import com.pervazive.kheddah.domain.PAOrganization;
 @SuppressWarnings("unused")
 public interface PADataConnectorRepository extends JpaRepository<PADataConnector,Long> {
 	Page<PADataConnector> findByPaorgdcIn(List<PAOrganization> paOrganization, Pageable pageable);
+	Page<PADataConnector> findByPaorgdc(PAOrganization paOrganization, Pageable pageable);
+	
 }

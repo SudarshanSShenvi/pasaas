@@ -63,9 +63,9 @@ public class PAAlarmActualityServiceImpl implements PAAlarmActualityService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAAlarmActuality> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PAAlarmActuality> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PAAlarmActualities");
-        Page<PAAlarmActuality> result = pAAlarmActualityRepository.findByPaorgaaIn(organizationames, pageable);
+        Page<PAAlarmActuality> result = pAAlarmActualityRepository.findByPaorgaa(paOrganization, pageable);
         return result;
     }
 

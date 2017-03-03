@@ -63,7 +63,7 @@ public class PARawAlarmDataServiceImpl implements PARawAlarmDataService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PARawAlarmData> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PARawAlarmData> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PARawAlarmData");
         Page<PARawAlarmData> result = pARawAlarmDataRepository.findAll(pageable);
         return result;

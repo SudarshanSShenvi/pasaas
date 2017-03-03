@@ -26,6 +26,5 @@ public interface PAOrganizationRepository extends JpaRepository<PAOrganization,L
 			
 			Page<PAOrganization> findByOrganizationIn(List<PAOrganization> organization, Pageable page);
 			
-			List<PAOrganization> findByOrganization(String organization);
-			
+			PAOrganization findByOrganization(String organization);
 }

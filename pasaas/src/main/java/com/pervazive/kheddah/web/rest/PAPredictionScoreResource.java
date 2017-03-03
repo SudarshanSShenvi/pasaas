@@ -1,8 +1,11 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAPredictionScoreService;
 import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.service.dto.PAPredictionScoreDTO;
@@ -39,6 +42,10 @@ public class PAPredictionScoreResource {
         
     @Inject
     private PAPredictionScoreService pAPredictionScoreService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-prediction-scores : Create a new pAPredictionScore.
@@ -91,10 +98,13 @@ public class PAPredictionScoreResource {
      */
     @GetMapping("/p-a-prediction-scores")
     @Timed
-    public ResponseEntity<List<PAPredictionScore>> getAllPAPredictionScores(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAPredictionScore>> getAllPAPredictionScores(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAPredictionScores");
-        Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAPredictionScore", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

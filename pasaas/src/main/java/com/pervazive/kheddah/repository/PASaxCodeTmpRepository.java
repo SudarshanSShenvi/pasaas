@@ -20,6 +20,8 @@ public interface PASaxCodeTmpRepository extends JpaRepository<PASaxCodeTmp,Long>
 
 	Page<PASaxCodeTmp> findByPaorgsctIn(List<PAOrganization> paOrganization, Pageable pageable);
 	
+	Page<PASaxCodeTmp> findByPaorgsct(PAOrganization paOrganization, Pageable pageable);
+	
 	@Query(value = "load data local infile :filePath into table pa_saxcode_tmp fields terminated by '\t' lines terminated by '\n' (distalarm, saxcode, total, painterval, @paorgsct_id, @paprosct_id, @pastatus)"
 			+ " SET paorgsct_id = :orgId, paprosct_id = :projId, pastatus = 'Active'", nativeQuery = true)
 	void saveCSV(@Param("filePath") String filePath, @Param("orgId") Long orgId, @Param("projId") Long projId);

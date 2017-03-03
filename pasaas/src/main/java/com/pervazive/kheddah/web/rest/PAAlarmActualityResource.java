@@ -2,8 +2,11 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAAlarmActuality;
+import com.pervazive.kheddah.domain.PAAlarmRCA;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAAlarmActualityService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -36,6 +39,10 @@ public class PAAlarmActualityResource {
         
     @Inject
     private PAAlarmActualityService pAAlarmActualityService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-alarm-actualities : Create a new pAAlarmActuality.
@@ -88,12 +95,12 @@ public class PAAlarmActualityResource {
      */
     @GetMapping("/p-a-alarm-actualities")
     @Timed
-    public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable)
         throws URISyntaxException {
-        log.debug("REST request to get a page of PAAlarmActualities : " +request.getSession().getAttribute("organizationsess"));
-        if(request.getSession().getAttribute("organizationsess") == null) 
-        	return ResponseEntity.badRequest().headers(HeaderUtil.createAlert("error.organizationmissing", "Create one to proceed")).body(null);
-        Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAlarmActuality", "Organization missing", "Create one to proceed")).body(null);
+        
+       Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable,paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-alarm-actualities");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

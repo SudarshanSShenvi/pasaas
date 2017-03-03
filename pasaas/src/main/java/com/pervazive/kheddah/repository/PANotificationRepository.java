@@ -16,4 +16,6 @@ import com.pervazive.kheddah.domain.PAOrganization;
 public interface PANotificationRepository extends JpaRepository<PANotification,Long> {
 
 	Page<PANotification> findByPaorgnotIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PANotification> findByPaorgnot(PAOrganization paOrganization, Pageable pageable);
 }

@@ -27,7 +27,7 @@ public interface PARawAlarmDataService {
      */
     Page<PARawAlarmData> findAll(Pageable pageable, String user);
     
-    Page<PARawAlarmData> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PARawAlarmData> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pARawAlarmData.

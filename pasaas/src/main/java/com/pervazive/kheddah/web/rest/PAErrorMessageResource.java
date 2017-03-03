@@ -1,9 +1,12 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAErrorMessage;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAErrorMessageService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -36,6 +39,10 @@ public class PAErrorMessageResource {
         
     @Inject
     private PAErrorMessageService pAErrorMessageService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-error-messages : Create a new pAErrorMessage.
@@ -88,10 +95,13 @@ public class PAErrorMessageResource {
      */
     @GetMapping("/p-a-error-messages")
     @Timed
-    public ResponseEntity<List<PAErrorMessage>> getAllPAErrorMessages(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAErrorMessage>> getAllPAErrorMessages(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAErrorMessages");
-        Page<PAErrorMessage> page = pAErrorMessageService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAErrorMessage", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PAErrorMessage> page = pAErrorMessageService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-error-messages");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

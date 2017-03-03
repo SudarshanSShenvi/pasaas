@@ -3,6 +3,9 @@ package com.pervazive.kheddah.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PARawAlarmData;
+import com.pervazive.kheddah.domain.PAReliabilityScore;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PARawAlarmDataService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -36,6 +39,10 @@ public class PARawAlarmDataResource {
         
     @Inject
     private PARawAlarmDataService pARawAlarmDataService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-raw-alarm-data : Create a new pARawAlarmData.
@@ -91,7 +98,10 @@ public class PARawAlarmDataResource {
     public ResponseEntity<List<PARawAlarmData>> getAllPARawAlarmData(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PARawAlarmData");
-        Page<PARawAlarmData> page = pARawAlarmDataService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PARawAlarmData> page = pARawAlarmDataService.findAll(pageable,  paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-raw-alarm-data");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

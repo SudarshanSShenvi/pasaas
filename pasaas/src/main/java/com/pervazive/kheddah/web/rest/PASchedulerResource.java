@@ -1,8 +1,11 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAScheduler;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PASchedulerService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -36,6 +39,10 @@ public class PASchedulerResource {
         
     @Inject
     private PASchedulerService pASchedulerService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-schedulers : Create a new pAScheduler.
@@ -91,7 +98,10 @@ public class PASchedulerResource {
     public ResponseEntity<List<PAScheduler>> getAllPASchedulers(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PASchedulers");
-        Page<PAScheduler> page = pASchedulerService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAlarmActuality", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PAScheduler> page = pASchedulerService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-schedulers");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

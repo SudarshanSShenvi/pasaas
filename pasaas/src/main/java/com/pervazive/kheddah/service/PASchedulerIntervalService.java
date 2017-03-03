@@ -27,7 +27,7 @@ public interface PASchedulerIntervalService {
      */
     Page<PASchedulerInterval> findAll(Pageable pageable, String user);
     
-    Page<PASchedulerInterval> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PASchedulerInterval> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pASchedulerInterval.

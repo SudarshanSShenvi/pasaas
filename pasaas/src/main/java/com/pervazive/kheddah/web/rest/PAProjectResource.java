@@ -28,11 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.service.dto.PAProjectDTO;
@@ -55,6 +57,10 @@ public class PAProjectResource {
     
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-projects : Create a new pAProject.
@@ -126,11 +132,14 @@ public class PAProjectResource {
      */
     @GetMapping("/p-a-projects")
     @Timed
-    public ResponseEntity<List<PAProjectDTO>> getAllPAProjects(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAProjectDTO>> getAllPAProjects(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAProjects");
         
-        Page<PAProject> page = pAProjectService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAProject", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PAProject> page = pAProjectService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         List<PAProjectDTO> paProjectDTO = page.getContent().stream()
             .map(PAProjectDTO::new)
             .collect(Collectors.toList());

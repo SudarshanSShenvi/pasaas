@@ -16,4 +16,6 @@ import com.pervazive.kheddah.domain.PAReliabilityConf;
 public interface PAReliabilityConfRepository extends JpaRepository<PAReliabilityConf,Long> {
 
 	Page<PAReliabilityConf> findByPaorgrcIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAReliabilityConf> findByPaorgrc(PAOrganization paOrganization, Pageable pageable);
 }

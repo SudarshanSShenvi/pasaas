@@ -27,7 +27,7 @@ public interface PASaxCodeService {
      */
     Page<PASaxCode> findAll(Pageable pageable, String user);
 
-    Page<PASaxCode> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PASaxCode> findAll(Pageable pageable, PAOrganization paOrganization);
     /**
      *  Get the "id" pASaxCode.
      *

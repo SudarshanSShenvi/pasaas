@@ -35,6 +35,8 @@ public interface PAOrganizationService {
     Page<PAOrganization> findAll(Pageable pageable, String user);
     
     Page<PAOrganization> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    
+    PAOrganization findOrganizationByName(String paOrganization);
 
     /**
      *  Get the "id" pAOrganization.

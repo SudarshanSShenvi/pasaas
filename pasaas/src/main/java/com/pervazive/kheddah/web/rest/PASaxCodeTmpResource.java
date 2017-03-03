@@ -2,7 +2,10 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PASaxCode;
 import com.pervazive.kheddah.domain.PASaxCodeTmp;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PASaxCodeTmpService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -36,6 +39,10 @@ public class PASaxCodeTmpResource {
         
     @Inject
     private PASaxCodeTmpService pASaxCodeTmpService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-sax-code-tmps : Create a new pASaxCodeTmp.
@@ -91,7 +98,11 @@ public class PASaxCodeTmpResource {
     public ResponseEntity<List<PASaxCodeTmp>> getAllPASaxCodeTmps(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PASaxCodeTmps");
-        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-code-tmps");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

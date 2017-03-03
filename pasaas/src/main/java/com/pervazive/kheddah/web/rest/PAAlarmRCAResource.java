@@ -2,8 +2,11 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAAlarmRCA;
+import com.pervazive.kheddah.domain.PADataConnector;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAAlarmRCAService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -36,6 +39,10 @@ public class PAAlarmRCAResource {
         
     @Inject
     private PAAlarmRCAService pAAlarmRCAService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-alarm-rcas : Create a new pAAlarmRCA.
@@ -88,10 +95,13 @@ public class PAAlarmRCAResource {
      */
     @GetMapping("/p-a-alarm-rcas")
     @Timed
-    public ResponseEntity<List<PAAlarmRCA>> getAllPAAlarmRCAS(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAAlarmRCA>> getAllPAAlarmRCAS(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAAlarmRCAS");
-        Page<PAAlarmRCA> page = pAAlarmRCAService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAlarmRCA", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PAAlarmRCA> page = pAAlarmRCAService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-alarm-rcas");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

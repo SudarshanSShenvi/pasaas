@@ -63,10 +63,10 @@ public class PASchedulerIntervalServiceImpl implements PASchedulerIntervalServic
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PASchedulerInterval> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PASchedulerInterval> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PASchedulerIntervals");
         
-        Page<PASchedulerInterval> result = pASchedulerIntervalRepository.findByPaorgsciIn(organizationames, pageable);
+        Page<PASchedulerInterval> result = pASchedulerIntervalRepository.findByPaorgsci(paOrganization, pageable);
         //Page<PASchedulerInterval> result = pASchedulerIntervalRepository.findAll(pageable);
         return result;
     }

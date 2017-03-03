@@ -64,9 +64,9 @@ public class PADataConnectorServiceImpl implements PADataConnectorService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PADataConnector> findAll(Pageable pageable, List<PAOrganization> organizationames ) {
+    public Page<PADataConnector> findAll(Pageable pageable, PAOrganization paOrganization ) {
         log.debug("Request to get all PADataConnectors");
-        Page<PADataConnector> result = pADataConnectorRepository.findByPaorgdcIn(organizationames, pageable);
+        Page<PADataConnector> result = pADataConnectorRepository.findByPaorgdc(paOrganization, pageable);
         //Page<PADataConnector> result = pADataConnectorRepository.findAll(pageable);
         return result;
     }

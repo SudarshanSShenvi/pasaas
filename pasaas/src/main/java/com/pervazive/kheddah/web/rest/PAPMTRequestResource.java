@@ -1,8 +1,11 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PANEDetails;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPMTRequest;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAPMTRequestService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -36,6 +39,10 @@ public class PAPMTRequestResource {
         
     @Inject
     private PAPMTRequestService pAPMTRequestService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-apmt-requests : Create a new pAPMTRequest.
@@ -88,10 +95,13 @@ public class PAPMTRequestResource {
      */
     @GetMapping("/p-apmt-requests")
     @Timed
-    public ResponseEntity<List<PAPMTRequest>> getAllPAPMTRequests(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAPMTRequest>> getAllPAPMTRequests(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAPMTRequests");
-        Page<PAPMTRequest> page = pAPMTRequestService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAPMTRequest", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PAPMTRequest> page = pAPMTRequestService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-apmt-requests");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

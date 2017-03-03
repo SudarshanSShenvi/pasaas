@@ -27,7 +27,7 @@ public interface PAReliabilityConfService {
      */
     Page<PAReliabilityConf> findAll(Pageable pageable, String user);
     
-    Page<PAReliabilityConf> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAReliabilityConf> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pAReliabilityConf.

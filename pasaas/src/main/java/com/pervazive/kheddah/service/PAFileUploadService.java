@@ -32,7 +32,7 @@ public interface PAFileUploadService {
     //Page<PAFileUpload> findAll(Pageable pageable);
     Page<PAFileUpload> findAll(Pageable pageable, String user);
     
-    Page<PAFileUpload> findAll(Pageable pageable, List<PAOrganization> paOrganizations);
+    Page<PAFileUpload> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pAFileUpload.

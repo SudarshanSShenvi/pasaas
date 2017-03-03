@@ -5,10 +5,14 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import scala.reflect.internal.Trees.This;
+
 /**
  * Utility class for Spring Security.
  */
 public final class SecurityUtils {
+	
+	public static String currentOrganization = null;
 
     private SecurityUtils() {
     }
@@ -65,4 +69,8 @@ public final class SecurityUtils {
         }
         return false;
     }
+    
+   /* public static String getCurrentUserOrganization() {
+    	return currentOrganization;
+    }*/
 }

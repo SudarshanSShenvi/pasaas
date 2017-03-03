@@ -16,4 +16,6 @@ import com.pervazive.kheddah.domain.PAOrganization;
 public interface PAAlarmRCARepository extends JpaRepository<PAAlarmRCA,Long> {
 	
 	Page<PAAlarmRCA> findByPaorgarcIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAAlarmRCA> findByPaorgarc(PAOrganization paorgarc, Pageable pageable);
 }

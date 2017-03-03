@@ -64,9 +64,10 @@ public class PAAccPrecisionServiceImpl implements PAAccPrecisionService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAAccPrecision> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PAAccPrecision> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PAAccPrecisions");
-        Page<PAAccPrecision> result = pAAccPrecisionRepository.findByPaorgapIn(organizationames, pageable);
+        //Page<PAAccPrecision> result = pAAccPrecisionRepository.findByPaorgapIn(organizationames, pageable);
+        Page<PAAccPrecision> result = pAAccPrecisionRepository.findByPaorgap(paOrganization, pageable);
         //Page<PAAccPrecision> result = pAAccPrecisionRepository.findAll(pageable);
         return result;
     }

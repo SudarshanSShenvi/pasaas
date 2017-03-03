@@ -61,9 +61,9 @@ public class PAPredictionServiceImpl implements PAPredictionService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAPrediction> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PAPrediction> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PAPredictions");
-        Page<PAPrediction> result = pAPredictionRepository.findByPaorgpreIn(organizationames, pageable);
+        Page<PAPrediction> result = pAPredictionRepository.findByPaorgpre(paOrganization, pageable);
         return result;
     }
     /**

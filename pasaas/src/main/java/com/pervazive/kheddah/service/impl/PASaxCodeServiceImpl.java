@@ -63,9 +63,9 @@ public class PASaxCodeServiceImpl implements PASaxCodeService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PASaxCode> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PASaxCode> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PASaxCodes");
-        Page<PASaxCode> result = pASaxCodeRepository.findByPaorgscIn(organizationames, pageable);
+        Page<PASaxCode> result = pASaxCodeRepository.findByPaorgsc(paOrganization, pageable);
         //Page<PASaxCode> result = pASaxCodeRepository.findAll(pageable);
         return result;
     }

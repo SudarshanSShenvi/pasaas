@@ -1,8 +1,11 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReliabilityScore;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAReliabilityScoreService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -37,6 +40,9 @@ public class PAReliabilityScoreResource {
     @Inject
     private PAReliabilityScoreService pAReliabilityScoreService;
 
+    @Inject
+    private PAOrganizationService paOrganizationService;
+    
     /**
      * POST  /p-a-reliability-scores : Create a new pAReliabilityScore.
      *
@@ -91,7 +97,10 @@ public class PAReliabilityScoreResource {
     public ResponseEntity<List<PAReliabilityScore>> getAllPAReliabilityScores(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAReliabilityScores");
-        Page<PAReliabilityScore> page = pAReliabilityScoreService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PAReliabilityScore> page = pAReliabilityScoreService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reliability-scores");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

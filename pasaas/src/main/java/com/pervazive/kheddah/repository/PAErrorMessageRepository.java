@@ -15,4 +15,6 @@ import com.pervazive.kheddah.domain.PAOrganization;
 @SuppressWarnings("unused")
 public interface PAErrorMessageRepository extends JpaRepository<PAErrorMessage,Long> {
 	Page<PAErrorMessage> findByPaorgemIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAErrorMessage> findByPaorgem(PAOrganization paOrganization, Pageable pageable);
 }

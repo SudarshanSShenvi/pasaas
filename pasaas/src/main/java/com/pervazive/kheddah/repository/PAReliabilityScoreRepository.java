@@ -16,4 +16,6 @@ import com.pervazive.kheddah.domain.PAReliabilityScore;
 public interface PAReliabilityScoreRepository extends JpaRepository<PAReliabilityScore,Long> {
 
 	Page<PAReliabilityScore> findByPaorgrsIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAReliabilityScore> findByPaorgrs(PAOrganization paOrganization, Pageable pageable);
 }

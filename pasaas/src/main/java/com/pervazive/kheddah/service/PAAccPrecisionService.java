@@ -28,7 +28,7 @@ public interface PAAccPrecisionService {
      */
     Page<PAAccPrecision> findAll(Pageable pageable, String pausers);
     
-    Page<PAAccPrecision> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAAccPrecision> findAll(Pageable pageable, PAOrganization paOrganization);
     
 
     /**

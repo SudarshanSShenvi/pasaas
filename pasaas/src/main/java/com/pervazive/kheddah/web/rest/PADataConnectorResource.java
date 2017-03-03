@@ -1,9 +1,12 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PADataConnector;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PADataConnectorService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -36,6 +39,10 @@ public class PADataConnectorResource {
         
     @Inject
     private PADataConnectorService pADataConnectorService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-data-connectors : Create a new pADataConnector.
@@ -88,10 +95,13 @@ public class PADataConnectorResource {
      */
     @GetMapping("/p-a-data-connectors")
     @Timed
-    public ResponseEntity<List<PADataConnector>> getAllPADataConnectors(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PADataConnector>> getAllPADataConnectors(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PADataConnectors");
-        Page<PADataConnector> page = pADataConnectorService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pADataConnector", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PADataConnector> page = pADataConnectorService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-data-connectors");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

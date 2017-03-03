@@ -28,7 +28,7 @@ public interface PAAlarmRCAService {
      */
     Page<PAAlarmRCA> findAll(Pageable pageable, String user);
     
-    Page<PAAlarmRCA> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAAlarmRCA> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pAAlarmRCA.

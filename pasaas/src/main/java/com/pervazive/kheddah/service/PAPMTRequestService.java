@@ -27,7 +27,7 @@ public interface PAPMTRequestService {
      */
     Page<PAPMTRequest> findAll(Pageable pageable, String user);
     
-    Page<PAPMTRequest> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAPMTRequest> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pAPMTRequest.

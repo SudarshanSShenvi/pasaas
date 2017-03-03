@@ -2,6 +2,7 @@ package com.pervazive.kheddah.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -80,6 +82,7 @@ public class PAOrganizationResource {
         pausers.add(currentUser);
         pAOrganization.setPAUsers(pausers);
         PAOrganization result = pAOrganizationService.save(pAOrganization);
+        
         if(currentUser.getDefaultOrganization() == null ) {
         	currentUser.setDefaultOrganization(pAOrganization.getOrganization());
         	userRepository.save(currentUser);
@@ -157,7 +160,10 @@ public class PAOrganizationResource {
     public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizations(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAOrganizations");
-        Page<PAOrganization> page = pAOrganizationService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        List<PAOrganization> listOrganization = new ArrayList<PAOrganization>();
+        listOrganization.add(pAOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
+        Page<PAOrganization> page = new PageImpl<>(listOrganization);
+        		
         if (page.getContent().isEmpty()) {
             return ResponseEntity.badRequest()
                 .headers(HeaderUtil.createFailureAlert("paorganization", "emptyorganization", "No Organizations Associated. Please contact admin to include you as part of an Organization"))

@@ -27,7 +27,7 @@ public interface PAReliabilityScoreService {
      */
     Page<PAReliabilityScore> findAll(Pageable pageable, String user);
     
-    Page<PAReliabilityScore> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAReliabilityScore> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pAReliabilityScore.

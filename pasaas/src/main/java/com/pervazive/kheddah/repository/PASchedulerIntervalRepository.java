@@ -17,4 +17,6 @@ public interface PASchedulerIntervalRepository extends JpaRepository<PAScheduler
 
 	
 	Page<PASchedulerInterval> findByPaorgsciIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PASchedulerInterval> findByPaorgsci(PAOrganization paOrganization, Pageable pageable);
 }

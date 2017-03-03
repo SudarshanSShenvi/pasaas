@@ -62,9 +62,9 @@ public class PAReportServiceImpl implements PAReportService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAReport> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PAReport> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PAReports");
-        Page<PAReport> result = pAReportRepository.findByPaorgrepIn(organizationames, pageable);
+        Page<PAReport> result = pAReportRepository.findByPaorgrep(paOrganization, pageable);
         //Page<PAReport> result = pAReportRepository.findAll(pageable);
         return result;
     }

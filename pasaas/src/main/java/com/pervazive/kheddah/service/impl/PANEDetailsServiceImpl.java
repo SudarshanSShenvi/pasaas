@@ -64,9 +64,9 @@ public class PANEDetailsServiceImpl implements PANEDetailsService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PANEDetails> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PANEDetails> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PANEDetails");
-        Page<PANEDetails> result = pANEDetailsRepository.findByPaorgnedIn(organizationames, pageable);
+        Page<PANEDetails> result = pANEDetailsRepository.findByPaorgned(paOrganization, pageable);
         //Page<PANEDetails> result = pANEDetailsRepository.findAll(pageable);
         return result;
     }

@@ -15,4 +15,6 @@ import com.pervazive.kheddah.domain.PAScheduler;
 @SuppressWarnings("unused")
 public interface PASchedulerRepository extends JpaRepository<PAScheduler,Long> {
 	Page<PAScheduler> findByPaorgschIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAScheduler> findByPaorgsch(PAOrganization paOrganization, Pageable pageable);
 }

@@ -2,7 +2,10 @@ package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAReport;
 import com.pervazive.kheddah.domain.PASaxCode;
+import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PASaxCodeService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -36,6 +39,10 @@ public class PASaxCodeResource {
         
     @Inject
     private PASaxCodeService pASaxCodeService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
 
     /**
      * POST  /p-a-sax-codes : Create a new pASaxCode.
@@ -91,8 +98,11 @@ public class PASaxCodeResource {
     public ResponseEntity<List<PASaxCode>> getAllPASaxCodes(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PASaxCodes");
-        @SuppressWarnings("unchecked")
-		Page<PASaxCode> page = pASaxCodeService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
+        
+        Page<PASaxCode> page = pASaxCodeService.findAll(pageable,paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
+        
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-codes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -16,4 +16,6 @@ import com.pervazive.kheddah.domain.PAPrediction;
 public interface PAPredictionRepository extends JpaRepository<PAPrediction,Long> {
 
 	Page<PAPrediction> findByPaorgpreIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAPrediction> findByPaorgpre(PAOrganization paOrganization, Pageable pageable);
 }

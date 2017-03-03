@@ -27,7 +27,7 @@ public interface PAPredictionService {
      */
     Page<PAPrediction> findAll(Pageable pageable, String user);
     
-    Page<PAPrediction> findAll(Pageable pageable, List<PAOrganization> organizationnmaes);
+    Page<PAPrediction> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pAPrediction.

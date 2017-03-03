@@ -28,7 +28,7 @@ public interface PAAlarmActualityService {
      */
     Page<PAAlarmActuality> findAll(Pageable pageable, String user);
 
-    Page<PAAlarmActuality> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAAlarmActuality> findAll(Pageable pageable, PAOrganization paOrganization);
     /**
      *  Get the "id" pAAlarmActuality.
      *

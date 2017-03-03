@@ -31,9 +31,12 @@ import org.terracotta.context.annotations.ContextAttribute;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAFileUpload;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAPMTRequest;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAFileUploadService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -53,6 +56,10 @@ public class PAFileUploadResource {
   
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
+
    
     /**
      * POST  /p-a-file-uploads : Create a new pAFileUpload.
@@ -106,14 +113,12 @@ public class PAFileUploadResource {
     @GetMapping("/p-a-file-uploads")
     @Timed
 
-    public ResponseEntity<List<PAFileUpload>> getAllPAFileUploads(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAFileUpload>> getAllPAFileUploads(@ApiParam Pageable pageable)
         throws URISyntaxException {
-        log.debug("REST request to get a page of PAFileUploads "+ request.getUserPrincipal().getName());
-
+               if(SecurityUtils.currentOrganization == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAFileUpload", "Organization missing", "Create one to proceed")).body(null);
         
-        
-        userRepository.findOneByLogin(request.getUserPrincipal().getName()).get().getDefaultOrganization();
-        Page<PAFileUpload> page = pAFileUploadService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        Page<PAFileUpload> page = pAFileUploadService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-file-uploads");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -87,6 +87,12 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
         return result;
     }
     
+    @Transactional(readOnly = true) 
+    public PAOrganization findOrganizationByName(String paOrganization) {
+        PAOrganization result = pAOrganizationRepository.findByOrganization(paOrganization);
+        return result;
+    }
+    
     /**
      *  Get one pAOrganization by id.
      *

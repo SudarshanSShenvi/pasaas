@@ -16,4 +16,6 @@ import com.pervazive.kheddah.domain.PAPMTRequest;
 public interface PAPMTRequestRepository extends JpaRepository<PAPMTRequest,Long> {
 	
 	Page<PAPMTRequest> findByPaorgpmtIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAPMTRequest> findByPaorgpmt(PAOrganization paOrganization, Pageable pageable);
 }

@@ -61,9 +61,9 @@ public class PASchedulerServiceImpl implements PASchedulerService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAScheduler> findAll(Pageable pageable, List<PAOrganization> organizationames) {
+    public Page<PAScheduler> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PASchedulers");
-        Page<PAScheduler> result = pASchedulerRepository.findByPaorgschIn(organizationames, pageable);
+        Page<PAScheduler> result = pASchedulerRepository.findByPaorgsch(paOrganization, pageable);
         return result;
     }
     /**

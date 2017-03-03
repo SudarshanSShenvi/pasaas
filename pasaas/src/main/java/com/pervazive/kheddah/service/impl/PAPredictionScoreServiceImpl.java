@@ -62,9 +62,9 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
-    public Page<PAPredictionScore> findAll(Pageable pageable,  List<PAOrganization> organizationames) {
+    public Page<PAPredictionScore> findAll(Pageable pageable,  PAOrganization paOrganization) {
         log.debug("Request to get all PAPredictionScores");
-        Page<PAPredictionScore> result = pAPredictionScoreRepository.findByPaorgpsIn(organizationames, pageable);
+        Page<PAPredictionScore> result = pAPredictionScoreRepository.findByPaorgps(paOrganization, pageable);
         //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
         return result;
     }

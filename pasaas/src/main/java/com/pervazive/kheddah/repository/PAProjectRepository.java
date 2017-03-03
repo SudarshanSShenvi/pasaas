@@ -24,5 +24,7 @@ public interface PAProjectRepository extends JpaRepository<PAProject,Long> {
 	PAProject findByProjectName(String paproject);
 	
 	Page<PAProject> findByPaorgproIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAProject> findByPaorgpro(PAOrganization paOrganization, Pageable pageable);
 		
 }

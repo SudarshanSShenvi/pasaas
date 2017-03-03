@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
+import com.pervazive.kheddah.security.SecurityUtils;
 
 /**
  * REST controller for managing the current user's account.
@@ -22,8 +23,8 @@ public class SessionVarsResource {
 
     private final Logger log = LoggerFactory.getLogger(SessionVarsResource.class);
 
-    @Inject
-    private PAOrganizationRepository paOrganizationRepository;
+    /*@Inject
+    private PAOrganizationRepository paOrganizationRepository;*/
 
     
     
@@ -33,14 +34,13 @@ public class SessionVarsResource {
      * @return nothing
      * TODO: return Updated organization with message; verify if user belongs to the requested group
      */
-    @PostMapping("/sessionVars/{currentOrganization}")
+    @PostMapping("/sessionVars/{newOrganization}")
     @Timed
-    public void setSessionOrganization(@PathVariable String currentOrganization, HttpSession session) {
-    	log.debug("Current Organization "+session.getAttribute("organizationsess")); 
-    	log.debug("request to change Organization to "+currentOrganization);
-    	log.debug("session ID"+session.getId());
-		session.setAttribute("organizationsess", paOrganizationRepository.findByOrganization(currentOrganization));
-        log.debug("RESETTING VALUES HERE "+session.getAttribute("organizationsess"));
+    public void setSessionOrganization(@PathVariable String newOrganization) {
+    	log.debug("Current Organization "+SecurityUtils.currentOrganization); 
+    	log.debug("request to change Organization to "+newOrganization);
+    	SecurityUtils.currentOrganization = newOrganization;
+    	log.debug("RESETTING VALUES HERE "+SecurityUtils.currentOrganization);
         }
     
 }

@@ -28,7 +28,7 @@ public interface PANotificationService {
      */
     Page<PANotification> findAll(Pageable pageable, String user);
     
-    Page<PANotification> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PANotification> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pANotification.

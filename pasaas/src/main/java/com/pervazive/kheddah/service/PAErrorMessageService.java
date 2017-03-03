@@ -28,7 +28,7 @@ public interface PAErrorMessageService {
      */
     Page<PAErrorMessage> findAll(Pageable pageable, String user);
     
-    Page<PAErrorMessage> findAll(Pageable pageable, List<PAOrganization> organizationnames);
+    Page<PAErrorMessage> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pAErrorMessage.

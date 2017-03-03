@@ -20,5 +20,8 @@ public interface PAFileUploadRepository extends JpaRepository<PAFileUpload,Long>
 	Page<PAFileUpload> findByPaorgfu(Pageable pageable, Long id);
 	
 	Page<PAFileUpload> findByPaorgfuIn(List<PAOrganization> paOrganization, Pageable pageable);
+	
+	Page<PAFileUpload> findByPaorgfu(PAOrganization paOrganization, Pageable pageable);
+	
 
 }

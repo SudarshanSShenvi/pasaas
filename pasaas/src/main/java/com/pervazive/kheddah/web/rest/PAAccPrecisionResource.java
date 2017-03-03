@@ -3,7 +3,9 @@ package com.pervazive.kheddah.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAAccPrecisionService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -22,8 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * REST controller for managing PAAccPrecision.
@@ -36,6 +40,9 @@ public class PAAccPrecisionResource {
         
     @Inject
     private PAAccPrecisionService pAAccPrecisionService;
+    
+    @Inject
+    private PAOrganizationService paOrganizationService;
 
     /**
      * POST  /p-a-acc-precisions : Create a new pAAccPrecision.
@@ -88,12 +95,12 @@ public class PAAccPrecisionResource {
      */
     @GetMapping("/p-a-acc-precisions")
     @Timed
-    public ResponseEntity<List<PAAccPrecision>> getAllPAAccPrecisions(@ApiParam Pageable pageable, HttpServletRequest request)
+    public ResponseEntity<List<PAAccPrecision>> getAllPAAccPrecisions(@ApiParam Pageable pageable)
         throws URISyntaxException {
-        log.debug("REST request to get a page of PAAccPrecisions : " +request.getSession().getAttribute("organizationsess"));
-        if(request.getSession().getAttribute("organizationsess") == null) 
+        if(SecurityUtils.currentOrganization == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAlarmActuality", "Organization missing", "Create one to proceed")).body(null);
-        Page<PAAccPrecision> page = pAAccPrecisionService.findAll(pageable, (List<PAOrganization>) request.getSession().getAttribute("organizationsess"));
+        
+        Page<PAAccPrecision> page = pAAccPrecisionService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-acc-precisions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

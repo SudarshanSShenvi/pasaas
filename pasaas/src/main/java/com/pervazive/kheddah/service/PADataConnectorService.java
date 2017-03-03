@@ -28,8 +28,7 @@ public interface PADataConnectorService {
      */
     Page<PADataConnector> findAll(Pageable pageable, String user);
     
-    Page<PADataConnector> findAll(Pageable pageable, List<PAOrganization> organizationnames);
-
+    Page<PADataConnector> findAll(Pageable pageable, PAOrganization paOrganization);
 
     /**
      *  Get the "id" pADataConnector.
