@@ -142,7 +142,8 @@
         "userexists": "Login name already used!",
         "emailexists": "E-mail is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID", 
-        "organizationmissing":"Organization Missing"
+        "organizationmissing":"Organization Missing",
+        "nameexists": "A new {{ entityName }} cannot have the same name"
     },
     "footer": "This is your footer"
 }

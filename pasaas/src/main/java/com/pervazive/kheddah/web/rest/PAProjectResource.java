@@ -70,13 +70,18 @@ public class PAProjectResource {
         if (pAProject.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAProject", "idexists", "A new pAProject cannot already have an ID")).body(null);
         }
+        if (pAProject.getProjectname() == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAProject", "NotNull", "Field Project Name cannot be empty!")).body(null);
+        }
+        if (pAProject.getPaorgpro() == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAProject", "NotNull", "Field Organization cannot be empty!")).body(null);
+        }
         
         Set<User> pausers = new HashSet<User>();
         User currentUser = userRepository.findOneByLoginName(SecurityUtils.getCurrentUserLogin());
         pausers.add(currentUser);
         pAProject.setPausers(pausers);
         PAProject result = pAProjectService.save(pAProject);
-        
         return ResponseEntity.created(new URI("/api/p-a-projects/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("pAProject", result.getId().toString()))
             .body(result);

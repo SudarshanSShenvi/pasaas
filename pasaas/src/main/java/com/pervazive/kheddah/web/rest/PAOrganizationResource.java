@@ -70,6 +70,9 @@ public class PAOrganizationResource {
         if (pAOrganization.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAOrganization", "idexists", "A new pAOrganization cannot already have an ID")).body(null);
         }
+        if (pAOrganization.getOrganization() == null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAOrganization", "NotNull", "Field Organization cannot be empty!")).body(null);
+        }
         
         //Add Current User to the organization
         Set<User> pausers = new HashSet<User>();
