@@ -25,7 +25,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="organization" type="varchar(255)">
-                <constraints nullable="true" />
+                <constraints nullable="true" unique="true"/>
             </column>
             
             <column name="validfrom" type="timestamp">
