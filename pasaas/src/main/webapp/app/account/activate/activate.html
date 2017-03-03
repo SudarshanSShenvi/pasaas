@@ -1,4 +1,61 @@
 <div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="panel panel-default">
+            <div class="panel-heading" align="center">
+                <h1>predict<span class="text-success">ION<sup><b>T</b></sup></span></h1>
+                <h2>Predictive Analytics for Telecommunications</h2>
+                <h4>About the Predictive Analytics application for Telecom in a Sentence.</h4>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-6 col-md-offset-3" align="center">
+                    <p><h3><b>Welcome Back</b></h3></p>
+                    <p>We have been waiting for you.</p>
+                    <p>Your <b>account</b> with registered email "user entered email" is <b class="text-success">activated</b>.</p>
+                    <p>&nbsp;</p>
+
+                    <div 
+                        class="alert alert-success" 
+                        ng-show="vm.success" 
+                        data-translate="activate.messages.success" 
+                        translate-compile
+                    >
+                        <strong>Your user has been activated.</strong> 
+                        Please <a class="alert-link" href="" ng-click="vm.login()">sign in</a>.
+                    </div>
+
+                    <div 
+                        class="alert alert-danger" 
+                        ng-show="vm.error" 
+                        data-translate="activate.messages.error"
+                    >
+                <strong>Your user could not be activated.</strong> 
+                Please use the registration form to sign up.
+            </div>
+
+                    <form name="form_account_activated">
+                        
+                        <div class="form-group row">
+                            <div class="col-md-4  col-md-offset-4">
+                                <button class="btn btn-block btn-success" ng-click="vm.login()">Login</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <p>PredictION<sup>T</sup> - Predictive Analytics for Telecom &copy; 2015-16</p>
+                            </div>
+                        </div>
+                        
+                    </form>
+
+                </div>
+            </div>
+            <div class="panel-footer"></div>
+        </div> 
+    </div>
+
+</div>
+<div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1 data-translate="activate.title">Activation</h1>

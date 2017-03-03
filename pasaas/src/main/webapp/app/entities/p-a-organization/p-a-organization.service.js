@@ -5,12 +5,12 @@
         .factory('PAOrganization', PAOrganization);
 
     PAOrganization.$inject = ['$resource', 'DateUtils'];
-
+    
     function PAOrganization ($resource, DateUtils) {
         var resourceUrl =  'api/p-a-organizations/:id';
-
+        
         return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
+        	'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {

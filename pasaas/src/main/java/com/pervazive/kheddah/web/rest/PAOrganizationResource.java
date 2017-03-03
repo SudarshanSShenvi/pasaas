@@ -177,6 +177,29 @@ public class PAOrganizationResource {
         
        
     }
+    
+    @GetMapping("/p-a-organizations/u/{user}")
+    @Timed
+    //@Secured(AuthoritiesConstants.ADMIN)
+    public ResponseEntity<List<PAOrganizationDTO>> getAllPAOrganizationsForUser(@ApiParam Pageable pageable, @PathVariable String user)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAOrganizations");
+        
+        Page<PAOrganization> page = pAOrganizationService.findAll(pageable, user);
+        		
+        if (page.getContent().isEmpty()) {
+            return ResponseEntity.badRequest()
+                .headers(HeaderUtil.createFailureAlert("paorganization", "emptyorganization", "No Organizations Associated. Please contact admin to include you as part of an Organization"))
+                .body(null);
+        } 
+        List<PAOrganizationDTO> paOrganization = page.getContent().stream()
+            .map(PAOrganizationDTO::new)
+            .collect(Collectors.toList());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-organizations-u");
+        return new ResponseEntity<>(paOrganization, headers, HttpStatus.OK);
+        
+       
+    }
 
     /**
      * GET  /p-a-organizations/:id : get the "id" pAOrganization.

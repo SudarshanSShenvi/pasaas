@@ -5,16 +5,16 @@
         .module('pasaasApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'PAOrganization'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'PAOrganizationUser'];
 
-    function HomeController ($scope, Principal, LoginService, $state, PAOrganization) {
+    function HomeController ($scope, Principal, LoginService, $state, PAOrganizationUser) {
         var vm = this;
 
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
-        //vm.paorganizations = PAOrganization.query();
+        vm.paorganizations = PAOrganizationUser.queryuser();
         $scope.$on('authenticationSuccess', function() {
         	getAccount();
         });

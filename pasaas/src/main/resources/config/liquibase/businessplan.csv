@@ -1,2 +1,5 @@
 id;businessplan;users;description;pastatus;projects
-1;Trial;10;Trial Plan;Active;10
+1;Trial;1;Trial Plan;Active;1
+2;Silver;3;Silver Plan;Active;10
+3;Gold;10;Gold Plan;Active;25
+4;Platinum;50;Platinum Plan;Active;250

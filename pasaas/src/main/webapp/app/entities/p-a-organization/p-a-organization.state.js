@@ -146,6 +146,31 @@
                 });
             }]
         })
+        .state('p-a-organization.quser', {
+            parent: 'p-a-organization',
+            url: '/u/{user}',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/p-a-organization/p-a-organizations.html',
+                    controller: 'PAOrganizationUserController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['PAOrganization', function(PAOrganization) {
+                            return PAOrganization.queryuser({user : $stateParams.user}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('^', {}, { reload: false });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
         .state('p-a-organization.delete', {
             parent: 'p-a-organization',
             url: '/{id}/delete',
