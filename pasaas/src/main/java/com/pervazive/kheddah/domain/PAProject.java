@@ -7,6 +7,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
@@ -28,6 +30,7 @@ public class PAProject extends AbstractAuditingEntity implements Serializable {
     private Long id;
 
     @Column(name = "projectname")
+    @NotNull
     private String projectname;
 
     @Column(name = "description")
