@@ -45,6 +45,7 @@ public class PAOrganization extends AbstractAuditingEntity implements Serializab
     private Long id;
 
     @Column(name = "organization")
+    @NotNull
     private String organization;
 
     @Column(name = "validfrom")
