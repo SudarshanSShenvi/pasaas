@@ -1,8 +1,7 @@
 package com.pervazive.kheddah.service.impl;
 
-import java.text.SimpleDateFormat;
+import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
-import java.util.TimeZone;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,10 +13,13 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.spark.SparkConf;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pervazive.kheddah.dbuploader.DBOperationsHandler;
 import com.pervazive.kheddah.domain.PAGeneralConfig;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.paml.DataAggregator;
 import com.pervazive.kheddah.paml.DataRollup;
@@ -27,6 +29,7 @@ import com.pervazive.kheddah.repository.PASaxCodeRepository;
 import com.pervazive.kheddah.repository.PASaxCodeTmpRepository;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAGeneralConfigService;
+import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.PASaxCodeService;
 import com.pervazive.kheddah.service.SparkOperationsService;
@@ -57,6 +60,12 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 	
 	@Inject
 	PAGeneralConfigService paGeneralConfigService;
+	
+	@Inject
+	PAOrganizationService paOrganizationService;
+	
+	@Inject
+	Environment environment;
 	
 	
 	public static Configuration hadoopConf = null;
@@ -114,7 +123,6 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 
 		  			hdfsFileOperationsService.deleteFile(baseURL+paGeneralConfig.getTrainingrollupinfile()+"/8.64E7", hadoopConf);
 		  			
-		  			
 		  			log.debug("===========> DATA ROLLUP PARMS ");
 		  			log.debug("===========> "+baseURL+paGeneralConfig.getExpressionfilepath()+"/expression.txt");
 		  			log.debug("===========> "+paProject.getRollseriesnxt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
@@ -123,10 +131,6 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		  			log.debug("===========> "+paProject.getRollindateformat());
 		  			log.debug("===========> "+baseURL+paGeneralConfig.getTrainingrollupinfile());
 		  			log.debug("===========> "+paProject.getRollseriesgroupindex());
-		  			
-		  			
-		  			
-		  			
 		  			
 		  			DataRollup dataRollup = new DataRollup(1, baseURL+paGeneralConfig.getExpressionfilepath()+"/expression.txt", 
 		  					paProject.getRollseriesnxt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
@@ -146,12 +150,30 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 					
 		        	subSequenceGenerator.run(sparkConf, "Training - Patterns");
 		        	String path = hdfsFileOperationsService.passFileForUpload(baseURL+paGeneralConfig.getTrainingpatterntmpoutfile()+"/part-00000", hadoopConf).getAbsolutePath();
-		        	log.debug("Attempting Delete ");
+		        	//String path ="/home/pervazive/git/pasaas/pasaas/loadtsv";
+		        	/*log.debug("Attempting Delete ");
 		        	paSaxCodeTmpRepository.deleteAllInBatch();
 		        	log.debug("Done with Deletion ");
 		        	paSaxCodeTmpRepository.saveCSV(path, 1L, 1L);
 		        	paSaxCodeRepository.updateCustomResult();
-		        	paSaxCodeRepository.addNewPatterns();
+		        	paSaxCodeRepository.addNewPatterns();*/
+		        	PAOrganization paOrganization = paOrganizationService.findOrganizationByName(organization);
+		        	
+		        	DBOperationsHandler dbOperationsHandler = new DBOperationsHandler();
+		        	log.debug("--> "+environment.getProperty("spring.datasource.url"));
+		            log.debug("--> "+environment.getProperty("spring.datasource.username")); 
+		            log.debug("--> "+environment.getProperty("spring.datasource.password"));
+		        	log.debug("Invoking DBOps "+dbOperationsHandler.deleteFromSaxcodeTmp);
+		        	log.debug("Invoking Orgs "+paOrganization.getId());
+		        	log.debug("Invoking Project  "+paProject.getId());
+		        	log.debug("Invoking Path  "+path);
+		        	Connection connection = dbOperationsHandler.getConnection(environment.getProperty("spring.datasource.url"), 
+		        			environment.getProperty("spring.datasource.username"), environment.getProperty("spring.datasource.password"));
+		        	
+		        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.deleteFromSaxcodeTmp, paOrganization.getId(), paProject.getId(), path);
+		        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.loadDataIntoSaxcodeTmp, paOrganization.getId(), paProject.getId(), path);
+		        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.updateSaxCodeFromTmp, paOrganization.getId(), paProject.getId(), path);
+		        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.insertSaxcodeFromTmp, paOrganization.getId(), paProject.getId(), path);
 		  			return 0L;
 		  		}
 		    });
@@ -207,10 +229,18 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 				        	subSequenceGenerator.run(sparkConf, "Prediction - patterns");
 				        	
 				        	String path = hdfsFileOperationsService.passFileForUpload(baseURL+paGeneralConfig.getPredictpatterntmpoutfile()+"/part-00000", hadoopConf).getAbsolutePath();
-				        	paSaxCodeTmpRepository.deleteAllInBatch();
+				        	/*paSaxCodeTmpRepository.deleteAllInBatch();
 				        	paSaxCodeTmpRepository.saveCSV(path, 1L, 1L);
 				        	log.debug("Attempting New Prediction creations ");
-				        	paPredictionScoreRepository.createPredictionsForDay();
+				        	paPredictionScoreRepository.createPredictionsForDay();*/
+				        	PAOrganization paOrganization = paOrganizationService.findOrganizationByName(organization);
+				        	DBOperationsHandler dbOperationsHandler = new DBOperationsHandler();
+				        	
+				        	Connection connection = dbOperationsHandler.getConnection(environment.getProperty("spring.datasource.url"), 
+				        			environment.getProperty("spring.datasource.username"), environment.getProperty("spring.datasource.password"));
+				        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.deleteFromSaxcodeTmp, paOrganization.getId(), paProject.getId(), path);
+				        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.loadDataIntoSaxcodeTmp, paOrganization.getId(), paProject.getId(), path);
+				        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.insertPredictionsFromSaxcodeAndTmp, paOrganization.getId(), paProject.getId(), path);
 				        	return 0L;
 		        }
 		    });

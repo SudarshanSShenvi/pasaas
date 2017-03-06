@@ -146,31 +146,6 @@
                 });
             }]
         })
-        .state('p-a-organization.quser', {
-            parent: 'p-a-organization',
-            url: '/u/{user}',
-            data: {
-                authorities: ['ROLE_USER']
-            },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-                $uibModal.open({
-                    templateUrl: 'app/entities/p-a-organization/p-a-organizations.html',
-                    controller: 'PAOrganizationUserController',
-                    controllerAs: 'vm',
-                    backdrop: 'static',
-                    size: 'lg',
-                    resolve: {
-                        entity: ['PAOrganization', function(PAOrganization) {
-                            return PAOrganization.queryuser({user : $stateParams.user}).$promise;
-                        }]
-                    }
-                }).result.then(function() {
-                    $state.go('^', {}, { reload: false });
-                }, function() {
-                    $state.go('^');
-                });
-            }]
-        })
         .state('p-a-organization.delete', {
             parent: 'p-a-organization',
             url: '/{id}/delete',
@@ -194,6 +169,29 @@
                     $state.go('^');
                 });
             }]
+        })
+        .state('p-a-organization.u', {
+            parent: 'entity',
+            url: '/p-a-organization/u/{user}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'pasaasApp.pAOrganization.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/p-a-organization/p-a-organizations2.html',
+                    controller: 'PAOrganizationUserController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('pAOrganization');
+                    $translatePartialLoader.addPart('pAStatus');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
         });
     }
 

@@ -1,25 +1,28 @@
 package com.pervazive.kheddah;
 
-import com.pervazive.kheddah.config.Constants;
-import com.pervazive.kheddah.config.DefaultProfileUtil;
-import com.pervazive.kheddah.config.JHipsterProperties;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.Collection;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.autoconfigure.*;
+import org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration;
+import org.springframework.boot.actuate.autoconfigure.MetricRepositoryAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Collection;
+import com.pervazive.kheddah.config.Constants;
+import com.pervazive.kheddah.config.DefaultProfileUtil;
+import com.pervazive.kheddah.config.JHipsterProperties;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
@@ -30,6 +33,9 @@ public class PasaasApp {
 
     @Inject
     private Environment env;
+    
+    @Value("${spring.datasource.url}")
+    private static String dbUrl;
 
     /**
      * Initializes pasaas.
@@ -62,6 +68,11 @@ public class PasaasApp {
         SpringApplication app = new SpringApplication(PasaasApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
+        log.info("--> *********"+dbUrl);
+        
+        log.info("--> "+env.getProperty("spring.datasource.url"));
+        log.info("--> "+env.getProperty("spring.datasource.username")); 
+        log.info("--> "+env.getProperty("spring.datasource.password"));
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application '{}' is running! Access URLs:\n\t" +
                 "Local: \t\thttp://localhost:{}\n\t" +

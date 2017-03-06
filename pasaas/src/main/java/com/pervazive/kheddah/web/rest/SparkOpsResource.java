@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.SparkOperationsService;
 
 /**
@@ -36,9 +37,8 @@ public class SparkOpsResource {
     @Timed
     public ResponseEntity<String> triggerTrainingOps(@PathVariable String projectName, HttpServletRequest request)
         throws URISyntaxException {
-    	 List<PAOrganization> paOrganizations = (List<PAOrganization>) request.getSession().getAttribute("organizationsess");
     	SparkConf sparkConf = sparkOperationsService.setSparkConfigurations();
-    	sparkOperationsService.triggerTrainingOperation(1, sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, paOrganizations.get(0).getOrganization());
+    	sparkOperationsService.triggerTrainingOperation(1, sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, SecurityUtils.currentOrganization);
     	return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);
     }
     
@@ -46,9 +46,8 @@ public class SparkOpsResource {
     @Timed
     public ResponseEntity<String> triggerPredictionOps(@PathVariable String projectName, HttpServletRequest request)
         throws URISyntaxException {
-    	 List<PAOrganization> paOrganizations = (List<PAOrganization>) request.getSession().getAttribute("organizationsess");
     	SparkConf sparkConf = sparkOperationsService.setSparkConfigurations();
-    	sparkOperationsService.triggerPredictionOperation(1,sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, paOrganizations.get(0).getOrganization());
+    	sparkOperationsService.triggerPredictionOperation(1,sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, SecurityUtils.currentOrganization);
     	return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);
     }
  

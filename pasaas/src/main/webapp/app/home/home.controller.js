@@ -14,7 +14,7 @@
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
-        vm.paorganizations = PAOrganizationUser.queryuser();
+        vm.paorganizations = PAOrganizationUser.query(vm.login);
         $scope.$on('authenticationSuccess', function() {
         	getAccount();
         });
