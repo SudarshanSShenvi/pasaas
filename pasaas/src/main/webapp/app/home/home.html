@@ -12,9 +12,9 @@
                     You are logged in as user "{{vm.account.login}}".
                 </div>
                 
-                <div class="form-group">
+              <div class="form-group">
             <label data-translate="pasaasApp.pAOrganization.organization" for="field_paorg">XXX</label>
-            <select class="form-control" id="field_paorg" name="paorg" ng-model="vm.pAOrganizationsUser.organization" ng-options="pAOrganizationsUser in vm.pAOrganizationsUser track by pAOrganizationsUser.id">
+            <select class="form-control" id="field_paorg" name="paorg" ng-model="vm.pAOrganizations.organization" ng-option="pAOrganization in vm.pAOrganizations track by pAOrganization.id>
                 <option value=""></option>
             </select>
         </div>

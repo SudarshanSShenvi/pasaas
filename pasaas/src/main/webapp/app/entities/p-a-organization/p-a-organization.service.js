@@ -25,4 +25,20 @@
             'update': { method:'PUT' }
         });
     }
+    
+    angular
+    .module('pasaasApp')
+    .factory('PAOrganizationUser', PAOrganizationUser);
+
+PAOrganizationUser.$inject = ['$resource', 'DateUtils'];
+
+function PAOrganizationUser ($resource, DateUtils) {
+    var resourceUrl =  'api/p-a-organizations/u/:user';
+    
+    return $resource(resourceUrl,{}, {
+        'query1': {  method: 'GET', isArray: true, params:{ 
+        	user:'@user'    
+        }},
+    });
+}
 })();

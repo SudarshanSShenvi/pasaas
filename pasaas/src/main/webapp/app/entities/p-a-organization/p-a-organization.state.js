@@ -180,7 +180,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/entities/p-a-organization/p-a-organizations2.html',
-                    controller: 'PAOrganizationUserController',
+                    controller: 'PAOrganizationController',
                     controllerAs: 'vm'
                 }
             },
