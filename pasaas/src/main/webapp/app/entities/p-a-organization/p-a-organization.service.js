@@ -25,20 +25,18 @@
             'update': { method:'PUT' }
         });
     }
-    
     angular
     .module('pasaasApp')
-    .factory('PAOrganizationUser', PAOrganizationUser);
+    .factory('PAOrganizationU', PAOrganizationU);
 
-PAOrganizationUser.$inject = ['$resource', 'DateUtils'];
+    PAOrganizationU.$inject = ['$resource', 'DateUtils'];
 
-function PAOrganizationUser ($resource, DateUtils) {
-    var resourceUrl =  'api/p-a-organizations/u/:user';
+function PAOrganizationU ($resource, DateUtils) {
+    var resourceUrl =  'api/p-a-organizations/u/pervazivesu';
     
-    return $resource(resourceUrl,{}, {
-        'query1': {  method: 'GET', isArray: true, params:{ 
-        	user:'@user'    
-        }},
+    return $resource(resourceUrl, {}, {
+    	'query': { method: 'GET', isArray: true}
     });
 }
+    
 })();

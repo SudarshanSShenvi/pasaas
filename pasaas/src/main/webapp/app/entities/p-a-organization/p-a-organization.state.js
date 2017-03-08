@@ -169,29 +169,6 @@
                     $state.go('^');
                 });
             }]
-        })
-        .state('p-a-organization.u', {
-            parent: 'entity',
-            url: '/p-a-organization/u/{user}',
-            data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'pasaasApp.pAOrganization.home.title'
-            },
-            views: {
-                'content@': {
-                    templateUrl: 'app/entities/p-a-organization/p-a-organizations2.html',
-                    controller: 'PAOrganizationController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('pAOrganization');
-                    $translatePartialLoader.addPart('pAStatus');
-                    $translatePartialLoader.addPart('global');
-                    return $translate.refresh();
-                }]
-            }
         });
     }
 
