@@ -3,7 +3,7 @@
         "pAOrganization" : {
             "home": {
                 "title": "PA Organizations",
-                "createLabel": "Create a new PA Organization",
+                "createLabel": "Create New Organization",
                 "createOrEditLabel": "Create or edit a PA Organization",
                 "search": "Search for PA Organization"
             },
@@ -17,11 +17,11 @@
                 "title": "PA Organization"
             },
             "organization": "Organization",
-            "validfrom": "Validfrom",
-            "validto": "Validto",
-            "pastatus": "Pastatus",
+            "validfrom": "Valid From",
+            "validto": "Valid To",
+            "pastatus": "Status",
             "paproorg": "Paproorg",
-            "pabporg": "Pabporg",
+            "pabporg": "Business plan",
             "parsorg": "Parsorg",
             "parcorg": "Parcorg",
             "papsorg": "Papsorg",

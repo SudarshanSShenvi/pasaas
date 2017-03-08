@@ -14,6 +14,7 @@
             url: '/p-a-organization',
             data: {
                 authorities: ['ROLE_USER'],
+                // authorities: [],
                 pageTitle: 'pasaasApp.pAOrganization.home.title'
             },
             views: {
@@ -37,6 +38,7 @@
             url: '/p-a-organization/{id}',
             data: {
                 authorities: ['ROLE_USER'],
+                // authorities: [],
                 pageTitle: 'pasaasApp.pAOrganization.detail.title'
             },
             views: {
@@ -70,6 +72,7 @@
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -95,6 +98,7 @@
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -126,6 +130,7 @@
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -151,6 +156,7 @@
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

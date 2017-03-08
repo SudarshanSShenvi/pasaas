@@ -1,0 +1,18 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{page_meta_data.page_header_title}}</h2>
+        <ol class="breadcrumb">
+            <li ng-repeat="each_item in page_meta_data.breadcrumb_data" class="{{each_item.class}}">
+            	<span ng-if="!each_item.is_active">
+            		<a ng-href="{{each_item.link}}">{{each_item.label}}</a>
+            	</span>
+            	<span ng-if="each_item.is_active">
+            		<a><strong>{{each_item.label}}</strong></a>
+            	</span>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+<!-- <pre>{{page_meta_data | json}}</pre> -->

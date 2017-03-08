@@ -6,10 +6,9 @@
 
     PAProject.$inject = ['$resource'];
 
-
     function PAProject ($resource) {
         var resourceUrl =  'api/p-a-projects/:id';
-        
+
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'get': {

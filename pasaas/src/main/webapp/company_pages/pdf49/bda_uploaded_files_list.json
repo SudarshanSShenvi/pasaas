@@ -1,0 +1,30 @@
+[
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "1",
+		"alarmsno" : "File Name 1",
+		"detail" : "146 MB",
+		"date":"12/05/2015",
+		"by":"User 1"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "1",
+		"alarmsno" : "File Name 1",
+		"detail" : "146 MB",
+		"date":"12/05/2015",
+		"by":"User 1"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Archived",
+		"alarmst" : "1",
+		"alarmsno" : "File Name 1",
+		"detail" : "146 MB",
+		"date":"12/05/2015",
+		"by":"User 1"
+	}
+
+]

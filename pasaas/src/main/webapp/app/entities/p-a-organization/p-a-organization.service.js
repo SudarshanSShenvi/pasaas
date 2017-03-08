@@ -5,12 +5,12 @@
         .factory('PAOrganization', PAOrganization);
 
     PAOrganization.$inject = ['$resource', 'DateUtils'];
-    
+
     function PAOrganization ($resource, DateUtils) {
         var resourceUrl =  'api/p-a-organizations/:id';
-        
+
         return $resource(resourceUrl, {}, {
-        	'query': { method: 'GET', isArray: true},
+            'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',
                 transformResponse: function (data) {
@@ -25,18 +25,4 @@
             'update': { method:'PUT' }
         });
     }
-    angular
-    .module('pasaasApp')
-    .factory('PAOrganizationU', PAOrganizationU);
-
-    PAOrganizationU.$inject = ['$resource', 'DateUtils'];
-
-function PAOrganizationU ($resource, DateUtils) {
-    var resourceUrl =  'api/p-a-organizations/u/pervazivesu';
-    
-    return $resource(resourceUrl, {}, {
-    	'query': { method: 'GET', isArray: true}
-    });
-}
-    
 })();

@@ -1,0 +1,31 @@
+[
+
+	{
+		"button" : "Active",
+		"config_id" : "1",
+		"config_text" : "Showing first 100 characters of info from the Configuration text 1",
+		"config_type" : "AUTO-GEX"
+	},{
+		"button" : "Active",
+		"config_id" : "1",
+		"config_text" : "Showing first 100 characters of info from the Configuration text 1",
+		"config_type" : "AUTO-GEX"
+	},{
+		"button" : "Archived",
+		"config_id" : "1",
+		"config_text" : "Showing first 100 characters of info from the Configuration text 1",
+		"config_type" : "AUTO-GEX"
+	},{
+		"button" : "Archived",
+		"config_id" : "1",
+		"config_text" : "Showing first 100 characters of info from the Configuration text 1",
+		"config_type" : "AUTO-GEX"
+	},
+	{
+		"button" : "Active",
+		"config_id" : "1",
+		"config_text" : "Showing first 100 characters of info from the Configuration text 1",
+		"config_type" : "AUTO-GEX"
+	}
+	
+]

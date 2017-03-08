@@ -1,0 +1,48 @@
+<!-- <div ng-controller='controller_files'> -->
+<div>
+	
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Add User to your "Project1"
+		</div>
+		<div class="panel-body">
+			<div class="col col-md-2">
+				<button class="btn btn-primary">File Upload</button>
+
+				<h4>FOLDER</h4>
+				<h5 align="right">Telecom Project</h5>
+				<h5 align="right">Project 1</h5>
+				<h5 align="right">Project 2</h5>
+				<h4>Tags</h4>
+				<span class="label label-default">Telecom</span>
+				
+			</div>
+			<div class="col col-md-10">
+				
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="file-box" ng-repeat = "each_file in file_list">
+						    <div class="file">
+						        <a href="">
+						            <span class="corner"></span>
+
+						            <div class="icon">
+						                <i class="{{each_file.class_name}}"></i>
+						            </div>
+						            <div class="file-name">
+						                {{each_file.name}}
+						                <br/>
+						                <small>{{each_file.date}}</small>
+						            </div>
+						        </a>
+						    </div>
+						</div>
+					</div>
+				</div>
+						
+			</div>
+		</div>
+		<div class="panel-footer"></div>
+	</div>
+	
+</div>

@@ -1,0 +1,101 @@
+<!-- <div ng-controller='controller_pdf12'> -->
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+
+
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+		    <div class="col-md-4">
+	            <div class="ibox float-e-margins">
+	                <div class="ibox-title">
+	                    <h5>Profile Detail</h5>
+	                </div>
+	                <div>
+	                    <div class="ibox-content no-padding border-left-right">
+	                        <img alt="image" class="img-responsive" src="img/profile_big.jpg">
+	                    </div>
+	                    <div class="ibox-content profile-content">
+	                        <h4>
+	                        	<strong>{{page_data1.name}}</strong>
+	                        	<span class="pull-right">
+	                        		<span class="text-primary">Subscription</span> - {{page_data1.subscription_type}}
+	                        	</span>
+	                        </h4>
+
+	                        <p><i class="fa fa-map-marker"></i> {{page_data1.address}}</p>
+	                        <h5>About me</h5>	<p>{{page_data1.text_about}}</p>
+
+	                        <div class="row m-t-lg">
+	                            <div class="col-md-4">
+	                                <bar-chart 
+	                                	data="main.BarChart3.data" 
+	                                	options="main.BarChart3.options"
+	                                ></line-bar>
+	                                <h5><strong>{{page_data1.count_incedent}}</strong> Incedent</h5>
+	                            </div>
+	                            <div class="col-md-4">
+	                                <line-chart 
+	                                	data="main.LineChart.data" 
+	                                	options="main.LineChart.options"
+	                                ></line-bar>
+	                                <h5><strong>{{page_data1.count_solved}}</strong> Solved</h5>
+	                            </div>
+	                            <div class="col-md-4">
+	                                <bar-chart 
+	                                	data="main.BarChart2.data" 
+	                                	options="main.BarChart2.options"
+	                                ></line-bar>
+	                                <h5><strong>{{page_data1.count_monitoring}}</strong> Monetering</h5>
+	                            </div>
+	                        </div>
+	                        <div class="user-button">
+	                            <div class="row">
+	                                <div class="col-md-6">
+	                                    <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</button>
+	                                </div>
+	                                <div class="col-md-6">
+	                                    <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> Deactivate Account</button>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+		    <div class="col-lg-8">
+		        <div class="ibox">
+		            <div class="ibox-title">
+		                <h5>Projects</h5>
+		                <div ibox-tools></div>
+		            </div>
+		            <div class="ibox-content">
+
+		            </div>
+		        </div>
+		        <div class="ibox">
+		            <div class="ibox-title">
+		                <h5>Groups</h5>
+		                <div ibox-tools></div>
+		            </div>
+		            <div class="ibox-content">
+
+		            </div>
+		        </div>
+		        <div class="ibox">
+		            <div class="ibox-title">
+		                <h5>Activities</h5>
+		                <div ibox-tools></div>
+		            </div>
+		            <div class="ibox-content">
+
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+</div>

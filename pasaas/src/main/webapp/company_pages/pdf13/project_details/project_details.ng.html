@@ -1,0 +1,212 @@
+<!-- <div ng-controller='controller_project_details'> -->
+<div>
+	<div class="row">
+
+		<form name="form_project_details">
+			<div class="col-md-6">
+				<div class="form-group row">
+					<div class="col-md-4">
+						<label for="project_name">Project Name*</label>
+						<div 
+						  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+						  	ng-show="form_project_details.project_name.$valid && form_project_details.project_name.$dirty"
+						></div>
+						<div 
+						 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+						 	ng-show="form_project_details.project_name.$invalid && form_project_details.project_name.$dirty"
+						></div> 
+					</div>
+					<div class="col-md-8">
+						<input 
+							class="form-control" 
+							type="text" 
+							name="project_name"
+							ng-model="new_project.project_name"
+							placeholder="Enter Project Name"
+							required
+						>
+						<div 
+							ng-show="form_project_details.project_name.$error.required && form_project_details.project_name.$dirty"
+							class="alert alert-danger"
+						>
+							Project Name is required
+						</div>
+					</div>
+				</div>
+				
+
+				<div class="form-group row">
+					<div class="col-md-4">
+						<label for="description">Description* </label>
+						<div 
+						  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+						  	ng-show="form_project_details.description.$valid && form_project_details.description.$dirty"
+						></div>
+						<div 
+						 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+						 	ng-show="form_project_details.description.$invalid && form_project_details.description.$dirty"
+						></div> 
+					</div>
+					<div class="col-md-8">
+						<textarea
+							class="form-control" 
+							type="text" 
+							name="description"
+							ng-model="new_project.description"
+							placeholder="Enter Description"
+							required
+						></textarea>
+						<div 
+							ng-show="form_project_details.description.$error.required && form_project_details.description.$dirty"
+							class="alert alert-danger"
+						>
+							Description is required
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<div class="col-md-4">
+						<label for="priority">Priority* </label>
+						<div 
+						  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+						  	ng-show="form_project_details.priority.$valid && form_project_details.priority.$dirty"
+						></div>
+						<div 
+						 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+						 	ng-show="form_project_details.priority.$invalid && form_project_details.priority.$dirty"
+						></div> 
+					</div>
+					<div class="col-md-8">
+
+						<select 
+							class="form-control" 
+							name="priority"
+							ng-model="new_project.priority"
+							placeholder="Enter Priority"
+							required
+						>
+							<!-- <option value=""></option> -->
+							<option value="option 1">option 1</option>
+							<option value="option 2">option 2</option>
+							<option value="option 3">option 3</option>
+							
+							<!-- <option 
+								ng-repeat="each_priority in all_countries" 
+								ng-value="each_priority.priority_name"
+							>{{each_priority.priority_name}}</option> -->
+						</select>
+
+						<div 
+							ng-show="form_project_details.priority.$error.required && form_project_details.priority.$dirty"
+							class="alert alert-danger"
+						>
+							Priority is required
+						</div>
+					</div>
+				</div>
+
+
+				<div class="form-group row">
+					<div class="col-md-4">
+						<label for="label">Label </label>
+						<div 
+						  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+						  	ng-show="form_project_details.label.$valid && form_project_details.label.$dirty"
+						></div>
+						<div 
+						 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+						 	ng-show="form_project_details.label.$invalid && form_project_details.label.$dirty"
+						></div> 
+					</div>
+					<div class="col-md-8">
+						<textarea
+							class="form-control" 
+							type="text" 
+							name="label"
+							ng-model="new_project.label"
+							placeholder="Enter Label"
+							required
+						></textarea>
+						<div 
+							ng-show="form_project_details.label.$error.required && form_project_details.label.$dirty"
+							class="alert alert-danger"
+						>
+							Label is required
+						</div>
+						<span class = "label label-default">
+							<span class = "glyphicon glyphicon-tag"></span> Telecom
+						</span> &nbsp;
+						<span class = "label label-default">
+							<span class = "glyphicon glyphicon-tag"></span> North America
+						</span>
+					</div>
+				</div>
+				
+				
+				
+				<div class="form-group row">
+					<div class="col-md-4">
+						<label for="version">Version* </label>
+						<div 
+						  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+						  	ng-show="form_project_details.version.$valid && form_project_details.version.$dirty"
+						></div>
+						<div 
+						 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+						 	ng-show="form_project_details.version.$invalid && form_project_details.version.$dirty"
+						></div> 
+					</div>
+					<div class="col-md-8">
+						<input 
+							class="form-control" 
+							type="text" 
+							name="version"
+							ng-model="new_project.version"
+							placeholder="Enter Version"
+							required
+						>
+						<div 
+							ng-show="form_project_details.version.$error.required && form_project_details.version.$dirty"
+							class="alert alert-danger"
+						>
+							Version is required
+						</div>
+					</div>
+				</div>
+			</div>
+				
+			<div class="col-md-6">
+				
+				<div class="form-group row">
+					<div class="col-md-4">
+						<label for="organization">Organization* </label>
+						<div 
+						  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+						  	ng-show="form_project_details.organization.$valid && form_project_details.organization.$dirty"
+						></div>
+						<div 
+						 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+						 	ng-show="form_project_details.organization.$invalid && form_project_details.organization.$dirty"
+						></div> 
+					</div>
+					<div class="col-md-8">
+						<div class="thumbnail">
+								<h3>Telecom Company</h3>
+							<img src="company_pages/pdf13/images/img_file2.png" alt="...">
+							<div class="caption">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+								<p>
+								<p>www.tele-com.com</p>
+									<!-- <a href="#" class="btn btn-primary" role="button">Button</a> 
+									<a href="#" class="btn btn-default" role="button">Button</a> -->
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+</div>

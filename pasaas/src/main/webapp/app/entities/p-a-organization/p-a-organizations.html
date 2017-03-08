@@ -1,66 +1,99 @@
 <div>
-    <h2 data-translate="pasaasApp.pAOrganization.home.title">PA Organizations</h2>
-    <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="p-a-organization.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="pasaasApp.pAOrganization.home.createLabel">
-                        Create new PA Organization
-                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="organization"><span data-translate="pasaasApp.pAOrganization.organization">Organization</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="validfrom"><span data-translate="pasaasApp.pAOrganization.validfrom">Validfrom</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="validto"><span data-translate="pasaasApp.pAOrganization.validto">Validto</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pAOrganization.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="pabporg.businessplan"><span data-translate="pasaasApp.pAOrganization.pabporg">Pabporg</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="pAOrganization in vm.pAOrganizations track by pAOrganization.id">
-                    <td><a ui-sref="p-a-organization-detail({id:pAOrganization.id})">{{pAOrganization.id}}</a></td>
-                    <td>{{pAOrganization.organization}}</td>
-                    <td>{{pAOrganization.validfrom | date:'medium'}}</td>
-                    <td>{{pAOrganization.validto | date:'medium'}}</td>
-                    <td data-translate="{{'pasaasApp.PAStatus.' + pAOrganization.pastatus}}">{{pAOrganization.pastatus}}</td>
-                    <td>
-                        <a ui-sref="p-a-business-plan-detail({id:pAOrganization.pabporg.id})">{{pAOrganization.pabporg.businessplan}}</a>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="p-a-organization-detail({id:pAOrganization.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="p-a-organization.edit({id:pAOrganization.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="p-a-organization.delete({id:pAOrganization.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+	<h2 data-translate="pasaasApp.pAOrganization.home.title">PA Organizations</h2>
+	<jhi-alert></jhi-alert>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4 no-padding-left">
+				<button 
+					class="btn btn-primary" 
+					ui-sref="p-a-organization.new"
+				>
+					<span class="glyphicon glyphicon-plus"></span>
+					<span  data-translate="pasaasApp.pAOrganization.home.createLabel">
+						Create new PA Organization
+					</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div class="table-responsive">
+		<table class="jh-table table table-striped">
+			<thead>
+				<tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+					<th jh-sort-by="id">
+						<span data-translate="global.field.id">ID</span> 
+						<span class="glyphicon glyphicon-sort"></span></th>
+					<th jh-sort-by="organization">
+						<span data-translate="pasaasApp.pAOrganization.organization">Organization</span> 
+						<span class="glyphicon glyphicon-sort"></span></th>
+					<th jh-sort-by="validfrom">
+						<span data-translate="pasaasApp.pAOrganization.validfrom">Validfrom</span> 
+						<span class="glyphicon glyphicon-sort"></span></th>
+					<th jh-sort-by="validto">
+						<span data-translate="pasaasApp.pAOrganization.validto">Validto</span> 
+						<span class="glyphicon glyphicon-sort"></span></th>
+					<th jh-sort-by="pastatus">
+						<span data-translate="pasaasApp.pAOrganization.pastatus">Pastatus</span> 
+						<span class="glyphicon glyphicon-sort"></span></th>
+					<th jh-sort-by="pabporg.businessplan">
+						<span data-translate="pasaasApp.pAOrganization.pabporg">Pabporg</span> 
+						<span class="glyphicon glyphicon-sort"></span></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody 
+				infinite-scroll="vm.loadPage(vm.page + 1)" 
+				infinite-scroll-disabled="vm.page >= vm.links['last']"
+			>
+				<tr ng-repeat="pAOrganization in vm.pAOrganizations track by pAOrganization.id">
+					<td><a ui-sref="p-a-organization-detail({id:pAOrganization.id})">{{pAOrganization.id}}</a></td>
+					<td>{{pAOrganization.organization}}</td>
+					<td>{{pAOrganization.validfrom | date:'medium'}}</td>
+					<td>{{pAOrganization.validto | date:'medium'}}</td>
+					<td data-translate="{{'pasaasApp.PAStatus.' + pAOrganization.pastatus}}">{{pAOrganization.pastatus}}</td>
+					<td>
+						<a ui-sref="p-a-business-plan-detail({id:pAOrganization.pabporg.id})">{{pAOrganization.pabporg.businessplan}}</a>
+					</td>
+					<td class="text-right">
+						<div class="btn-group flex-btn-group-container">
+							<button 
+								type="submit"
+								ui-sref="p-a-organization-detail({id:pAOrganization.id})"
+								class="btn btn-info btn-sm"
+							>
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<span 
+									class="hidden-xs hidden-sm" 
+									data-translate="entity.action.view"
+								></span>
+							</button>
+							<button 
+								type="submit"
+								ui-sref="p-a-organization.edit({id:pAOrganization.id})"
+								class="btn btn-primary btn-sm"
+							>
+								<span class="glyphicon glyphicon-pencil"></span>
+								<span 
+									class="hidden-xs hidden-sm" 
+									data-translate="entity.action.edit"
+								></span>
+							</button>
+							<button 
+								type="submit"
+								ui-sref="p-a-organization.delete({id:pAOrganization.id})"
+								class="btn btn-danger btn-sm"
+							>
+								<span class="glyphicon glyphicon-remove-circle"></span>
+								<span 
+									class="hidden-xs hidden-sm" 
+									data-translate="entity.action.delete"
+								></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

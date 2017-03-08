@@ -1,0 +1,107 @@
+<!-- <div ng-controller='controller_chapter16'> -->
+<style> 
+	#my_navigation { display: none } 
+	#my_topnavbar { display: none } 
+	/*#my_footer { display: none } */
+	/*#wrapper { display: none } */
+</style>
+<div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="panel panel-default">
+			<div class="panel-heading" align="center">
+				<h1>predict<span class="text-success">ION<sup><b>T</b></sup></span></h1>
+				<h2>Predictive Analytics for Telecommunications</h2>
+				<h4>About the Predictive Analytics application for Telecom in a Sentence.</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-md-4 col-md-offset-4" align="center">
+					<p><h3><b>Set Password</b></h3></p>
+					<p>Set your password to access our awsome products.</p>
+					<p>&nbsp;</p>
+
+					<form name="form_set_password">
+						
+						<div class="form-group row">
+							<!-- <div class="col-md-4">
+								<label for="new_password">New Password :</label>
+								<div 
+								  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+								  	ng-show="form_set_password.new_password.$valid && form_set_password.new_password.$dirty"
+								></div>
+								<div 
+								 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+								 	ng-show="form_set_password.new_password.$invalid && form_set_password.new_password.$dirty"
+								></div> 
+							</div> -->
+							<div class="col-md-12">
+								<input 
+									class="form-control" 
+									type="password" 
+									name="new_password"
+									ng-model="user.new_password"
+									placeholder="Enter New Password"
+									required
+								>
+								<div 
+									ng-show="form_set_password.new_password.$error.required && form_set_password.new_password.$dirty"
+									class="alert alert-danger"
+								>
+									New Password is required
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group row">
+							<!-- <div class="col-md-4">
+								<label for="retype_password">Re-Type Password :</label>
+								<div 
+								  	class="text-success glyphicon glyphicon-ok form-control-feedback" 
+								  	ng-show="form_set_password.retype_password.$valid && form_set_password.retype_password.$dirty"
+								></div>
+								<div 
+								 	class="text-danger glyphicon glyphicon-remove form-control-feedback" 
+								 	ng-show="form_set_password.retype_password.$invalid && form_set_password.retype_password.$dirty"
+								></div> 
+							</div> -->
+							<div class="col-md-12">
+								<input 
+									class="form-control" 
+									type="password" 
+									name="retype_password"
+									ng-model="user.retype_password"
+									placeholder="Re-Type Password"
+									required
+								>
+								<div 
+									ng-show="form_set_password.retype_password.$error.required && form_set_password.retype_password.$dirty"
+									class="alert alert-danger"
+								>
+									Re-Type Password is required
+								</div>
+							</div>
+						</div>
+						
+						
+
+						<div class="form-group row">
+							<div class="col-md-12">
+								<button class="btn btn-block btn-success">Send new password</button>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-md-12">
+								<p>PredictION<sup>T</sup> - Predictive Analytics for Telecom &copy; 2015-16</p>
+							</div>
+						</div>
+						
+					</form>
+
+				</div>
+			</div>
+			<div class="panel-footer"></div>
+		</div>		 
+	</div>
+
+</div>

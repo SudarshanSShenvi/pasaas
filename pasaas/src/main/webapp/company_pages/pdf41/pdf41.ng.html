@@ -1,0 +1,168 @@
+<div ng-controller='controller_pdf41'>
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
+
+					<div class="ibox-title">
+						<h5>
+							"Dist. Network Element" "Site ID" "Site Location"
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Site ID</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="number" 
+										name="site_id"
+										ng-model="new_score.site_id"
+										placeholder="Enter Site ID"
+										required
+									>
+									<div 
+										ng-show="form_prs_hr_view.site_id.$error.required && form_prs_hr_view.site_id.$dirty"
+										class="alert alert-danger"
+									>
+										Site ID is required
+									</div>
+
+									</div>
+									<div class="col-md-3 custome_font_size_label">Status</div>
+									<div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											options-class="{ 
+												'selected_active' : label == 'Active', 
+												'selected_inactive': label == 'Inactive',
+												'selected_deleted': label == 'Deleted'
+											}"
+										>
+											<option ng-show="!selected_status" value="" class="selected_null">SELECT</option>
+										</select>
+										<!-- {{selected_status| json}} -->
+									</div>
+									<!-- <div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+										>
+											<option value="">SELECT</option>
+										</select>
+									</div> -->
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Site Location</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="site_location"
+										ng-model="new_score.site_location"
+										placeholder="Enter Site Location"
+										required
+									>
+									<div 
+										ng-show="form_prs_hr_view.site_location.$error.required && form_prs_hr_view.site_location.$dirty"
+										class="alert alert-danger"
+									>
+										Site Location is required
+									</div>
+
+									</div>
+									<div class="col-md-3">
+										<i class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+									</div>
+									<div class="col-md-3"></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Site Name</div>
+									<div class="col-md-9">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="site_name"
+										ng-model="new_score.site_name"
+										placeholder="Enter Site Name"
+										required
+									>
+									<div 
+										ng-show="form_prs_hr_view.site_name.$error.required && form_prs_hr_view.site_name.$dirty"
+										class="alert alert-danger"
+									>
+										Site Name is required
+									</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Distinguish Network Element</div>
+									<div class="col-md-9">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="distinguish_network_element"
+										ng-model="new_score.distinguish_network_element"
+										placeholder="Enter Distinguish Network Element"
+										required
+									>
+									<div 
+										ng-show="form_prs_hr_view.distinguish_network_element.$error.required && form_prs_hr_view.distinguish_network_element.$dirty"
+										class="alert alert-danger"
+									>
+										Distinguish Network Element is required
+									</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+			                    <span>Mark Your Location</span>
+			                    <span class="pull-right">latitude and longitude</span>
+			                    <section id="map2" ng-controller="GoogleMaps">
+			                        <div ui-map="myMap2" ui-options="mapOptions2" class="google-map"></div>
+			                    </section>
+					        </div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button class="btn btn-primary btn-sm">
+								<i class="fa fa-check"></i> SAVE
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

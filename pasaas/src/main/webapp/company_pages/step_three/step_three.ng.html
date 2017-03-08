@@ -1,0 +1,76 @@
+<!-- <div ng-controller='controller_step_three'> -->
+
+<div>
+	<div class="row">
+		<div class="col-md-2"><h3>Payment</h3></div>
+		<div class="col-md-2">Date<br><b>{{page_data1.date}}</b></div>
+		<div class="col-md-2">Owner Name<br><b>{{page_data1.owner_name}}</b></div>
+		<div class="col-md-2">Membership Plan<br><b>{{page_data1.plan}}</b></div>
+		<div class="col-md-2">Price<br><b>${{page_data1.price}}</b></div>
+		<div class="col-md-2"><span class="btn btn-primary btn-sm pull-right">View Invoice</span></div>
+	</div>
+
+	<accordion close-others="true">
+        <accordion-group is-open="open_acc == 'first'" ng-click="open_acc = 'first'">
+        	<accordion-heading>
+                Paypal 
+                <i class="pull-right fa fa-cc-paypal fa-2x"></i>
+                <!-- <i 
+                	class="pull-right glyphicon" 
+                	ng-class="{
+                		'glyphicon-chevron-down': status.open, 
+                		'glyphicon-chevron-right': !status.open
+                	}"
+                ></i> -->
+            </accordion-heading>
+            <div class="row">
+            	<div class="col-md-4">
+            		<h3>Summary</h3>
+            		<p><b>Product: </b>{{page_data1.paypal_summary.product}}</p>
+            		<p><b>Price: </b>${{page_data1.paypal_summary.price}}</p>
+            		<p>{{page_data1.paypal_summary.description}}</p>
+            	</div>
+            	<div class="col-md-8">
+					<form role="form">
+                        <div class="form-group"><label>CARD NUMBER</label> <input type="email" placeholder="Valid Card Number" class="form-control input-sm"></div>
+
+                        <div  class="row">
+                            <div class="form-group col-md-6"><label>EXPIRATION DATE</label> <input type="text" placeholder="MM/YY" class="form-control input-sm"></div>
+
+                            <div class="form-group col-md-6"><label>CV CODE</label> <input type="text" placeholder="CVC" class="form-control input-sm"></div>
+                        </div>
+
+                        <div class="form-group"><label>NAME OF CARD</label> <input type="password" placeholder="NAME AND SURNAME" class="form-control input-sm"></div>
+
+                        <div>
+                            <button class="btn btn-sm btn-primary m-t-n-xs" type="submit"><strong>Make Payment</strong></button>
+                        </div>
+                    </form>
+            	</div>
+            </div>
+        </accordion-group>
+        <accordion-group is-open="open_acc == 'second'" ng-click="open_acc = 'second'">
+        	<accordion-heading>
+                Credit Card 
+                <i class="pull-right fa fa-cc-discover fa-2x"></i>
+                <i class="pull-right fa fa-cc-mastercard fa-2x"></i>
+                <i class="pull-right fa fa-cc-amex fa-2x"></i>
+            </accordion-heading>
+            <p>The body of the accordion group grows to fit the contents</p>
+        </accordion-group>
+        <!-- <accordion-group is-open="status.open">
+            <accordion-heading>
+                I can have markup, too! 
+                <i 
+                	class="pull-right glyphicon" 
+                	ng-class="{
+                		'glyphicon-chevron-down': status.open, 
+                		'glyphicon-chevron-right': !status.open
+                	}"
+                ></i>
+            </accordion-heading>
+            This is just some content to illustrate fancy headings.
+        </accordion-group> -->
+    </accordion>
+
+</div>

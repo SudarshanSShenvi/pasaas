@@ -1,0 +1,74 @@
+[
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "Platform Group - Master",
+		"alarmsno" : "Platform:Group",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Gold,Platinum",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "PlatformGroup -Submitter",
+		"alarmsno" : "Platform:Group",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Silver,Gold,Platinum",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Active",
+		"alarmst" : "PlatformGroup -View",
+		"alarmsno" : "Platform:Group",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Gold,Platinum",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Active",
+		"alarmst" : "PlatformGroup -Report",
+		"alarmsno" : "Platform:Group",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Gold,Platinum",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Active",
+		"alarmst" : "PlatformUser -Master",
+		"alarmsno" : "Platform:User",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Gold,Platinum",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Active",
+		"alarmst" : "PlatformUser-Submitter",
+		"alarmsno" : "Platform:User",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Silver,Gold,Platinum",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Active",
+		"alarmst" : "PlatformUser -View",
+		"alarmsno" : "Platform:User",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Bronze,Silver, Gold, Platinum",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Active",
+		"alarmst" : "PlatformUser -Report",
+		"alarmsno" : "Platform:User",
+		"detail" : "Administrator,App Admin",
+		"cscore" : "Gold,Platinum",
+		"bscore" : "0.99"
+	}
+]
