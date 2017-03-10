@@ -50,7 +50,7 @@
 						<div class="project-list">
 							<table 
 								class="table table-hover" 
-								ng-repeat="pAProject in vm.pAProjects track by pAProject.id"
+								ng-repeat="pAProject in vm.pAProjects | filter:searchText track by pAProject.id"
 							>
 								<tbody>
 									<tr>
@@ -61,6 +61,43 @@
 										<td>{{pAProject.description}}</td>
 										<td>
 											<a ui-sref="p-a-organization-detail({id:pAProject.paorgpro.id})">{{pAProject.paorgpro.organization}}</a>
+										</td>
+										<td class="text-right">
+											<div class="btn-group flex-btn-group-container">
+												<button 
+													type="submit"
+													ui-sref="p-a-project-detail({id:pAProject.id})"
+													class="btn btn-info btn-sm"
+												>
+													<span class="glyphicon glyphicon-eye-open"></span>
+													<span 
+														class="hidden-xs hidden-sm" 
+														data-translate="entity.action.view"
+													></span>
+												</button>
+												<button 
+													type="submit"
+													ui-sref="p-a-project.edit({id:pAProject.id})"
+													class="btn btn-primary btn-sm"
+												>
+													<span class="glyphicon glyphicon-pencil"></span>
+													<span 
+														class="hidden-xs hidden-sm" 
+														data-translate="entity.action.edit"
+													></span>
+												</button>
+												<button 
+													type="submit"
+													ui-sref="p-a-project.delete({id:pAProject.id})"
+													class="btn btn-danger btn-sm"
+												>
+													<span class="glyphicon glyphicon-remove-circle"></span>
+													<span 
+														class="hidden-xs hidden-sm" 
+														data-translate="entity.action.delete"
+													></span>
+												</button>
+											</div>
 										</td>
 										<!-- <td>
 											<button 
@@ -102,13 +139,13 @@
 									        </a>
 									    </td> -->
 									    
-									    <td class="project-actions col-md-2">
+									    <!-- <td class="project-actions col-md-2">
 									        <a href="" class="btn btn-white btn-sm">
 									        <i class="fa fa-folder"></i> View </a>
 
 									        <a href="" class="btn btn-white btn-sm">
 									        <i class="fa fa-pencil"></i> Edit </a>
-									    </td>
+									    </td> -->
 									</tr>
 									
 								</tbody>

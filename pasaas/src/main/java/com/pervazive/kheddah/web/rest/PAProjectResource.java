@@ -104,22 +104,22 @@ public class PAProjectResource {
      */
     @PutMapping("/p-a-projects")
     @Timed
-    public ResponseEntity<PAProjectDTO> updatePAProject(@RequestBody PAProjectDTO pAProject) throws URISyntaxException {
+    public ResponseEntity<PAProject> updatePAProject(@RequestBody PAProject pAProject) throws URISyntaxException {
         log.debug("REST request to update PAProject : {}", pAProject);
-        /*if (pAProject.getId() == null) {
+        if (pAProject.getId() == null) {
             return createPAProject(pAProject);
-        }*/
-        /*PAProject result = pAProjectService.save(pAProject);
+        }
+        PAProject result = pAProjectService.save(pAProject);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("pAProject", pAProject.getId().toString()))
-            .body(new PAProjectDTO(result));*/
+            .body(result);
         
-        pAProjectService.updateProjectwithUsers(pAProject.getId(), pAProject.getProjectname(), pAProject.getDescription(), 
-        		pAProject.getPaorgpro(), pAProject.getPausers());
+        /*pAProjectService.updateProjectwithUsers(pAProject.getId(), pAProject.getProjectname(), pAProject.getDescription(), 
+        		pAProject.getPaorgpro(), pAProject.getPausers());*/
         
-        return ResponseEntity.ok()
+        /*return ResponseEntity.ok()
             .headers(HeaderUtil.createAlert("pAProject.updated", pAProject.getProjectname()))
-            .body(new PAProjectDTO(pAProjectService.getProjectWithUser(pAProject.getId())));
+            .body(new PAProjectDTO(pAProjectService.getProjectWithUser(pAProject.getId())));*/
 
     }
 

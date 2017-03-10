@@ -3,7 +3,7 @@ function routes_demo($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('company_pages', {
         abstract: true,
-        parent: 'app'
+        parent: 'app',
         url: "/company_pages",
         templateUrl: "views/common/content.html",
     })
