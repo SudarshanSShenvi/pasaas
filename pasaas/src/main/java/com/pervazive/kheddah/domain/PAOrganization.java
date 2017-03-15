@@ -47,6 +47,12 @@ public class PAOrganization extends AbstractAuditingEntity implements Serializab
     @Column(name = "organization")
     @NotNull
     private String organization;
+    
+    @Column(name = "industrytype")
+    private String industrytype;
+
+    @Column(name = "website")
+    private String website;
 
     @Column(name = "validfrom")
     private ZonedDateTime validfrom;
