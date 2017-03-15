@@ -29,9 +29,15 @@
 							</div>
 							<div class="col-lg-3">
 								<h5><b>{{vm.pAOrganizations[0].organization}}</b></h5> 
-								<p style="font-size: 9px;">
+								<!-- <p style="font-size: 9px;">
 									{{vm.pAOrganizations[0].pabporg.businessplan}}
-								</p>  
+								</p> -->
+								<h5>
+									<b>Business Plan</b>
+									<span style="font-size: 9px;margin: 20px;">
+										{{vm.pAOrganizations[0].pabporg.businessplan}}
+									</span>
+								</h5>  
 							</div>
 							<div class="col-lg-3">
 									<h5></h5>
@@ -49,11 +55,11 @@
 										<u>{{vm.pAOrganizations[0].website}}</span></u>
 									</h5>
 									
-									<h5>
+									<!-- <h5>
 										<b>Email</b>
 										<span style="font-size: 9px;margin: 72px;">
-										<!-- <u>{{page_data1.organization_summary.email}}</u></span> -->
-									</h5>
+										<u>{{page_data1.organization_summary.email}}</u></span>
+									</h5> -->
 							</div>
 							<div class="col-lg-3">
 								<h5>
@@ -88,7 +94,7 @@
 								<div class="btn-group flex-btn-group-container">
 									<button 
 										type="submit"
-										ui-sref="p-a-organization-detail({id:pAOrganization.id})"
+										ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})"
 										class="btn btn-info btn-sm"
 									>
 										<span class="glyphicon glyphicon-eye-open"></span>
@@ -99,7 +105,7 @@
 									</button>
 									<button 
 										type="submit"
-										ui-sref="p-a-organization.edit({id:pAOrganization.id})"
+										ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})"
 										class="btn btn-primary btn-sm"
 									>
 										<span class="glyphicon glyphicon-pencil"></span>
@@ -110,7 +116,7 @@
 									</button>
 									<button 
 										type="submit"
-										ui-sref="p-a-organization.delete({id:pAOrganization.id})"
+										ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})"
 										class="btn btn-danger btn-sm"
 									>
 										<span class="glyphicon glyphicon-remove-circle"></span>
@@ -207,8 +213,10 @@
 											<td>{{each_user.login}}</td>
 											<td>{{each_user.email}}</td>
 											<td class="center">{{each_user.activated}}</td>
-											<td><button class="btn btn-sm btn-primary">{{each_user.activated}}</td>
-											<td >Invite View</td>
+											<td><button class="btn btn-sm btn-primary">
+												{{each_user.activated}}</button>
+											</td>
+											<td>Invite View</td>
 										</tr>
 									</tbody>
 									<!-- <tbody>
@@ -217,7 +225,7 @@
 											<td>{{each_user.email}}</td>
 											<td class="center">{{each_user.authorities[0]}}</td>
 											<td><button class="btn btn-sm btn-primary">Accepted</td>
-											<td >Invite View</td>
+											<td>Invite View</td>
 										</tr>
 									</tbody> -->
 								</table>
@@ -243,7 +251,7 @@
 											<td>sandy@telec-com.com</td>
 											<td>Manager</td>
 											<td><button class="btn btn-sm btn-primary ">Accepted</td>
-											<td >Invite View</td>
+											<td>Invite View</td>
 										</tr>
 										<tr class="gradeX">
 											<td></td>
@@ -252,7 +260,7 @@
 											<td>ambale@tele-com.com</td>
 											<td>Manager</td>
 											<td><button class="btn btn-sm btn-primary ">Pending</td>
-											<td ><u>Invite</u><u> View</u></td>
+											<td><u>Invite</u><u> View</u></td>
 										</tr>
 										
 									</tbody>
@@ -346,12 +354,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="gradeX" ng-repeat="each_user in vm.pAOrganizations[0].pausersObj">
-									<td>{{each_user.login}}</td>
-									<td>{{each_user.email}}</td>
-									<td class="center">{{each_user.activated}}</td>
-									<td><button class="btn btn-sm btn-primary">{{each_user.activated}}</td>
-									<td >Invite View</td>
+								<tr class="gradeX" ng-repeat="each_project in vm.pAOrganizations[0].paprojectsObj">
+									<td></td>
+									<td>{{each_project.projectname}}</td>
+									<td></td>
+									<td class="center"></td>
+									<td><button class="btn btn-sm btn-primary">
+										{{each_project.pastatus}}</button>
+									</td>
+									<td></td>
 								</tr>
 							</tbody>
 							<!-- <tbody>
