@@ -48,6 +48,12 @@ public class PAOrganization extends AbstractAuditingEntity implements Serializab
     @NotNull
     private String organization;
 
+    @Column(name = "industrytype")
+    private String industrytype;
+
+    @Column(name = "website")
+    private String website;
+    
     @Column(name = "validfrom")
     private ZonedDateTime validfrom;
 
@@ -692,4 +698,20 @@ public class PAOrganization extends AbstractAuditingEntity implements Serializab
             ", pastatus='" + pastatus + "'" +
             '}';
     }
+
+	public String getIndustrytype() {
+		return industrytype;
+	}
+
+	public void setIndustrytype(String industrytype) {
+		this.industrytype = industrytype;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 }
