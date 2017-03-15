@@ -183,7 +183,7 @@
 								<h5>Invite User</h5>
 			                    <div ibox-tools></div>
 			                    <button class="btn btn-primary btn-xs pull-right">
-									Invite User
+									Create New User
 								</button>
 							</div>
 							<!-- <div class="ibox-content">
@@ -204,7 +204,7 @@
 											<th>User Name</th>
 											<th>Email</th>
 											<th>Role</th>
-											<th>Invite Status</th>
+											<th>Status</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -212,11 +212,63 @@
 										<tr class="gradeX" ng-repeat="each_user in vm.pAOrganizations[0].pausersObj">
 											<td>{{each_user.login}}</td>
 											<td>{{each_user.email}}</td>
-											<td class="center">{{each_user.activated}}</td>
-											<td><button class="btn btn-sm btn-primary">
-												{{each_user.activated}}</button>
+											<td class="center"></td>
+											<td>
+												<button 
+													type="button" 
+													class="btn btn-sm btn-xs" 
+													ng-class="
+														each_user.activated 
+														? 'btn-primary' : 'btn-default'
+													"
+													style="width: 60px;margin-left:10px"
+												>
+													<span ng-show="each_user.activated">Active</span>
+													<span ng-show="!each_user.activated">Inactive</span>
+												</button>
 											</td>
-											<td>Invite View</td>
+											<!-- <td><button class="btn btn-sm btn-primary">
+												{{each_user.activated}}</button>
+											</td> -->
+											<td>
+												<div class="btn-group flex-btn-group-container">
+													<button 
+														type="submit"
+														class="btn btn-info btn-sm"
+													>
+														<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})" -->
+														<span class="glyphicon glyphicon-eye-open"></span>
+														<span 
+															class="hidden-xs hidden-sm" 
+															data-translate="entity.action.view"
+														></span>
+													</button>
+													<button 
+														type="submit"
+														class="btn btn-primary btn-sm"
+													>
+														<!-- ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})" -->
+														<span class="glyphicon glyphicon-pencil"></span>
+														<span 
+															class="hidden-xs hidden-sm" 
+															data-translate="entity.action.edit"
+														></span>
+													</button>
+													<button 
+														type="submit"
+														class="btn btn-danger btn-sm"
+													>
+														<!-- ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})" -->
+														<span class="glyphicon glyphicon-remove-circle"></span>
+														<span 
+															class="hidden-xs hidden-sm" 
+															data-translate="entity.action.delete"
+														></span>
+													</button>
+												</div>
+											</td>
+											
+											
 										</tr>
 									</tbody>
 									<!-- <tbody>
@@ -326,7 +378,7 @@
 						<h5>Project List</h5>
 	                    <div ibox-tools></div>
 	                    <button class="btn btn-primary btn-xs pull-right">
-							Invite User
+							Create New Project
 						</button>
 					</div>
 		            <div class="ibox-content" style="min-height:120px">
@@ -362,7 +414,43 @@
 									<td><button class="btn btn-sm btn-primary">
 										{{each_project.pastatus}}</button>
 									</td>
-									<td></td>
+									<td>
+										<div class="btn-group flex-btn-group-container">
+											<button 
+												type="submit"
+												class="btn btn-info btn-sm"
+											>
+												<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})" -->
+												<span class="glyphicon glyphicon-eye-open"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+													data-translate="entity.action.view"
+												></span>
+											</button>
+											<button 
+												type="submit"
+												class="btn btn-primary btn-sm"
+											>
+												<!-- ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})" -->
+												<span class="glyphicon glyphicon-pencil"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+													data-translate="entity.action.edit"
+												></span>
+											</button>
+											<button 
+												type="submit"
+												class="btn btn-danger btn-sm"
+											>
+												<!-- ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})" -->
+												<span class="glyphicon glyphicon-remove-circle"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+													data-translate="entity.action.delete"
+												></span>
+											</button>
+										</div>
+									</td>
 								</tr>
 							</tbody>
 							<!-- <tbody>
