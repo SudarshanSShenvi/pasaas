@@ -17,9 +17,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pervazive.kheddah.domain.PABusinessPlan;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.domain.enumeration.PAStatus;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
+import com.pervazive.kheddah.repository.PAProjectRepository;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.service.PAOrganizationService;
 
@@ -41,8 +43,8 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     @Inject
     private PAOrganizationRepository paOrganizationRepository;
 
-/*    @Inject
-    private PAProjectRepository pAProjectRepository;*/
+    @Inject
+    private PAProjectRepository pAProjectRepository;
     /**
      * Save a pAOrganization.
      *
@@ -118,7 +120,7 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     
     
     public void updateOrganizationwithUsers(Long id, String organizationname, ZonedDateTime validfrom, ZonedDateTime validto,
-			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers) {
+			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers, Set<String> paprojects) {
 
             Optional.of(pAOrganizationRepository
                 .findOne(id))
@@ -137,13 +139,13 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
                      );
                 	 }
                 	 
-                	 /*if(paprojects != null ){
-                     Set<PAProject> managedProjects = organization.getPaproorgs();
+                	 Set<PAProject> managedProjects = organization.getPaproorgs();
                 	 managedProjects.clear();
-                	 paprojects.forEach(
+                	 if(paprojects != null ){
+                     paprojects.forEach(
                 			 paproject -> managedProjects.add(pAProjectRepository.findByProjectName(paproject))
                      );
-                	 }*/
+                	 }
                 	
                 	log.debug("Changed Information for Organization: {}", organization);
                 });
