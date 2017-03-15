@@ -71,6 +71,4 @@ public final class SecurityUtils {
     public static String getCurrentUserOrganization() {
     	return currentOrganization;
     }
-    
-    
 }
