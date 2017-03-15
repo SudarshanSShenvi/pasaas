@@ -68,7 +68,7 @@ public final class SecurityUtils {
         return false;
     }
     
-    public static String getCurrentUserOrganization() {
+   /* public static String getCurrentUserOrganization() {
     	return currentOrganization;
-    }
+    }*/
 }
