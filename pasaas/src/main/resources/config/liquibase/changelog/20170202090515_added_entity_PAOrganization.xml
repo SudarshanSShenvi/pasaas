@@ -27,7 +27,12 @@
             <column name="organization" type="varchar(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            
+            <column name="industrytype" type="varchar(60)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="website" type="varchar(255)">
+                <constraints nullable="true"/>
+            </column>
             <column name="validfrom" type="timestamp">
                 <constraints nullable="true" />
             </column>
