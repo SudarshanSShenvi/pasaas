@@ -16,6 +16,9 @@
 						<h5>Organization Summary</h5>
 
 						<div ibox-tools></div>
+						<button class="btn btn-primary btn-xs pull-right" ui-sref="p-a-organization.new">
+							Create New Organization
+						</button>
 					</div>
 					<div class="ibox-content">
 
@@ -92,7 +95,7 @@
 									</span>
 								</h5> -->
 								<div class="btn-group flex-btn-group-container">
-									<button 
+									<!-- <button 
 										type="submit"
 										ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})"
 										class="btn btn-info btn-sm"
@@ -102,7 +105,7 @@
 											class="hidden-xs hidden-sm" 
 											data-translate="entity.action.view"
 										></span>
-									</button>
+									</button> -->
 									<button 
 										type="submit"
 										ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})"
@@ -114,7 +117,7 @@
 											data-translate="entity.action.edit"
 										></span>
 									</button>
-									<button 
+									<!-- <button 
 										type="submit"
 										ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})"
 										class="btn btn-danger btn-sm"
@@ -124,7 +127,7 @@
 											class="hidden-xs hidden-sm" 
 											data-translate="entity.action.delete"
 										></span>
-									</button>
+									</button> -->
 								</div>
 							</div>
 						</div>
@@ -182,7 +185,7 @@
 							<div class="ibox-title">
 								<h5>Invite User</h5>
 			                    <div ibox-tools></div>
-			                    <button class="btn btn-primary btn-xs pull-right">
+			                    <button class="btn btn-primary btn-xs pull-right" ui-sref="user-management.new">
 									Create New User
 								</button>
 							</div>
@@ -235,6 +238,7 @@
 													<button 
 														type="submit"
 														class="btn btn-info btn-sm"
+														ui-sref="user-management-detail({login:each_user.login})"
 													>
 														<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})" -->
 														<span class="glyphicon glyphicon-eye-open"></span>
@@ -246,8 +250,9 @@
 													<button 
 														type="submit"
 														class="btn btn-primary btn-sm"
+														ui-sref="user-management.edit({login:each_user.login})"
 													>
-														<!-- ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})" -->
+														<!-- ui-sref="p-a-organization.edit({id:each_user.id})" -->
 														<span class="glyphicon glyphicon-pencil"></span>
 														<span 
 															class="hidden-xs hidden-sm" 
@@ -258,7 +263,8 @@
 														type="submit"
 														class="btn btn-danger btn-sm"
 													>
-														<!-- ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})" -->
+														<!-- ui-sref="user-management.delete({login:each_user.login})" -->
+														
 														<span class="glyphicon glyphicon-remove-circle"></span>
 														<span 
 															class="hidden-xs hidden-sm" 
@@ -377,7 +383,7 @@
 		            <div class="ibox-title">
 						<h5>Project List</h5>
 	                    <div ibox-tools></div>
-	                    <button class="btn btn-primary btn-xs pull-right">
+	                    <button class="btn btn-primary btn-xs pull-right" ui-sref="p-a-project.new">
 							Create New Project
 						</button>
 					</div>
@@ -411,16 +417,29 @@
 									<td>{{each_project.projectname}}</td>
 									<td></td>
 									<td class="center"></td>
-									<td><button class="btn btn-sm btn-primary">
-										{{each_project.pastatus}}</button>
+									<td>
+										<button 
+											type="button" 
+											class="btn btn-sm btn-xs" 
+											ng-class="
+												each_project.pastatus == 'Active' 
+												? 'btn-primary' :
+												(
+													each_project.pastatus == 'Inactive' 
+													? 'btn-default' : 
+													'btn-success'
+												)
+											"
+											style="width: 60px;margin-left:10px"
+										>{{each_project.pastatus}}</button>
 									</td>
 									<td>
 										<div class="btn-group flex-btn-group-container">
 											<button 
 												type="submit"
 												class="btn btn-info btn-sm"
+												ui-sref="p-a-project-detail({id:each_project.id})"
 											>
-												<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})" -->
 												<span class="glyphicon glyphicon-eye-open"></span>
 												<span 
 													class="hidden-xs hidden-sm" 
@@ -430,8 +449,8 @@
 											<button 
 												type="submit"
 												class="btn btn-primary btn-sm"
+												ui-sref="p-a-project.edit({id:each_project.id})"
 											>
-												<!-- ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})" -->
 												<span class="glyphicon glyphicon-pencil"></span>
 												<span 
 													class="hidden-xs hidden-sm" 
@@ -441,8 +460,8 @@
 											<button 
 												type="submit"
 												class="btn btn-danger btn-sm"
+												ui-sref="p-a-project.delete({id:each_project.id})"
 											>
-												<!-- ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})" -->
 												<span class="glyphicon glyphicon-remove-circle"></span>
 												<span 
 													class="hidden-xs hidden-sm" 
