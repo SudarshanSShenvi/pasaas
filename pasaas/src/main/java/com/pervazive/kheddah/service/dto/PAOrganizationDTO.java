@@ -13,7 +13,7 @@ import com.pervazive.kheddah.domain.enumeration.PAStatus;
 public class PAOrganizationDTO {
 	
 	public PAOrganizationDTO(Long id, String organization, ZonedDateTime validfrom, ZonedDateTime validto,
-			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers, Set<String> paprojects) {
+			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers, Set<String> paprojects, String industrytype, String website, Set<User> pausersObj, Set<PAProject> paprojectsObj) {
 		super();
 		this.id = id;
 		this.organization = organization;
@@ -23,12 +23,17 @@ public class PAOrganizationDTO {
 		this.pabporg = pabporg;
 		this.pausers = pausers;
 		this.paprojects = paprojects;
+		this.industrytype = industrytype;
+		this.website = website;
+		this.pausersObj = pausersObj;
+		this.paprojectsObj = paprojectsObj;
 	}
     
     public PAOrganizationDTO(PAOrganization paOrganization){
     	this(paOrganization.getId(), paOrganization.getOrganization(), paOrganization.getValidfrom(), paOrganization.getValidto(), paOrganization.getPastatus(), 
     			paOrganization.getPabporg(), paOrganization.getPAUsers().stream().map(User::getLogin).collect(Collectors.toSet()), 
-    			paOrganization.getPaproorgs().stream().map(PAProject::getProjectname).collect(Collectors.toSet()));
+    			paOrganization.getPaproorgs().stream().map(PAProject::getProjectname).collect(Collectors.toSet()), paOrganization.getIndustrytype(), 
+    			paOrganization.getWebsite(), paOrganization.getPAUsers(), paOrganization.getPaproorgs());
     }
     
     public PAOrganizationDTO(){
@@ -43,6 +48,11 @@ public class PAOrganizationDTO {
     private PABusinessPlan pabporg;
     private Set<String> pausers;
     private Set<String> paprojects;
+    private String industrytype;
+    private String website;
+    
+    private Set<User> pausersObj;
+    private Set<PAProject> paprojectsObj;
     
     
 
@@ -108,5 +118,37 @@ public class PAOrganizationDTO {
 
 	public void setPaprojects(Set<String> paprojects) {
 		this.paprojects = paprojects;
+	}
+
+	public String getIndustrytype() {
+		return industrytype;
+	}
+
+	public void setIndustrytype(String industrytype) {
+		this.industrytype = industrytype;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public Set<User> getPausersObj() {
+		return pausersObj;
+	}
+
+	public void setPausersObj(Set<User> pausersObj) {
+		this.pausersObj = pausersObj;
+	}
+
+	public Set<PAProject> getPaprojectsObj() {
+		return paprojectsObj;
+	}
+
+	public void setPaprojectsObj(Set<PAProject> paprojectsObj) {
+		this.paprojectsObj = paprojectsObj;
 	}
 }
