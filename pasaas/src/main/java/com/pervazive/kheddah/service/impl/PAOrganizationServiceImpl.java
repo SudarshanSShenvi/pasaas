@@ -120,7 +120,7 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     
     
     public void updateOrganizationwithUsers(Long id, String organizationname, ZonedDateTime validfrom, ZonedDateTime validto,
-			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers, Set<String> paprojects) {
+			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers) {
 
             Optional.of(pAOrganizationRepository
                 .findOne(id))
@@ -139,13 +139,13 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
                      );
                 	 }
                 	 
-                	 Set<PAProject> managedProjects = organization.getPaproorgs();
+                	 /*Set<PAProject> managedProjects = organization.getPaproorgs();
                 	 managedProjects.clear();
                 	 if(paprojects != null ){
                      paprojects.forEach(
                 			 paproject -> managedProjects.add(pAProjectRepository.findByProjectName(paproject))
                      );
-                	 }
+                	 }*/
                 	
                 	log.debug("Changed Information for Organization: {}", organization);
                 });

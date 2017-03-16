@@ -119,7 +119,7 @@ public class PAOrganizationResource {
             .body(result);*/
         
         pAOrganizationService.updateOrganizationwithUsers(pAOrganization.getId(), pAOrganization.getOrganization(), pAOrganization.getValidfrom(), 
-        		pAOrganization.getValidto(), pAOrganization.getPastatus(), pAOrganization.getPabporg(), pAOrganization.getPausers(), pAOrganization.getPaprojects());
+        		pAOrganization.getValidto(), pAOrganization.getPastatus(), pAOrganization.getPabporg(), pAOrganization.getPausers());
 
         return ResponseEntity.ok()
             .headers(HeaderUtil.createAlert("pAOrganization.updated", pAOrganization.getOrganization()))
