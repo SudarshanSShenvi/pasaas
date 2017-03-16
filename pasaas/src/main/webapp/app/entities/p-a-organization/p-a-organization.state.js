@@ -164,44 +164,49 @@
         //         });
         //     }]
         // })
-        .state('p-a-organization.edit', {
-            parent: 'p-a-organization',
-            url: '/{id}/edit',
-            views: {
-                'content@': {
-                    templateUrl: 'app/entities/p-a-organization/pdf23_one.html',
-                    // templateUrl: 'company_pages/pdf23/pdf23.ng.html',
-                    controller: 'PAOrganizationDialogController',
-                    controllerAs: 'vm'
-                }
-            }
-        })
         // .state('p-a-organization.edit', {
         //     parent: 'p-a-organization',
         //     url: '/{id}/edit',
-        //     data: {
-        //         // authorities: ['ROLE_USER']
-        //         authorities: []
-        //     },
-        //     onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-        //         $uibModal.open({
-        //             templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
+        //     views: {
+        //         'content@': {
+        //             templateUrl: 'app/entities/p-a-organization/pdf23_one.html',
+        //             // templateUrl: 'company_pages/pdf23/pdf23.ng.html',
         //             controller: 'PAOrganizationDialogController',
-        //             controllerAs: 'vm',
-        //             backdrop: 'static',
-        //             size: 'lg',
-        //             resolve: {
-        //                 entity: ['PAOrganization', function(PAOrganization) {
-        //                     return PAOrganization.get({id : $stateParams.id}).$promise;
-        //                 }]
-        //             }
-        //         }).result.then(function() {
-        //             $state.go('p-a-organization', null, { reload: 'p-a-organization' });
-        //         }, function() {
-        //             $state.go('^');
-        //         });
-        //     }]
+        //             controllerAs: 'vm'
+        //         }
+        //     },
+        //     resolve: {
+        //         entity: ['PAOrganization', function(PAOrganization) {
+        //             return PAOrganization.get({id : $stateParams.id}).$promise;
+        //         }]
+        //     }
         // })
+        .state('p-a-organization.edit', {
+            parent: 'p-a-organization',
+            url: '/{id}/edit',
+            data: {
+                // authorities: ['ROLE_USER']
+                authorities: []
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
+                    controller: 'PAOrganizationDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['PAOrganization', function(PAOrganization) {
+                            return PAOrganization.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('p-a-organization', null, { reload: 'p-a-organization' });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
         .state('p-a-organization.delete', {
             parent: 'p-a-organization',
             url: '/{id}/delete',

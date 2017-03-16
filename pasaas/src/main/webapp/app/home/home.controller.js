@@ -5,23 +5,23 @@
         .module('pasaasApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', 'PAOrganizationU'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
 
-    function HomeController ($scope, Principal, LoginService, $state, PAOrganizationU) {
+    function HomeController ($scope, Principal, LoginService, $state) {
         var vm = this;
 
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
-        vm.pAOrganizations = null;
+        //vm.pAOrganizations = null;
         $scope.$on('authenticationSuccess', function() {
         	getAccount();
         });
 
         getAccount();
         
-        loadAll();
+        /*loadAll();
         
         function loadAll () {
             PAOrganizationU.query({
@@ -48,7 +48,7 @@
             function onError(error) {
                 AlertService.error(error.data.message);
             }
-        }
+        }*/
         
         function getAccount() {
             Principal.identity().then(function(account) {
