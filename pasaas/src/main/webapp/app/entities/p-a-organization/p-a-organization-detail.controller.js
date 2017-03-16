@@ -13,6 +13,16 @@
         vm.pAOrganization = entity;
         vm.previousState = previousState.name;
 
+        vm.datePickerOpenStatus = {};
+        vm.openCalendar = openCalendar;
+
+        vm.datePickerOpenStatus.validfrom = false;
+        vm.datePickerOpenStatus.validto = false;
+
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
+        }
+
         var unsubscribe = $rootScope.$on('pasaasApp:pAOrganizationUpdate', function(event, result) {
             vm.pAOrganization = result;
         });

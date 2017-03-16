@@ -4,7 +4,7 @@
             "home": {
                 "title": "PA Organizations",
                 "createLabel": "Create New Organization",
-                "createOrEditLabel": "Create or edit a PA Organization",
+                "createOrEditLabel": "Setup Organization and Membership",
                 "search": "Search for PA Organization"
             },
             "created": "A new PA Organization is created with identifier {{ param }}",
