@@ -16,9 +16,47 @@
 						<h5>Organization Summary</h5>
 
 						<div ibox-tools></div>
-						<button class="btn btn-primary btn-xs pull-right" ui-sref="p-a-organization.new">
+						<button 
+							class="btn btn-primary btn-xs pull-right" 
+							ui-sref="p-a-organization.new"
+						>
 							Create New Organization
 						</button>
+						<div class="btn-group flex-btn-group-container pull-right">
+							<!-- <button 
+								type="submit"
+								ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})"
+								class="btn btn-info btn-xs"
+							>
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<span 
+									class="hidden-xs hidden-sm" 
+									data-translate="entity.action.view"
+								></span>
+							</button> -->
+							<button 
+								type="submit"
+								ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})"
+								class="btn btn-primary btn-xs"
+							>
+								<span class="glyphicon glyphicon-pencil"></span>
+								<span 
+									class="hidden-xs hidden-sm" 
+									data-translate="entity.action.edit"
+								></span>
+							</button>
+							<!-- <button 
+								type="submit"
+								ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})"
+								class="btn btn-danger btn-xs"
+							>
+								<span class="glyphicon glyphicon-remove-circle"></span>
+								<span 
+									class="hidden-xs hidden-sm" 
+									data-translate="entity.action.delete"
+								></span>
+							</button> -->
+						</div>
 					</div>
 					<div class="ibox-content">
 
@@ -31,103 +69,61 @@
 								>
 							</div>
 							<div class="col-lg-3">
-								<h5><b>{{vm.pAOrganizations[0].organization}}</b></h5> 
-								<!-- <p style="font-size: 9px;">
-									{{vm.pAOrganizations[0].pabporg.businessplan}}
-								</p> -->
-								<h5>
-									<b>Business Plan</b>
-									<span style="font-size: 9px;margin: 20px;">
-										{{vm.pAOrganizations[0].pabporg.businessplan}}
-									</span>
-								</h5>  
-							</div>
-							<div class="col-lg-3">
-									<h5></h5>
-
+								<div class="row">
 									<h5>
-										<b>Industry Type</b>
-										<span style="font-size: 9px;margin: 20px;">
-											{{vm.pAOrganizations[0].industrytype}}
+										<span class="col-lg-5">
+											<b>{{vm.pAOrganizations[0].organization}}</b>
 										</span>
 									</h5>
-
+								</div>
+								<div class="row">
 									<h5>
-										<b>Website</b>
-										<span style="font-size: 9px;margin: 56px;">
-										<u>{{vm.pAOrganizations[0].website}}</span></u>
+										<span class="col-lg-5"><b>Business Plan</b></span>
+										<span class="col-lg-7" style="font-size: 9px;">
+											<!-- Feb 3, 2017 3:04:24 PM -->
+											{{vm.pAOrganizations[0].pabporg.businessplan}}
+	    								</span>
 									</h5>
-									
-									<!-- <h5>
-										<b>Email</b>
-										<span style="font-size: 9px;margin: 72px;">
-										<u>{{page_data1.organization_summary.email}}</u></span>
-									</h5> -->
+								</div>
 							</div>
 							<div class="col-lg-3">
-								<h5>
-									<b>Valid From</b>
-									<span style="font-size: 9px;margin: 20px;">
-										{{vm.pAOrganizations[0].validfrom | date:'medium'}}
-										<p style="margin: 6px; margin-left: 68px;"></p>
-    								</span>
-								</h5>
-								<h5>
-									<b>Valid To</b>
-									<span style="font-size: 9px;margin: 20px;">
-										{{vm.pAOrganizations[0].validto | date:'medium'}}
-										<p style="margin: 6px; margin-left: 68px;"></p>
-    								</span>
-								</h5>
-
-								<!-- <h5>
-									<b>Address</b>
-									<span style="font-size: 9px;margin: 20px;">
-										{{page_data1.organization_summary.address}}
-										<p style="margin: 6px; margin-left: 68px;"></p>
-    								</span>
-								</h5> -->
-
-								<!-- <h5>
-									<b>(P)</b>
-									<span style="font-size: 9px;margin: 56px;">
-										{{page_data1.organization_summary.phone}}
-									</span>
-								</h5> -->
-								<div class="btn-group flex-btn-group-container">
-									<!-- <button 
-										type="submit"
-										ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})"
-										class="btn btn-info btn-sm"
-									>
-										<span class="glyphicon glyphicon-eye-open"></span>
-										<span 
-											class="hidden-xs hidden-sm" 
-											data-translate="entity.action.view"
-										></span>
-									</button> -->
-									<button 
-										type="submit"
-										ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})"
-										class="btn btn-primary btn-sm"
-									>
-										<span class="glyphicon glyphicon-pencil"></span>
-										<span 
-											class="hidden-xs hidden-sm" 
-											data-translate="entity.action.edit"
-										></span>
-									</button>
-									<!-- <button 
-										type="submit"
-										ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})"
-										class="btn btn-danger btn-sm"
-									>
-										<span class="glyphicon glyphicon-remove-circle"></span>
-										<span 
-											class="hidden-xs hidden-sm" 
-											data-translate="entity.action.delete"
-										></span>
-									</button> -->
+								<div class="row">
+									<h5>
+										<span class="col-lg-5"><b>Industry Type</b></span>
+										<span class="col-lg-7" style="font-size: 9px;">
+											<!-- Feb 3, 2017 3:04:24 PM -->
+											{{vm.pAOrganizations[0].industrytype}}
+	    								</span>
+									</h5>
+								</div>
+								<div class="row">
+									<h5>
+										<span class="col-lg-5"><b>Website</b></span>
+										<span class="col-lg-7" style="font-size: 9px;">
+											<!-- Feb 3, 2017 3:04:24 PM -->
+											{{vm.pAOrganizations[0].website}}
+	    								</span>
+									</h5>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="row">
+									<h5>
+										<span class="col-lg-5"><b>Valid From</b></span>
+										<span class="col-lg-7" style="font-size: 9px;">
+											<!-- Feb 3, 2017 3:04:24 PM -->
+											{{vm.pAOrganizations[0].validfrom | date:'medium'}}
+	    								</span>
+									</h5>
+								</div>
+								<div class="row">
+									<h5>
+										<span class="col-lg-5"><b>Valid To</b></span>
+										<span class="col-lg-7" style="font-size: 9px;">
+											<!-- Feb 3, 2017 3:04:24 PM -->
+											{{vm.pAOrganizations[0].validto | date:'medium'}}
+	    								</span>
+									</h5>
 								</div>
 							</div>
 						</div>
