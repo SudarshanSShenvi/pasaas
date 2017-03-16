@@ -38,8 +38,12 @@
             angular.element('.form-group:eq(1)>input').focus();
         });
 
-        function clear () {
+        /*function clear () {
             $uibModalInstance.dismiss('cancel');
+        }*/
+        
+        function clear () {
+            $state.go('^');
         }
 
         function save () {
@@ -52,9 +56,11 @@
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('pasaasApp:pAOrganizationUpdate', result);
-            $uibModalInstance.close(result);
-            vm.isSaving = false;
+        	$scope.$emit('pasaasApp:pAOrganizationUpdate', result);
+            //$uibModalInstance.close(result);
+        	$state.go('p-a-organization', {}, { reload: 'p-a-organization' });
+            
+        	vm.isSaving = false;
         }
 
         function onSaveError () {

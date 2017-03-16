@@ -127,7 +127,33 @@
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
+                    controller: 'PAOrganizationDialogController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('pAOrganization');
+                    $translatePartialLoader.addPart('pAStatus');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'PAOrganization', function($stateParams, PAOrganization) {
+                    return PAOrganization.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'p-a-organization',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+            
+            /*onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
                     templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
                     controller: 'PAOrganizationDialogController',
@@ -144,7 +170,7 @@
                 }, function() {
                     $state.go('^');
                 });
-            }]
+            }]*/
         })
         .state('p-a-organization.delete', {
             parent: 'p-a-organization',
