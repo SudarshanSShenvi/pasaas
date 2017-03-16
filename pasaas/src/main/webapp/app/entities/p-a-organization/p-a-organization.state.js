@@ -135,21 +135,8 @@
                 }
             },
             resolve: {
-                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('pAOrganization');
-                    $translatePartialLoader.addPart('pAStatus');
-                    return $translate.refresh();
-                }],
-                entity: ['$stateParams', 'PAOrganization', function($stateParams, PAOrganization) {
+                entity: ['PAOrganization', function(PAOrganization) {
                     return PAOrganization.get({id : $stateParams.id}).$promise;
-                }],
-                previousState: ["$state", function ($state) {
-                    var currentStateData = {
-                        name: $state.current.name || 'p-a-organization',
-                        params: $state.params,
-                        url: $state.href($state.current.name, $state.params)
-                    };
-                    return currentStateData;
                 }]
             }
             
