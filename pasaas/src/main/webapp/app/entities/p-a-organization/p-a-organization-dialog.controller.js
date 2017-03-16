@@ -5,16 +5,12 @@
         .module('pasaasApp')
         .controller('PAOrganizationDialogController', PAOrganizationDialogController);
 
-    // PAOrganizationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PAOrganization', 'PAProject', 'PABusinessPlan', 'PAReliabilityScore', 'PAReliabilityConf', 'PAPredictionScore', 'PASaxCodeTmp', 'PASaxCode', 'PAAlarmActuality', 'PAPrediction', 'PAReport', 'PAAccPrecision', 'PAFileUpload', 'PAPMTRequest', 'PADataConnector', 'PAScheduler', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails'];
+    PAOrganizationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PAOrganization', 'PAProject', 'PABusinessPlan', 'PAReliabilityScore', 'PAReliabilityConf', 'PAPredictionScore', 'PASaxCodeTmp', 'PASaxCode', 'PAAlarmActuality', 'PAPrediction', 'PAReport', 'PAAccPrecision', 'PAFileUpload', 'PAPMTRequest', 'PADataConnector', 'PAScheduler', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails'];
 
-    // function PAOrganizationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PAOrganization, PAProject, PABusinessPlan, PAReliabilityScore, PAReliabilityConf, PAPredictionScore, PASaxCodeTmp, PASaxCode, PAAlarmActuality, PAPrediction, PAReport, PAAccPrecision, PAFileUpload, PAPMTRequest, PADataConnector, PAScheduler, PASchedulerInterval, PAAlarmRCA, PANEDetails) {
-
-    PAOrganizationDialogController.$inject = ['$timeout', '$scope', '$stateParams', 'PAOrganization', 'PAProject', 'PABusinessPlan', 'PAReliabilityScore', 'PAReliabilityConf', 'PAPredictionScore', 'PASaxCodeTmp', 'PASaxCode', 'PAAlarmActuality', 'PAPrediction', 'PAReport', 'PAAccPrecision', 'PAFileUpload', 'PAPMTRequest', 'PADataConnector', 'PAScheduler', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails'];
-
-    function PAOrganizationDialogController ($timeout, $scope, $stateParams, PAOrganization, PAProject, PABusinessPlan, PAReliabilityScore, PAReliabilityConf, PAPredictionScore, PASaxCodeTmp, PASaxCode, PAAlarmActuality, PAPrediction, PAReport, PAAccPrecision, PAFileUpload, PAPMTRequest, PADataConnector, PAScheduler, PASchedulerInterval, PAAlarmRCA, PANEDetails) {
+    function PAOrganizationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PAOrganization, PAProject, PABusinessPlan, PAReliabilityScore, PAReliabilityConf, PAPredictionScore, PASaxCodeTmp, PASaxCode, PAAlarmActuality, PAPrediction, PAReport, PAAccPrecision, PAFileUpload, PAPMTRequest, PADataConnector, PAScheduler, PASchedulerInterval, PAAlarmRCA, PANEDetails) {
         var vm = this;
 
-        // vm.pAOrganization = entity;
+        vm.pAOrganization = entity;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
@@ -71,31 +67,5 @@
         function openCalendar (date) {
             vm.datePickerOpenStatus[date] = true;
         }
-
-        $scope.page_meta_data = {
-            "has_header" : true,
-            "page_header_title" : "Accounts",
-            "breadcrumb_data" : [
-                {
-                    "link" : "index.html",
-                    "label" : "Home",
-                    "class" : "",
-                    "is_active" : false
-                },
-                {
-                    "link" : "/",
-                    "label" : "Accounts",
-                    "class" : "",
-                    "is_active" : false
-                },
-                {
-                    "link" : "/",
-                    "label" : "Setup Organization and Membership",
-                    "class" : "active",
-                    "is_active" : true
-                }
-            ]
-
-        };
     }
 })();
