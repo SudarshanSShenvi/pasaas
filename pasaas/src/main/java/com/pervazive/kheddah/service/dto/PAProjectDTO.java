@@ -21,7 +21,8 @@ public class PAProjectDTO {
 			boolean feedfirstlineheader, String feedskipindexes, String rollindateformat, String rolloutdateformat,
 			String rollseriesgroupindex, ZonedDateTime rollseriesstart, ZonedDateTime rollseriesend,
 			ZonedDateTime rollseriesnxt, Integer patternfldindex, Integer patterntraininterval,
-			Integer patternpredictinterval, Integer patternintervalthreshhold, PAStatus pastatus) {
+			Integer patternpredictinterval, Integer patternintervalthreshhold, PAStatus pastatus,
+			String createdBy, ZonedDateTime createdDate, String lastModifiedBy, ZonedDateTime lastModifiedDate) {
 		super();
 		this.objectentity = objectentity;
 		this.timeseriesentity = timeseriesentity;
@@ -45,6 +46,10 @@ public class PAProjectDTO {
 		this.description = description;
 		this.paorgpro = paorgpro;
 		this.pausers = pausers;
+		this.createdBy = createdBy;
+		this.createdDate = createdDate;
+		this.lastModifiedBy = lastModifiedBy;
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 	public PAProjectDTO(PAProject paProject){
@@ -53,7 +58,8 @@ public class PAProjectDTO {
 				paProject.getFeedindateformat(), paProject.getFeedoutdateformat(), paProject.getFeedfirstlineheader(), paProject.getFeedskipindexes(),
 				paProject.getRollindateformat(), paProject.getRolloutdateformat(), paProject.getRollseriesgroupindex(), paProject.getRollseriesstart(),
 				paProject.getRollseriesend(), paProject.getRollseriesnxt(), paProject.getPatternfldindex(), paProject.getPatterntraininterval(),
-				paProject.getPatternpredictinterval(), paProject.getPatternintervalthreshhold(), paProject.getPastatus());
+				paProject.getPatternpredictinterval(), paProject.getPatternintervalthreshhold(), paProject.getPastatus(),
+				paProject.getCreatedBy(), paProject.getCreatedDate(), paProject.getLastModifiedBy(), paProject.getLastModifiedDate());
 	}
 	
 	
@@ -80,6 +86,11 @@ public class PAProjectDTO {
 	private String description;
 	private PAOrganization paorgpro;
 	private Set<String> pausers = new HashSet<>();
+	
+	private String createdBy;
+	private ZonedDateTime createdDate;
+	private String lastModifiedBy;
+	private ZonedDateTime lastModifiedDate;
 	
 	public Long getId() {
 		return id;
@@ -246,5 +257,37 @@ public class PAProjectDTO {
 
 	public void setPastatus(PAStatus pastatus) {
 		this.pastatus = pastatus;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public ZonedDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(ZonedDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public ZonedDateTime getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 }

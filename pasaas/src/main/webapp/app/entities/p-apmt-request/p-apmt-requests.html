@@ -31,7 +31,7 @@
                         <tbody>
                             <tr 
                                 class="gradeX" 
-                                ng-repeat=""
+                                ng-repeat="pAPMTRequest in vm.pAPMTRequests track by pAPMTRequest.id"
                             >
                                 <td><a ui-sref="p-apmt-request-detail({id:pAPMTRequest.id})">{{pAPMTRequest.id}}</a></td>
                                 <td data-translate="{{'pasaasApp.PMTCategory.' + pAPMTRequest.category}}">{{pAPMTRequest.category}}</td>
