@@ -1,4 +1,132 @@
 <form 
+    name="editForm" 
+    role="form" 
+    novalidate 
+    ng-submit="vm.save()" 
+>   
+
+    <div class="modal-header bg-primary">
+        <button 
+            type="button" 
+            class="close" 
+            data-dismiss="modal" 
+            aria-hidden="true"
+            ng-click="vm.clear()"
+        >&times;</button>
+        <h4 
+            class="modal-title" 
+            id="myPAProjectLabel" 
+            data-translate="pasaasApp.pAProject.home.createOrEditLabel"
+        >Project</h4>
+    </div>
+
+    <div class="modal-body wizard">
+        <div class="steps clearfix">
+            <ul>
+
+                <li ui-sref-active="current">
+                    <a ui-sref="p-a-organization.new.step_one" class="btn-default">
+                        <span>1</span> Project Details
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="wizard">
+            <div class="well">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <jhi-alert-error></jhi-alert-error>
+							<div class="form-group" ng-show="vm.pAProject.id">
+								<label 
+									for="id" 
+									data-translate="global.field.id"
+								>ID</label>
+								<input 
+									type="text" 
+									class="form-control" 
+									id="id" 
+									name="id"
+									ng-model="vm.pAProject.id" 
+									readonly 
+								/>
+							</div>
+							<div class="form-group">
+								<label 
+									for="field_projectname"
+									data-translate="pasaasApp.pAProject.projectname" 
+									class="control-label" 
+								>Projectname</label>
+								<input 
+									type="text" 
+									class="form-control" 
+									id="field_projectname"
+									name="projectname" 
+									ng-model="vm.pAProject.projectname"
+								/>
+							</div>
+							<div class="form-group">
+								<label 
+									for="field_description"
+									data-translate="pasaasApp.pAProject.description" 
+									class="control-label" 
+								>Description</label>
+								<input 
+									type="text" 
+									class="form-control" 
+									id="field_description"
+									name="description" 
+									ng-model="vm.pAProject.description"
+								/>
+							</div>
+
+							<div class="form-group">
+								<label 
+									for="field_paorgpro"
+									data-translate="pasaasApp.pAProject.paorgpro" 
+								>Paorgpro</label>
+								<select 
+									class="form-control" 
+									id="field_paorgpro" 
+									name="paorgpro" 
+									ng-model="vm.pAProject.paorgpro" 
+									ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id"
+								>
+									<option value=""></option>
+								</select>
+							</div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button 
+            type="button" 
+            class="btn btn-default" 
+            data-dismiss="modal" 
+            ng-click="vm.clear()"
+        >
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button 
+            type="submit" 
+            ng-disabled="editForm.$invalid || vm.isSaving" 
+            class="btn btn-primary"
+        >
+            <span class="glyphicon glyphicon-save"></span>&nbsp;
+            <span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
+
+
+
+<!-- <form 
 	name="editForm" 
 	role="form" 
 	novalidate 
@@ -98,4 +226,4 @@
 			<span data-translate="entity.action.save">Save</span>
 		</button>
 	</div>
-</form>
+</form> -->
