@@ -5,9 +5,9 @@
         .module('pasaasApp')
         .controller('PAProjectDetailController', PAProjectDetailController);
 
-    PAProjectDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
+    PAProjectDetailController.$inject = ['HDFSOpsResource', '$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
 
-    function PAProjectDetailController($scope, $rootScope, $stateParams, previousState, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
+    function PAProjectDetailController(HDFSOpsResource, $scope, $rootScope, $stateParams, previousState, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
         var vm = this;
 
         vm.pAProject = entity;
@@ -20,7 +20,11 @@
 
 
 
+        //vm.files_array = $http.get('api/readfilelist/', 'user/pervazive/Pervazive/Telco Project/ppa-repo/traindata');
         
+        vm.files_array = HDFSOpsResource.get({
+            params : {queryDir : '/user/pervazive/Pervazive/Telco Project/ppa-repo/traindata'}
+        });
 
         $scope.page_data1 = {
             "company_name" : "Telecom Company",
@@ -103,27 +107,27 @@
 
         $scope.page_meta_data = {
             "has_header" : true,
-            "page_header_title" : "Project Detail",
-            "breadcrumb_data" : [
-                {
-                    "link" : "index.html",
-                    "label" : "Home",
-                    "class" : "",
-                    "is_active" : false
-                },
-                {
-                    "link" : "/",
-                    "label" : "Platform",
-                    "class" : "",
-                    "is_active" : false
-                },
-                {
-                    "link" : "/",
-                    "label" : "Project Detail",
-                    "class" : "active",
-                    "is_active" : true
-                }
-            ]
+            "page_header_title" : "Project",
+            // "breadcrumb_data" : [
+            //     {
+            //         "link" : "index.html",
+            //         "label" : "Home",
+            //         "class" : "",
+            //         "is_active" : false
+            //     },
+            //     {
+            //         "link" : "/",
+            //         "label" : "Platform",
+            //         "class" : "",
+            //         "is_active" : false
+            //     },
+            //     {
+            //         "link" : "/",
+            //         "label" : "Project Detail",
+            //         "class" : "active",
+            //         "is_active" : true
+            //     }
+            // ]
 
         };
     }

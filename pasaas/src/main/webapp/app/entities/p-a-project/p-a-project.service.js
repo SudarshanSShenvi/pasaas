@@ -23,4 +23,18 @@
             'update': { method:'PUT' }
         });
     }
+    
+    angular
+    .module('pasaasApp')
+    .factory('HDFSOpsResource', HDFSOpsResource);
+
+    HDFSOpsResource.$inject = ['$resource'];
+
+function HDFSOpsResource ($resource) {
+    var resourceUrl =  'api/readfilelist/:queryDir';
+
+    return $resource(resourceUrl, {}, {
+        'query': { method: 'GET', isArray: true},
+    });
+}
 })();
