@@ -137,6 +137,7 @@ public class HDFSOpsResource {
     	List<FileStatus> fileList = new ArrayList<FileStatus>();
     	FileStatus[] fileStatus = null;
         try {
+        	queryDir = queryDir.replace("%2F", "/");
         	fileStatus =hdfsFileOperationsService.readFileList(queryDir, hdfsFileOperationsService.init("pervazive"));
         	for (FileStatus fileStat : fileStatus)  {
 				if(fileStat.isFile()) {
