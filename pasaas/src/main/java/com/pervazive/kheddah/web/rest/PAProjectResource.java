@@ -160,10 +160,11 @@ public class PAProjectResource {
      */
     @GetMapping("/p-a-projects/{id}")
     @Timed
-    public ResponseEntity<PAProject> getPAProject(@PathVariable Long id) {
+    public ResponseEntity<PAProjectDTO> getPAProject(@PathVariable Long id) {
         log.debug("REST request to get PAProject : {}", id);
         PAProject pAProject = pAProjectService.findOne(id);
-        return Optional.ofNullable(pAProject)
+        PAProjectDTO paProjectDTO = new PAProjectDTO(pAProject);
+        return Optional.ofNullable(paProjectDTO)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))
