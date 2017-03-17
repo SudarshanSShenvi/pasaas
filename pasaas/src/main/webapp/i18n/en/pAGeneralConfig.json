@@ -4,7 +4,7 @@
             "home": {
                 "title": "PA General Configs",
                 "createLabel": "Create a new PA General Config",
-                "createOrEditLabel": "Create or edit a PA General Config",
+                "createOrEditLabel": "General Configuration",
                 "search": "Search for PA General Config"
             },
             "created": "A new PA General Config is created with identifier {{ param }}",

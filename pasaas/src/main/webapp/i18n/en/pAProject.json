@@ -4,7 +4,7 @@
             "home": {
                 "title": "Project List",
                 "createLabel": "Create New Project",
-                "createOrEditLabel": "Create or edit a PA Project",
+                "createOrEditLabel": "Project",
                 "search": "Search for PA Project"
             },
             "created": "A new PA Project is created with identifier {{ param }}",

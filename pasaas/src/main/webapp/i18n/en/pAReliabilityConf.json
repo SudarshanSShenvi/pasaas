@@ -4,7 +4,7 @@
             "home": {
                 "title": "PA Reliability Confs",
                 "createLabel": "Create a new PA Reliability Conf",
-                "createOrEditLabel": "Create or edit a PA Reliability Conf",
+                "createOrEditLabel": "Reliability Configuration",
                 "search": "Search for PA Reliability Conf"
             },
             "created": "A new PA Reliability Conf is created with identifier {{ param }}",

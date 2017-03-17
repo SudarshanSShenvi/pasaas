@@ -4,7 +4,7 @@
             "home": {
                 "title": "PA Prediction Scores",
                 "createLabel": "Create a new PA Prediction Score",
-                "createOrEditLabel": "Create or edit a PA Prediction Score",
+                "createOrEditLabel": "Prediction Score",
                 "search": "Search for PA Prediction Score"
             },
             "created": "A new PA Prediction Score is created with identifier {{ param }}",

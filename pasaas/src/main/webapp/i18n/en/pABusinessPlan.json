@@ -4,7 +4,7 @@
             "home": {
                 "title": "PA Business Plans",
                 "createLabel": "Create a new PA Business Plan",
-                "createOrEditLabel": "Create or edit a PA Business Plan",
+                "createOrEditLabel": "Business Plan",
                 "search": "Search for PA Business Plan"
             },
             "created": "A new PA Business Plan is created with identifier {{ param }}",

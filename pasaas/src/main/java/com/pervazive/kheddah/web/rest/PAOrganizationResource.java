@@ -209,10 +209,11 @@ public class PAOrganizationResource {
      */
     @GetMapping("/p-a-organizations/{id}")
     @Timed
-    public ResponseEntity<PAOrganization> getPAOrganization(@PathVariable Long id) {
+    public ResponseEntity<PAOrganizationDTO> getPAOrganization(@PathVariable Long id) {
         log.debug("REST request to get PAOrganization : {}", id);
         PAOrganization pAOrganization = pAOrganizationService.findOne(id);
-        return Optional.ofNullable(pAOrganization)
+        PAOrganizationDTO paOrganizationDTO = new PAOrganizationDTO(pAOrganization);
+        return Optional.ofNullable(paOrganizationDTO)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))
