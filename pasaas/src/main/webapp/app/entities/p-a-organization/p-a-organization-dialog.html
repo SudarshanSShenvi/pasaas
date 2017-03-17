@@ -54,6 +54,13 @@
                 <option value=""></option>
             </select>
         </div>
+        
+                <div class="form-group">
+            <label data-translate="pasaasApp.pAOrganization.pausers">Users</label>
+            <select class="form-control" multiple name="pauser" ng-model="vm.pAOrganization.pausers"
+                    ng-options="pauser for pauser in vm.pAOrganization.pausers">
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

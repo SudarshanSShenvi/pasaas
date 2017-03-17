@@ -127,7 +127,7 @@
             data: {
                 authorities: ['ROLE_USER']
             },
-            views: {
+           /* views: {
                 'content@': {
                     templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
                     controller: 'PAOrganizationDialogController',
@@ -138,9 +138,9 @@
                 entity: ['PAOrganization', function(PAOrganization) {
                     return PAOrganization.get({id : $stateParams.id}).$promise;
                 }]
-            }
+            }*/
             
-            /*onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
                     templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
                     controller: 'PAOrganizationDialogController',
@@ -157,7 +157,7 @@
                 }, function() {
                     $state.go('^');
                 });
-            }]*/
+            }]
         })
         .state('p-a-organization.delete', {
             parent: 'p-a-organization',
