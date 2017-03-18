@@ -3,7 +3,7 @@
         "request": {
             "title": "Reset your password",
             "form": {
-                "button": "Reset password"
+                "button": "Send new password"
             },
             "messages": {
                 "info": "Enter the e-mail address you used to register",

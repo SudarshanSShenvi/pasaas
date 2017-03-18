@@ -4,7 +4,7 @@
             "home": {
                 "title": "PAPMT Requests",
                 "createLabel": "Create a new PAPMT Request",
-                "createOrEditLabel": "Create or edit a PAPMT Request",
+                "createOrEditLabel": "Preventive Maintenance Task",
                 "search": "Search for PAPMT Request"
             },
             "created": "A new PAPMT Request is created with identifier {{ param }}",

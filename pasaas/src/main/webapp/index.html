@@ -1,12 +1,14 @@
 <!doctype html>
 <html class="no-js">
+
 <head>
+<!-- SHENVI CODE STARTS -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>pasaas</title>
+    <!-- <title>pasaas</title> -->
     <meta name="description" content="">
     <meta name="google" value="notranslate">
-    <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
@@ -17,23 +19,121 @@
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
     <!-- endbuild -->
+
+<!-- SHENVI CODE ENDS -->
+
+    <!-- <meta charset="utf-8"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+
+    <!-- Summernote -->
+    <link href="css/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Bootstrap and Fonts -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Full Calendar -->
+    <link href="css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+
+    <!-- Morris -->
+    <link href="css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
+
+    <!-- Style for wizard - based on Steps plugin-->
+    <link href="css/plugins/steps/jquery.steps.css" rel="stylesheet">
+
+    <!-- FancyBox -->
+    <link href="js/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- iCheck -->
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <!-- Chosen Plugin -->
+    <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
+
+    <!-- Dropzone style -->
+    <link href="css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="css/plugins/dropzone/dropzone.css" rel="stylesheet">
+
+    <!-- Switchery iOS style -->
+    <link href="css/plugins/switchery/switchery.css" rel="stylesheet">
+
+    <!-- noUiSlider for Range Slider-->
+    <link href="css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+
+    <!-- DataPicker -->
+    <link href="css/plugins/datapicker/angular-datapicker.css" rel="stylesheet">
+
+    <!-- Ion Range Slider -->
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <!-- Ng-Grid -->
+    <link href="js/plugins/nggrid/ng-grid.css" rel="stylesheet">
+
+    <!-- Code Mirror -->
+    <link href="css/plugins/codemirror/codemirror.css" rel="stylesheet">
+    <link href="css/plugins/codemirror/ambiance.css" rel="stylesheet">
+
+    <!-- ui Tree -->
+    <link href="css/plugins/uiTree/angular-ui-tree.min.css" rel="stylesheet">
+
+    <!-- Main Inspinia CSS files -->
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="company_pages/custome_css/custom_style.css" rel="stylesheet">
+
 </head>
-<body ng-app="pasaasApp" ng-strict-di>
+<body ng-app="pasaasApp">
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+<!-- Wrapper-->
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <div id="my_navigation" ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div id="my_topnavbar" ng-include="'views/common/topnavbar.html'"></div>
+
+        <!-- Main view  -->
+        <div ui-view="content"></div>
+
+        <!-- Footer -->
+        <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+</div>
+<!-- End wrapper-->
     
-    <page-ribbon></page-ribbon>
+    <!-- <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
     <div class="container">
-        <div class="well" ui-view="content">
-            <!-- Angular views -->
+        <div ui-view="content">
+            Angular views
         </div>
 
         <div class="footer" ng-cloak>
             <p data-translate="footer">This is your footer</p>
         </div>
-    </div>
+    </div> -->
 
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
     <script>
@@ -47,6 +147,8 @@
 
     <!-- build:js app/vendor.js -->
     <!-- bower:js -->
+
+<!-- SHENVI CODE STARTS -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/messageformat/messageformat.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
@@ -89,23 +191,32 @@
     <script src="app/services/auth/auth.service.js"></script>
     <script src="app/services/auth/activate.service.js"></script>
     <script src="app/services/auth/account.service.js"></script>
+
+
     <script src="app/layouts/navbar/navbar.controller.js"></script>
     <script src="app/layouts/navbar/active-menu.directive.js"></script>
+
     <script src="app/layouts/error/error.state.js"></script>
+
+
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
+
+
     <script src="app/entities/p-apmt-request/p-apmt-request-dialog.controller.js"></script>
     <script src="app/entities/p-apmt-request/p-apmt-request-detail.controller.js"></script>
     <script src="app/entities/p-apmt-request/p-apmt-request-delete-dialog.controller.js"></script>
     <script src="app/entities/p-apmt-request/p-apmt-request.state.js"></script>
     <script src="app/entities/p-apmt-request/p-apmt-request.service.js"></script>
     <script src="app/entities/p-apmt-request/p-apmt-request.controller.js"></script>
+
     <script src="app/entities/p-ane-details/p-ane-details-dialog.controller.js"></script>
     <script src="app/entities/p-ane-details/p-ane-details-detail.controller.js"></script>
     <script src="app/entities/p-ane-details/p-ane-details-delete-dialog.controller.js"></script>
     <script src="app/entities/p-ane-details/p-ane-details.state.js"></script>
     <script src="app/entities/p-ane-details/p-ane-details.service.js"></script>
     <script src="app/entities/p-ane-details/p-ane-details.controller.js"></script>
+
     <script src="app/entities/p-a-scheduler-interval/p-a-scheduler-interval-dialog.controller.js"></script>
     <script src="app/entities/p-a-scheduler-interval/p-a-scheduler-interval-detail.controller.js"></script>
     <script src="app/entities/p-a-scheduler-interval/p-a-scheduler-interval-delete-dialog.controller.js"></script>
@@ -118,6 +229,7 @@
     <script src="app/entities/p-a-scheduler/p-a-scheduler.state.js"></script>
     <script src="app/entities/p-a-scheduler/p-a-scheduler.service.js"></script>
     <script src="app/entities/p-a-scheduler/p-a-scheduler.controller.js"></script>
+
     <script src="app/entities/p-a-sax-code-tmp/p-a-sax-code-tmp-dialog.controller.js"></script>
     <script src="app/entities/p-a-sax-code-tmp/p-a-sax-code-tmp-detail.controller.js"></script>
     <script src="app/entities/p-a-sax-code-tmp/p-a-sax-code-tmp-delete-dialog.controller.js"></script>
@@ -130,12 +242,14 @@
     <script src="app/entities/p-a-sax-code/p-a-sax-code.state.js"></script>
     <script src="app/entities/p-a-sax-code/p-a-sax-code.service.js"></script>
     <script src="app/entities/p-a-sax-code/p-a-sax-code.controller.js"></script>
+
     <script src="app/entities/p-a-report/p-a-report-dialog.controller.js"></script>
     <script src="app/entities/p-a-report/p-a-report-detail.controller.js"></script>
     <script src="app/entities/p-a-report/p-a-report-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-report/p-a-report.state.js"></script>
     <script src="app/entities/p-a-report/p-a-report.service.js"></script>
     <script src="app/entities/p-a-report/p-a-report.controller.js"></script>
+
     <script src="app/entities/p-a-reliability-score/p-a-reliability-score-dialog.controller.js"></script>
     <script src="app/entities/p-a-reliability-score/p-a-reliability-score-detail.controller.js"></script>
     <script src="app/entities/p-a-reliability-score/p-a-reliability-score-delete-dialog.controller.js"></script>
@@ -148,18 +262,21 @@
     <script src="app/entities/p-a-reliability-conf/p-a-reliability-conf.state.js"></script>
     <script src="app/entities/p-a-reliability-conf/p-a-reliability-conf.service.js"></script>
     <script src="app/entities/p-a-reliability-conf/p-a-reliability-conf.controller.js"></script>
+
     <script src="app/entities/p-a-raw-alarm-data/p-a-raw-alarm-data-dialog.controller.js"></script>
     <script src="app/entities/p-a-raw-alarm-data/p-a-raw-alarm-data-detail.controller.js"></script>
     <script src="app/entities/p-a-raw-alarm-data/p-a-raw-alarm-data-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-raw-alarm-data/p-a-raw-alarm-data.state.js"></script>
     <script src="app/entities/p-a-raw-alarm-data/p-a-raw-alarm-data.service.js"></script>
     <script src="app/entities/p-a-raw-alarm-data/p-a-raw-alarm-data.controller.js"></script>
+
     <script src="app/entities/p-a-project/p-a-project-dialog.controller.js"></script>
     <script src="app/entities/p-a-project/p-a-project-detail.controller.js"></script>
     <script src="app/entities/p-a-project/p-a-project-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-project/p-a-project.state.js"></script>
     <script src="app/entities/p-a-project/p-a-project.service.js"></script>
     <script src="app/entities/p-a-project/p-a-project.controller.js"></script>
+
     <script src="app/entities/p-a-prediction-score/p-a-prediction-score-dialog.controller.js"></script>
     <script src="app/entities/p-a-prediction-score/p-a-prediction-score-detail.controller.js"></script>
     <script src="app/entities/p-a-prediction-score/p-a-prediction-score-delete-dialog.controller.js"></script>
@@ -172,48 +289,56 @@
     <script src="app/entities/p-a-prediction/p-a-prediction.state.js"></script>
     <script src="app/entities/p-a-prediction/p-a-prediction.service.js"></script>
     <script src="app/entities/p-a-prediction/p-a-prediction.controller.js"></script>
+
     <script src="app/entities/p-a-organization/p-a-organization-dialog.controller.js"></script>
     <script src="app/entities/p-a-organization/p-a-organization-detail.controller.js"></script>
     <script src="app/entities/p-a-organization/p-a-organization-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-organization/p-a-organization.state.js"></script>
     <script src="app/entities/p-a-organization/p-a-organization.service.js"></script>
     <script src="app/entities/p-a-organization/p-a-organization.controller.js"></script>
+
     <script src="app/entities/p-a-notification/p-a-notification-dialog.controller.js"></script>
     <script src="app/entities/p-a-notification/p-a-notification-detail.controller.js"></script>
     <script src="app/entities/p-a-notification/p-a-notification-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-notification/p-a-notification.state.js"></script>
     <script src="app/entities/p-a-notification/p-a-notification.service.js"></script>
     <script src="app/entities/p-a-notification/p-a-notification.controller.js"></script>
+
     <script src="app/entities/p-a-general-config/p-a-general-config-dialog.controller.js"></script>
     <script src="app/entities/p-a-general-config/p-a-general-config-detail.controller.js"></script>
     <script src="app/entities/p-a-general-config/p-a-general-config-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-general-config/p-a-general-config.state.js"></script>
     <script src="app/entities/p-a-general-config/p-a-general-config.service.js"></script>
     <script src="app/entities/p-a-general-config/p-a-general-config.controller.js"></script>
+
     <script src="app/entities/p-a-file-upload/p-a-file-upload-dialog.controller.js"></script>
     <script src="app/entities/p-a-file-upload/p-a-file-upload-detail.controller.js"></script>
     <script src="app/entities/p-a-file-upload/p-a-file-upload-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-file-upload/p-a-file-upload.state.js"></script>
     <script src="app/entities/p-a-file-upload/p-a-file-upload.service.js"></script>
     <script src="app/entities/p-a-file-upload/p-a-file-upload.controller.js"></script>
+
     <script src="app/entities/p-a-error-message/p-a-error-message-dialog.controller.js"></script>
     <script src="app/entities/p-a-error-message/p-a-error-message-detail.controller.js"></script>
     <script src="app/entities/p-a-error-message/p-a-error-message-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-error-message/p-a-error-message.state.js"></script>
     <script src="app/entities/p-a-error-message/p-a-error-message.service.js"></script>
     <script src="app/entities/p-a-error-message/p-a-error-message.controller.js"></script>
+
     <script src="app/entities/p-a-data-connector/p-a-data-connector-dialog.controller.js"></script>
     <script src="app/entities/p-a-data-connector/p-a-data-connector-detail.controller.js"></script>
     <script src="app/entities/p-a-data-connector/p-a-data-connector-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-data-connector/p-a-data-connector.state.js"></script>
     <script src="app/entities/p-a-data-connector/p-a-data-connector.service.js"></script>
     <script src="app/entities/p-a-data-connector/p-a-data-connector.controller.js"></script>
+
     <script src="app/entities/p-a-business-plan/p-a-business-plan-dialog.controller.js"></script>
     <script src="app/entities/p-a-business-plan/p-a-business-plan-detail.controller.js"></script>
     <script src="app/entities/p-a-business-plan/p-a-business-plan-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-business-plan/p-a-business-plan.state.js"></script>
     <script src="app/entities/p-a-business-plan/p-a-business-plan.service.js"></script>
     <script src="app/entities/p-a-business-plan/p-a-business-plan.controller.js"></script>
+
     <script src="app/entities/p-a-alarm-rca/p-a-alarm-rca-dialog.controller.js"></script>
     <script src="app/entities/p-a-alarm-rca/p-a-alarm-rca-detail.controller.js"></script>
     <script src="app/entities/p-a-alarm-rca/p-a-alarm-rca-delete-dialog.controller.js"></script>
@@ -226,13 +351,17 @@
     <script src="app/entities/p-a-alarm-actuality/p-a-alarm-actuality.state.js"></script>
     <script src="app/entities/p-a-alarm-actuality/p-a-alarm-actuality.service.js"></script>
     <script src="app/entities/p-a-alarm-actuality/p-a-alarm-actuality.controller.js"></script>
+
     <script src="app/entities/p-a-acc-precision/p-a-acc-precision-dialog.controller.js"></script>
     <script src="app/entities/p-a-acc-precision/p-a-acc-precision-detail.controller.js"></script>
     <script src="app/entities/p-a-acc-precision/p-a-acc-precision-delete-dialog.controller.js"></script>
     <script src="app/entities/p-a-acc-precision/p-a-acc-precision.state.js"></script>
     <script src="app/entities/p-a-acc-precision/p-a-acc-precision.service.js"></script>
     <script src="app/entities/p-a-acc-precision/p-a-acc-precision.controller.js"></script>
+
     <script src="app/entities/entity.state.js"></script>
+
+
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>
@@ -244,24 +373,32 @@
     <script src="app/components/util/data-util.service.js"></script>
     <script src="app/components/util/capitalize.filter.js"></script>
     <script src="app/components/util/base64.service.js"></script>
+
     <script src="app/components/login/login.service.js"></script>
     <script src="app/components/login/login.controller.js"></script>
+
     <script src="app/components/language/language.service.js"></script>
     <script src="app/components/language/language.filter.js"></script>
     <script src="app/components/language/language.controller.js"></script>
     <script src="app/components/language/language.constants.js"></script>
+
     <script src="app/components/form/show-validation.directive.js"></script>
     <script src="app/components/form/pagination.constants.js"></script>
     <script src="app/components/form/minbytes.directive.js"></script>
     <script src="app/components/form/maxbytes.directive.js"></script>
+
     <script src="app/components/alert/alert-error.directive.js"></script>
     <script src="app/components/alert/alert.service.js"></script>
     <script src="app/components/alert/alert.directive.js"></script>
+
+
     <script src="app/blocks/interceptor/notification.interceptor.js"></script>
     <script src="app/blocks/interceptor/errorhandler.interceptor.js"></script>
     <script src="app/blocks/interceptor/auth-expired.interceptor.js"></script>
+
     <script src="app/blocks/handlers/translation.handler.js"></script>
     <script src="app/blocks/handlers/state.handler.js"></script>
+
     <script src="app/blocks/config/uib-pagination.config.js"></script>
     <script src="app/blocks/config/uib-pager.config.js"></script>
     <script src="app/blocks/config/translation-storage.provider.js"></script>
@@ -270,57 +407,220 @@
     <script src="app/blocks/config/http.config.js"></script>
     <script src="app/blocks/config/compile.config.js"></script>
     <script src="app/blocks/config/alert.config.js"></script>
+
+
     <script src="app/app.state.js"></script>
     <script src="app/app.constants.js"></script>
+
+
     <script src="app/admin/user-management/user-management-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management-detail.controller.js"></script>
     <script src="app/admin/user-management/user-management-delete-dialog.controller.js"></script>
     <script src="app/admin/user-management/user-management.state.js"></script>
     <script src="app/admin/user-management/user-management.controller.js"></script>
+
     <script src="app/admin/metrics/metrics.state.js"></script>
     <script src="app/admin/metrics/metrics.service.js"></script>
     <script src="app/admin/metrics/metrics.modal.controller.js"></script>
     <script src="app/admin/metrics/metrics.controller.js"></script>
+
     <script src="app/admin/logs/logs.state.js"></script>
     <script src="app/admin/logs/logs.service.js"></script>
     <script src="app/admin/logs/logs.controller.js"></script>
+
     <script src="app/admin/health/health.state.js"></script>
     <script src="app/admin/health/health.service.js"></script>
     <script src="app/admin/health/health.modal.controller.js"></script>
     <script src="app/admin/health/health.controller.js"></script>
+
     <script src="app/admin/docs/docs.state.js"></script>
+
     <script src="app/admin/configuration/configuration.state.js"></script>
     <script src="app/admin/configuration/configuration.service.js"></script>
     <script src="app/admin/configuration/configuration.controller.js"></script>
+
     <script src="app/admin/audits/audits.state.js"></script>
     <script src="app/admin/audits/audits.service.js"></script>
     <script src="app/admin/audits/audits.controller.js"></script>
+
     <script src="app/admin/admin.state.js"></script>
+
+
     <script src="app/account/social/social-register.controller.js"></script>
     <script src="app/account/social/social.state.js"></script>
     <script src="app/account/social/social.service.js"></script>
     <script src="app/account/social/directive/social.directive.js"></script>
+
     <script src="app/account/settings/settings.state.js"></script>
     <script src="app/account/settings/settings.controller.js"></script>
+
     <script src="app/account/sessions/sessions.state.js"></script>
     <script src="app/account/sessions/sessions.controller.js"></script>
+
     <script src="app/account/reset/request/reset.request.state.js"></script>
     <script src="app/account/reset/request/reset.request.controller.js"></script>
     <script src="app/account/reset/finish/reset.finish.state.js"></script>
     <script src="app/account/reset/finish/reset.finish.controller.js"></script>
+
     <script src="app/account/register/register.state.js"></script>
     <script src="app/account/register/register.controller.js"></script>
+
     <script src="app/account/password/password-strength-bar.directive.js"></script>
     <script src="app/account/password/password.state.js"></script>
     <script src="app/account/password/password.controller.js"></script>
+
     <script src="app/account/activate/activate.state.js"></script>
     <script src="app/account/activate/activate.controller.js"></script>
+    
     <script src="app/account/account.state.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
-    
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<!-- SHENVI CODE ENDS -->
+
+
+    <script src="company_pages/step_one/controller_step_one.js"></script>
+    <script src="company_pages/step_two/controller_step_two.js"></script>
+    <script src="company_pages/step_three/controller_step_three.js"></script>
+
+
+    <script src="company_pages/pdf1/controller_pdf1.js"></script>
+    <script src="company_pages/pdf2/controller_pdf2.js"></script>
+    <script src="company_pages/pdf3/controller_pdf3.js"></script>
+    <script src="company_pages/pdf4/controller_pdf4.js"></script>
+    <script src="company_pages/pdf5/controller_pdf5.js"></script>
+    <script src="company_pages/pdf6/controller_pdf6.js"></script>
+    <script src="company_pages/pdf12/controller_pdf12.js"></script>
+    <script src="company_pages/pdf17/controller_pdf17.js"></script>
+    <script src="company_pages/pdf18/controller_pdf18.js"></script>
+    <script src="company_pages/pdf19/controller_pdf19.js"></script>
+    <script src="company_pages/pdf21/controller_pdf21.js"></script>
+    <script src="company_pages/pdf16/controller_pdf16.js"></script>
+    <script src="company_pages/pdf23/controller_pdf23.js"></script>
+    <script src="company_pages/pdf29/controller_pdf29.js"></script>
+    <script src="company_pages/pdf30/controller_pdf30.js"></script>
+    <script src="company_pages/pdf34/controller_pdf34.js"></script>
+    <script src="company_pages/pdf28/controller_pdf28.js"></script>
+    <script src="company_pages/pdf31/controller_pdf31.js"></script>
+    <script src="company_pages/pdf10/controller_pdf10.js"></script>
+    <script src="company_pages/pdf11/controller_pdf11.js"></script>
+    <script src="company_pages/pdf13/controller_pdf13.js"></script>
+    <script src="company_pages/pdf26/controller_pdf26.js"></script>
+    <script src="company_pages/pdf36/controller_pdf36.js"></script>
+    <script src="company_pages/pdf37/controller_pdf37.js"></script>
+    <script src="company_pages/pdf39/controller_pdf39.js"></script>
+    <script src="company_pages/pdf38/controller_pdf38.js"></script>
+    <script src="company_pages/pdf40/controller_pdf40.js"></script>
+    <script src="company_pages/pdf46/controller_pdf46.js"></script>
+    <script src="company_pages/pdf49/controller_pdf49.js"></script>
+    <script src="company_pages/pdf51/controller_pdf51.js"></script>
+    <script src="company_pages/pdf53/controller_pdf53.js"></script>
+    <script src="company_pages/pdf55/controller_pdf55.js"></script>
+    <script src="company_pages/pdf57/controller_pdf57.js"></script>
+    <script src="company_pages/pdf59/controller_pdf59.js"></script>
+    <script src="company_pages/pdf20/controller_pdf20.js"></script>
+    <script src="company_pages/pdf60/controller_pdf60.js"></script>
+    <script src="company_pages/pdf58/controller_pdf58.js"></script>
+    <script src="company_pages/pdf56/controller_pdf56.js"></script>
+    <script src="company_pages/pdf54/controller_pdf54.js"></script>
+    <script src="company_pages/pdf52/controller_pdf52.js"></script>
+    <script src="company_pages/pdf50/controller_pdf50.js"></script>
+    <script src="company_pages/pdf48/controller_pdf48.js"></script>
+    <script src="company_pages/pdf45/controller_pdf45.js"></script>
+    <script src="company_pages/pdf44/controller_pdf44.js"></script>
+    <script src="company_pages/pdf42/controller_pdf42.js"></script>
+    <script src="company_pages/pdf41/controller_pdf41.js"></script>
+    <script src="company_pages/pdf43/controller_pdf43.js"></script>
+    <script src="company_pages/pdf47/controller_pdf47.js"></script>
+    <script src="company_pages/create_new_user/controller_create_new_user.js"></script>
+
+    <!-- MetsiMenu -->
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+<!-- SlimScroll -->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Flot -->
+<script src="js/plugins/flot/jquery.flot.js"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.spline.js"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="js/plugins/flot/curvedLines.js"></script>
+
+<!-- Peity -->
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+
+<!-- Morris -->
+<script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+<script src="js/plugins/morris/morris.js"></script>
+
+<!-- iCheck -->
+<script src="js/plugins/iCheck/icheck.min.js"></script>
+
+<!-- Chosen -->
+<script src="js/plugins/chosen/chosen.jquery.js"></script>
+
+<!-- Peace JS -->
+<script src="js/plugins/pace/pace.min.js"></script>
+
+<!-- Fancy box -->
+<script src="js/plugins/fancybox/jquery.fancybox.js"></script>
+
+<!-- Rickshaw -->
+<script src="js/plugins/rickshaw/vendor/d3.v3.js"></script>
+<script src="js/plugins/rickshaw/rickshaw.min.js"></script>
+
+<!-- Ion Range Slider-->
+<script src="js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+<!-- NouSlider -->
+<script src="js/plugins/nouslider/jquery.nouislider.min.js"></script>
+
+<!-- Jvectormap -->
+<script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+<!-- Input Mask-->
+<script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+<!-- Switchery -->
+<script src="js/plugins/switchery/switchery.js"></script>
+
+<!-- Data Tables -->
+<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+<!-- EasyPIE -->
+<script src="js/plugins/easypiechart/easypiechart.js"></script>
+
+<!-- Sparkline -->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+<!-- Dropzone -->
+<script src="js/plugins/dropzone/dropzone.js"></script>
+
+<!-- Cahrt JS -->
+<script src="js/plugins/chartJs/Chart.min.js"></script>
+
+<!-- Knob -->
+<script src="js/plugins/jsKnob/jquery.knob.js"></script>
+
+<!-- SUMMERNOTE -->
+<script src="js/plugins/summernote/summernote.min.js"></script>
+
+<!-- Full Calendar -->
+<script src="js/plugins/fullcalendar/fullcalendar.min.js"></script>
+
+<!-- Code Mirror -->
+<script src="js/plugins/codemirror/codemirror.js"></script>
+<script src="js/plugins/codemirror/mode/javascript/javascript.js"></script>
+
+    <!-- <script src="js/app.js"></script> -->
+    <script src="js/config.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/inspinia.js"></script>
 
 </body>
 </html>

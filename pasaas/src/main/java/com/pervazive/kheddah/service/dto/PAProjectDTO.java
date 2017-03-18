@@ -258,4 +258,36 @@ public class PAProjectDTO {
 	public void setPastatus(PAStatus pastatus) {
 		this.pastatus = pastatus;
 	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public ZonedDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(ZonedDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public ZonedDateTime getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 }

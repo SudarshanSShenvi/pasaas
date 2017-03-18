@@ -13,7 +13,8 @@
             parent: 'entity',
             url: '/p-a-organization',
             data: {
-                authorities: ['ROLE_USER'],
+                // authorities: ['ROLE_USER'],
+                authorities: [],
                 pageTitle: 'pasaasApp.pAOrganization.home.title'
             },
             views: {
@@ -36,7 +37,8 @@
             parent: 'entity',
             url: '/p-a-organization/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                // authorities: ['ROLE_USER'],
+                authorities: [],
                 pageTitle: 'pasaasApp.pAOrganization.detail.title'
             },
             views: {
@@ -69,7 +71,8 @@
             parent: 'p-a-organization-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -94,7 +97,8 @@
             parent: 'p-a-organization',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -125,21 +129,9 @@
             parent: 'p-a-organization',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
-           /* views: {
-                'content@': {
-                    templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
-                    controller: 'PAOrganizationDialogController',
-                    controllerAs: 'vm'
-                }
-            },
-            resolve: {
-                entity: ['PAOrganization', function(PAOrganization) {
-                    return PAOrganization.get({id : $stateParams.id}).$promise;
-                }]
-            }*/
-            
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
                     templateUrl: 'app/entities/p-a-organization/p-a-organization-dialog.html',
@@ -163,7 +155,8 @@
             parent: 'p-a-organization',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

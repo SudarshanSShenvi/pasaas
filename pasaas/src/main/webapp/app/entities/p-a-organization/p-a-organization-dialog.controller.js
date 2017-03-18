@@ -5,9 +5,9 @@
         .module('pasaasApp')
         .controller('PAOrganizationDialogController', PAOrganizationDialogController);
 
-    PAOrganizationDialogController.$inject = ['$timeout', '$scope', '$state', '$stateParams', '$uibModalInstance', 'entity', 'PAOrganization', 'PAProject', 'PABusinessPlan', 'PAReliabilityScore', 'PAReliabilityConf', 'PAPredictionScore', 'PASaxCodeTmp', 'PASaxCode', 'PAAlarmActuality', 'PAPrediction', 'PAReport', 'PAAccPrecision', 'PAFileUpload', 'PAPMTRequest', 'PADataConnector', 'PAScheduler', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails'];
+    PAOrganizationDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PAOrganization', 'PAProject', 'PABusinessPlan', 'PAReliabilityScore', 'PAReliabilityConf', 'PAPredictionScore', 'PASaxCodeTmp', 'PASaxCode', 'PAAlarmActuality', 'PAPrediction', 'PAReport', 'PAAccPrecision', 'PAFileUpload', 'PAPMTRequest', 'PADataConnector', 'PAScheduler', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails'];
 
-    function PAOrganizationDialogController ($timeout, $scope, $state, $stateParams, $uibModalInstance, entity, PAOrganization, PAProject, PABusinessPlan, PAReliabilityScore, PAReliabilityConf, PAPredictionScore, PASaxCodeTmp, PASaxCode, PAAlarmActuality, PAPrediction, PAReport, PAAccPrecision, PAFileUpload, PAPMTRequest, PADataConnector, PAScheduler, PASchedulerInterval, PAAlarmRCA, PANEDetails) {
+    function PAOrganizationDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PAOrganization, PAProject, PABusinessPlan, PAReliabilityScore, PAReliabilityConf, PAPredictionScore, PASaxCodeTmp, PASaxCode, PAAlarmActuality, PAPrediction, PAReport, PAAccPrecision, PAFileUpload, PAPMTRequest, PADataConnector, PAScheduler, PASchedulerInterval, PAAlarmRCA, PANEDetails) {
         var vm = this;
 
         vm.pAOrganization = entity;
@@ -41,7 +41,7 @@
         function clear () {
             $uibModalInstance.dismiss('cancel');
         }
-        
+
         function save () {
             vm.isSaving = true;
             if (vm.pAOrganization.id !== null) {
@@ -52,9 +52,9 @@
         }
 
         function onSaveSuccess (result) {
-        	$scope.$emit('pasaasApp:pAOrganizationUpdate', result);
+            $scope.$emit('pasaasApp:pAOrganizationUpdate', result);
             $uibModalInstance.close(result);
-        	vm.isSaving = false;
+            vm.isSaving = false;
         }
 
         function onSaveError () {

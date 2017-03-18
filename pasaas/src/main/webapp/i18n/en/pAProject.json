@@ -2,9 +2,9 @@
     "pasaasApp": {
         "pAProject" : {
             "home": {
-                "title": "PA Projects",
-                "createLabel": "Create a new PA Project",
-                "createOrEditLabel": "Create or edit a PA Project",
+                "title": "Project List",
+                "createLabel": "Create New Project",
+                "createOrEditLabel": "Project",
                 "search": "Search for PA Project"
             },
             "created": "A new PA Project is created with identifier {{ param }}",
@@ -16,9 +16,9 @@
             "detail": {
                 "title": "PA Project"
             },
-            "projectname": "Projectname",
+            "projectname": "Project Name",
             "description": "Description",
-            "paorgpro": "Paorgpro",
+            "paorgpro": "Organization",
             "paempro": "Paempro",
             "panotpro": "Panotpro",
             "pafupro": "Pafupro",

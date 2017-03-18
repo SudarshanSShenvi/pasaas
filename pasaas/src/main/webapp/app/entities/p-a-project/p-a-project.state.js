@@ -13,7 +13,8 @@
             parent: 'entity',
             url: '/p-a-project',
             data: {
-                authorities: ['ROLE_USER'],
+                // authorities: ['ROLE_USER'],
+                authorities: [],
                 pageTitle: 'pasaasApp.pAProject.home.title'
             },
             views: {
@@ -35,7 +36,8 @@
             parent: 'entity',
             url: '/p-a-project/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                // authorities: ['ROLE_USER'],
+                authorities: [],
                 pageTitle: 'pasaasApp.pAProject.detail.title'
             },
             views: {
@@ -67,7 +69,8 @@
             parent: 'p-a-project-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -92,7 +95,8 @@
             parent: 'p-a-project',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -121,7 +125,8 @@
             parent: 'p-a-project',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -146,7 +151,8 @@
             parent: 'p-a-project',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                // authorities: ['ROLE_USER']
+                authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

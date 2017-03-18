@@ -1,11 +1,26 @@
-<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+<form 
+    name="editForm" 
+    role="form" 
+    novalidate 
+    ng-submit="vm.save()" 
+    show-validation
+>   
 
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myUserLabel" data-translate="userManagement.home.createOrEditLabel">
-            Create or edit a User</h4>
+    <div class="modal-header bg-primary">
+        <button 
+            type="button" 
+            class="close" 
+            data-dismiss="modal" 
+            aria-hidden="true"
+            ng-click="vm.clear()"
+        >&times;</button>
+        <h4 
+            class="modal-title" 
+            id="myUserLabel" 
+            data-translate="userManagement.home.createOrEditLabel"
+        >User</h4>
     </div>
+
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group">
@@ -74,7 +89,7 @@
                    translate-value-max="100">
                     This field cannot be longer than 100 characters.
                 </p>
-				<p class="help-block"
+                <p class="help-block"
                    ng-show="editForm.email.$error.email" data-translate="global.messages.validate.email.invalid">
                     Your e-mail is invalid.
                  </p>
@@ -97,7 +112,7 @@
        <div class="form-group">
             <label data-translate="userManagement.defaultOrganization">Default Organization</label>
             <input type="test" class="form-control" name="defaultOrganization"
-                   ng-model="vm.user.defaultOrganization" ng-maxlength="100">
+                   ng-model="vm.user.defaultOrganization" required ng-maxlength="100">
         </div>
 
         <div class="form-group">
@@ -119,6 +134,47 @@
             </select>
         </div>
     </div>
+
+    <div class="modal-footer">
+        <button 
+            type="button" 
+            class="btn btn-default" 
+            data-dismiss="modal" 
+            ng-click="vm.clear()"
+        >
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button 
+            type="submit" 
+            ng-disabled="editForm.$invalid || vm.isSaving" 
+            class="btn btn-primary"
+        >
+            <span class="glyphicon glyphicon-save"></span>&nbsp;
+            <span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
+
+
+
+
+
+<!-- <form 
+    name="editForm" 
+    role="form" 
+    novalidate 
+    ng-submit="vm.save()" 
+    show-validation
+>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myUserLabel" data-translate="userManagement.home.createOrEditLabel">
+            Create or edit a User</h4>
+    </div>
+
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
@@ -128,4 +184,4 @@
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
         </button>
     </div>
-</form>
+</form> -->
