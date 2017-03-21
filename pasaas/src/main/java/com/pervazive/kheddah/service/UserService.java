@@ -168,7 +168,7 @@ public class UserService {
     }
 
     public void updateUser(Long id, String login, String firstName, String lastName, String defaultOrganization, String email,
-        boolean activated, String langKey, Set<String> authorities) {
+        boolean activated, String langKey, Set<String> authorities, byte[] image, String imageContentType) {
 
         Optional.of(userRepository
             .findOne(id))
@@ -180,6 +180,8 @@ public class UserService {
                 user.setActivated(activated);
                 user.setDefaultOrganization(defaultOrganization);
                 user.setLangKey(langKey);
+                user.setImage(image);
+                user.setImageContentType(imageContentType);
                 Set<Authority> managedAuthorities = user.getAuthorities();
                 managedAuthorities.clear();
                 authorities.forEach(

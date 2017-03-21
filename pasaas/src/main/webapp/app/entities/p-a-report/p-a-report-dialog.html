@@ -6,6 +6,7 @@
                 ng-click="vm.clear()">&times;</button>
         <h4 class="modal-title" id="myPAReportLabel" data-translate="pasaasApp.pAReport.home.createOrEditLabel">Create or edit a PA Report</h4>
     </div>
+    ************************************************
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.pAReport.id">
@@ -46,7 +47,69 @@
                 <option value=""></option>
             </select>
         </div>
+        <div ng-if="vm.pAReport.reportfile" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.pAReport.reportfileContentType, vm.pAReport.reportfile)" 
+                    data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.pAReport.reportfileContentType}}, {{vm.byteSize(vm.pAReport.reportfile)}}</span>
+                    
+                     <a class="pull-left" ng-click="vm.download(vm.pAReport.reportfile)" 
+                    data-translate="entity.action.down">down</a><br>
+                    
+                    <button type="button" ng-click="vm.pAReport.reportfile=null;vm.pAReport.reportfileContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                 <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setMsgattachments($file, vm.pAReport)" data-translate="entity.action.addblob">
+                    Add Attachment
+                </button>
     </div>
+    <!-- <div class="row" ng-show="new" >
+
+                    <div class="col-md-12 form-group">
+                        <label>File to Upload</label>
+                        <input type="text" class="form-control" name="fileSelected" id="fileSelected"
+                               ng-model="fileSelected" required style="display: none">
+
+                        <div class="row pad">
+                            <div class="col-sm-2 pad">
+                                <button class="btn btn-default" ng-model-rejected="rejFiles" accept="{{accept}}" ngf-accept="accept" ngf-multiple="false" ngf-allow-dir="false" ngf-select ng-model="files" ngf-change="setFileName()">Select File</button>
+                                <b>OR</b>
+                            </div>
+                            <div ngf-drop ngf-select ng-model="files" ng-model-rejected="rejFiles" accept="{{accept}}" ngf-accept="accept" class="drop-box col-sm-10" ngf-change="setFileName()"
+                                 ngf-drag-over-class="drop-box-drag" ngf-multiple="false" ngf-allow-dir="false">
+                                <span>Drag And Drop file here<br>
+                                    <p ng-if="files.length > 0">File selected: <kbd>{{file.name}}</kbd></p>
+                                </span>
+                            </div>
+                            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                        </div>
+                        <div ng-show="editForm.fileSelected.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.fileSelected.$error.required">
+                                This field is required.
+                            </p>
+                        </div>
+                        <br/>
+
+                        <br/>
+                        <div ng-if="file.start" class="pad">
+                            <div class="gallery-box">
+                                <progressbar min="0" max="100" value="file.progress" class="progress-striped" ng-class="{active: file.loading}" type="info">
+                                    <span>{{file.progress}}% Complete</span>
+                                </progressbar>
+                                <div class="btn-group" ng-if="file.loading">
+                                    <a class="btn btn-xs btn-danger" ng-click="cancelUpload()">
+                                        Cancel
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </div>
+                </div> -->
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
@@ -55,4 +118,7 @@
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
         </button>
     </div>
+    
+    
 </form>
+              

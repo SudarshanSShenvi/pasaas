@@ -19,7 +19,7 @@ management:
 spring:
     application:
         name: pasaas
-        url: http://analytics.pervazive.com/pasaas
+        url: http://localhost:8085/pasaas
     profiles:
         # The commented value for `active` can be replaced with valid Spring profiles to load.
         # Otherwise, it will be filled in by maven when building the WAR file
@@ -44,8 +44,8 @@ spring:
     social:
         # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
         google:
-            clientId: 965701719982-vnchd2sb7r5hlvr6m31ge2bkenq2d4k2.apps.googleusercontent.com
-            clientSecret: 4l_nAfWc7ujjEFwjtjal8KYh
+            clientId: 965701719982-ksh5pepl78j1pnchhqrfgsk0r3gb3l20.apps.googleusercontent.com
+            clientSecret: EHpipZTVAR1UuffdVJS2DOLx
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
@@ -67,6 +67,8 @@ server:
     session:
         cookie:
             http-only: true
+            
+
 
 # ===================================================================
 # JHipster specific properties

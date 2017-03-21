@@ -95,9 +95,11 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('user-management', null, { reload: true });
+                    $state.go('p-a-organization', null, { reload: true });
+                    // $state.go('user-management', null, { reload: true });
                 }, function() {
-                    $state.go('user-management');
+                    $state.go('p-a-organization');
+                    // $state.go('user-management');
                 });
             }]
         })

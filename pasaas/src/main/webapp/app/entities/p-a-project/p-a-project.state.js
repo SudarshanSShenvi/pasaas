@@ -9,6 +9,40 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
+
+// .state('company_pages.pdf23', {
+//     url: '/pdf23',
+//     templateUrl: 'company_pages/pdf23/pdf23.ng.html',
+//     controller: 'controller_pdf23',
+//     data: { pageTitle: 'pdf23' }
+// })
+// .state('company_pages.pdf23.step_one', {
+//     url: '/step_one',
+//     templateUrl: 'company_pages/step_one/step_one.ng.html',
+//     controller: 'controller_step_one',
+//     data: { pageTitle: 'step_one' }
+// })
+        .state('p-a-project.step_one', {
+            parent: 'p-a-project',
+            url: '/step_one',
+            templateUrl: 'app/entities/p-a-project/step_one.html',
+            controller: 'PAProjectController',
+            controllerAs: 'vm'
+        })
+        .state('p-a-project.step_two', {
+            parent: 'p-a-project',
+            url: '/step_two',
+            templateUrl: 'app/entities/p-a-project/step_two.html',
+            controller: 'PAProjectController',
+            controllerAs: 'vm'
+        })
+        .state('p-a-project.step_three', {
+            parent: 'p-a-project',
+            url: '/step_three',
+            templateUrl: 'app/entities/p-a-project/step_three.html',
+            controller: 'PAProjectController',
+            controllerAs: 'vm'
+        })
         .state('p-a-project', {
             parent: 'entity',
             url: '/p-a-project',
@@ -32,6 +66,10 @@
                 }]
             }
         })
+
+        
+
+
         .state('p-a-project-detail', {
             parent: 'entity',
             url: '/p-a-project/{id}',
@@ -91,6 +129,53 @@
                 });
             }]
         })
+
+        // .state('p-a-project.new.step_one', {
+        //     parent: 'p-a-project.new',
+        //     url: '/step_one',
+        //     templateUrl: 'app/entities/p-a-project/step_one.html',
+        //     controller: 'PAProjectDialogController',
+        //     controllerAs: 'vm'
+        // })
+        // .state('p-a-project.new.step_two', {
+        //     parent: 'p-a-project.new',
+        //     url: '/step_two',
+        //     templateUrl: 'app/entities/p-a-project/step_two.html',
+        //     controller: 'PAProjectDialogController',
+        //     controllerAs: 'vm'
+        // })
+        // .state('p-a-project.new.step_three', {
+        //     parent: 'p-a-project.new',
+        //     url: '/step_three',
+        //     templateUrl: 'app/entities/p-a-project/step_three.html',
+        //     controller: 'PAProjectDialogController',
+        //     controllerAs: 'vm'
+        // })
+        // .state('p-a-project.new', {
+        //     parent: 'p-a-project',
+        //     url: '/new',
+        //     data: {
+        //         // authorities: ['ROLE_USER']
+        //         authorities: []
+        //     },
+        //     views: {
+        //         'content@': {
+        //             templateUrl: 'app/entities/p-a-project/p-a-project-dialog.html',
+        //             controller: 'PAProjectDialogController',
+        //             controllerAs: 'vm',
+        //         }
+        //     },
+        //     resolve: {
+        //         entity: function () {
+        //             return {
+        //                 projectname: null,
+        //                 description: null,
+        //                 id: null
+        //             };
+        //         }
+        //     }
+        // })
+
         .state('p-a-project.new', {
             parent: 'p-a-project',
             url: '/new',
@@ -115,12 +200,119 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('p-a-project', null, { reload: 'p-a-project' });
+                    $state.go('p-a-organization', null, { reload: 'p-a-project' });
+                    // $state.go('p-a-project', null, { reload: 'p-a-project' });
                 }, function() {
-                    $state.go('p-a-project');
+                    $state.go('p-a-organization');
+                    // $state.go('p-a-project');
                 });
             }]
         })
+        // .state('p-a-project.new.step_one', {
+        //     parent: 'p-a-project.new',
+        //     url: '/step_one',
+        //     onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+        //         $uibModal.open({
+        //             templateUrl: 'company_pages/step_one/step_one.ng.html',
+        //             controller: 'PAProjectDialogController',
+        //             controllerAs: 'vm',
+        //             backdrop: 'static',
+        //             size: 'lg',
+        //             resolve: {
+        //                 entity: function () {
+        //                     return {
+        //                         projectname: null,
+        //                         description: null,
+        //                         id: null
+        //                     };
+        //                 }
+        //             }
+        //         }).result.then(function() {
+        //             $state.go('p-a-organization', null, { reload: 'p-a-project' });
+        //             // $state.go('p-a-project', null, { reload: 'p-a-project' });
+        //         }, function() {
+        //             $state.go('p-a-organization');
+        //             // $state.go('p-a-project');
+        //         });
+        //     }]
+        //     // templateUrl: 'company_pages/step_one/step_one.ng.html',
+        //     // controller: 'PAProjectController',
+        //     // controllerAs: 'vm'
+        // })
+        // .state('p-a-project.new.step_two', {
+        //     parent: 'p-a-project.new',
+        //     url: '/step_two',
+        //     onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+        //         $uibModal.open({
+        //             templateUrl: 'company_pages/step_two/step_two.ng.html',
+        //             controller: 'PAProjectDialogController',
+        //             controllerAs: 'vm',
+        //             backdrop: 'static',
+        //             size: 'lg',
+        //             resolve: {
+        //                 entity: function () {
+        //                     return {
+        //                         projectname: null,
+        //                         description: null,
+        //                         id: null
+        //                     };
+        //                 }
+        //             }
+        //         }).result.then(function() {
+        //             $state.go('p-a-organization', null, { reload: 'p-a-project' });
+        //             // $state.go('p-a-project', null, { reload: 'p-a-project' });
+        //         }, function() {
+        //             $state.go('p-a-organization');
+        //             // $state.go('p-a-project');
+        //         });
+        //     }]
+        //     // templateUrl: 'company_pages/step_two/step_two.ng.html',
+        //     // controller: 'PAProjectController',
+        //     // controllerAs: 'vm'
+        // })
+        
+
+        // .state('p-a-project.edit.step_one', {
+        //     parent: 'p-a-project.edit',
+        //     url: '/step_one',
+        //     templateUrl: 'app/entities/p-a-project/step_one.html',
+        //     controller: 'PAProjectDialogController',
+        //     controllerAs: 'vm'
+        // })
+        // .state('p-a-project.edit.step_two', {
+        //     parent: 'p-a-project.edit',
+        //     url: '/step_two',
+        //     templateUrl: 'app/entities/p-a-project/step_two.html',
+        //     controller: 'PAProjectDialogController',
+        //     controllerAs: 'vm'
+        // })
+        // .state('p-a-project.edit.step_three', {
+        //     parent: 'p-a-project.edit',
+        //     url: '/step_three',
+        //     templateUrl: 'app/entities/p-a-project/step_three.html',
+        //     controller: 'PAProjectDialogController',
+        //     controllerAs: 'vm'
+        // })
+        // .state('p-a-project.edit', {
+        //     parent: 'p-a-project',
+        //     url: '/{id}/edit',
+        //     data: {
+        //         // authorities: ['ROLE_USER']
+        //         authorities: []
+        //     },
+        //     views: {
+        //         'content@': {
+        //             templateUrl: 'app/entities/p-a-project/p-a-project-dialog.html',
+        //             controller: 'PAProjectDialogController',
+        //             controllerAs: 'vm',
+        //         }
+        //     },
+        //     resolve: {
+        //         entity: ['PAProject', function(PAProject) {
+        //             return PAProject.get({id : $stateParams.id}).$promise;
+        //         }]
+        //     }
+        // })
         .state('p-a-project.edit', {
             parent: 'p-a-project',
             url: '/{id}/edit',

@@ -3,13 +3,13 @@ package com.pervazive.kheddah.web.rest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,15 +28,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
-import com.pervazive.kheddah.domain.PAAccPrecision;
-import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAProjectService;
-import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.service.dto.PAProjectDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -104,22 +101,60 @@ public class PAProjectResource {
      */
     @PutMapping("/p-a-projects")
     @Timed
-    public ResponseEntity<PAProjectDTO> updatePAProject(@RequestBody PAProjectDTO pAProject) throws URISyntaxException {
-        log.debug("REST request to update PAProject : {}", pAProject);
+    public ResponseEntity<PAProjectDTO> updatePAProject(@RequestBody PAProjectDTO pAProjectDto) throws URISyntaxException {
+        log.debug("REST request to update PAProject : {}", pAProjectDto);
         /*if (pAProject.getId() == null) {
             return createPAProject(pAProject);
         }*/
-        /*PAProject result = pAProjectService.save(pAProject);
-        return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("pAProject", pAProject.getId().toString()))
-            .body(new PAProjectDTO(result));*/
+        PAProject paProject = new PAProject();
+        paProject.setPastatus(pAProjectDto.getPastatus());
+        paProject.setProjectname(pAProjectDto.getProjectname());
+        paProject.setPaorgpro(pAProjectDto.getPaorgpro());
+        paProject.setDescription(pAProjectDto.getDescription());
+        paProject.setId(pAProjectDto.getId());
         
-        pAProjectService.updateProjectwithUsers(pAProject.getId(), pAProject.getProjectname(), pAProject.getDescription(), 
-        		pAProject.getPaorgpro(), pAProject.getPausers());
+        paProject.setCreatedBy(pAProjectDto.getCreatedBy());
+        paProject.setCreatedDate(pAProjectDto.getCreatedDate());
+        paProject.setLastModifiedBy(pAProjectDto.getLastModifiedBy());
+        paProject.setLastModifiedDate(pAProjectDto.getLastModifiedDate());
+        
+        paProject.setObjectentity(pAProjectDto.getObjectentity());
+        paProject.setFeedfirstlineheader(pAProjectDto.isFeedfirstlineheader());
+        paProject.setFeedindateformat(pAProjectDto.getFeedindateformat());
+        paProject.setFeedoutdateformat(pAProjectDto.getFeedoutdateformat());
+        paProject.setFeedskipindexes(pAProjectDto.getFeedskipindexes());
+        paProject.setRollindateformat(pAProjectDto.getRollindateformat());
+        paProject.setRolloutdateformat(pAProjectDto.getRolloutdateformat());
+        paProject.setRollseriesend(pAProjectDto.getRollseriesend());
+        paProject.setRollseriesgroupindex(pAProjectDto.getRollseriesgroupindex());
+        paProject.setRollseriesnxt(pAProjectDto.getRollseriesnxt());
+        paProject.setRollseriesstart(pAProjectDto.getRollseriesstart());
+        paProject.setPatternfldindex(pAProjectDto.getPatternfldindex());
+        paProject.setPatternintervalthreshhold(pAProjectDto.getPatternintervalthreshhold());
+        paProject.setPatternpredictinterval(pAProjectDto.getPatternpredictinterval());
+        paProject.setPatterntraininterval(pAProjectDto.getPatterntraininterval());
+       
+        Set<String> userList = pAProjectDto.getPausers();
+        Set<User> userObj = new HashSet<User>();
+        Iterator<String> iterator = userList.iterator(); 
+        // check values
+        while (iterator.hasNext()){
+    	   Optional<User> optUser = userRepository.findOneByLogin(iterator.next());
+    	   if (optUser.isPresent()) userObj.add(optUser.get()); 
+        }
+        paProject.setPausers(userObj);
+        
+        PAProject result = pAProjectService.save(paProject);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert("pAProject", pAProjectDto.getId().toString()))
+            .body(new PAProjectDTO(result));
+        
+        /*pAProjectService.updateProjectwithUsers(pAProjectDto.getId(), pAProjectDto.getProjectname(), pAProjectDto.getDescription(), 
+        		pAProjectDto.getPaorgpro(), pAProjectDto.getPausers());
         
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createAlert("pAProject.updated", pAProject.getProjectname()))
-            .body(new PAProjectDTO(pAProjectService.getProjectWithUser(pAProject.getId())));
+            .headers(HeaderUtil.createAlert("pAProject.updated", pAProjectDto.getProjectname()))
+            .body(new PAProjectDTO(pAProjectService.getProjectWithUser(pAProjectDto.getId())));*/
 
     }
 

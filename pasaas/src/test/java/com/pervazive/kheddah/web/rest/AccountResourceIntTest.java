@@ -155,7 +155,9 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                    // lastModifiedDate
+            null, // Image
+            null // ImageContentType
         );
 
         restMvc.perform(
@@ -187,7 +189,9 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                    // lastModifiedDate
+            null, // Image
+            null // ImageContentType
         );
 
         restUserMockMvc.perform(
@@ -219,7 +223,9 @@ public class AccountResourceIntTest {
             null,               // createdBy
             null,               // createdDate
             null,               // lastModifiedBy
-            null                // lastModifiedDate
+            null,                // lastModifiedDate
+            null, // Image
+            null // ImageContentType
         );
 
         restUserMockMvc.perform(
@@ -251,7 +257,9 @@ public class AccountResourceIntTest {
             null,               // createdBy
             null,               // createdDate
             null,               // lastModifiedBy
-            null                // lastModifiedDate
+            null,                // lastModifiedDate
+            null, // Image
+            null // ImageContentType
         );
 
         restUserMockMvc.perform(
@@ -284,12 +292,15 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                    // lastModifiedDate
+            null, // Image
+            null // ImageContentType
         );
 
         // Duplicate login, different e-mail
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), validUser.getLogin(), validUser.getPassword(), validUser.getLogin(), validUser.getLastName(), validUser.getDefaultOrganization(),
-            "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getOrganizations(), validUser.getProjects(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
+            "alicejr@example.com", true, validUser.getLangKey(), validUser.getAuthorities(), validUser.getOrganizations(), validUser.getProjects(), 
+            validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getImage(), validUser.getImageContentType());
 
         // Good user
         restMvc.perform(
@@ -329,12 +340,15 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                    // lastModifiedDate
+            null, // Image
+            null // ImageContentType
         );
 
         // Duplicate e-mail, different login
         ManagedUserVM duplicatedUser = new ManagedUserVM(validUser.getId(), "johnjr", validUser.getPassword(), validUser.getLogin(), validUser.getLastName(), validUser.getDefaultOrganization(),
-            validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(),  validUser.getOrganizations(), validUser.getProjects(), validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate());
+            validUser.getEmail(), true, validUser.getLangKey(), validUser.getAuthorities(),  validUser.getOrganizations(), validUser.getProjects(), 
+            validUser.getCreatedBy(), validUser.getCreatedDate(), validUser.getLastModifiedBy(), validUser.getLastModifiedDate(), validUser.getImage(), validUser.getImageContentType());
 
         // Good user
         restMvc.perform(
@@ -373,7 +387,9 @@ public class AccountResourceIntTest {
             null,                   // createdBy
             null,                   // createdDate
             null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,                    // lastModifiedDate
+            null, // Image
+            null // ImageContentType
         );
 
         restMvc.perform(
@@ -401,7 +417,9 @@ public class AccountResourceIntTest {
             "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             new HashSet<>(Arrays.asList("Pervazive")),
-            new HashSet<>(Arrays.asList("New Project"))
+            new HashSet<>(Arrays.asList("New Project")),
+            null,
+            null
         );
 
         restUserMockMvc.perform(

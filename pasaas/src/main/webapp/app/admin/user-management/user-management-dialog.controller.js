@@ -5,9 +5,9 @@
         .module('pasaasApp')
         .controller('UserManagementDialogController',UserManagementDialogController);
 
-    UserManagementDialogController.$inject = ['$stateParams', '$uibModalInstance', 'entity', 'User', 'JhiLanguageService'];
+    UserManagementDialogController.$inject = ['$stateParams', '$uibModalInstance', 'entity', 'User', 'JhiLanguageService', 'DataUtils', '$scope'];
 
-    function UserManagementDialogController ($stateParams, $uibModalInstance, entity, User, JhiLanguageService) {
+    function UserManagementDialogController ($stateParams, $uibModalInstance, entity, User, JhiLanguageService, DataUtils, $scope) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPERADMIN', 'ROLE_MANAGER'];
@@ -16,6 +16,8 @@
         vm.languages = null;
         vm.save = save;
         vm.user = entity;
+        vm.byteSize = DataUtils.byteSize;
+        vm.openFile = DataUtils.openFile;
         
         JhiLanguageService.getAll().then(function (languages) {
             vm.languages = languages;
@@ -42,5 +44,19 @@
                 User.save(vm.user, onSaveSuccess, onSaveError);
             }
         }
+        
+        vm.setImage = function ($file, user) {
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        user.image = base64Data;
+                        user.imageContentType = $file.type;
+                    });
+                });
+            }
+        };
     }
 })();

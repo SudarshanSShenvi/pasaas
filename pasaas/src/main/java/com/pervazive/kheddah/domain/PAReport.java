@@ -35,6 +35,13 @@ public class PAReport extends AbstractAuditingEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "pastatus")
     private PAStatus pastatus;
+    
+    @Lob
+    @Column(name = "reportfile")
+    private byte[] reportfile; // expression.txt
+
+    @Column(name = "reportfile_content_type")
+    private String reportfileContentType;
 
     @ManyToOne
     private PAOrganization paorgrep;
@@ -142,4 +149,20 @@ public class PAReport extends AbstractAuditingEntity implements Serializable {
             ", pastatus='" + pastatus + "'" +
             '}';
     }
+
+	public byte[] getReportfile() {
+		return reportfile;
+	}
+
+	public void setReportfile(byte[] reportfile) {
+		this.reportfile = reportfile;
+	}
+
+	public String getReportfileContentType() {
+		return reportfileContentType;
+	}
+
+	public void setReportfileContentType(String reportfileContentType) {
+		this.reportfileContentType = reportfileContentType;
+	}
 }

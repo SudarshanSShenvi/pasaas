@@ -10,6 +10,11 @@
     function PAProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
         var vm = this;
 
+    // PAProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
+
+    // function PAProjectDialogController ($timeout, $scope, $stateParams, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
+    //     var vm = this;
+
         vm.pAProject = entity;
         vm.clear = clear;
         vm.save = save;
@@ -41,6 +46,7 @@
         }
 
         function save () {
+            console.log("Saving New Project");
             vm.isSaving = true;
             if (vm.pAProject.id !== null) {
                 PAProject.update(vm.pAProject, onSaveSuccess, onSaveError);

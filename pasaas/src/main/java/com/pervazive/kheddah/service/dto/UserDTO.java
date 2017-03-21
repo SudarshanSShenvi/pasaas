@@ -47,6 +47,10 @@ public class UserDTO {
     private Set<String> organizations;
     
     private Set<String> projects;
+    
+    private byte[] image;
+
+    private String imageContentType;
 
     public UserDTO() {
     }
@@ -59,12 +63,13 @@ public class UserDTO {
                 user.getOrganizations().stream().map(PAOrganization::getOrganization)
                 .collect(Collectors.toSet()), 
                 		user.getProjects().stream().map(PAProject::getProjectname)
-                        .collect(Collectors.toSet())
+                        .collect(Collectors.toSet()), user.getImage(), user.getImageContentType()
         );
     }
 
     public UserDTO(String login, String firstName, String lastName, String defaultOrganization,
-        String email, boolean activated, String langKey, Set<String> authorities, Set<String> organizations, Set<String> projects) {
+        String email, boolean activated, String langKey, Set<String> authorities, Set<String> organizations, Set<String> projects, 
+        byte[] image, String imageContentType) {
 
         this.login = login;
         this.firstName = firstName;
@@ -76,6 +81,8 @@ public class UserDTO {
         this.authorities = authorities;
         this.organizations = organizations;
         this.projects = projects;
+        this.image = image;
+        this.imageContentType = imageContentType;
     }
 
     public String getLogin() {
@@ -146,4 +153,20 @@ public class UserDTO {
             ", authorities=" + authorities +
             "}";
     }
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	public String getImageContentType() {
+		return imageContentType;
+	}
+
+	public void setImageContentType(String imageContentType) {
+		this.imageContentType = imageContentType;
+	}
 }

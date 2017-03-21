@@ -62,6 +62,9 @@ public class PAProjectDTO {
 				paProject.getCreatedBy(), paProject.getCreatedDate(), paProject.getLastModifiedBy(), paProject.getLastModifiedDate());
 	}
 	
+	public PAProjectDTO(){
+	}
+	
 	
     private String objectentity;		// ==> 13:6 (Column identifier)
    	private String timeseriesentity; 	// ==> 30   (Time identifier )

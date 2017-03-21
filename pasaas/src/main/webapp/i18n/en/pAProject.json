@@ -1,41 +1,58 @@
 {
-    "pasaasApp": {
-        "pAProject" : {
-            "home": {
-                "title": "Project List",
-                "createLabel": "Create New Project",
-                "createOrEditLabel": "Project",
-                "search": "Search for PA Project"
-            },
-            "created": "A new PA Project is created with identifier {{ param }}",
-            "updated": "A PA Project is updated with identifier {{ param }}",
-            "deleted": "A PA Project is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete PA Project {{ id }}?"
-            },
-            "detail": {
-                "title": "PA Project"
-            },
-            "projectname": "Project Name",
-            "description": "Description",
-            "paorgpro": "Organization",
-            "paempro": "Paempro",
-            "panotpro": "Panotpro",
-            "pafupro": "Pafupro",
-            "paappro": "Paappro",
-            "paprepro": "Paprepro",
-            "paaapro": "Paaapro",
-            "pascpro": "Pascpro",
-            "pasctpro": "Pasctpro",
-            "papspro": "Papspro",
-            "parcpro": "Parcpro",
-            "parspro": "Parspro",
-            "papmtpro": "Papmtpro",
-            "pascipro": "Pascipro",
-            "paarcpro": "Paarcpro",
-            "panedpro": "Panedpro",
-            "padcpro": "Padcpro",
-            "paschpro": "Paschpro"
-        }
-    }
+	"pasaasApp": {
+		"pAProject" : {
+			"home": {
+				"title": "Project List",
+				"createLabel": "Create New Project",
+				"createOrEditLabel": "Project",
+				"search": "Search for PA Project"
+			},
+			"created": "A new PA Project is created with identifier {{ param }}",
+			"updated": "A PA Project is updated with identifier {{ param }}",
+			"deleted": "A PA Project is deleted with identifier {{ param }}",
+			"delete": {
+				"question": "Are you sure you want to delete PA Project {{ id }}?"
+			},
+			"detail": {
+				"title": "PA Project"
+			},
+			"projectname": "Project Name",
+			"description": "Description",
+			"pastatus": "Status",
+			"paorgpro": "Organization",
+			"objectentity": "Object Entity",
+			"timeseriesentity": "Time Variable",
+			"feedindateformat": "Feed Input Date Format",
+			"feedoutdateformat": "Feed Output Date Format",
+			"feedfirstlineheader": "Feed Contains Header",
+			"feedskipindexes": "Feed Ignore Indexes",
+			"rollindateformat": "Rollup Input Date Format",
+			"rolloutdateformat": "Rollup Output Date Format",
+			"rollseriesgroupindex": "Rollup Series Group Index",
+			"rollseriesstart": "Rollup Series Start",
+			"rollseriesend": "Rollup Series End",
+			"rollseriesnxt": "Rollup Series Next",
+			"patternfldindex": "Pattern Field Index",
+			"patterntraininterval": "Pattern Train Interval",
+			"patternpredictinterval": "Pattern Predict Interval",
+			"patternintervalthreshhold": "Pattern Interval Threshold",
+			"paempro": "Paempro",
+			"panotpro": "Panotpro",
+			"pafupro": "Pafupro",
+			"paappro": "Paappro",
+			"paprepro": "Paprepro",
+			"paaapro": "Paaapro",
+			"pascpro": "Pascpro",
+			"pasctpro": "Pasctpro",
+			"papspro": "Papspro",
+			"parcpro": "Parcpro",
+			"parspro": "Parspro",
+			"papmtpro": "Papmtpro",
+			"pascipro": "Pascipro",
+			"paarcpro": "Paarcpro",
+			"panedpro": "Panedpro",
+			"padcpro": "Padcpro",
+			"paschpro": "Paschpro"
+		}
+	}
 }

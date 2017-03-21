@@ -42,8 +42,15 @@ public class DBOperationsHandler {
 			+ "JOIN ( SELECT b.distalarm, b.saxcode, IFNULL(a.total,0) AS c FROM pa_saxcode AS a "
 			+ "RIGHT OUTER JOIN pa_saxcode_tmp b ON a.distalarm = b.distalarm AND a.saxcode = CONCAT(b.saxcode, 'c')) AS BB "
 			+ "where AA.distalarm = BB.distalarm and AA.saxcode = BB.saxcode";
-
 	
+	public String exportCSVPredictions = "SELECT dist, alarmno, bscore, cscore FROM pa_prediction_score "
+			+ "WHERE paorgps_id = :template_orgId and paprops_id=:template_projId INTO OUTFILE ':template_filePath' "
+			+ "FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n'";
+	
+	public String exportTSVPredictions = "SELECT dist, alarmno, bscore, cscore FROM pa_prediction_score "
+			+ "WHERE paorgps_id = :template_orgId and paprops_id=:template_projId INTO OUTFILE ':template_filePath' "
+			+ "FIELDS TERMINATED BY '\t' ENCLOSED BY '\"' LINES TERMINATED BY '\n'";
+		
 
 /*	public static void main(String[] args) {
 		DBOperationsHandler dbOperationsHandler = new DBOperationsHandler();
