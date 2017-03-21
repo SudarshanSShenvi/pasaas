@@ -1,5 +1,6 @@
 <!doctype html>
-<html class="no-js">
+<!-- <html class="no-js"> -->
+<html ng-app="pasaasApp">
 
 <head>
 <!-- SHENVI CODE STARTS -->
@@ -93,35 +94,44 @@
     <link href="company_pages/custome_css/custom_style.css" rel="stylesheet">
 
 </head>
-<body ng-app="pasaasApp">
+<!-- <body ng-app="pasaasApp"> -->
+<body ng-controller="MainCtrl as main">
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-<!-- Wrapper-->
-<div id="wrapper">
+    <div ng-switch="isAuthenticated()">
 
-    <!-- Navigation -->
-    <div id="my_navigation" ng-include="'views/common/navigation.html'"></div>
+        <!-- Wrapper-->
+        <div id="wrapper" ng-switch-when="true">
 
-    <!-- Page wraper -->
-    <!-- ng-class with current state name give you the ability to extended customization your view -->
-    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+            <!-- Navigation -->
+            <div id="my_navigation" ng-include="'views/common/navigation.html'"></div>
 
-        <!-- Page wrapper -->
-        <div id="my_topnavbar" ng-include="'views/common/topnavbar.html'"></div>
+            <!-- Page wraper -->
+            <!-- ng-class with current state name give you the ability to extended customization your view -->
+            <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
 
-        <!-- Main view  -->
-        <div ui-view="content"></div>
+                <!-- Page wrapper -->
+                <div id="my_topnavbar" ng-include="'views/common/topnavbar.html'"></div>
 
-        <!-- Footer -->
-        <div ng-include="'views/common/footer.html'"></div>
+                <!-- Main view  -->
+                <div ui-view="content"></div>
+
+                <!-- Footer -->
+                <div ng-include="'views/common/footer.html'"></div>
+
+            </div>
+            <!-- End page wrapper-->
+
+        </div>
+        <!-- End wrapper-->
+
+        <div class="gray-bg" ng-switch-when="false">
+            <div ui-view="content"></div>
+        </div>
 
     </div>
-    <!-- End page wrapper-->
-
-</div>
-<!-- End wrapper-->
     
     <!-- <page-ribbon></page-ribbon>
     <div ui-view="navbar" ng-cloak></div>
@@ -172,7 +182,97 @@
     <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
+<!-- SHENVI CODE ENDS -->
 
+<!-- jQuery and Bootstrap -->
+<!-- <script src="js/jquery/jquery-2.1.1.min.js"></script> -->
+<script src="js/plugins/jquery-ui/jquery-ui.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- MetsiMenu -->
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+<!-- SlimScroll -->
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Flot -->
+<script src="js/plugins/flot/jquery.flot.js"></script>
+<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="js/plugins/flot/jquery.flot.spline.js"></script>
+<script src="js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="js/plugins/flot/curvedLines.js"></script>
+
+<!-- Peity -->
+<script src="js/plugins/peity/jquery.peity.min.js"></script>
+
+<!-- Morris -->
+<script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+<script src="js/plugins/morris/morris.js"></script>
+
+<!-- iCheck -->
+<script src="js/plugins/iCheck/icheck.min.js"></script>
+
+<!-- Chosen -->
+<script src="js/plugins/chosen/chosen.jquery.js"></script>
+
+<!-- Peace JS -->
+<script src="js/plugins/pace/pace.min.js"></script>
+
+<!-- Fancy box -->
+<script src="js/plugins/fancybox/jquery.fancybox.js"></script>
+
+<!-- Rickshaw -->
+<script src="js/plugins/rickshaw/vendor/d3.v3.js"></script>
+<script src="js/plugins/rickshaw/rickshaw.min.js"></script>
+
+<!-- Ion Range Slider-->
+<script src="js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+<!-- NouSlider -->
+<script src="js/plugins/nouslider/jquery.nouislider.min.js"></script>
+
+<!-- Jvectormap -->
+<script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+<!-- Input Mask-->
+<script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+<!-- Switchery -->
+<script src="js/plugins/switchery/switchery.js"></script>
+
+<!-- Data Tables -->
+<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+<!-- EasyPIE -->
+<script src="js/plugins/easypiechart/easypiechart.js"></script>
+
+<!-- Sparkline -->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+<!-- Dropzone -->
+<script src="js/plugins/dropzone/dropzone.js"></script>
+
+<!-- Cahrt JS -->
+<script src="js/plugins/chartJs/Chart.min.js"></script>
+
+<!-- Knob -->
+<script src="js/plugins/jsKnob/jquery.knob.js"></script>
+
+<!-- SUMMERNOTE -->
+<script src="js/plugins/summernote/summernote.min.js"></script>
+
+<!-- Full Calendar -->
+<script src="js/plugins/fullcalendar/fullcalendar.min.js"></script>
+
+<!-- Code Mirror -->
+<script src="js/plugins/codemirror/codemirror.js"></script>
+<script src="js/plugins/codemirror/mode/javascript/javascript.js"></script>
+
+
+<!-- SHENVI CODE STARTS -->
     <!-- build:js app/app.js  -->
     <!-- inject:js -->
     <script src="app/app.module.js"></script>
@@ -479,148 +579,12 @@
 <!-- SHENVI CODE ENDS -->
 
 
-    <script src="company_pages/step_one/controller_step_one.js"></script>
-    <script src="company_pages/step_two/controller_step_two.js"></script>
-    <script src="company_pages/step_three/controller_step_three.js"></script>
-
-
-    <script src="company_pages/pdf1/controller_pdf1.js"></script>
-    <script src="company_pages/pdf2/controller_pdf2.js"></script>
-    <script src="company_pages/pdf3/controller_pdf3.js"></script>
-    <script src="company_pages/pdf4/controller_pdf4.js"></script>
-    <script src="company_pages/pdf5/controller_pdf5.js"></script>
-    <script src="company_pages/pdf6/controller_pdf6.js"></script>
-    <script src="company_pages/pdf12/controller_pdf12.js"></script>
-    <script src="company_pages/pdf17/controller_pdf17.js"></script>
-    <script src="company_pages/pdf18/controller_pdf18.js"></script>
-    <script src="company_pages/pdf19/controller_pdf19.js"></script>
-    <script src="company_pages/pdf21/controller_pdf21.js"></script>
-    <script src="company_pages/pdf16/controller_pdf16.js"></script>
-    <script src="company_pages/pdf23/controller_pdf23.js"></script>
-    <script src="company_pages/pdf29/controller_pdf29.js"></script>
-    <script src="company_pages/pdf30/controller_pdf30.js"></script>
-    <script src="company_pages/pdf34/controller_pdf34.js"></script>
-    <script src="company_pages/pdf28/controller_pdf28.js"></script>
-    <script src="company_pages/pdf31/controller_pdf31.js"></script>
-    <script src="company_pages/pdf10/controller_pdf10.js"></script>
-    <script src="company_pages/pdf11/controller_pdf11.js"></script>
-    <script src="company_pages/pdf13/controller_pdf13.js"></script>
-    <script src="company_pages/pdf26/controller_pdf26.js"></script>
-    <script src="company_pages/pdf36/controller_pdf36.js"></script>
-    <script src="company_pages/pdf37/controller_pdf37.js"></script>
-    <script src="company_pages/pdf39/controller_pdf39.js"></script>
-    <script src="company_pages/pdf38/controller_pdf38.js"></script>
-    <script src="company_pages/pdf40/controller_pdf40.js"></script>
-    <script src="company_pages/pdf46/controller_pdf46.js"></script>
-    <script src="company_pages/pdf49/controller_pdf49.js"></script>
-    <script src="company_pages/pdf51/controller_pdf51.js"></script>
-    <script src="company_pages/pdf53/controller_pdf53.js"></script>
-    <script src="company_pages/pdf55/controller_pdf55.js"></script>
-    <script src="company_pages/pdf57/controller_pdf57.js"></script>
-    <script src="company_pages/pdf59/controller_pdf59.js"></script>
-    <script src="company_pages/pdf20/controller_pdf20.js"></script>
-    <script src="company_pages/pdf60/controller_pdf60.js"></script>
-    <script src="company_pages/pdf58/controller_pdf58.js"></script>
-    <script src="company_pages/pdf56/controller_pdf56.js"></script>
-    <script src="company_pages/pdf54/controller_pdf54.js"></script>
-    <script src="company_pages/pdf52/controller_pdf52.js"></script>
-    <script src="company_pages/pdf50/controller_pdf50.js"></script>
-    <script src="company_pages/pdf48/controller_pdf48.js"></script>
-    <script src="company_pages/pdf45/controller_pdf45.js"></script>
-    <script src="company_pages/pdf44/controller_pdf44.js"></script>
-    <script src="company_pages/pdf42/controller_pdf42.js"></script>
-    <script src="company_pages/pdf41/controller_pdf41.js"></script>
-    <script src="company_pages/pdf43/controller_pdf43.js"></script>
-    <script src="company_pages/pdf47/controller_pdf47.js"></script>
-    <script src="company_pages/create_new_user/controller_create_new_user.js"></script>
-
-    <!-- MetsiMenu -->
-<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
-
-<!-- SlimScroll -->
-<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Flot -->
-<script src="js/plugins/flot/jquery.flot.js"></script>
-<script src="js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="js/plugins/flot/jquery.flot.spline.js"></script>
-<script src="js/plugins/flot/jquery.flot.resize.js"></script>
-<script src="js/plugins/flot/jquery.flot.pie.js"></script>
-<script src="js/plugins/flot/curvedLines.js"></script>
-
-<!-- Peity -->
-<script src="js/plugins/peity/jquery.peity.min.js"></script>
-
-<!-- Morris -->
-<script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
-<script src="js/plugins/morris/morris.js"></script>
-
-<!-- iCheck -->
-<script src="js/plugins/iCheck/icheck.min.js"></script>
-
-<!-- Chosen -->
-<script src="js/plugins/chosen/chosen.jquery.js"></script>
-
-<!-- Peace JS -->
-<script src="js/plugins/pace/pace.min.js"></script>
-
-<!-- Fancy box -->
-<script src="js/plugins/fancybox/jquery.fancybox.js"></script>
-
-<!-- Rickshaw -->
-<script src="js/plugins/rickshaw/vendor/d3.v3.js"></script>
-<script src="js/plugins/rickshaw/rickshaw.min.js"></script>
-
-<!-- Ion Range Slider-->
-<script src="js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
-
-<!-- NouSlider -->
-<script src="js/plugins/nouslider/jquery.nouislider.min.js"></script>
-
-<!-- Jvectormap -->
-<script src="js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-<!-- Input Mask-->
-<script src="js/plugins/jasny/jasny-bootstrap.min.js"></script>
-
-<!-- Switchery -->
-<script src="js/plugins/switchery/switchery.js"></script>
-
-<!-- Data Tables -->
-<script src="js/plugins/dataTables/jquery.dataTables.js"></script>
-<script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
-
-<!-- EasyPIE -->
-<script src="js/plugins/easypiechart/easypiechart.js"></script>
-
-<!-- Sparkline -->
-<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-
-<!-- Dropzone -->
-<script src="js/plugins/dropzone/dropzone.js"></script>
-
-<!-- Cahrt JS -->
-<script src="js/plugins/chartJs/Chart.min.js"></script>
-
-<!-- Knob -->
-<script src="js/plugins/jsKnob/jquery.knob.js"></script>
-
-<!-- SUMMERNOTE -->
-<script src="js/plugins/summernote/summernote.min.js"></script>
-
-<!-- Full Calendar -->
-<script src="js/plugins/fullcalendar/fullcalendar.min.js"></script>
-
-<!-- Code Mirror -->
-<script src="js/plugins/codemirror/codemirror.js"></script>
-<script src="js/plugins/codemirror/mode/javascript/javascript.js"></script>
-
-    <!-- <script src="js/app.js"></script> -->
+<!-- <script src="js/app.js"></script> -->
     <script src="js/config.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/inspinia.js"></script>
+    
 
 </body>
 </html>
