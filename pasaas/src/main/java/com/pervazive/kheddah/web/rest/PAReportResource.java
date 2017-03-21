@@ -2,8 +2,6 @@ package com.pervazive.kheddah.web.rest;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -15,11 +13,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import javax.inject.Inject;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
@@ -28,7 +24,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,13 +31,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.codahale.metrics.annotation.Timed;
-import org.springframework.http.MediaType;
 import com.pervazive.kheddah.dbuploader.DBOperationsHandler;
 import com.pervazive.kheddah.domain.PAReport;
 import com.pervazive.kheddah.security.SecurityUtils;
@@ -158,7 +149,17 @@ public class PAReportResource {
 			        			"/tmp/reportfiles/file_"+pAReport.getPaorgrep().getId()+"_1.csv");
 			        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.exportTSVPredictions, pAReport.getPaorgrep().getId(), 1L, 
 			        			"/tmp/reportfiles/file_"+pAReport.getPaorgrep().getId()+"_1.tsv");
-			        	return 0L;
+			        	
+			        	File downloadFile = new File("/tmp/reportfiles/file_"+pAReport.getPaorgrep().getId()+"_1.csv");
+			            FileInputStream inputStream = new FileInputStream(downloadFile);
+
+			            byte[] reportfile = IOUtils.toByteArray(inputStream);
+			            
+			            pAReport.setReportfile(reportfile);
+			            updatePAReport(pAReport);
+			            inputStream.close();
+			            
+			            return 0L;
 	        }
 	    });
         
