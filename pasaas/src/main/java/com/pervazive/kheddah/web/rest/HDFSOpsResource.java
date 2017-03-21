@@ -26,7 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
+import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.FileStatusDTO;
 
 /**
@@ -38,6 +40,9 @@ public class HDFSOpsResource {
 	
 	@Inject
 	private HDFSFileOperationsService hdfsFileOperationsService;
+	
+	@Inject
+	private PAProjectService paProjectService;
 
     private final Logger log = LoggerFactory.getLogger(HDFSOpsResource.class);
     
@@ -129,15 +134,20 @@ public class HDFSOpsResource {
         return new ResponseEntity<String>("Successfully uploaded",HttpStatus.OK);
     }
     
-    @GetMapping("/readfilelist/{queryDir}")
+    @GetMapping("/readfilelist/{projectName}")
     @Timed
-    public ResponseEntity<List<FileStatusDTO>> getFileList(@PathVariable String queryDir)
+    public ResponseEntity<List<FileStatusDTO>> getFileList(@PathVariable String projectName)
         throws URISyntaxException {
+    	
+    	PAProject paProject = paProjectService.findProjectByName(projectName);
+    	paProject.getPaorgpro().getOrganization();
+    	
+    	String dirName = "/user/pervazive/"+paProject.getPaorgpro().getOrganization()+"/"+projectName+"/ppa-repo/traindata";
     	
     	List<FileStatus> fileList = new ArrayList<FileStatus>();
     	FileStatus[] fileStatus = null;
         try {
-        	fileStatus =hdfsFileOperationsService.readFileList(queryDir, hdfsFileOperationsService.init("pervazive"));
+        	fileStatus =hdfsFileOperationsService.readFileList(dirName, hdfsFileOperationsService.init("pervazive"));
         	for (FileStatus fileStat : fileStatus)  {
 				if(fileStat.isFile()) {
 					fileList.add(fileStat);
