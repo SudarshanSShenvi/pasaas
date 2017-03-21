@@ -19,7 +19,7 @@ management:
 spring:
     application:
         name: pasaas
-        url: http://localhost:8085/pasaas
+        url: http://analytics.pervazive.com/pasaas
     profiles:
         # The commented value for `active` can be replaced with valid Spring profiles to load.
         # Otherwise, it will be filled in by maven when building the WAR file
@@ -44,13 +44,13 @@ spring:
     social:
         # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
         google:
-            clientId: 965701719982-ksh5pepl78j1pnchhqrfgsk0r3gb3l20.apps.googleusercontent.com
-            clientSecret: EHpipZTVAR1UuffdVJS2DOLx
+            clientId: 533395353669-apdpr17k9dcmgmm2vi8r8qevirot22pi.apps.googleusercontent.com
+            clientSecret: -WJTvVQCOeuKc7oZUkUk0udt
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            clientId: 260789520999403
-            clientSecret: 0aa8c69d8b808bef63d4315a45a99803
+            clientId: 400876320274560
+            clientSecret: e8dc121031bb8c0fbcc5fa9b7b23d3e0
 
         # see https://apps.twitter.com/app/
         twitter:
