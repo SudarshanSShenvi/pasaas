@@ -2,7 +2,7 @@
     "pasaasApp": {
         "pAReliabilityConf" : {
             "home": {
-                "title": "PA Reliability Confs",
+                "title": "Reliability Configurations",
                 "createLabel": "Create a new PA Reliability Conf",
                 "createOrEditLabel": "Reliability Configuration",
                 "search": "Search for PA Reliability Conf"
@@ -20,7 +20,7 @@
             "cscore": "Cscore",
             "dataset": "Dataset",
             "category": "Category",
-            "pastatus": "Pastatus",
+            "pastatus": "Status",
             "paorgrc": "Paorgrc",
             "paprorc": "Paprorc"
         }

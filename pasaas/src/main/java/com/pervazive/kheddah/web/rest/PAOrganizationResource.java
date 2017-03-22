@@ -220,6 +220,26 @@ PAOrganizationDTO paOrganizationDTO = new PAOrganizationDTO(pAOrganization);
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    /**
+     * GET  /p-a-organizations/:id : get the "id" pAOrganization.
+     *
+     * @param id the id of the pAOrganization to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the pAOrganization, or with status 404 (Not Found)
+     */
+    @GetMapping("/p-a-organizations/name/{organizationName}")
+    @Timed
+    public ResponseEntity<PAOrganizationDTO> getPAOrganizationByName(@PathVariable String organizationName) {
+        log.debug("REST request to get PAOrganization : {}", organizationName);
+        PAOrganization pAOrganization = pAOrganizationService.findOrganizationByName(organizationName);
+        PAOrganizationDTO paOrganizationDTO = new PAOrganizationDTO(pAOrganization);
+        
+        return Optional.ofNullable(paOrganizationDTO)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 
     /**
      * DELETE  /p-a-organizations/:id : delete the "id" pAOrganization.

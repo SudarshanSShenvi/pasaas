@@ -23,4 +23,18 @@
             'update': { method:'PUT' }
         });
     }
+    
+    angular
+    .module('pasaasApp')
+    .factory('PAProject', PAProject);
+
+PAProject.$inject = ['$resource'];
+
+function PAProject ($resource) {
+    var resourceUrl =  'api/p-a-projects/suops';
+
+    return $resource(resourceUrl, {}, {
+        'query': { method: 'GET', isArray: true},
+    });
+}
 })();

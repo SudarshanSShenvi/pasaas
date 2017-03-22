@@ -36,7 +36,7 @@ public class SparkOpsResource {
     @PostMapping("/triggerTrainingOps/{projectName}")
     @Timed
     public ResponseEntity<String> triggerTrainingOps(@PathVariable String projectName, HttpServletRequest request)
-        throws URISyntaxException {
+        throws Exception {
     	SparkConf sparkConf = sparkOperationsService.setSparkConfigurations();
     	sparkOperationsService.triggerTrainingOperation(1, sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, SecurityUtils.currentOrganization);
     	return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);

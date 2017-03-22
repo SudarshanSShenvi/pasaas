@@ -66,6 +66,12 @@
             };
         };
 
+        // $scope.my_acc = account;
+
+        Principal.identity().then(function(account) {
+            $scope.my_acc = account;
+        });
+        
         Principal.identity().then(function(account) {
             vm.settingsAccount = copyAccount(account);
         });

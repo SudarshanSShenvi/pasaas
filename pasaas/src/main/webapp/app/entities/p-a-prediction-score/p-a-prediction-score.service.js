@@ -40,4 +40,15 @@
             }
         });
     }
+    
+    angular    
+    .module('pasaasApp')
+    .factory('PAPredictionScoreC1', PAPredictionScoreC1); 
+    
+    PAPredictionScoreC1.$inject = ['$resource', 'DateUtils']; function PAPredictionScoreC1 ($resource, DateUtils) {
+    	var resourceUrl =  'api/p-a-prediction-scores/:id';     
+    	return $resource(resourceUrl, {}, { 
+    		'query': { method: 'GET', isArray: true}
+    	}); }
+    	
 })();

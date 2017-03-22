@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
+import com.pervazive.kheddah.security.AuthoritiesConstants;
 import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAProjectService;
@@ -185,6 +187,28 @@ public class PAProjectResource {
         /*Page<PAProject> page = pAProjectService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-projects");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);*/
+    }
+    
+    /**
+     * GET  /p-a-projects : get all the pAProjects.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of pAProjects in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/p-a-projects/suops")
+    @Timed
+    @Secured(AuthoritiesConstants.SUPERADMIN)
+    public ResponseEntity<List<PAProjectDTO>> getAllPAProjectsSU(@ApiParam Pageable pageable)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAProjects");
+        
+        Page<PAProject> page = pAProjectService.findAllSU(pageable);
+        List<PAProjectDTO> paProjectDTO = page.getContent().stream()
+            .map(PAProjectDTO::new)
+            .collect(Collectors.toList());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-projects");
+        return new ResponseEntity<>(paProjectDTO, headers, HttpStatus.OK);
     }
 
     /**

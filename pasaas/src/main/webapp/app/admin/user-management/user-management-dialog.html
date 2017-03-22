@@ -109,36 +109,71 @@
                     ngf-drop ngf-change="vm.setImage($file, vm.user)" 
                     ngf-pattern="'image/*'"
                 >
-                    <label class="control-label" translate="imgcheckApp.imgc.image" for="field_image">Image</label>
+                    <label 
+                    	class="control-label" 
+                    	translate="imgcheckApp.imgc.image" 
+                    	for="field_image"
+                    >Image</label>
                     <div>
-                    <!-- <img 
-                        data-ng-src="{{'data:' + vm.user.imageContentType + ';base64,' + vm.user.image}}" 
-                        style="max-height: 100px;" 
-                        ng-if="vm.user.image"
-                    /> -->
-                    <img 
-                        src="../../../content/images/sudarshan_pic.png" 
-                        alt="User Image" 
-                        width="100%" 
-                        class="img-thumbnail" 
-                    >
-                        <div ng-if="vm.user.image" class="help-block clearfix">
-                            <span class="pull-left">{{vm.user.imageContentType}}, {{vm.byteSize(vm.user.image)}}</span>
-                            <button ng-click="vm.user.image=null;vm.user.imageContentType=null;"
-                                    class="btn btn-default btn-xs pull-right">
+                        <!-- <img 
+                            data-ng-src="{{'data:' + vm.imgc.imageContentType + ';base64,' + my_img}}"
+                            style="max-height: 100px;" 
+                        /> -->
+                            <!-- ng-if="vm.imgc.image" -->
+	                    <img 
+	                        data-ng-src="
+	                        	{{
+	                        		'data:' + vm.user.imageContentType + 
+	                        		';base64,' + vm.user.image
+	                        	}}
+	                        " 
+	                        alt="User Image" 
+	                        width="100%" 
+	                        class="img-thumbnail"
+	                        ng-if="vm.user.image"
+                        />
+	                    <img 
+	                        src="content/images/avatar.png" 
+	                        alt="User Image" 
+	                        width="100%" 
+	                        class="img-thumbnail" 
+	                        ng-if="!vm.user.image"
+	                    />
+                        <!-- <div ng-if="vm.user.image" class="help-block clearfix">
+                            <span class="pull-left">
+                            	{{vm.user.imageContentType}}, {{vm.byteSize(vm.user.image)}}
+                            </span>
+                            <button 
+                            	ng-click="vm.user.image=null;vm.user.imageContentType=null;"
+                            	class="btn btn-default btn-xs pull-right"
+                            >
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
-                        </div>
-                        <button type="file" ngf-select class="btn btn-default btn-block"
-                                ngf-change="vm.setImage($file, vm.user)" accept="image/*" translate="entity.action.addimage">
+                        </div> -->
+                        <button 
+                        	type="file" 
+                        	ngf-select class="btn btn-default btn-block"
+                        	ngf-change="vm.setImage($file, vm.user)" 
+                        	accept="image/*" 
+                        	translate="entity.action.addimage"
+                        >
                             Add image
                         </button>
                     </div>
-                    <input type="hidden" class="form-control" name="image" id="field_image"
-                            ng-model="vm.user.image"
-                             />
-                    <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
-                            ng-model="vm.uer.imageContentType" />
+                    <input 
+                        type="hidden" 
+                        class="form-control" 
+                        name="image" 
+                        id="field_image"
+                    	ng-model="vm.user.image"
+                    />
+                    <input 
+                    	type="hidden" 
+                    	class="form-control" 
+                    	name="imageContentType" 
+                    	id="field_imageContentType"
+                        ng-model="vm.uer.imageContentType" 
+                    />
                 </div>
 
                 <div class="form-group">
@@ -153,10 +188,6 @@
                         >
                     </label>
                 </div>
-
-                
-                
-               
             </div>
         </div>
 
@@ -204,6 +235,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- <pre>{{vm.user| json}}</pre> -->
         
     </div>
 

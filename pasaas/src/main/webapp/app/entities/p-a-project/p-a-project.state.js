@@ -43,6 +43,29 @@
             controller: 'PAProjectController',
             controllerAs: 'vm'
         })
+        .state('p-a-project.su', {
+            parent: 'entity',
+            url: '/p-a-project/suops',
+            data: {
+                authorities: ['ROLE_SUPERADMIN'],
+                pageTitle: 'pasaasApp.pAProject.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/p-a-project/p-a-projects.html',
+                    controller: 'PAProjectController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('pAProject');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        
         .state('p-a-project', {
             parent: 'entity',
             url: '/p-a-project',

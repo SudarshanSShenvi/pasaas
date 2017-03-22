@@ -8,7 +8,7 @@ import org.apache.spark.SparkConf;
  */
 public interface SparkOperationsService {
 	
-	public void triggerTrainingOperation(long predictionId, SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization  ) ;
+	public void triggerTrainingOperation(long predictionId, SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization  ) throws Exception ;
 	
 	public void triggerPredictionOperation(long predictionId,  SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization  ) ;
 	public Configuration setHadoopConfigurations();

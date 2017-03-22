@@ -190,6 +190,28 @@ public class UserResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
         return new ResponseEntity<>(managedUserVMs, headers, HttpStatus.OK);
     }
+    
+    /**
+     * GET  /users : get all users.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and with body all users
+     * @throws URISyntaxException if the pagination headers couldn't be generated
+     */
+    @GetMapping("/users/suops")
+    @Timed
+    @Secured(AuthoritiesConstants.SUPERADMIN)
+    public ResponseEntity<List<ManagedUserVM>> getAllUsersSU(@ApiParam Pageable pageable)
+        throws URISyntaxException {
+        //Page<User> page = userRepository.findAllWithAuthorities(pageable);
+    	Page<User> page = userRepository.findAllWithAuthoritiesProjectsAndOrganizations(pageable);
+    	
+    	List<ManagedUserVM> managedUserVMs = page.getContent().stream()
+            .map(ManagedUserVM::new)
+            .collect(Collectors.toList());
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/users");
+        return new ResponseEntity<>(managedUserVMs, headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /users/:login : get the "login" user.

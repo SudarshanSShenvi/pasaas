@@ -2,7 +2,7 @@
     "pasaasApp": {
         "pAPredictionScore" : {
             "home": {
-                "title": "PA Prediction Scores",
+                "title": "Prediction Scores",
                 "createLabel": "Create a new PA Prediction Score",
                 "createOrEditLabel": "Prediction Score",
                 "search": "Search for PA Prediction Score"

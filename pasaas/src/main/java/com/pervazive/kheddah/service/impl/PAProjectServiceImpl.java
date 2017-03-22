@@ -73,6 +73,19 @@ public class PAProjectServiceImpl implements PAProjectService{
      *  @return the list of entities
      */
     @Transactional(readOnly = true) 
+    public Page<PAProject> findAllSU(Pageable pageable) {
+        log.debug("Request to get all PAProjects");
+        Page<PAProject> result = pAProjectRepository.findAllPAUsers(pageable);
+        return result;
+    }
+    
+    /**
+     *  Get all the pAProjects.
+     *  
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    @Transactional(readOnly = true) 
     public Page<PAProject> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PAProjects");
         Page<PAProject> result = pAProjectRepository.findByPaorgpro(paOrganization, pageable);

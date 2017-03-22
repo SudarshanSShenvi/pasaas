@@ -1,74 +1,173 @@
-<div>
-    <h2 data-translate="pasaasApp.pASaxCodeTmp.home.title">PA Sax Code Tmps</h2>
-    <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="p-a-sax-code-tmp.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="pasaasApp.pASaxCodeTmp.home.createLabel">
-                        Create new PA Sax Code Tmp
-                    </span>
-                </button>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5 data-translate="pasaasApp.pASaxCodeTmp.home.title">Pattern Tmps</h5>
+
+                    <div ibox-tools></div>
+                    <!-- <button 
+                        class="btn btn-primary btn-xs pull-right" 
+                        ui-sref="p-a-sax-code-tmp.new"
+                    >
+                        <span  data-translate="pasaasApp.pASaxCodeTmp.home.createLabel">
+							Create new PA Sax Code Tmp
+						</span>
+                    </button> -->
+                </div>
+
+                <div class="ibox-content">
+                    <table 
+                        datatable="ng" 
+                        class="table table-striped table-hover dataTables-example"
+                    >
+                        <thead>
+                            <tr>
+                                <th><span data-translate="global.field.id">ID</span></th>
+                                <th><span data-translate="pasaasApp.pASaxCodeTmp.distalarm">Distalarm</span></th>
+                                <th><span data-translate="pasaasApp.pASaxCodeTmp.saxcode">Saxcode</span></th>
+                                <th><span data-translate="pasaasApp.pASaxCodeTmp.total">Total</span></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr 
+                                class="gradeX" 
+                                ng-repeat="pASaxCodeTmp in vm.pASaxCodeTmps track by pASaxCodeTmp.id"
+                            >
+                                <td><a ui-sref="p-a-sax-code-tmp-detail({id:pASaxCodeTmp.id})">{{pASaxCodeTmp.id}}</a></td>
+								<td>{{pASaxCodeTmp.distalarm}}</td>
+								<td>{{pASaxCodeTmp.saxcode}}</td>
+								<td>{{pASaxCodeTmp.total}}</td>
+                                <td class="text-right">
+									<div class="btn-group flex-btn-group-container">
+										<button type="submit"
+												ui-sref="p-a-sax-code-tmp-detail({id:pASaxCodeTmp.id})"
+												class="btn btn-info btn-sm">
+											<span class="glyphicon glyphicon-eye-open"></span>
+											<span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+										</button>
+										<!-- <button type="submit"
+												ui-sref="p-a-sax-code-tmp.edit({id:pASaxCodeTmp.id})"
+												class="btn btn-primary btn-sm">
+											<span class="glyphicon glyphicon-pencil"></span>
+											<span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+										</button> -->
+										<!-- <button type="submit"
+												ui-sref="p-a-sax-code-tmp.delete({id:pASaxCodeTmp.id})"
+												class="btn btn-danger btn-sm">
+											<span class="glyphicon glyphicon-remove-circle"></span>
+											<span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+										</button> -->
+									</div>
+								</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="distalarm"><span data-translate="pasaasApp.pASaxCodeTmp.distalarm">Distalarm</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="saxcode"><span data-translate="pasaasApp.pASaxCodeTmp.saxcode">Saxcode</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="total"><span data-translate="pasaasApp.pASaxCodeTmp.total">Total</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="painterval"><span data-translate="pasaasApp.pASaxCodeTmp.painterval">Painterval</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="severity"><span data-translate="pasaasApp.pASaxCodeTmp.severity">Severity</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="pastatus"><span data-translate="pasaasApp.pASaxCodeTmp.pastatus">Pastatus</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="paorgsct.organization"><span data-translate="pasaasApp.pASaxCodeTmp.paorgsct">Paorgsct</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="paprosct.projectname"><span data-translate="pasaasApp.pASaxCodeTmp.paprosct">Paprosct</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                <tr ng-repeat="pASaxCodeTmp in vm.pASaxCodeTmps track by pASaxCodeTmp.id">
-                    <td><a ui-sref="p-a-sax-code-tmp-detail({id:pASaxCodeTmp.id})">{{pASaxCodeTmp.id}}</a></td>
-                    <td>{{pASaxCodeTmp.distalarm}}</td>
-                    <td>{{pASaxCodeTmp.saxcode}}</td>
-                    <td>{{pASaxCodeTmp.total}}</td>
-                    <td>{{pASaxCodeTmp.painterval}}</td>
-                    <td>{{pASaxCodeTmp.severity}}</td>
-                    <td data-translate="{{'pasaasApp.PAStatus.' + pASaxCodeTmp.pastatus}}">{{pASaxCodeTmp.pastatus}}</td>
-                    <td>
-                        <a ui-sref="p-a-organization-detail({id:pASaxCodeTmp.paorgsct.id})">{{pASaxCodeTmp.paorgsct.organization}}</a>
-                    </td>
-                    <td>
-                        <a ui-sref="p-a-project-detail({id:pASaxCodeTmp.paprosct.id})">{{pASaxCodeTmp.paprosct.projectname}}</a>
-                    </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="p-a-sax-code-tmp-detail({id:pASaxCodeTmp.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="p-a-sax-code-tmp.edit({id:pASaxCodeTmp.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="p-a-sax-code-tmp.delete({id:pASaxCodeTmp.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+</div>
+
+<div>
+	<h2 data-translate="pasaasApp.pASaxCodeTmp.home.title">PA Sax Code Tmps</h2>
+	<jhi-alert></jhi-alert>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-4 no-padding-left">
+				<button class="btn btn-primary" ui-sref="p-a-sax-code-tmp.new" >
+					<span class="glyphicon glyphicon-plus"></span>
+					<span  data-translate="pasaasApp.pASaxCodeTmp.home.createLabel">
+						Create new PA Sax Code Tmp
+					</span>
+				</button>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div class="table-responsive">
+		<table class="jh-table table table-striped">
+			<thead>
+				<tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+					<th jh-sort-by="id">
+						<span data-translate="global.field.id">ID</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="distalarm">
+						<span data-translate="pasaasApp.pASaxCodeTmp.distalarm">Distalarm</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="saxcode">
+						<span data-translate="pasaasApp.pASaxCodeTmp.saxcode">Saxcode</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="total">
+						<span data-translate="pasaasApp.pASaxCodeTmp.total">Total</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="painterval">
+						<span data-translate="pasaasApp.pASaxCodeTmp.painterval">Painterval</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="severity">
+						<span data-translate="pasaasApp.pASaxCodeTmp.severity">Severity</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="pastatus">
+						<span data-translate="pasaasApp.pASaxCodeTmp.pastatus">Pastatus</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="paorgsct.organization">
+						<span data-translate="pasaasApp.pASaxCodeTmp.paorgsct">Paorgsct</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th jh-sort-by="paprosct.projectname">
+						<span data-translate="pasaasApp.pASaxCodeTmp.paprosct">Paprosct</span> 
+						<span class="glyphicon glyphicon-sort"></span>
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+				<tr ng-repeat="pASaxCodeTmp in vm.pASaxCodeTmps track by pASaxCodeTmp.id">
+					<td><a ui-sref="p-a-sax-code-tmp-detail({id:pASaxCodeTmp.id})">{{pASaxCodeTmp.id}}</a></td>
+					<td>{{pASaxCodeTmp.distalarm}}</td>
+					<td>{{pASaxCodeTmp.saxcode}}</td>
+					<td>{{pASaxCodeTmp.total}}</td>
+					<td>{{pASaxCodeTmp.painterval}}</td>
+					<td>{{pASaxCodeTmp.severity}}</td>
+					<td data-translate="{{'pasaasApp.PAStatus.' + pASaxCodeTmp.pastatus}}">{{pASaxCodeTmp.pastatus}}</td>
+					<td>
+						<a ui-sref="p-a-organization-detail({id:pASaxCodeTmp.paorgsct.id})">{{pASaxCodeTmp.paorgsct.organization}}</a>
+					</td>
+					<td>
+						<a ui-sref="p-a-project-detail({id:pASaxCodeTmp.paprosct.id})">{{pASaxCodeTmp.paprosct.projectname}}</a>
+					</td>
+					<td class="text-right">
+						<div class="btn-group flex-btn-group-container">
+							<button type="submit"
+									ui-sref="p-a-sax-code-tmp-detail({id:pASaxCodeTmp.id})"
+									class="btn btn-info btn-sm">
+								<span class="glyphicon glyphicon-eye-open"></span>
+								<span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+							</button>
+							<button type="submit"
+									ui-sref="p-a-sax-code-tmp.edit({id:pASaxCodeTmp.id})"
+									class="btn btn-primary btn-sm">
+								<span class="glyphicon glyphicon-pencil"></span>
+								<span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+							</button>
+							<button type="submit"
+									ui-sref="p-a-sax-code-tmp.delete({id:pASaxCodeTmp.id})"
+									class="btn btn-danger btn-sm">
+								<span class="glyphicon glyphicon-remove-circle"></span>
+								<span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

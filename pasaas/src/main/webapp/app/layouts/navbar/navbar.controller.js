@@ -18,6 +18,10 @@
             vm.swaggerEnabled = response.swaggerEnabled;
         });
 
+        Principal.identity().then(function(account) {
+            vm.my_acc = account;
+        });
+
         vm.login = login;
         vm.logout = logout;
         vm.toggleNavbar = toggleNavbar;

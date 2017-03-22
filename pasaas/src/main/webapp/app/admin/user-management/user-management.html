@@ -1,3 +1,121 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5 data-translate="userManagement.home.title">Users</h5>
+
+                    <div ibox-tools></div>
+                    <button 
+                        class="btn btn-primary btn-xs pull-right" 
+                        ui-sref="user-management.new"
+                    >
+                        <span data-translate="userManagement.home.createLabel">Create a new User</span>
+                    </button>
+                </div>
+
+                <div class="ibox-content">
+                    <table 
+                        datatable="ng" 
+                        class="table table-striped table-hover dataTables-example"
+                    >
+                        <thead>
+                            <tr>
+                                <th><span data-translate="global.field.id">ID</span></th>
+                                <th>Image</th>
+                                <th><span data-translate="userManagement.login">Login</span></th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th><span data-translate="userManagement.email">Email</span></th>
+                                <!-- <th><span data-translate="userManagement.langKey">Lang Key</span></th> -->
+                                <th><span data-translate="userManagement.profiles">Profiles</span></th>
+                                <th><span data-translate="userManagement.organizations">Organizations</span></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr 
+                                class="gradeX" 
+                                ng-repeat="user in vm.users track by user.id"
+                            >
+				            	<td>
+				            		<a ui-sref="user-management-detail({login:user.login})">{{user.id}}</a>
+				            	</td>
+				                <td>
+				                    <a 
+                                        ng-if="user.image" 
+                                        ng-click="vm.openFile(user.imageContentType, user.image)"
+                                    >
+				                        <img 
+                                            data-ng-src="{{'data:' + user.imageContentType + ';base64,' + user.image}}" 
+                                            style="max-height: 30px;"
+                                            class="img-circle"
+                                            alt="User Image" 
+                                        />
+                                    </a>
+                                    <img 
+                                        ng-if="!user.image"
+                                        src="content/images/avatar.png" 
+                                        alt="User Image" 
+                                        style="max-height: 30px;"
+                                        class="img-circle" 
+                                    />
+				                    <!-- <span ng-if="user.image">
+                                        {{user.imageContentType}}, {{vm.byteSize(user.image)}}
+                                    </span> -->
+				                </td>
+				                <td>{{user.login}}</td>
+				                <td>{{user.firstName}}</td>
+				                <td>{{user.lastName}}</td>
+				                <td>{{user.email}}</td>
+				                <!-- <td>
+				                    <span class="label label-danger" ng-click="vm.setActive(user, true)" ng-show="!user.activated"
+				                          data-translate="userManagement.deactivated" style="cursor: pointer;">Deactivated</span>
+				                    <span class="label label-success" ng-click="vm.setActive(user, false)" ng-show="user.activated"
+				                          data-translate="userManagement.activated" style="cursor: pointer;">Activated</span>
+				                </td> -->
+				                <td>
+				                    <div ng-repeat="authority in user.authorities">
+				                        <span class="label label-info">{{ authority }}</span>
+				                    </div>
+				                </td>
+				                <td>
+				                    <div ng-repeat="organization in user.organizations">
+				                        <span class="label label-info">{{ organization }}</span>
+				                    </div>
+				                </td>
+				                <!-- <td>{{user.langKey}}</td> -->
+                                <td class="text-right">
+				                    <div class="btn-group flex-btn-group-container">
+				                        <button type="submit"
+				                                ui-sref="user-management-detail({login:user.login})"
+				                                class="btn btn-info btn-sm">
+				                            <span class="glyphicon glyphicon-eye-open"></span>
+				                            <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+				                        </button>
+				                        <button type="submit"
+				                                ui-sref="user-management.edit({login:user.login})"
+				                                class="btn btn-primary btn-sm">
+				                            <span class="glyphicon glyphicon-pencil"></span>
+				                            <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+				                        </button>
+				                        <button type="submit"
+				                                ui-sref="user-management.delete({login:user.login})"
+				                                class="btn btn-danger btn-sm" ng-disabled="vm.currentAccount.login==user.login">
+				                            <span class="glyphicon glyphicon-remove-circle"></span>
+				                            <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+				                        </button>
+				                    </div>
+				                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>
     <h2 data-translate="userManagement.home.title">Users</h2>
     <jhi-alert></jhi-alert>
@@ -12,18 +130,45 @@
         <table datatable class="row-border hover" > <!-- class="table table-striped">  -->
             <thead>
             <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                <th jh-sort-by="id"><span data-translate="global.field.id">ID</span><span class="glyphicon glyphicon-sort"></span></th>
-                <th jh-sort-by="login"><span data-translate="userManagement.login">Login</span> <span class="glyphicon glyphicon-sort"></span></th>
-                <th jh-sort-by="email"><span data-translate="userManagement.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="id">
+                	<span data-translate="global.field.id">ID</span>
+                	<span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th jh-sort-by="login">
+                	<span data-translate="userManagement.login">Login</span> 
+                	<span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th jh-sort-by="email">
+                	<span data-translate="userManagement.email">Email</span> 
+                	<span class="glyphicon glyphicon-sort"></span>
+                </th>
                 <th></th>
-                <th  jh-sort-by="langKey"> <span data-translate="userManagement.langKey">Lang Key</span> <span class="glyphicon glyphicon-sort"></span></th>                
-                <th><span data-translate="userManagement.profiles">Profiles</span></th>       
-                <th><span data-translate="userManagement.organizations">Organizations</span></th>   
-                <th><span data-translate="userManagement.projects">Projects</span></th>            
-                <th jh-sort-by="createdDate"><span data-translate="userManagement.createdDate">Created Date</span> 
-                <span class="glyphicon glyphicon-sort"></span></th>
-                <th jh-sort-by="lastModifiedBy"><span data-translate="userManagement.lastModifiedBy">Last Modified By</span> <span class="glyphicon glyphicon-sort"></span></th>
-                <th jh-sort-by="lastModifiedDate"><span data-translate="userManagement.lastModifiedDate">Last Modified Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th  jh-sort-by="langKey"> 
+                	<span data-translate="userManagement.langKey">Lang Key</span> 
+                	<span class="glyphicon glyphicon-sort"></span>
+                </th>                
+                <th>
+                	<span data-translate="userManagement.profiles">Profiles</span>
+                </th>       
+                <th>
+                	<span data-translate="userManagement.organizations">Organizations</span>
+                </th>   
+                <th>
+                	<span data-translate="userManagement.projects">Projects</span>
+                </th>            
+                <th jh-sort-by="createdDate">
+                	<span data-translate="userManagement.createdDate">Created Date</span> 
+                
+                	<span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th jh-sort-by="lastModifiedBy">
+                	<span data-translate="userManagement.lastModifiedBy">Last Modified By</span> 
+                	<span class="glyphicon glyphicon-sort"></span>
+                </th>
+                <th jh-sort-by="lastModifiedDate">
+                	<span data-translate="userManagement.lastModifiedDate">Last Modified Date</span> 
+                	<span class="glyphicon glyphicon-sort"></span>
+                </th>
                 <th></th>
             </tr>
             </thead>
@@ -31,11 +176,11 @@
             <tr ng-repeat="user in vm.users track by user.id">
                 <td><a ui-sref="user-management-detail({login:user.login})">{{user.id}}</a></td>
                 <td>
-                        <a ng-if="user.image" ng-click="vm.openFile(user.imageContentType, user.image)">
-                            <img data-ng-src="{{'data:' + user.imageContentType + ';base64,' + user.image}}" style="max-height: 30px;"/>
-                        </a>
-                        <span ng-if="user.image">{{user.imageContentType}}, {{vm.byteSize(user.image)}}</span>
-                    </td>
+                    <a ng-if="user.image" ng-click="vm.openFile(user.imageContentType, user.image)">
+                        <img data-ng-src="{{'data:' + user.imageContentType + ';base64,' + user.image}}" style="max-height: 30px;"/>
+                    </a>
+                    <span ng-if="user.image">{{user.imageContentType}}, {{vm.byteSize(user.image)}}</span>
+                </td>
                 <td>{{user.login}}</td>
                 <td>{{user.email}}</td>
                 <td>
@@ -94,203 +239,5 @@
         <uib-pagination class="pagination-sm" total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
     </div>
     
-    <div>
-	<div class="row wrapper border-bottom white-bg page-heading">
-	    <div class="col-lg-10">
-	        <h2>BDA Configurations</h2>
-	        <ol class="breadcrumb">
-	            <li>
-	                <a href="index.html">Home</a>
-	            </li>
-	            <li>
-	                <a>Platform</a>
-	            </li>
-	            <li>
-	                <a>BDA</a>
-	            </li>
-	            <li>
-	                <a>Configuration</a>
-	            </li>
-	            <li class="active">
-	                <strong>Reliability Configuration - View</strong>
-	            </li>
-	        </ol>
-	    </div>
-	    <div class="col-lg-2">
-			
-	    </div>
-	</div>
-	<div class="wrapper wrapper-content animated fadeInRight">
-		 <div class="row">
-			<div class="col-lg-12">
-			<form name="form_bda_reliability_configuration_view" novalidate>
-				<div class="ibox">
-
-					<div class="ibox-title">
-						<h5>
-							[ID 1] - Category 1
-						</h5>
-
-						<div ibox-tools></div>
-					</div>
-					<div class="ibox-content">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="row">
-									<div class="col-md-3 custome_font_size_label">Configuration ID</div>
-									<div class="col-md-3">
-									<input 
-											class="form-control custome_font_size_input" 
-											type="number" 
-											name="configuration_id"
-											ng-model="new_configuration.configuration_id"
-											placeholder="Enter Configuration ID"
-											required
-											ng-disabled="form_disabled"
-										>
-										<div 
-											ng-show="form_bda_reliability_configuration_view.configuration_id.$error.required && form_bda_reliability_configuration_view.configuration_id.$dirty"
-											class="alert alert-danger"
-										>
-											Configuration ID is required
-										</div>
-
-									</div>
-									<div class="col-md-3">Status</div>
-									<div class="col-md-3">
-										<select 
-											class="form-control m-b" 
-											name="account" 
-											ng-disabled="form_disabled"
-										>
-									        <option>Active</option>
-									        <option>Inactive</option>
-									        <option>Delete</option>
-									    </select>
-									</div>
-								</div>
-								<p>&nbsp;</p>
-								<div class="row">
-									<div class="col-md-3 custome_font_size_label">Category</div>
-									<div class="col-md-3">
-
-									<input 
-											class="form-control custome_font_size_input" 
-											type="text" 
-											name="category"
-											ng-model="new_configuration.category"
-											placeholder="Enter Category"
-											required
-											ng-disabled="form_disabled"
-										>
-										<div 
-											ng-show="form_bda_reliability_configuration_view.category.$error.required && form_bda_reliability_configuration_view.category.$dirty"
-											class="alert alert-danger"
-										>
-											Category is required
-										</div>
-
-									</div>
-									<div class="col-md-3"></div>
-									<div class="col-md-3"></div>
-								</div>
-								<p>&nbsp;</p>
-								<div class="row">
-									<div class="col-md-3 custome_font_size_label">Data Set</div>
-									<div class="col-md-9">
-
-									<input 
-											class="form-control custome_font_size_input" 
-											type="number" 
-											name="data_set"
-											ng-model="new_configuration.data_set"
-											placeholder="Enter Data Set"
-											required
-											ng-disabled="form_disabled"
-										>
-										<div 
-											ng-show="form_bda_reliability_configuration_view.data_set.$error.required && form_bda_reliability_configuration_view.data_set.$dirty"
-											class="alert alert-danger"
-										>
-											Data Set is required
-										</div>
-
-									</div>
-								</div>
-								<p>&nbsp;</p>
-								<div class="row">
-									<div class="col-md-3 custome_font_size_label">C SCORE</div>
-									<div class="col-md-3">
-
-									<input 
-											class="form-control custome_font_size_input" 
-											type="number" 
-											name="c_score"
-											ng-model="new_configuration.c_score"
-											placeholder="Enter C SCORE"
-											required
-											ng-disabled="form_disabled"
-										>
-										<div 
-											ng-show="form_bda_reliability_configuration_view.c_score.$error.required && form_bda_reliability_configuration_view.c_score.$dirty"
-											class="alert alert-danger"
-										>
-											C SCORE is required
-										</div>
-
-									</div>
-									<div class="col-md-3"></div>
-									<div class="col-md-3"></div>
-								</div>
-								<p>&nbsp;</p>
-								<div class="row">
-									<div class="col-md-3 custome_font_size_label">B SCORE</div>
-									<div class="col-md-3">
-
-									<input 
-											class="form-control custome_font_size_input" 
-											type="number" 
-											name="b_score"
-											ng-model="new_configuration.b_score"
-											placeholder="Enter B SCORE"
-											required
-											ng-disabled="form_disabled"
-										>
-										<div 
-											ng-show="form_bda_reliability_configuration_view.b_score.$error.required && form_bda_reliability_configuration_view.b_score.$dirty"
-											class="alert alert-danger"
-										>
-											B SCORE is required
-										</div>
-
-									</div>
-									<div class="col-md-3"></div>
-									<div class="col-md-3"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ibox-content">
-						<div class="" align="right">
-							<button class="btn btn-success btn-sm" ng-click="view_form()">
-								<i class="fa fa-eye"></i> VIEW
-							</button>
-							<button class="btn btn-primary btn-sm" ng-click="edit_form()">
-								<i class="fa fa-pencil"></i> EDIT
-							</button>
-							<button 
-								class="btn btn-primary btn-sm" 
-								ng-click="save_form(new_configuration)" 
-								ng-disabled="form_disabled"
-							>
-								<i class="fa fa-save"></i> SAVE
-							</button>
-						</div>
-					</div>
-				</div>
-			</form>
-			</div>
-		</div>
-	</div>
-</div>
+    
 </div>

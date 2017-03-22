@@ -106,7 +106,8 @@ public class SparkOperationsServiceImpl implements SparkOperationsService {
 		sparkConf = null;
 	}
 	
-	  public void triggerTrainingOperation(long predictionId, SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization   ) {
+	  public void triggerTrainingOperation(long predictionId, SparkConf sparkConf, Configuration hadoopConf, String projectName, String organization   )  throws Exception{
+		  log.debug("===========> Entered Training method with id: "+predictionId);
 		   ExecutorService executorService = Executors.newFixedThreadPool(8);
 		   Future<Long> future1 = executorService.submit(new Callable<Long>() {
 		        @Override

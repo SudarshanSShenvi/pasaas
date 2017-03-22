@@ -46,6 +46,8 @@ public interface PAProjectService {
     
     Page<PAProject> findAll(Pageable pageable, PAOrganization paOrganization);
     
+    Page<PAProject> findAllSU(Pageable pageable);
+    
         /**
      *  Get the "id" pAProject.
      *

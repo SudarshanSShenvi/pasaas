@@ -2,7 +2,7 @@
     "pasaasApp": {
         "pASaxCode" : {
             "home": {
-                "title": "PA Sax Codes",
+                "title": "Patterns",
                 "createLabel": "Create a new PA Sax Code",
                 "createOrEditLabel": "Create or edit a PA Sax Code",
                 "search": "Search for PA Sax Code"

@@ -2,7 +2,7 @@
     "pasaasApp": {
         "pAGeneralConfig" : {
             "home": {
-                "title": "PA General Configs",
+                "title": "General Configurations",
                 "createLabel": "Create a new PA General Config",
                 "createOrEditLabel": "General Configuration",
                 "search": "Search for PA General Config"
@@ -55,7 +55,7 @@
             "sq_script": "Sq Script",
             "sq_command": "Sq Command",
             "sq_localinfiile": "Sq Localinfiile",
-            "pastatus": "Pastatus"
+            "pastatus": "Status"
         }
     }
 }

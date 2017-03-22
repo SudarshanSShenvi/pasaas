@@ -25,7 +25,7 @@
 						<div class="btn-group flex-btn-group-container pull-right">
 							<button 
 								type="submit"
-								ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})"
+								ui-sref="p-a-organization-detail({id:vm.pAOrganization.id})"
 								class="btn btn-info btn-xs"
 							>
 								<span class="glyphicon glyphicon-eye-open"></span>
@@ -36,7 +36,7 @@
 							</button>
 							<button 
 								type="submit"
-								ui-sref="p-a-organization.edit({id:vm.pAOrganizations[0].id})"
+								ui-sref="p-a-organization.edit({id:vm.pAOrganization.id})"
 								class="btn btn-primary btn-xs"
 							>
 								<span class="glyphicon glyphicon-pencil"></span>
@@ -47,7 +47,7 @@
 							</button>
 							<!-- <button 
 								type="submit"
-								ui-sref="p-a-organization.delete({id:vm.pAOrganizations[0].id})"
+								ui-sref="p-a-organization.delete({id:vm.pAOrganization.id})"
 								class="btn btn-danger btn-xs"
 							>
 								<span class="glyphicon glyphicon-remove-circle"></span>
@@ -72,7 +72,7 @@
 								<div class="row">
 									<h5>
 										<span class="col-lg-5">
-											<b>{{vm.pAOrganizations[0].organization}}</b>
+											<b>{{vm.pAOrganization.organization}}</b>
 										</span>
 									</h5>
 								</div>
@@ -81,7 +81,7 @@
 										<span class="col-lg-5"><b>Business Plan</b></span>
 										<span class="col-lg-7" style="font-size: 9px;">
 											<!-- Feb 3, 2017 3:04:24 PM -->
-											{{vm.pAOrganizations[0].pabporg.businessplan}}
+											{{vm.pAOrganization.pabporg.businessplan}}
 	    								</span>
 									</h5>
 								</div>
@@ -92,7 +92,7 @@
 										<span class="col-lg-5"><b>Industry Type</b></span>
 										<span class="col-lg-7" style="font-size: 9px;">
 											<!-- Feb 3, 2017 3:04:24 PM -->
-											{{vm.pAOrganizations[0].industrytype}}
+											{{vm.pAOrganization.industrytype}}
 	    								</span>
 									</h5>
 								</div>
@@ -101,7 +101,7 @@
 										<span class="col-lg-5"><b>Website</b></span>
 										<span class="col-lg-7" style="font-size: 9px;">
 											<!-- Feb 3, 2017 3:04:24 PM -->
-											{{vm.pAOrganizations[0].website}}
+											{{vm.pAOrganization.website}}
 	    								</span>
 									</h5>
 								</div>
@@ -112,7 +112,7 @@
 										<span class="col-lg-5"><b>Valid From</b></span>
 										<span class="col-lg-7" style="font-size: 9px;">
 											<!-- Feb 3, 2017 3:04:24 PM -->
-											{{vm.pAOrganizations[0].validfrom | date:'medium'}}
+											{{vm.pAOrganization.validfrom | date:'medium'}}
 	    								</span>
 									</h5>
 								</div>
@@ -121,7 +121,7 @@
 										<span class="col-lg-5"><b>Valid To</b></span>
 										<span class="col-lg-7" style="font-size: 9px;">
 											<!-- Feb 3, 2017 3:04:24 PM -->
-											{{vm.pAOrganizations[0].validto | date:'medium'}}
+											{{vm.pAOrganization.validto | date:'medium'}}
 	    								</span>
 									</h5>
 								</div>
@@ -208,7 +208,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="gradeX" ng-repeat="each_user in vm.pAOrganizations[0].pausersObj">
+										<tr class="gradeX" ng-repeat="each_user in vm.pAOrganization.pausersObj">
 											<td>{{each_user.login}}</td>
 											<td>{{each_user.email}}</td>
 											<td class="center"></td>
@@ -236,7 +236,7 @@
 														class="btn btn-info btn-sm"
 														ui-sref="user-management-detail({login:each_user.login})"
 													>
-														<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganizations[0].id})" -->
+														<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganization.id})" -->
 														<span class="glyphicon glyphicon-eye-open"></span>
 														<span 
 															class="hidden-xs hidden-sm" 
@@ -408,7 +408,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="gradeX" ng-repeat="each_project in vm.pAOrganizations[0].paprojectsObj">
+								<tr class="gradeX" ng-repeat="each_project in vm.pAOrganization.paprojectsObj">
 									<td></td>
 									<td>{{each_project.projectname}}</td>
 									<td></td>

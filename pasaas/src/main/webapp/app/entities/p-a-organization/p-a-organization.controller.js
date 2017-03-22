@@ -5,11 +5,12 @@
         .module('pasaasApp')
         .controller('PAOrganizationController', PAOrganizationController);
 
-    PAOrganizationController.$inject = ['$scope', '$state', 'PAOrganization', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    PAOrganizationController.$inject = ['entity', '$scope', '$state', 'PAOrganization', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function PAOrganizationController ($scope, $state, PAOrganization, ParseLinks, AlertService, paginationConstants) {
+    function PAOrganizationController (entity, $scope, $state, PAOrganization, ParseLinks, AlertService, paginationConstants) {
         var vm = this;
 
+        vm.pAOrganization = entity;
         vm.pAOrganizations = [];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
@@ -21,7 +22,7 @@
         vm.reset = reset;
         vm.reverse = true;
 
-        loadAll();
+        //loadAll();
 
         function loadAll () {
             PAOrganization.query({

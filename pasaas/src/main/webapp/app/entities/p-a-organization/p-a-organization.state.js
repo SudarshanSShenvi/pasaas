@@ -13,8 +13,7 @@
             parent: 'entity',
             url: '/p-a-organization',
             data: {
-                // authorities: ['ROLE_USER'],
-                authorities: [],
+                authorities: ['ROLE_USER'],
                 pageTitle: 'pasaasApp.pAOrganization.home.title'
             },
             views: {
@@ -32,13 +31,34 @@
                     return $translate.refresh();
                 }]
             }
+        }).state('p-a-organization.su', {
+            parent: 'entity',
+            url: '/p-a-organization/suops',
+            data: {
+                authorities: ['ROLE_SUPERADMIN'],
+                pageTitle: 'pasaasApp.pAOrganization.home.title'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/p-a-organization/p-a-organizations-su.html',
+                    controller: 'PAOrganizationController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('pAOrganization');
+                    $translatePartialLoader.addPart('pAStatus');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
         })
         .state('p-a-organization-detail', {
             parent: 'entity',
             url: '/p-a-organization/{id}',
             data: {
-                // authorities: ['ROLE_USER'],
-                authorities: [],
+                authorities: ['ROLE_USER'],
                 pageTitle: 'pasaasApp.pAOrganization.detail.title'
             },
             views: {
@@ -67,12 +87,46 @@
                 }]
             }
         })
+        .state('p-a-organization.name', {
+            parent: 'entity',
+            url: '/p-a-organization/name/{organizationName}',
+            data: {
+                authorities: ['ROLE_USER'],
+                pageTitle: 'pasaasApp.pAOrganization.detail.title'
+            },
+            views: {
+                'content@': {
+                	 templateUrl: 'app/entities/p-a-organization/p-a-organizations.html',
+                     controller: 'PAOrganizationController',
+                     /*templateUrl: 'app/entities/p-a-organization/p-a-organization-detail.html',
+                     controller: 'PAOrganizationDetailController',
+                    */controllerAs: 'vm'
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('pAOrganization');
+                    $translatePartialLoader.addPart('pAStatus');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'PAOrganization1', function($stateParams, PAOrganization1) {
+                    return PAOrganization1.get({organizationName : $stateParams.organizationName}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'p-a-organization',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
+        })
         .state('p-a-organization-detail.edit', {
             parent: 'p-a-organization-detail',
             url: '/detail/edit',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -97,8 +151,7 @@
             parent: 'p-a-organization',
             url: '/new',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -129,8 +182,8 @@
             parent: 'p-a-organization',
             url: '/{id}/edit',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
+
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -155,8 +208,8 @@
             parent: 'p-a-organization',
             url: '/{id}/delete',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
+
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

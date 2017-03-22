@@ -2,8 +2,8 @@
     "pasaasApp": {
         "pABusinessPlan" : {
             "home": {
-                "title": "PA Business Plans",
-                "createLabel": "Create a new PA Business Plan",
+                "title": "Business Plans",
+                "createLabel": "Create new Business Plan",
                 "createOrEditLabel": "Business Plan",
                 "search": "Search for PA Business Plan"
             },
@@ -19,7 +19,7 @@
             "businessplan": "Businessplan",
             "users": "Users",
             "description": "Description",
-            "pastatus": "Pastatus",
+            "pastatus": "Status",
             "projects": "Projects",
             "paorgbp": "Paorgbp"
         }

@@ -24,4 +24,18 @@
 
         return service;
     }
+    
+/*    angular
+    .module('pasaasApp')
+    .factory('User', User);
+
+User.$inject = ['$resource'];
+
+function User ($resource) {
+    var service = $resource('api/userssu/suops', {}, {
+        'query': {method: 'GET', isArray: true},
+    });
+
+    return service;
+}*/
 })();

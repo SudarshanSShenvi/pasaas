@@ -4,6 +4,8 @@
 		ng-include="'company_pages/common_things/template_page_header.html'"
 	></div>
 
+	<pre>{{my_acc | json}}</pre>
+
 
 	<div class="wrapper wrapper-content animated fadeInRight">
 		<div class="row">
@@ -13,21 +15,74 @@
 	                    <h5>Profile Detail</h5>
 	                </div>
 	                <div>
-	                    <div class="ibox-content no-padding border-left-right">
-	                        <img alt="image" class="img-responsive" src="content/images/profile_big.jpg">
+		                <div>
+		                    <img 
+		                        ng-if="vm.user.image"
+		                        data-ng-src="
+		                        	{{
+		                        		'data:' + vm.user.imageContentType + 
+		                        		';base64,' + vm.user.image
+		                        	}}
+		                        " 
+		                        alt="User Image" 
+		                        width="100%" 
+		                        class="img-thumbnail"
+	                        />
+		                    <img 
+		                        ng-if="!vm.user.image"
+		                        src="content/images/avatar.png" 
+		                        alt="User Image" 
+		                        width="100%" 
+		                        class="img-thumbnail" 
+		                    />
+	                        <!-- <div ng-if="vm.user.image" class="help-block clearfix">
+	                            <span class="pull-left">
+	                            	{{vm.user.imageContentType}}, {{vm.byteSize(vm.user.image)}}
+	                            </span>
+	                            <button 
+	                            	ng-click="vm.user.image=null;vm.user.imageContentType=null;"
+	                            	class="btn btn-default btn-xs pull-right"
+	                            >
+	                                <span class="glyphicon glyphicon-remove"></span>
+	                            </button>
+	                        </div> -->
+	                        <button 
+	                        	type="file" 
+	                        	ngf-select class="btn btn-default btn-block"
+	                        	ngf-change="vm.setImage($file, vm.user)" 
+	                        	accept="image/*" 
+	                        	translate="entity.action.addimage"
+	                        >
+	                            Add image
+	                        </button>
 	                    </div>
+	                    <!-- <div class="ibox-content no-padding border-left-right">
+	                        <img 
+	                        	alt="image" 
+	                        	class="img-responsive" 
+	                        	src="content/images/profile_big.jpg"
+	                        >
+	                    </div> -->
 	                    <div class="ibox-content profile-content">
 	                        <h4>
 	                        	<strong>{{page_data1.name}}</strong>
 	                        	<span class="pull-right">
-	                        		<span class="text-primary">Subscription</span> - {{page_data1.subscription_type}}
+	                        		<button 
+	                        			type="button" 
+	                        			class="btn btn-default btn-sm btn-block"
+	                        		>
+	                        			<i class="fa fa-coffee"></i> Deactivate Account
+	                        		</button>
 	                        	</span>
+	                        	<!-- <span class="pull-right">
+	                        		<span class="text-primary">Subscription</span> - {{page_data1.subscription_type}}
+	                        	</span> -->
 	                        </h4>
 
-	                        <p><i class="fa fa-map-marker"></i> {{page_data1.address}}</p>
-	                        <h5>About me</h5>	<p>{{page_data1.text_about}}</p>
+	                        <!-- <p><i class="fa fa-map-marker"></i> {{page_data1.address}}</p>
+	                        <h5>About me</h5>	<p>{{page_data1.text_about}}</p> -->
 
-	                        <div class="row m-t-lg">
+	                        <!-- <div class="row m-t-lg">
 	                            <div class="col-md-4">
 	                                <bar-chart 
 	                                	data="main.BarChart3.data" 
@@ -49,8 +104,8 @@
 	                                ></line-bar>
 	                                <h5><strong>{{page_data1.count_monitoring}}</strong> Monetering</h5>
 	                            </div>
-	                        </div>
-	                        <div class="user-button">
+	                        </div> -->
+	                        <!-- <div class="user-button">
 	                            <div class="row">
 	                                <div class="col-md-6">
 	                                    <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</button>
@@ -59,14 +114,14 @@
 	                                    <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> Deactivate Account</button>
 	                                </div>
 	                            </div>
-	                        </div>
+	                        </div> -->
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
 
 		    <div class="col-lg-8">
-		        <div class="ibox">
+		        <!-- <div class="ibox">
 		            <div class="ibox-title">
 		                <h5>Projects</h5>
 		                <div ibox-tools></div>
@@ -74,8 +129,8 @@
 		            <div class="ibox-content">
 
 		            </div>
-		        </div>
-		        <div class="ibox">
+		        </div> -->
+		        <!-- <div class="ibox">
 		            <div class="ibox-title">
 		                <h5>Groups</h5>
 		                <div ibox-tools></div>
@@ -83,10 +138,10 @@
 		            <div class="ibox-content">
 
 		            </div>
-		        </div>
+		        </div> -->
 		        <div class="ibox">
 		            <div class="ibox-title">
-		                <h5>Activities</h5>
+		                <h5>Settings</h5>
 		                <div ibox-tools></div>
 		            </div>
 		            <div class="ibox-content">
@@ -218,6 +273,7 @@
 												ng-maxlength=100 
 												required 
 												maxlength="100"
+												disabled="true" 
 											>
 											<div ng-show="form.email.$dirty && form.email.$invalid">
 												<p 

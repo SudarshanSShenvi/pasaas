@@ -2,8 +2,8 @@
     "pasaasApp": {
         "pAReport" : {
             "home": {
-                "title": "PA Reports",
-                "createLabel": "Create a new PA Report",
+                "title": "Reports",
+                "createLabel": "Create new Report",
                 "createOrEditLabel": "Create or edit a PA Report",
                 "search": "Search for PA Report"
             },
@@ -19,7 +19,7 @@
             "reporttype": "Reporttype",
             "reportname": "Reportname",
             "reportparms": "Reportparms",
-            "pastatus": "Pastatus",
+            "pastatus": "Status",
             "paorgrep": "Paorgrep"
         }
     }
