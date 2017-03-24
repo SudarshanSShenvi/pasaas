@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public final class SecurityUtils {
 	
-	public static String currentOrganization = null;
+	//public static String currentOrganization = null;
 
     private SecurityUtils() {
     }

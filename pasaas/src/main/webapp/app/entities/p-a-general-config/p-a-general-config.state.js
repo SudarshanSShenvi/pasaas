@@ -13,8 +13,7 @@
             parent: 'entity',
             url: '/p-a-general-config',
             data: {
-                // authorities: ['ROLE_USER'],
-                authorities: [],
+                authorities: ['ROLE_SUPERADMIN'],
                 pageTitle: 'pasaasApp.pAGeneralConfig.home.title'
             },
             views: {
@@ -37,8 +36,7 @@
             parent: 'entity',
             url: '/p-a-general-config/{id}',
             data: {
-                // authorities: ['ROLE_USER'],
-                authorities: [],
+                authorities: ['ROLE_SUPERADMIN'],
                 pageTitle: 'pasaasApp.pAGeneralConfig.detail.title'
             },
             views: {
@@ -71,8 +69,8 @@
             parent: 'p-a-general-config-detail',
             url: '/detail/edit',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_SUPERADMIN']
+                
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -97,8 +95,7 @@
             parent: 'p-a-general-config',
             url: '/new',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_SUPERADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -165,8 +162,7 @@
             parent: 'p-a-general-config',
             url: '/{id}/edit',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_SUPERADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -191,8 +187,7 @@
             parent: 'p-a-general-config',
             url: '/{id}/delete',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_SUPERADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

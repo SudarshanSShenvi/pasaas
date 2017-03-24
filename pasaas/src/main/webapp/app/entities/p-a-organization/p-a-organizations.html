@@ -7,8 +7,35 @@
 
 	<!-- <pre>{{vm.pAOrganizations|json}}</pre> -->
 
+	<div ng-show="!vm.pAOrganization" class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
 
-	<div class="wrapper wrapper-content animated fadeInRight">
+					<div class="ibox-title">
+						<h5>Alert</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="text-center animated fadeInRight well">
+			                <h3 class="font-bold">Please create Organization to proceed!</h3>
+
+			                <div class="error-desc">
+			                	<!-- {{page_data1.alert_text}} -->
+			                    <!-- <br/> -->
+			                    <a ui-sref="p-a-organization.new" class="btn btn-primary m-t">Create</a>
+			                    <a ui-sref="home" class="btn btn-primary btn-outline m-t">Return to Home</a>
+			                </div>
+			            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div ng-show="vm.pAOrganization" class="wrapper wrapper-content animated fadeInRight">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="ibox">
@@ -146,7 +173,7 @@
                					<h4 style="margin-top: 20px;">Users:</h4>
                				</div>
                				<div class="col-lg-9">
-               					<div ion-range-slider range-options="my_slider1">
+               					<div ion-range-slider range-options="vm.user_slider">
                				</div>
                				 </div>
                			</div>
@@ -155,7 +182,7 @@
                					<h4 style="margin-top: 20px;">Projects:</h4>
                				</div>
                				<div class="col-lg-9">
-               				 <div ion-range-slider range-options="my_slider2">
+               				 <div ion-range-slider range-options="vm.project_slider">
                				</div>
                				 </div>
                			</div>
@@ -379,7 +406,16 @@
 		            <div class="ibox-title">
 						<h5>Project List</h5>
 	                    <div ibox-tools></div>
-	                    <button class="btn btn-primary btn-xs pull-right" ui-sref="p-a-project.new">
+	                    <!-- <pre>{{vm.pAOrganization.organization | json}}</pre> -->
+	                    <!-- <pre>{{vm.pAOrganization | json}}</pre> -->
+	                    <button 
+	                    	class="btn btn-primary btn-xs pull-right" 
+	                    	ng-click="vm.calling_new_project()"
+	                    	ng-disabled="vm.pAOrganization.paprojects.length >= vm.pAOrganization.pabporg.projects"
+	                    >
+	                    	<!-- ui-sref="p-a-project.new({org:'Vodafone'})" -->
+	                    	<!-- ui-sref="p-a-project.new({org:vm.pAOrganization.organization})" -->
+	                    <!-- <a ui-sref="p-a-organization.name({organizationName:each_org})"> -->
 							Create New Project
 						</button>
 					</div>
@@ -507,7 +543,7 @@
 
 
 
-<div>
+<!-- <div>
 	<h2 data-translate="pasaasApp.pAOrganization.home.title">PA Organizations</h2>
 	<jhi-alert></jhi-alert>
 	<div class="container-fluid">
@@ -605,7 +641,7 @@
 			</tbody>
 		</table>
 	</div>
-</div>
+</div> -->
 
 
 <!-- [

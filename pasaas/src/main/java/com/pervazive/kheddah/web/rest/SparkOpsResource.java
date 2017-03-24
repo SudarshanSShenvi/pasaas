@@ -1,7 +1,6 @@
 package com.pervazive.kheddah.web.rest;
 
 import java.net.URISyntaxException;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
-import com.pervazive.kheddah.domain.PAOrganization;
-import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.SparkOperationsService;
 
 /**
@@ -31,6 +30,9 @@ public class SparkOpsResource {
 	@Inject
 	SparkOperationsService sparkOperationsService;
 	
+	@Inject
+	private PAProjectService paProjectService;
+	
     private final Logger log = LoggerFactory.getLogger(SparkOpsResource.class);
  
     @PostMapping("/triggerTrainingOps/{projectName}")
@@ -38,7 +40,8 @@ public class SparkOpsResource {
     public ResponseEntity<String> triggerTrainingOps(@PathVariable String projectName, HttpServletRequest request)
         throws Exception {
     	SparkConf sparkConf = sparkOperationsService.setSparkConfigurations();
-    	sparkOperationsService.triggerTrainingOperation(1, sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, SecurityUtils.currentOrganization);
+    	PAProject paProject = paProjectService.findProjectByName(projectName);
+    	sparkOperationsService.triggerTrainingOperation(1, sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, paProject.getPaorgpro().getOrganization());
     	return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);
     }
     
@@ -47,7 +50,8 @@ public class SparkOpsResource {
     public ResponseEntity<String> triggerPredictionOps(@PathVariable String projectName, HttpServletRequest request)
         throws URISyntaxException {
     	SparkConf sparkConf = sparkOperationsService.setSparkConfigurations();
-    	sparkOperationsService.triggerPredictionOperation(1,sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, SecurityUtils.currentOrganization);
+    	PAProject paProject = paProjectService.findProjectByName(projectName);
+    	sparkOperationsService.triggerPredictionOperation(1,sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName,  paProject.getPaorgpro().getOrganization());
     	return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);
     }
  

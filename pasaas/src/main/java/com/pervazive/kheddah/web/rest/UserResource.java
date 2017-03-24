@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.config.Constants;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
@@ -125,9 +126,9 @@ public class UserResource {
         		log.debug("ORGS - ", organization);
         		
 			}*/
-        	orgsUser.add(SecurityUtils.currentOrganization);
+        	orgsUser.add(CurrentOrganization.getCurrentOrganization());
 			managedUserVM.setOrganizations(orgsUser);
-			managedUserVM.setDefaultOrganization(SecurityUtils.currentOrganization);
+			managedUserVM.setDefaultOrganization(CurrentOrganization.getCurrentOrganization());
 			
             User newUser = userService.createUser(managedUserVM);
             mailService.sendCreationEmail(newUser);
@@ -181,7 +182,7 @@ public class UserResource {
         //Page<User> page = userRepository.findAllWithAuthorities(pageable);
     	//Page<User> page = userRepository.findAllWithAuthoritiesProjectsAndOrganizations(pageable);
     	Set<PAOrganization> orgSet = new HashSet<PAOrganization>();
-    	orgSet.add(paOrganizationRepository.findByOrganization(SecurityUtils.currentOrganization)); 
+    	orgSet.add(paOrganizationRepository.findByOrganization(CurrentOrganization.getCurrentOrganization())); 
     	Page<User> page = userRepository.findByOrganizationsIn( orgSet , pageable);
     	
         List<ManagedUserVM> managedUserVMs = page.getContent().stream()

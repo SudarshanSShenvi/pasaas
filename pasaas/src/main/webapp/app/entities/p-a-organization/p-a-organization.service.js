@@ -52,17 +52,17 @@ function PAOrganization1 ($resource, DateUtils) {
 }
 
     
-/*    angular
+ angular
     .module('pasaasApp')
-    .factory('PAOrganization', PAOrganization);
+    .factory('PAOrganizationSu', PAOrganizationSu);
 
-PAOrganization.$inject = ['$resource', 'DateUtils'];
+ PAOrganizationSu.$inject = ['$resource', 'DateUtils'];
 
-function PAOrganization ($resource, DateUtils) {
+function PAOrganizationSu ($resource, DateUtils) {
     var resourceUrl =  'api/p-a-organizations/suops';
 
     return $resource(resourceUrl, {}, {
         'query': { method: 'GET', isArray: true}
     });
-}*/
+}
 })();

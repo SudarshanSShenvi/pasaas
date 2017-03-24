@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAAlarmActuality;
 import com.pervazive.kheddah.domain.PAAlarmRCA;
 import com.pervazive.kheddah.domain.PAOrganization;
@@ -95,12 +96,12 @@ public class PAAlarmActualityResource {
      */
     @GetMapping("/p-a-alarm-actualities")
     @Timed
-    public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAAlarmActuality>> getAllPAAlarmActualities(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
-        if(SecurityUtils.currentOrganization == null) 
+        if(request.getSession().getAttribute("s_organization") == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAlarmActuality", "Organization missing", "Create one to proceed")).body(null);
         
-       Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable,paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
+       Page<PAAlarmActuality> page = pAAlarmActualityService.findAll(pageable, (PAOrganization) request.getSession().getAttribute("s_organization") );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-alarm-actualities");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

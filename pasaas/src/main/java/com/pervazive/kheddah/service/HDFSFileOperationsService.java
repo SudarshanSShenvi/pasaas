@@ -20,7 +20,7 @@ public interface HDFSFileOperationsService {
 	   * @param conf
 	   * @throws IOException
 	   */
-	public void addMultipleFiles(MultipartFile[] source, String dest, Configuration conf) throws IOException;
+	public void addMultipleFiles(List<MultipartFile> source, String dest, Configuration conf) throws IOException;
 	
 	public void addFile(MultipartFile source, String dest, Configuration conf) throws IOException;
 

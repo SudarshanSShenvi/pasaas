@@ -1,7 +1,9 @@
 package com.pervazive.kheddah.web.rest;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +12,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.hadoop.fs.FileStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -29,13 +33,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.AuthoritiesConstants;
 import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAProjectService;
+import com.pervazive.kheddah.service.dto.FileStatusDTO;
 import com.pervazive.kheddah.service.dto.PAProjectDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -59,6 +66,9 @@ public class PAProjectResource {
     
     @Inject
     private PAOrganizationService paOrganizationService;
+    
+	@Inject
+	private HDFSFileOperationsService hdfsFileOperationsService;
 
 
     /**
@@ -121,6 +131,7 @@ public class PAProjectResource {
         paProject.setLastModifiedDate(pAProjectDto.getLastModifiedDate());
         
         paProject.setObjectentity(pAProjectDto.getObjectentity());
+        paProject.setTimeseriesentity(pAProjectDto.getTimeseriesentity());
         paProject.setFeedfirstlineheader(pAProjectDto.isFeedfirstlineheader());
         paProject.setFeedindateformat(pAProjectDto.getFeedindateformat());
         paProject.setFeedoutdateformat(pAProjectDto.getFeedoutdateformat());
@@ -169,14 +180,14 @@ public class PAProjectResource {
      */
     @GetMapping("/p-a-projects")
     @Timed
-    public ResponseEntity<List<PAProjectDTO>> getAllPAProjects(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAProjectDTO>> getAllPAProjects(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAProjects");
         
-        if(SecurityUtils.currentOrganization == null) 
+        if((PAOrganization) request.getSession().getAttribute("s_organization") == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAProject", "Organization missing", "Create one to proceed")).body(null);
         
-        Page<PAProject> page = pAProjectService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
+        Page<PAProject> page = pAProjectService.findAll(pageable, (PAOrganization) request.getSession().getAttribute("s_organization") );
         List<PAProjectDTO> paProjectDTO = page.getContent().stream()
             .map(PAProjectDTO::new)
             .collect(Collectors.toList());
@@ -222,7 +233,27 @@ public class PAProjectResource {
     public ResponseEntity<PAProjectDTO> getPAProject(@PathVariable Long id) {
         log.debug("REST request to get PAProject : {}", id);
         PAProject pAProject = pAProjectService.findOne(id);
+        
+        String dirName = "/user/pervazive/"+pAProject.getPaorgpro().getOrganization()+"/"+pAProject.getProjectname()+"/ppa-repo/traindata";
+        List<FileStatus> fileList = new ArrayList<FileStatus>();
+    	FileStatus[] fileStatus = null;
+        try {
+        	fileStatus =hdfsFileOperationsService.readFileList(dirName, hdfsFileOperationsService.init("pervazive"));
+        	for (FileStatus fileStat : fileStatus)  {
+				if(fileStat.isFile()) {
+					fileList.add(fileStat);
+				}
+        	}
+         } catch (IOException e) {
+    	   new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+        
+        List<FileStatusDTO> fileStatusDTO = fileList.stream()
+                .map(FileStatusDTO::new)
+                .collect(Collectors.toList());
+        
         PAProjectDTO paProjectDTO = new PAProjectDTO(pAProject);
+        paProjectDTO.setFileStatusDTO(fileStatusDTO);
         return Optional.ofNullable(paProjectDTO)
             .map(result -> new ResponseEntity<>(
                 result,

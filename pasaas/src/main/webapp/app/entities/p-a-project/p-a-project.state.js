@@ -25,6 +25,9 @@
         .state('p-a-project.step_one', {
             parent: 'p-a-project',
             url: '/step_one',
+            data: {
+                authorities: ['ROLE_USER']
+            },
             templateUrl: 'app/entities/p-a-project/step_one.html',
             controller: 'PAProjectController',
             controllerAs: 'vm'
@@ -32,6 +35,9 @@
         .state('p-a-project.step_two', {
             parent: 'p-a-project',
             url: '/step_two',
+            data: {
+                authorities: ['ROLE_USER']
+            },
             templateUrl: 'app/entities/p-a-project/step_two.html',
             controller: 'PAProjectController',
             controllerAs: 'vm'
@@ -39,6 +45,9 @@
         .state('p-a-project.step_three', {
             parent: 'p-a-project',
             url: '/step_three',
+            data: {
+                authorities: ['ROLE_USER']
+            },
             templateUrl: 'app/entities/p-a-project/step_three.html',
             controller: 'PAProjectController',
             controllerAs: 'vm'
@@ -53,7 +62,7 @@
             views: {
                 'content@': {
                     templateUrl: 'app/entities/p-a-project/p-a-projects.html',
-                    controller: 'PAProjectController',
+                    controller: 'PAProjectControllerSu',
                     controllerAs: 'vm'
                 }
             },
@@ -70,8 +79,7 @@
             parent: 'entity',
             url: '/p-a-project',
             data: {
-                // authorities: ['ROLE_USER'],
-                authorities: [],
+                authorities: ['ROLE_USER'],
                 pageTitle: 'pasaasApp.pAProject.home.title'
             },
             views: {
@@ -97,8 +105,7 @@
             parent: 'entity',
             url: '/p-a-project/{id}',
             data: {
-                // authorities: ['ROLE_USER'],
-                authorities: [],
+                authorities: ['ROLE_USER'],
                 pageTitle: 'pasaasApp.pAProject.detail.title'
             },
             views: {
@@ -130,8 +137,7 @@
             parent: 'p-a-project-detail',
             url: '/detail/edit',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -203,10 +209,9 @@
             parent: 'p-a-project',
             url: '/new',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+            onEnter: ['$stateParams', '$state', '$uibModal', '$rootScope', function($stateParams, $state, $uibModal, $rootScope) {
                 $uibModal.open({
                     templateUrl: 'app/entities/p-a-project/p-a-project-dialog.html',
                     controller: 'PAProjectDialogController',
@@ -216,14 +221,16 @@
                     resolve: {
                         entity: function () {
                             return {
-                                projectname: null,
+                            	projectname: null,
                                 description: null,
-                                id: null
+                                id: null,
+                                paorgpro: $rootScope.this_organization
                             };
                         }
+                
                     }
                 }).result.then(function() {
-                    $state.go('p-a-organization', null, { reload: 'p-a-project' });
+                    $state.go('p-a-organization', null, { reload: 'p-a-organization' });
                     // $state.go('p-a-project', null, { reload: 'p-a-project' });
                 }, function() {
                     $state.go('p-a-organization');
@@ -340,8 +347,7 @@
             parent: 'p-a-project',
             url: '/{id}/edit',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -366,8 +372,7 @@
             parent: 'p-a-project',
             url: '/{id}/delete',
             data: {
-                // authorities: ['ROLE_USER']
-                authorities: []
+                authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

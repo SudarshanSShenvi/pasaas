@@ -5,9 +5,9 @@
         .module('pasaasApp')
         .controller('PAProjectDialogController', PAProjectDialogController);
 
-    PAProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
+    PAProjectDialogController.$inject = ['$rootScope','$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
 
-    function PAProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
+    function PAProjectDialogController ($rootScope, $timeout, $scope, $stateParams, $uibModalInstance, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
         var vm = this;
 
     // PAProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
@@ -18,7 +18,12 @@
         vm.pAProject = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.paorganizations = PAOrganization.query();
+
+        
+        /*vm.this_organization = $rootScope.this_organization;
+        alert(vm.this_organization);
+*/
+        /*vm.paorganizations = PAOrganization.query();
         vm.paerrormessages = PAErrorMessage.query();
         vm.panotifications = PANotification.query();
         vm.pafileuploads = PAFileUpload.query();
@@ -35,7 +40,7 @@
         vm.paalarmrcas = PAAlarmRCA.query();
         vm.panedetails = PANEDetails.query();
         vm.padataconnectors = PADataConnector.query();
-        vm.paschedulers = PAScheduler.query();
+        vm.paschedulers = PAScheduler.query();*/
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

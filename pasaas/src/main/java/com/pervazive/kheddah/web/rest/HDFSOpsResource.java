@@ -110,10 +110,10 @@ public class HDFSOpsResource {
     
     @PostMapping("/pushfiles")
     @Timed
-    public ResponseEntity<String> createNewFile(@RequestPart("file") @Valid MultipartFile[] file)
+    public ResponseEntity<String> createNewFile(@RequestPart("file") @Valid List<MultipartFile> file)
         throws URISyntaxException {
         try {
-        	hdfsFileOperationsService.addMultipleFiles(file, "/user/pervazive/newfromapi/", hdfsFileOperationsService.init("pervazive"));
+        	hdfsFileOperationsService.addMultipleFiles(file, "/user/pervazive/", hdfsFileOperationsService.init("pervazive"));
 		} catch (IOException e) {
 			new ResponseEntity<String>("Error :"+e.getMessage() ,HttpStatus.BAD_REQUEST);
 		}
@@ -121,17 +121,22 @@ public class HDFSOpsResource {
        return new ResponseEntity<String>("Successfully uploaded",HttpStatus.OK);
     }
     
-    @PostMapping("/pushfile")
+    @PostMapping("/pushfile/{projectId}")
     @Timed
-    public ResponseEntity<String> createNewFile(@RequestPart("file") @Valid MultipartFile file)
+    public ResponseEntity<String> createNewFile(@RequestPart("file") @Valid MultipartFile file, @PathVariable Long projectId)
         throws URISyntaxException {
-        try {
-        	hdfsFileOperationsService.addFile(file, "/user/pervazive/newfromapi/", hdfsFileOperationsService.init("pervazive"));
+    	PAProject paProject = paProjectService.findOne(projectId);
+    	
+    	try {
+    		Configuration configuration = hdfsFileOperationsService.init("pervazive");
+    		String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+file.getOriginalFilename();
+    		
+        	hdfsFileOperationsService.addFile(file, dirName, configuration);
 		} catch (IOException e) {
 			new ResponseEntity<String>("Error :"+e.getMessage() ,HttpStatus.BAD_REQUEST);
 		}
        
-        return new ResponseEntity<String>("Successfully uploaded",HttpStatus.OK);
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
     
     @GetMapping("/readfilelist/{projectName}")
@@ -140,9 +145,8 @@ public class HDFSOpsResource {
         throws URISyntaxException {
     	
     	PAProject paProject = paProjectService.findProjectByName(projectName);
-    	paProject.getPaorgpro().getOrganization();
-    	
     	String dirName = "/user/pervazive/"+paProject.getPaorgpro().getOrganization()+"/"+projectName+"/ppa-repo/traindata";
+    	//dirName = dirName.replace(' ', '+');
     	
     	List<FileStatus> fileList = new ArrayList<FileStatus>();
     	FileStatus[] fileStatus = null;

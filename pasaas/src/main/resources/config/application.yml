@@ -41,12 +41,21 @@ spring:
             enabled: false
     thymeleaf:
         mode: XHTML
+    
+    http:
+      multipart:
+        enabled: true
+        max-file-size: 128MB
+        max-request-size: 128MB
+      
+      
     social:
         # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
         google:
             clientId: 533395353669-apdpr17k9dcmgmm2vi8r8qevirot22pi.apps.googleusercontent.com
             clientSecret: -WJTvVQCOeuKc7oZUkUk0udt
 
+        
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
             clientId: 400876320274560

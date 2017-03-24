@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/p-a-reliability-conf',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_SUPERADMIN'],
                 pageTitle: 'pasaasApp.pAReliabilityConf.home.title'
             },
             views: {
@@ -36,7 +36,7 @@
             parent: 'entity',
             url: '/p-a-reliability-conf/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_SUPERADMIN'],
                 pageTitle: 'pasaasApp.pAReliabilityConf.detail.title'
             },
             views: {
@@ -69,7 +69,7 @@
             parent: 'p-a-reliability-conf-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_SUPERADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -94,7 +94,7 @@
             parent: 'p-a-reliability-conf',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_SUPERADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -126,7 +126,7 @@
             parent: 'p-a-reliability-conf',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_SUPERADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -151,7 +151,7 @@
             parent: 'p-a-reliability-conf',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_SUPERADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

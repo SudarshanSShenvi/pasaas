@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PASaxCode;
 import com.pervazive.kheddah.domain.PASaxCodeTmp;
@@ -99,10 +100,10 @@ public class PASaxCodeTmpResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of PASaxCodeTmps");
         
-        if(SecurityUtils.currentOrganization == null) 
+        if(CurrentOrganization.getCurrentOrganization() == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
         
-        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
+        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-code-tmps");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

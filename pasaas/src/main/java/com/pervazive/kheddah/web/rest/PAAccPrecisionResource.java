@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.security.SecurityUtils;
@@ -95,12 +96,12 @@ public class PAAccPrecisionResource {
      */
     @GetMapping("/p-a-acc-precisions")
     @Timed
-    public ResponseEntity<List<PAAccPrecision>> getAllPAAccPrecisions(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAAccPrecision>> getAllPAAccPrecisions(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
-        if(SecurityUtils.currentOrganization == null) 
-        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAlarmActuality", "Organization missing", "Create one to proceed")).body(null);
-        
-        Page<PAAccPrecision> page = pAAccPrecisionService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
+    	
+    	if(request.getSession().getAttribute("s_organization") == null)
+    		return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAAccPrecision", "Organization missing", "Create one to proceed")).body(null);
+    	Page<PAAccPrecision> page = pAAccPrecisionService.findAll(pageable, (PAOrganization) request.getSession().getAttribute("s_organization"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-acc-precisions");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

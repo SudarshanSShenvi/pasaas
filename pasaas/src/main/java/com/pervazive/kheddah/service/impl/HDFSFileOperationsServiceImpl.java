@@ -23,6 +23,8 @@ import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +33,7 @@ import com.pervazive.kheddah.domain.PAGeneralConfig;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAGeneralConfigService;
 import com.pervazive.kheddah.service.PAProjectService;
+import com.pervazive.kheddah.web.rest.HDFSOpsResource;
 
 @Service
 @Transactional
@@ -41,6 +44,8 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	
 	@Inject
 	PAProjectService paProjectService;
+	
+	private final Logger log = LoggerFactory.getLogger(HDFSFileOperationsServiceImpl.class);
 	
 	public HDFSFileOperationsServiceImpl() {
 		
@@ -77,13 +82,16 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	      dest = dest + filename;
 	    }*/
 	    // Check if the file already exists
-	    
+	   
 	    	
-	    	Path path = new Path(source.getOriginalFilename());
-		    if (fileSystem.exists(path)) {
+	    	Path path = new Path(dest);
+	    	 //fileSystem.append(path);
+	    	
+	    	log.debug("PATH :", path.getName());
+		   /* if (fileSystem.exists(path)) {
 		      System.out.println("File " + dest + " already exists");
 		      return;
-		    }
+		    }*/
 
 	    // Create a new file and write data to it.
 	    FSDataOutputStream out = fileSystem.create(path);
@@ -108,7 +116,7 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	   * @param conf
 	   * @throws IOException
 	   */
-	  public void addMultipleFiles(MultipartFile[] source, String dest, Configuration conf) throws IOException {
+	  public void addMultipleFiles(List<MultipartFile> source, String dest, Configuration conf) throws IOException {
 
 	    FileSystem fileSystem = FileSystem.get(conf);
 	    // Get the filename out of the file path

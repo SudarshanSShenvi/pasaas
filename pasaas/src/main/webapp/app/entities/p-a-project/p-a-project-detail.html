@@ -122,14 +122,46 @@
 			<div class="ibox-content">
 				<div class="wrapper wrapper-content">
 					<div class="row">
+						<input 
+                            type="file" 
+                            file-model="myFile"
+                    	/>
+                    	
 						<div class="col-lg-3">
 						    <div class="ibox float-e-margins">
 						        <div class="ibox-content">
+
 						            <div class="file-manager">
 						                <div class="hr-line-dashed"></div>
-						                <button class="btn btn-primary btn-block">
+
+						                <!-- <button 
+				                        	type="file" 
+				                        	ngf-select 
+				                        	class="btn btn-default btn-block"
+				                        	ngf-pattern="'.csv,.txt'"
+											accept="text/csv, text/plain"
+											ngf-change="vm.setImage($file, myFile)"
+				                        	file-model="myFile"
+				                        >
+				                            Upload File
+				                        </button> -->
+						                
+    									<button 
+    										ng-click="vm.uploadFile(vm.pAProject.id)"
+    										class="btn btn-primary btn-block"
+    									>Upload File</button>
+						                <!-- <button 
+				                        	type="file" 
+				                        	ngf-select class="btn btn-default btn-block"
+				                        	ngf-change="vm.setImage($file)" 
+				                        	accept="image/*" 
+				                        	translate="entity.action.addimage"
+				                        >
+				                            Add image
+				                        </button>
+						                <button class="btn btn-primary btn-block" ng-click="vm.upload_file()">
 						                	Upload Files
-						                </button>
+						                </button> -->
 						                <div class="hr-line-dashed"></div>
 						                <button class="btn btn-primary btn-block">
 						                	Start Data Training
@@ -149,18 +181,22 @@
 							<div class="row">
 								<div class="col-lg-12">
 
-									<div class="file-box" ng-repeat = "each_file in file_list">
+									<div 
+										class="file-box" 
+										ng-repeat = "each_file in vm.pAProject.fileStatusDTO"
+									>
 									    <div class="file">
 									        <a href="">
 									            <span class="corner"></span>
 
 									            <div class="icon">
-									                <i class="{{each_file.class_name}}"></i>
+									                <i class="fa fa-file"></i>
 									            </div>
 									            <div class="file-name">
-									                {{each_file.name}}
+									                {{each_file.path}}
 									                <br/>
-									                <small>{{each_file.date}}</small>
+									                <small>Size :{{vm.file_size_converter(each_file.fileSize)}}</small><br>
+									                <small>Created: <br> {{each_file.accessTime | date:'medium'}}</small>
 									            </div>
 									        </a>
 									    </div>

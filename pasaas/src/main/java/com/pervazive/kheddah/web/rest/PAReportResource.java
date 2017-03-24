@@ -34,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.dbuploader.DBOperationsHandler;
 import com.pervazive.kheddah.domain.PAReport;
 import com.pervazive.kheddah.security.SecurityUtils;
@@ -117,10 +118,10 @@ public class PAReportResource {
     public ResponseEntity<List<PAReport>> getAllPAReports(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAReports");
-        if(SecurityUtils.currentOrganization == null) 
+        if(CurrentOrganization.getCurrentOrganization() == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
         
-        Page<PAReport> page = pAReportService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
+        Page<PAReport> page = pAReportService.findAll(pageable, paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reports");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

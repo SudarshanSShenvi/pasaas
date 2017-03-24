@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PARawAlarmData;
 import com.pervazive.kheddah.domain.PAReliabilityScore;
@@ -98,10 +99,10 @@ public class PARawAlarmDataResource {
     public ResponseEntity<List<PARawAlarmData>> getAllPARawAlarmData(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PARawAlarmData");
-        if(SecurityUtils.currentOrganization == null) 
+        if(CurrentOrganization.getCurrentOrganization() == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
         
-        Page<PARawAlarmData> page = pARawAlarmDataService.findAll(pageable,  paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
+        Page<PARawAlarmData> page = pARawAlarmDataService.findAll(pageable,  paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-raw-alarm-data");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

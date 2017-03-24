@@ -2,12 +2,9 @@ package com.pervazive.kheddah.service.dto;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
@@ -94,6 +91,8 @@ public class PAProjectDTO {
 	private ZonedDateTime createdDate;
 	private String lastModifiedBy;
 	private ZonedDateTime lastModifiedDate;
+	
+	private List<FileStatusDTO> fileStatusDTO;
 	
 	public Long getId() {
 		return id;
@@ -292,5 +291,13 @@ public class PAProjectDTO {
 
 	public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
+	}
+
+	public List<FileStatusDTO> getFileStatusDTO() {
+		return fileStatusDTO;
+	}
+
+	public void setFileStatusDTO(List<FileStatusDTO> fileStatusDTO) {
+		this.fileStatusDTO = fileStatusDTO;
 	}
 }

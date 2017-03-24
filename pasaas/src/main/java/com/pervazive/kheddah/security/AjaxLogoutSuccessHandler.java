@@ -21,7 +21,7 @@ public class AjaxLogoutSuccessHandler extends AbstractAuthenticationTargetUrlReq
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
         Authentication authentication)
         throws IOException, ServletException {
-    	SecurityUtils.currentOrganization = null;
+    	//SecurityUtils.currentOrganization = null;
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }

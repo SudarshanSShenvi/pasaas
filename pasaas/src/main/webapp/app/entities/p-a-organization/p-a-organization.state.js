@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/p-a-organization',
             data: {
-                authorities: ['ROLE_USER'],
+                authorities: ['ROLE_ADMIN'],
                 pageTitle: 'pasaasApp.pAOrganization.home.title'
             },
             views: {
@@ -97,10 +97,8 @@
             views: {
                 'content@': {
                 	 templateUrl: 'app/entities/p-a-organization/p-a-organizations.html',
-                     controller: 'PAOrganizationController',
-                     /*templateUrl: 'app/entities/p-a-organization/p-a-organization-detail.html',
                      controller: 'PAOrganizationDetailController',
-                    */controllerAs: 'vm'
+                     controllerAs: 'vm'
                 }
             },
             resolve: {
@@ -126,7 +124,7 @@
             parent: 'p-a-organization-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -151,7 +149,7 @@
             parent: 'p-a-organization',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -182,7 +180,7 @@
             parent: 'p-a-organization',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
 
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
@@ -208,7 +206,7 @@
             parent: 'p-a-organization',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
 
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {

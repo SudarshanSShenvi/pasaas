@@ -122,7 +122,7 @@ public class AccountResource {
     public ResponseEntity<UserDTO> getAccount(HttpServletRequest request) {
     	
     //IF loop to be moved to Angular
- 	if(request.getUserPrincipal() != null){
+ 	/*if(request.getUserPrincipal() != null){
     	String defaultOrganization = null;
     	Optional<User> loggedInUser = userRepository.findOneByLogin(request.getUserPrincipal().getName()); 
         if(SecurityUtils.currentOrganization ==null && loggedInUser.isPresent()) {
@@ -133,7 +133,7 @@ public class AccountResource {
         		SecurityUtils.currentOrganization = defaultOrganization;
         		log.debug("CURRENT ORGANIZATION "+SecurityUtils.currentOrganization);
         }
-    }
+    }*/
     	return Optional.ofNullable(userService.getUserWithAuthorities())
             .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));

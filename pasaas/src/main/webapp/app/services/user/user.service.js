@@ -25,17 +25,18 @@
         return service;
     }
     
-/*    angular
+    angular
     .module('pasaasApp')
-    .factory('User', User);
+    .factory('User1', User1);
 
-User.$inject = ['$resource'];
+User1.$inject = ['$resource'];
 
-function User ($resource) {
-    var service = $resource('api/userssu/suops', {}, {
+function User1 ($resource) {
+    var service = $resource('api/users/suops', {}, {
         'query': {method: 'GET', isArray: true},
+        'update': { method:'PUT' }
     });
 
     return service;
-}*/
+}
 })();

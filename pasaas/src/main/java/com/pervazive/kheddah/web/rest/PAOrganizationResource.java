@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
@@ -67,7 +68,7 @@ public class PAOrganizationResource {
      */
     @PostMapping("/p-a-organizations")
     @Timed
-    public ResponseEntity<PAOrganization> createPAOrganization(@RequestBody PAOrganization pAOrganization) throws URISyntaxException {
+    public ResponseEntity<PAOrganizationDTO> createPAOrganization(@RequestBody PAOrganization pAOrganization) throws URISyntaxException {
         log.debug("REST request to save PAOrganization : {}", pAOrganization);
         if (pAOrganization.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAOrganization", "idexists", "A new pAOrganization cannot already have an ID")).body(null);
@@ -83,14 +84,16 @@ public class PAOrganizationResource {
         pAOrganization.setPAUsers(pausers);
         PAOrganization result = pAOrganizationService.save(pAOrganization);
         
+        PAOrganizationDTO paOrganizationDTO = new PAOrganizationDTO(result);
+        
         if(currentUser.getDefaultOrganization() == null ) {
         	currentUser.setDefaultOrganization(pAOrganization.getOrganization());
         	userRepository.save(currentUser);
         }
         
-        return ResponseEntity.created(new URI("/api/p-a-organizations/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("pAOrganization", result.getId().toString()))
-            .body(result);
+        return ResponseEntity.created(new URI("/api/p-a-organizations/" + paOrganizationDTO.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("pAOrganization", paOrganizationDTO.getId().toString()))
+            .body(paOrganizationDTO);
     }
 
     /**
@@ -161,7 +164,7 @@ public class PAOrganizationResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of PAOrganizations");
         List<PAOrganization> listOrganization = new ArrayList<PAOrganization>();
-        listOrganization.add(pAOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
+        listOrganization.add((PAOrganization) request.getSession().getAttribute("s_organization"));
         Page<PAOrganization> page = new PageImpl<>(listOrganization);
         		
         if (page.getContent().isEmpty()) {

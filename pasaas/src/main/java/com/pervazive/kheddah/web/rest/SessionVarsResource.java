@@ -23,10 +23,8 @@ public class SessionVarsResource {
 
     private final Logger log = LoggerFactory.getLogger(SessionVarsResource.class);
 
-    /*@Inject
-    private PAOrganizationRepository paOrganizationRepository;*/
-
-    
+    @Inject
+    private PAOrganizationRepository paOrganizationRepository;
     
     /**
      * POST  /sessionVars : update Organization
@@ -36,11 +34,21 @@ public class SessionVarsResource {
      */
     @PostMapping("/sessionVars/{newOrganization}")
     @Timed
-    public void setSessionOrganization(@PathVariable String newOrganization) {
-    	log.debug("Current Organization "+SecurityUtils.currentOrganization); 
+    public void setSessionOrganization(@PathVariable String newOrganization, HttpSession session) {
+    	
+    	log.debug("Current Organization "+session.getAttribute("s_organization"));
     	log.debug("request to change Organization to "+newOrganization);
-    	SecurityUtils.currentOrganization = newOrganization;
-    	log.debug("RESETTING VALUES HERE "+SecurityUtils.currentOrganization);
-        }
+    	log.debug("session ID"+session.getId());
+    	session.setAttribute("s_organization", paOrganizationRepository.findByOrganization(newOrganization));
+    	log.debug("RESETTING VALUES HERE "+session.getAttribute("s_organization"));
+    	
+    	/*log.debug("Current Organization "+CurrentOrganization.getCurrentOrganization()); 
+    	log.debug("request to change Organization to "+newOrganization);
+    	//SecurityUtils.currentOrganization = newOrganization;
+    	CurrentOrganization.setCurrentOrganization(newOrganization); 
+    	log.debug("RESETTING VALUES HERE "+CurrentOrganization.getCurrentOrganization());*/
+    	log.debug("for user :"+SecurityUtils.getCurrentUserLogin());
+            
+    }
     
 }

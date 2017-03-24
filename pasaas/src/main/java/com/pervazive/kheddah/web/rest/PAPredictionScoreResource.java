@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAAccPrecision;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
@@ -101,10 +102,10 @@ public class PAPredictionScoreResource {
     public ResponseEntity<List<PAPredictionScore>> getAllPAPredictionScores(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAPredictionScores");
-        if(SecurityUtils.currentOrganization == null) 
+        if(CurrentOrganization.getCurrentOrganization() == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAPredictionScore", "Organization missing", "Create one to proceed")).body(null);
         
-        Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization) );
+        Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

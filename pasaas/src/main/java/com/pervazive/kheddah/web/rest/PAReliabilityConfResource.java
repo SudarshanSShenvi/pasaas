@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReliabilityConf;
 import com.pervazive.kheddah.security.SecurityUtils;
@@ -97,10 +98,10 @@ public class PAReliabilityConfResource {
     public ResponseEntity<List<PAReliabilityConf>> getAllPAReliabilityConfs(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAReliabilityConfs");
-        if(SecurityUtils.currentOrganization == null) 
+        if(CurrentOrganization.getCurrentOrganization() == null) 
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
         
-        Page<PAReliabilityConf> page = pAReliabilityConfService.findAll(pageable,  paOrganizationService.findOrganizationByName(SecurityUtils.currentOrganization));
+        Page<PAReliabilityConf> page = pAReliabilityConfService.findAll(pageable,  paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reliability-confs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

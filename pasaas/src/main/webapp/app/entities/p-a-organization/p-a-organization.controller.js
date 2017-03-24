@@ -5,12 +5,11 @@
         .module('pasaasApp')
         .controller('PAOrganizationController', PAOrganizationController);
 
-    PAOrganizationController.$inject = ['entity', '$scope', '$state', 'PAOrganization', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    PAOrganizationController.$inject = ['$scope', '$state', 'PAOrganization', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function PAOrganizationController (entity, $scope, $state, PAOrganization, ParseLinks, AlertService, paginationConstants) {
+    function PAOrganizationController ($scope, $state, PAOrganization, ParseLinks, AlertService, paginationConstants) {
         var vm = this;
 
-        vm.pAOrganization = entity;
         vm.pAOrganizations = [];
         vm.loadPage = loadPage;
         vm.itemsPerPage = paginationConstants.itemsPerPage;
@@ -22,7 +21,7 @@
         vm.reset = reset;
         vm.reverse = true;
 
-        //loadAll();
+        loadAll();
 
         function loadAll () {
             PAOrganization.query({
@@ -85,24 +84,24 @@
             "Action"
         ];
 
-        $scope.my_slider1 = {
+        /*$scope.user_slider = {
             min: 0,
-            max: 5,
+            max: 5,//vm.pAOrganization.pabporg.users,
             type: 'single',
             prefix: "",
             maxPostfix: "",
             prettify: false,
             hasGrid: true
         };
-        $scope.my_slider2 = {
+        $scope.project_slider = {
             min: 0,
-            max: 2,
+            max: vm.pAOrganization.pabporg.projects,
             type: 'single',
             prefix: "",
             maxPostfix: "",
             prettify: false,
             hasGrid: true
-        };
+        };*/
 
         $scope.get_users_list = function(){
             service_api_users.fetch_full_list()

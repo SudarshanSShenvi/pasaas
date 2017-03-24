@@ -26,6 +26,7 @@
             $translatePartialLoader.addPart('social');
             $translate.refresh();
             
+            scope.image_path = 'content/images/'+ (scope.provider) +'.jpg';
             scope.label = $filter('capitalize')(scope.provider);
             scope.providerSetting = SocialService.getProviderSetting(scope.provider);
             scope.providerURL = SocialService.getProviderURL(scope.provider);

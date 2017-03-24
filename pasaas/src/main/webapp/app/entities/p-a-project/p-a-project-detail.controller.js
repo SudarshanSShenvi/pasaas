@@ -1,13 +1,46 @@
 (function() {
     'use strict';
+    angular
+        .module('pasaasApp').directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+                
+                element.bind('change', function(){
+                    scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
+
+    angular
+        .module('pasaasApp')
+        .service('fileUpload', ['$http', function ($http) {
+        this.uploadFileToUrl = function(file, uploadUrl){
+            var fd = new FormData();
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .success(function(){
+            })
+            .error(function(){
+            });
+        }
+    }]);
 
     angular
         .module('pasaasApp')
         .controller('PAProjectDetailController', PAProjectDetailController);
 
-    PAProjectDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
+    PAProjectDetailController.$inject = ['fileUpload', 'PAProjectUpload', 'DataUtils', '$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
 
-    function PAProjectDetailController($scope, $rootScope, $stateParams, previousState, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
+    function PAProjectDetailController(fileUpload, PAProjectUpload, DataUtils, $scope, $rootScope, $stateParams, previousState, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
         var vm = this;
 
         vm.pAProject = entity;
@@ -18,8 +51,46 @@
         });
         $scope.$on('$destroy', unsubscribe);
 
+        function formatBytes(bytes,decimals) {
+           if(bytes == 0) return '0 Byte';
+           var k = 1000;
+           var dm = decimals + 1 || 3;
+           var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+           var i = Math.floor(Math.log(bytes) / Math.log(k));
+           return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
 
+        vm.file_size_converter = function(file_size_in_bytes) {
+            return formatBytes(file_size_in_bytes, 2);
+        };
+        // vm.file_size_converter = function() {
+        //     return formatBytes(bytes);
+        // };
 
+        vm.uploadFile = function(project_id){
+            var file = $scope.myFile;
+            console.log('file is ' );
+            console.dir(file);
+            var uploadUrl = "api/pushfile/" + project_id;
+            fileUpload.uploadFileToUrl(file, uploadUrl);
+        };
+
+        vm.setImage = function ($file, user) {
+            user = $file;
+        };
+        // vm.setImage = function ($file, user) {
+        //     if ($file && $file.$error === 'pattern') {
+        //         return;
+        //     }
+        //     if ($file) {
+        //         DataUtils.toBase64($file, function(base64Data) {
+        //             $scope.$apply(function() {
+        //                 user.image = base64Data;
+        //                 user.imageContentType = $file.type;
+        //             });
+        //         });
+        //     }
+        // };
         
 
         $scope.page_data1 = {

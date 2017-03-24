@@ -17,7 +17,7 @@
         vm.save = save;
         vm.paprojects = PAProject.query();
         vm.pabusinessplans = PABusinessPlan.query();
-        vm.pareliabilityscores = PAReliabilityScore.query();
+        /*vm.pareliabilityscores = PAReliabilityScore.query();
         vm.pareliabilityconfs = PAReliabilityConf.query();
         vm.papredictionscores = PAPredictionScore.query();
         vm.pasaxcodetmps = PASaxCodeTmp.query();
@@ -33,7 +33,7 @@
         vm.paschedulerintervals = PASchedulerInterval.query();
         vm.paalarmrcas = PAAlarmRCA.query();
         vm.panedetails = PANEDetails.query();
-
+*/
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });
