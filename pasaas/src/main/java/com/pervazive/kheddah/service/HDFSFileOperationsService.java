@@ -2,10 +2,10 @@ package com.pervazive.kheddah.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.List;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,7 +31,7 @@ public interface HDFSFileOperationsService {
 	   * @param conf
 	   * @throws IOException
 	   */
-	  public void readFile(String file, Configuration conf) throws IOException;
+	  public FSDataInputStream readFile(String file, Configuration conf) throws IOException;
 	  
 	  public List<String> readFileO(String file, Configuration conf) throws IOException;
 	  public File passFileForUpload(String file, Configuration conf) throws IOException;

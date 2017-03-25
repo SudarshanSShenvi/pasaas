@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,7 +16,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FSDataOutputStream;
@@ -33,7 +33,6 @@ import com.pervazive.kheddah.domain.PAGeneralConfig;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAGeneralConfigService;
 import com.pervazive.kheddah.service.PAProjectService;
-import com.pervazive.kheddah.web.rest.HDFSOpsResource;
 
 @Service
 @Transactional
@@ -162,32 +161,35 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	   * @param conf
 	   * @throws IOException
 	   */
-	  public void readFile(String file, Configuration conf) throws IOException {
-	    FileSystem fileSystem = FileSystem.get(conf);
+	  public FSDataInputStream readFile(String file, Configuration conf) throws IOException {
+	    
+		  FileSystem fileSystem = FileSystem.get(conf);
 
 	    Path path = new Path(file);
 	    if (!fileSystem.exists(path)) {
 	      System.out.println("File " + file + " does not exists");
-	      return;
+	      return null;
 	    }
 
 	    FSDataInputStream in = fileSystem.open(path);
+	   return in;
 
-	    String filename = file.substring(file.lastIndexOf('/') + 1,
+	   /* String filename = file.substring(file.lastIndexOf('/') + 1,
 	        file.length());
-
-	    OutputStream out = new BufferedOutputStream(new FileOutputStream(
+	    
+	    
+	    BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(
 	        new File(filename)));
-
+	    
 	    byte[] b = new byte[1024];
 	    int numBytes = 0;
 	    while ((numBytes = in.read(b)) > 0) {
-	      out.write(b, 0, numBytes);
+	    	out.write(b, 0, numBytes);
 	    }
-
 	    in.close();
 	    out.close();
-	    fileSystem.close();
+	    fileSystem.close();*/
+	    
 	  }
 	  
 	  public List<String> readFileO(String file, Configuration conf) throws IOException {

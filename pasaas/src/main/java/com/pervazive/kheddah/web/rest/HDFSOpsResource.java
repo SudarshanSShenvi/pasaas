@@ -1,5 +1,6 @@
 package com.pervazive.kheddah.web.rest;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -8,14 +9,19 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +33,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.security.AuthoritiesConstants;
 import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.FileStatusDTO;
+import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 
 /**
  * REST controller for managing PANotification.
@@ -137,6 +145,43 @@ public class HDFSOpsResource {
 		}
        
         return new ResponseEntity<String>(HttpStatus.OK);
+    }
+    
+    @GetMapping("/download/{projectid}/{fileName:.+}")
+    @Timed
+    public void downloadFile(@PathVariable("projectid") Long projectId, @PathVariable("fileName") String fileName,  HttpServletResponse response) throws IOException {
+    	
+    		PAProject paProject = paProjectService.findOne(projectId);
+    		try {
+    			Configuration configuration = hdfsFileOperationsService.init("pervazive");
+    			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
+    		
+    			FSDataInputStream in = hdfsFileOperationsService.readFile(dirName, configuration);
+    			response.addHeader("Content-disposition", "attachment;filename="+fileName+"");
+    			response.setContentType("txt/csv");
+
+    			// Copy the stream to the response's output stream.
+    			IOUtils.copy(in, response.getOutputStream());
+    			response.flushBuffer();
+    		} catch (IOException io){
+    			io.printStackTrace();
+    		}
+    }
+    
+    @DeleteMapping("/delete/{projectid}/{fileName:.+}")
+    @Timed
+    @Secured(AuthoritiesConstants.SUPERADMIN)
+    public ResponseEntity<Void> deleteFile(@PathVariable("projectid") Long projectId, @PathVariable("fileName") String fileName) {
+    	
+    	PAProject paProject = paProjectService.findOne(projectId);
+		try {
+			Configuration configuration = hdfsFileOperationsService.init("pervazive");
+			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
+			hdfsFileOperationsService.deleteFile(dirName, configuration);
+		} catch (IOException io){
+			io.printStackTrace();
+		}
+        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("Deleted", fileName)).build();
     }
     
     @GetMapping("/readfilelist/{projectName}")
