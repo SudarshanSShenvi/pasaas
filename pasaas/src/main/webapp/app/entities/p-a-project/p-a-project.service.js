@@ -61,4 +61,18 @@
 
         return service;
     }
+
+    angular
+    .module('pasaasApp')
+    .factory('PADataTrain', PADataTrain);
+
+    PADataTrain.$inject = ['$resource'];
+
+    function PADataTrain ($resource) {
+        var service = $resource('api/triggerTrainingOps/', {}, {
+            'save': { method:'POST' },
+        });
+
+        return service;
+    }
 })();

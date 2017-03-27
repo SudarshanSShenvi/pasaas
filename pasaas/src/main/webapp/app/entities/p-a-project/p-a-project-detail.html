@@ -125,6 +125,7 @@
 						<input 
                             type="file" 
                             file-model="myFile"
+                            onchange="angular.element(this).scope().fileNameChanged()"
                     	/>
                     	
 						<div class="col-lg-3">
@@ -147,6 +148,7 @@
 				                        </button> -->
 						                
     									<button 
+    										ng-disabled="!vm.show_upload_button"
     										ng-click="vm.uploadFile(vm.pAProject.id)"
     										class="btn btn-primary btn-block"
     									>Upload File</button>
@@ -163,11 +165,17 @@
 						                	Upload Files
 						                </button> -->
 						                <div class="hr-line-dashed"></div>
-						                <button class="btn btn-primary btn-block">
+						                <button 
+						                	ng-click="vm.start_data_training(vm.pAProject.projectname)"
+						                	class="btn btn-primary btn-block"
+						                >
 						                	Start Data Training
 						                </button>
 						                <div class="hr-line-dashed"></div>
-						                <button class="btn btn-primary btn-block">
+						                <button 
+						                	ng-click="vm.start_data_Prediction(vm.pAProject.projectname)"
+						                	class="btn btn-primary btn-block"
+						                >
 						                	Generate Predictions
 						                </button>
 						                <div class="hr-line-dashed"></div>
@@ -301,7 +309,7 @@
 </div>
 
 
-<div>
+<!-- <div>
 	<h2>
 		<span data-translate="pasaasApp.pAProject.detail.title">PA Project</span>
 		{{vm.pAProject.id}}
@@ -341,4 +349,4 @@
 		<span class="glyphicon glyphicon-pencil"></span>
 		<span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
 	</button>
-</div>
+</div> -->

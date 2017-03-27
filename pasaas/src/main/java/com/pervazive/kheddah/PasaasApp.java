@@ -34,8 +34,8 @@ public class PasaasApp {
     @Inject
     private Environment env;
     
-    @Value("${spring.datasource.url}")
-    private static String dbUrl;
+/*    @Value("${spring.datasource.url}")
+    private static String dbUrl;*/
 
     /**
      * Initializes pasaas.
@@ -56,6 +56,7 @@ public class PasaasApp {
             log.error("You have misconfigured your application! It should not" +
                 "run with both the 'dev' and 'cloud' profiles at the same time.");
         }
+
     }
 
     /**
@@ -68,7 +69,7 @@ public class PasaasApp {
         SpringApplication app = new SpringApplication(PasaasApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
-        log.info("--> *********"+dbUrl);
+        /*log.info("--> *********"+dbUrl);*/
         
         log.info("--> "+env.getProperty("spring.datasource.url"));
         log.info("--> "+env.getProperty("spring.datasource.username")); 

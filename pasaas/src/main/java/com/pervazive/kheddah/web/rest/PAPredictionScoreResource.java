@@ -1,19 +1,14 @@
 package com.pervazive.kheddah.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.pervazive.kheddah.custom.CurrentOrganization;
-import com.pervazive.kheddah.domain.PAAccPrecision;
-import com.pervazive.kheddah.domain.PAOrganization;
-import com.pervazive.kheddah.domain.PAPredictionScore;
-import com.pervazive.kheddah.security.SecurityUtils;
-import com.pervazive.kheddah.service.PAOrganizationService;
-import com.pervazive.kheddah.service.PAPredictionScoreService;
-import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
-import com.pervazive.kheddah.service.dto.PAPredictionScoreDTO;
-import com.pervazive.kheddah.web.rest.util.HeaderUtil;
-import com.pervazive.kheddah.web.rest.util.PaginationUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import io.swagger.annotations.ApiParam;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,16 +16,25 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import com.codahale.metrics.annotation.Timed;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAPredictionScore;
+import com.pervazive.kheddah.service.PAOrganizationService;
+import com.pervazive.kheddah.service.PAPredictionScoreService;
+import com.pervazive.kheddah.service.dto.PAPredictionScoreDTO;
+import com.pervazive.kheddah.web.rest.util.HeaderUtil;
+import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import io.swagger.annotations.ApiParam;
 
 /**
  * REST controller for managing PAPredictionScore.
@@ -99,13 +103,13 @@ public class PAPredictionScoreResource {
      */
     @GetMapping("/p-a-prediction-scores")
     @Timed
-    public ResponseEntity<List<PAPredictionScore>> getAllPAPredictionScores(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAPredictionScore>> getAllPAPredictionScores(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAPredictionScores");
-        if(CurrentOrganization.getCurrentOrganization() == null) 
-        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAPredictionScore", "Organization missing", "Create one to proceed")).body(null);
+       /* if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAPredictionScore", "Organization missing", "Create one to proceed")).body(null);*/
         
-        Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()) );
+        Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, paOrganizationService.findOrganizationByName(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization()) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -19,6 +19,8 @@ import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.SparkOperationsService;
+import com.pervazive.kheddah.web.rest.util.HeaderUtil;
+import com.pervazive.kheddah.web.rest.util.MessageObject;
 
 /**
  * REST controller for managing PANotification.
@@ -37,22 +39,24 @@ public class SparkOpsResource {
  
     @PostMapping("/triggerTrainingOps/{projectName}")
     @Timed
-    public ResponseEntity<String> triggerTrainingOps(@PathVariable String projectName, HttpServletRequest request)
+    public ResponseEntity<MessageObject> triggerTrainingOps(@PathVariable String projectName, HttpServletRequest request)
         throws Exception {
     	SparkConf sparkConf = sparkOperationsService.setSparkConfigurations();
     	PAProject paProject = paProjectService.findProjectByName(projectName);
     	sparkOperationsService.triggerTrainingOperation(1, sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName, paProject.getPaorgpro().getOrganization());
-    	return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);
+    	/*return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);*/
+    	
+    	 return ResponseEntity.ok().body(HeaderUtil.pushMessage("Training job Submitted"));
     }
     
     @PostMapping("/triggerPredictionOps/{projectName}")
     @Timed
-    public ResponseEntity<String> triggerPredictionOps(@PathVariable String projectName, HttpServletRequest request)
+    public ResponseEntity<MessageObject> triggerPredictionOps(@PathVariable String projectName, HttpServletRequest request)
         throws URISyntaxException {
     	SparkConf sparkConf = sparkOperationsService.setSparkConfigurations();
     	PAProject paProject = paProjectService.findProjectByName(projectName);
     	sparkOperationsService.triggerPredictionOperation(1,sparkConf, sparkOperationsService.setHadoopConfigurations(), projectName,  paProject.getPaorgpro().getOrganization());
-    	return new ResponseEntity<>("DA Job submitted", HttpStatus.OK);
+    	return ResponseEntity.ok().body(HeaderUtil.pushMessage("Prediction job Submitted"));
     }
  
 }

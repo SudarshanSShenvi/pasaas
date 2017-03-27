@@ -40,4 +40,10 @@ public final class HeaderUtil {
         headers.add("X-pasaasApp-params", entityName);
         return headers;
     }
+    
+    public static MessageObject pushMessage(String message) {
+		MessageObject messageObject = new MessageObject();
+		messageObject.setMessage(message);
+		return messageObject;
+	}
 }

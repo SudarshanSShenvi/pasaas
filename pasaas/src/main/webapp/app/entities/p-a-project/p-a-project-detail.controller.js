@@ -38,11 +38,12 @@
         .module('pasaasApp')
         .controller('PAProjectDetailController', PAProjectDetailController);
 
-    PAProjectDetailController.$inject = ['fileUpload', 'PAProjectUpload', 'DataUtils', '$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
+    PAProjectDetailController.$inject = ['$http', 'PADataTrain', 'fileUpload', 'PAProjectUpload', 'DataUtils', '$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'PAProject', 'PAOrganization', 'PAErrorMessage', 'PANotification', 'PAFileUpload', 'PAAccPrecision', 'PAPrediction', 'PAAlarmActuality', 'PASaxCode', 'PASaxCodeTmp', 'PAPredictionScore', 'PAReliabilityConf', 'PAReliabilityScore', 'PAPMTRequest', 'PASchedulerInterval', 'PAAlarmRCA', 'PANEDetails', 'PADataConnector', 'PAScheduler'];
 
-    function PAProjectDetailController(fileUpload, PAProjectUpload, DataUtils, $scope, $rootScope, $stateParams, previousState, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
+    function PAProjectDetailController($http, PADataTrain, fileUpload, PAProjectUpload, DataUtils, $scope, $rootScope, $stateParams, previousState, entity, PAProject, PAOrganization, PAErrorMessage, PANotification, PAFileUpload, PAAccPrecision, PAPrediction, PAAlarmActuality, PASaxCode, PASaxCodeTmp, PAPredictionScore, PAReliabilityConf, PAReliabilityScore, PAPMTRequest, PASchedulerInterval, PAAlarmRCA, PANEDetails, PADataConnector, PAScheduler) {
         var vm = this;
 
+        vm.show_upload_button = false;
         vm.pAProject = entity;
         vm.previousState = previousState.name;
 
@@ -66,6 +67,65 @@
         // vm.file_size_converter = function() {
         //     return formatBytes(bytes);
         // };
+
+        function onTrainingSuccess (result) {
+            console.log("Inside onTrainingSuccess : " + result.data.message);
+            swal({
+                title: "Success!",
+                text: result.data.message,
+                type: "success"
+            });
+            // alert(result.data.message);
+        }
+
+        function onTrainingError () {
+            console.log("Inside onTrainingError : " + "Error Occoured");
+            swal({
+                title: "Error!",
+                text: "Error Occoured while Data Training",
+                type: "error"
+            });
+        }
+        // UserService.save({name: 'Saimon', email: 'saimon@devdactic.com'});
+
+
+        vm.start_data_training = function(project_name){
+            console.log("Inside start_data_training");
+            // var data_training_url = "http://10.10.10.176:8088/api/triggerTrainingOps/Telco%20Project";
+            var data_training_url = "api/triggerTrainingOps/" + project_name;
+            $http.post(data_training_url).then(onTrainingSuccess, onTrainingError);
+            // PADataTrain.save({projectName: project_name}, onTrainingSuccess, onTrainingError);
+        }
+
+        function onPredictionSuccess (result) {
+            console.log("Inside onPredictionSuccess : " + result.data.message);
+            swal({
+                title: "Success!",
+                text: result.data.message,
+                type: "success"
+            });
+            // alert(result.data.message);
+        }
+
+        function onPredictionError () {
+            console.log("Inside onPredictionError : " + "Error Occoured");
+            swal({
+                title: "Error!",
+                text: "Error Occoured while Data Prediction",
+                type: "error"
+            });
+
+        }
+        // UserService.save({name: 'Saimon', email: 'saimon@devdactic.com'});
+
+
+        vm.start_data_Prediction = function(project_name){
+            console.log("Inside start_data_Prediction");
+            // var data_Prediction_url = "http://10.10.10.176:8088/api/triggerPredictionOps/Telco%20Project";
+            var data_Prediction_url = "api/triggerPredictionOps/" + project_name;
+            $http.post(data_Prediction_url).then(onPredictionSuccess, onPredictionError);
+            // PADataTrain.save({projectName: project_name}, onPredictionSuccess, onPredictionError);
+        }
 
         vm.uploadFile = function(project_id){
             var file = $scope.myFile;
