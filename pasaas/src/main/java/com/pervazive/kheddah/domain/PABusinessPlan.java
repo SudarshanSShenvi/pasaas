@@ -45,7 +45,7 @@ public class PABusinessPlan extends AbstractAuditingEntity implements Serializab
     @Column(name = "projects")
     private Integer projects;
 
-    @OneToMany(mappedBy = "pabporg")
+    @OneToMany(mappedBy = "pabporg", fetch = FetchType.LAZY)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PAOrganization> paorgbps = new HashSet<>();

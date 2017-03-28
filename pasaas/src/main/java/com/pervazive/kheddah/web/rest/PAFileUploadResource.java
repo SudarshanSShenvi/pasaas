@@ -2,10 +2,8 @@ package com.pervazive.kheddah.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -23,19 +21,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.terracotta.context.annotations.ContextAttribute;
 
 import com.codahale.metrics.annotation.Timed;
-import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAFileUpload;
 import com.pervazive.kheddah.domain.PAOrganization;
-import com.pervazive.kheddah.domain.PAPMTRequest;
-import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
-import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAFileUploadService;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -114,12 +106,12 @@ public class PAFileUploadResource {
     @GetMapping("/p-a-file-uploads")
     @Timed
 
-    public ResponseEntity<List<PAFileUpload>> getAllPAFileUploads(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAFileUpload>> getAllPAFileUploads(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
-               if(CurrentOrganization.getCurrentOrganization() == null) 
-        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAFileUpload", "Organization missing", "Create one to proceed")).body(null);
+             /*  if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAFileUpload", "Organization missing", "Create one to proceed")).body(null);*/
         
-        Page<PAFileUpload> page = pAFileUploadService.findAll(pageable, paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()) );
+        Page<PAFileUpload> page = pAFileUploadService.findAll(pageable, paOrganizationService.findOrganizationByName(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-file-uploads");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

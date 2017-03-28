@@ -4,17 +4,17 @@
             "home": {
                 "title": "Reports",
                 "createLabel": "Create new Report",
-                "createOrEditLabel": "Create or edit a PA Report",
-                "search": "Search for PA Report"
+                "createOrEditLabel": "Report",
+                "search": "Search for Report"
             },
-            "created": "A new PA Report is created with identifier {{ param }}",
-            "updated": "A PA Report is updated with identifier {{ param }}",
-            "deleted": "A PA Report is deleted with identifier {{ param }}",
+            "created": "A new Report is created with identifier {{ param }}",
+            "updated": "A Report is updated with identifier {{ param }}",
+            "deleted": "A Report is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete PA Report {{ id }}?"
+                "question": "Are you sure you want to delete Report {{ id }}?"
             },
             "detail": {
-                "title": "PA Report"
+                "title": "Report"
             },
             "reporttype": "Reporttype",
             "reportname": "Reportname",

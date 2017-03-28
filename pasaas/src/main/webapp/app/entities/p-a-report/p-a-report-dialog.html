@@ -6,7 +6,6 @@
                 ng-click="vm.clear()">&times;</button>
         <h4 class="modal-title" id="myPAReportLabel" data-translate="pasaasApp.pAReport.home.createOrEditLabel">Create or edit a PA Report</h4>
     </div>
-    ************************************************
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.pAReport.id">
@@ -48,22 +47,31 @@
             </select>
         </div>
         <div ng-if="vm.pAReport.reportfile" class="help-block clearfix">
-                    <a class="pull-left" ng-click="vm.openFile(vm.pAReport.reportfileContentType, vm.pAReport.reportfile)" 
-                    data-translate="entity.action.open">open</a><br>
-                    <span class="pull-left">{{vm.pAReport.reportfileContentType}}, {{vm.byteSize(vm.pAReport.reportfile)}}</span>
+                    <a 
+                        class="pull-left" 
+                        ng-click="vm.openFile(vm.pAReport.reportfileContentType, vm.pAReport.reportfile)" 
+                        data-translate="entity.action.open"
+                    >open</a><br>
+
+                    <span class="pull-left">
+                    {{vm.pAReport.reportfileContentType}}, {{vm.byteSize(vm.pAReport.reportfile)}}
+                    </span>
                     
-                     <a class="pull-left" ng-click="vm.download(vm.pAReport.reportfile)" 
-                    data-translate="entity.action.down">down</a><br>
+                    <!-- <a 
+                        class="pull-left" 
+                        ng-click="vm.download(vm.pAReport.reportfile)" 
+                        data-translate="entity.action.down"
+                    >down</a><br> -->
                     
-                    <button type="button" ng-click="vm.pAReport.reportfile=null;vm.pAReport.reportfileContentType=null;"
+                    <!-- <button type="button" ng-click="vm.pAReport.reportfile=null;vm.pAReport.reportfileContentType=null;"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
-                    </button>
+                    </button> -->
                 </div>
-                 <button type="button" ngf-select class="btn btn-default btn-block"
+                 <!-- <button type="button" ngf-select class="btn btn-default btn-block"
                         ngf-change="vm.setMsgattachments($file, vm.pAReport)" data-translate="entity.action.addblob">
                     Add Attachment
-                </button>
+                </button> -->
     </div>
     <!-- <div class="row" ng-show="new" >
 

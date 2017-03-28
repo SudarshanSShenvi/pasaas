@@ -1,5 +1,111 @@
+<form 
+    name="editForm" 
+    role="form" 
+    novalidate 
+    ng-submit="vm.save()" 
+>   
 
-<div>
+    <div class="modal-header bg-primary">
+        <!-- <button 
+            type="button" 
+            class="close" 
+            data-dismiss="modal" 
+            aria-hidden="true"
+            ng-click="vm.clear()"
+        >&times;</button> -->
+        <h4 
+            class="modal-title" 
+            id="myPAReliabilityConfLabel" 
+            data-translate="pasaasApp.pAReliabilityConf.home.createOrEditLabel"
+        >Reliability Configuration</h4>
+    </div>
+
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAReliabilityConf.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAReliabilityConf.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReliabilityConf.bscore" for="field_bscore">Bscore</label>
+            <input type="number" class="form-control" name="bscore" id="field_bscore"
+                    ng-model="vm.pAReliabilityConf.bscore"
+                    readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReliabilityConf.cscore" for="field_cscore">Cscore</label>
+            <input type="number" class="form-control" name="cscore" id="field_cscore"
+                    ng-model="vm.pAReliabilityConf.cscore"
+                    readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReliabilityConf.dataset" for="field_dataset">Dataset</label>
+            <input type="text" class="form-control" name="dataset" id="field_dataset"
+                    ng-model="vm.pAReliabilityConf.dataset"
+                    readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReliabilityConf.category" for="field_category">Category</label>
+            <input type="text" class="form-control" name="category" id="field_category"
+                    ng-model="vm.pAReliabilityConf.category"
+                    readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReliabilityConf.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAReliabilityConf.pastatus" id="field_pastatus" ng-disabled="true">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAReliabilityConf.paorgrc" for="field_paorgrc">Paorgrc</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                name="paorgrc" 
+                id="field_paorgrc"
+                ng-model="vm.pAReliabilityConf.paorgrc.organization"
+                readonly 
+            />
+            <!-- <select class="form-control" id="field_paorgrc" name="paorgrc" ng-model="vm.pAReliabilityConf.paorgrc" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id" ng-disabled="true">
+                <option value=""></option>
+            </select> -->
+        </div>
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAReliabilityConf.paprorc" for="field_paprorc">Paprorc</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                name="paprorc" 
+                id="field_paprorc"
+                ng-model="vm.pAReliabilityConf.paprorc.projectname"
+                readonly 
+            />
+            <!-- <select class="form-control" id="field_paprorc" name="paprorc" ng-model="vm.pAReliabilityConf.paprorc" ng-options="pAProject as pAProject.projectname for pAProject in vm.paprojects track by pAProject.id" ng-disabled="true">
+                <option value=""></option>
+            </select> -->
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        </button>
+
+        <!-- <button type="button" ui-sref="p-a-reliability-conf-detail.edit({id:vm.pAReliabilityConf.id})" class="btn btn-primary">
+            <span class="glyphicon glyphicon-pencil"></span>
+            <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+        </button> -->
+    </div>
+</form>
+
+
+<!-- <div>
     <h2><span data-translate="pasaasApp.pAReliabilityConf.detail.title">PA Reliability Conf</span> {{vm.pAReliabilityConf.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
@@ -44,4 +150,4 @@
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
     </button>
-</div>
+</div> -->

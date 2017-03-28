@@ -1,5 +1,107 @@
 
-<div>
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header bg-primary">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button> -->
+        <h4 class="modal-title" id="myPAReportLabel" data-translate="pasaasApp.pAReport.home.createOrEditLabel">Create or edit a PA Report</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pAReport.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pAReport.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReport.reporttype" for="field_reporttype">Reporttype</label>
+            <input type="text" class="form-control" name="reporttype" id="field_reporttype"
+                    ng-model="vm.pAReport.reporttype"
+                    readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReport.reportname" for="field_reportname">Reportname</label>
+            <input type="text" class="form-control" name="reportname" id="field_reportname"
+                    ng-model="vm.pAReport.reportname"
+                    readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReport.reportparms" for="field_reportparms">Reportparms</label>
+            <input type="text" class="form-control" name="reportparms" id="field_reportparms"
+                    ng-model="vm.pAReport.reportparms"
+                    readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="pasaasApp.pAReport.pastatus" for="field_pastatus">Pastatus</label>
+            <select class="form-control" name="pastatus" ng-model="vm.pAReport.pastatus" id="field_pastatus" ng-disabled="true">
+                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="pasaasApp.pAReport.paorgrep" for="field_paorgrep">Paorgrep</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                name="paorgrep" 
+                id="field_paorgrep"
+                ng-model="vm.pAReport.paorgrep.organization"
+                readonly 
+            />
+            <!-- <select class="form-control" id="field_paorgrep" name="paorgrep" ng-model="vm.pAReport.paorgrep" ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id" ng-disabled="true">
+                <option value=""></option>
+            </select> -->
+        </div>
+        <div ng-if="vm.pAReport.reportfile" class="help-block clearfix">
+                    <a 
+                        class="pull-left" 
+                        ng-click="vm.openFile(vm.pAReport.reportfileContentType, vm.pAReport.reportfile)" 
+                        data-translate="entity.action.open"
+                    >open</a><br>
+
+                    <span class="pull-left">
+                    {{vm.pAReport.reportfileContentType}}, {{vm.byteSize(vm.pAReport.reportfile)}}
+                    </span>
+                    
+                    <!-- <a 
+                        class="pull-left" 
+                        ng-click="vm.download(vm.pAReport.reportfile)" 
+                        data-translate="entity.action.down"
+                    >down</a><br> -->
+                    
+                    <!-- <button type="button" ng-click="vm.pAReport.reportfile=null;vm.pAReport.reportfileContentType=null;"
+                            class="btn btn-default btn-xs pull-right" readonly>
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button> -->
+                </div>
+                 <!-- <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setMsgattachments($file, vm.pAReport)" data-translate="entity.action.addblob">
+                    Add Attachment
+                </button> -->
+    </div>
+    
+    <div class="modal-footer">
+        <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        </button>
+
+        <!-- <button type="button" ui-sref="p-a-report-detail.edit({id:vm.pAReport.id})" class="btn btn-primary">
+            <span class="glyphicon glyphicon-pencil"></span>
+            <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+        </button> -->
+    </div>
+    
+    
+</form>
+              
+
+
+
+<!-- <div>
     <h2><span data-translate="pasaasApp.pAReport.detail.title">PA Report</span> {{vm.pAReport.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
@@ -36,4 +138,4 @@
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
     </button>
-</div>
+</div> -->

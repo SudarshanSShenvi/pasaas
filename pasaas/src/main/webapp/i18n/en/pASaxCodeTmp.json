@@ -3,18 +3,18 @@
         "pASaxCodeTmp" : {
             "home": {
                 "title": "Pattern Tmps",
-                "createLabel": "Create a new PA Sax Code Tmp",
-                "createOrEditLabel": "Create or edit a PA Sax Code Tmp",
-                "search": "Search for PA Sax Code Tmp"
+                "createLabel": "Create a new Pattern Tmp",
+                "createOrEditLabel": "Pattern Tmp",
+                "search": "Search for Pattern Tmp"
             },
-            "created": "A new PA Sax Code Tmp is created with identifier {{ param }}",
-            "updated": "A PA Sax Code Tmp is updated with identifier {{ param }}",
-            "deleted": "A PA Sax Code Tmp is deleted with identifier {{ param }}",
+            "created": "A new Pattern Tmp is created with identifier {{ param }}",
+            "updated": "A Pattern Tmp is updated with identifier {{ param }}",
+            "deleted": "A Pattern Tmp is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete PA Sax Code Tmp {{ id }}?"
+                "question": "Are you sure you want to delete Pattern Tmp {{ id }}?"
             },
             "detail": {
-                "title": "PA Sax Code Tmp"
+                "title": "Pattern Tmp"
             },
             "distalarm": "Distalarm",
             "saxcode": "Saxcode",

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
-import com.pervazive.kheddah.custom.CurrentOrganization;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PASaxCodeTmp;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PASaxCodeTmpService;
@@ -105,10 +105,10 @@ public class PASaxCodeTmpResource {
         throws URISyntaxException {
         log.debug("REST request to get a page of PASaxCodeTmps");
         
-        if(CurrentOrganization.getCurrentOrganization() == null) 
-        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
+      /*  if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);*/
         
-        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()));
+        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, paOrganizationService.findOrganizationByName(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-code-tmps");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

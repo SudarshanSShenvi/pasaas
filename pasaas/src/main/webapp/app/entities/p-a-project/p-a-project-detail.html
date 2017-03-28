@@ -1,37 +1,29 @@
 <!-- <div ng-controller='controller_pdf17'> -->
 <div>
-	<div 
-		ng-show="page_meta_data.has_header" 
-		ng-include="'company_pages/common_things/template_page_header.html'"
-	></div>
-	<!-- <pre>{{vm.pAProject| json}}</pre> -->
-	<!-- <pre>{{vm.files_array| json}}</pre> -->
-
-	<div class="row">
-	<div class="col-lg-12">
-	<div class="wrapper wrapper-content animated fadeInUp">
-		<div class="ibox">
-			<div class="ibox-title">
-				<h5>Project Detail</h5>
-
-				<div ibox-tools></div>
-			</div>
-			<div class="ibox-content">
-				<div class="row">
-				    <div class="col-lg-12">
-				        <!-- <div class="m-b-md">
+    <div ng-show="page_meta_data.has_header" ng-include="'company_pages/common_things/template_page_header.html'"></div>
+    <!-- <pre>{{vm.pAProject| json}}</pre> -->
+    <!-- <pre>{{vm.files_array| json}}</pre> -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content animated fadeInUp">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Project Detail</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <!-- <div class="m-b-md">
 				            <a href="" class="btn btn-white btn-xs pull-right">Edit project</a>
 
 				            <h2>Contract with <span>{{vm.pAProject.projectname}}</span></h2>
 				        </div> -->
-				        <dl class="dl-horizontal">
-				            <dt>Status:</dt>
-				            <!-- <dd><span class="label label-primary">{{vm.pAProject.pastatus}}</span></dd> -->
-				            <dd>
-				            	<button 
-									type="button" 
-									class="btn btn-sm btn-xs" 
-									ng-class="
+                                <dl class="dl-horizontal">
+                                    <dt>Status:</dt>
+                                    <!-- <dd><span class="label label-primary">{{vm.pAProject.pastatus}}</span></dd> -->
+                                    <dd>
+                                        <button type="button" class="btn btn-sm btn-xs" ng-class="
 										vm.pAProject.pastatus == 'Active' 
 										? 'btn-primary' :
 										(
@@ -39,60 +31,54 @@
 											? 'btn-default' : 
 											'btn-success'
 										)
-									"
-									style="width: 60px;margin-left:10px"
-								>{{vm.pAProject.pastatus}}</button>
-				            </dd>
-				        </dl>
-				    </div>
-				</div>
-				<div class="row">
-				    <div class="col-lg-5">
-				        <dl class="dl-horizontal">
-
-				            <dt>Project Id:</dt>
-				            	<dd>{{vm.pAProject.id}}</dd>
-				            <dt>Project Name:</dt>
-				            	<dd>{{vm.pAProject.projectname}}</dd>
-				            <dt>Project Description:</dt>
-				            	<dd>{{vm.pAProject.description}}</dd>
-				            <dt>Organization:</dt>
-				            	<dd>{{vm.pAProject.paorgpro.organization}}</dd>
-				            <dt>Participants:</dt>
-					            <dd class="project-people">
-					                <span ng-repeat="each_participant in vm.pAProject.pausers">
+									" style="width: 60px;margin-left:10px">{{vm.pAProject.pastatus}}</button>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <dl class="dl-horizontal">
+                                    <dt>Project Id:</dt>
+                                    <dd>{{vm.pAProject.id}}</dd>
+                                    <dt>Project Name:</dt>
+                                    <dd>{{vm.pAProject.projectname}}</dd>
+                                    <dt>Project Description:</dt>
+                                    <dd>{{vm.pAProject.description}}</dd>
+                                    <dt>Organization:</dt>
+                                    <dd>{{vm.pAProject.paorgpro.organization}}</dd>
+                                    <dt>Participants:</dt>
+                                    <dd class="project-people">
+                                        <span ng-repeat="each_participant in vm.pAProject.pausers">
 					                	<span class="label label-default ng-binding">
 					                		{{each_participant}}
 					                	</span>
-					                	<span>&nbsp;</span>
-					                	<!-- <a href="">
+                                        <span>&nbsp;</span>
+                                        <!-- <a href="">
 					                		<img 
 					                			alt="image" 
 					                			class="img-circle" 
 					                			ng-src="{{each_participant}}"
 					                		>
 					                	</a> -->
-					                </span>
-					            </dd>
-				            
-				        </dl>
-				    </div>
-				    <div class="col-lg-7" id="cluster_info">
-				        <dl class="dl-horizontal">
-
-				            <dt>Created by:</dt>
-				            	<dd>{{vm.pAProject.createdBy}}</dd>
-				            <dt>Created:</dt>
-				            	<dd>{{vm.pAProject.createdDate | date:'medium'}}</dd>
-				            <dt>Modified by:</dt>
-				            	<dd>{{vm.pAProject.lastModifiedBy}}</dd>
-				            <dt>Modified:</dt>
-				            	<dd>{{vm.pAProject.lastModifiedDate | date:'medium'}}</dd>
-				            
-				        </dl>
-				    </div>
-				</div>
-				<!-- <div class="row">
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="col-lg-7" id="cluster_info">
+                                <dl class="dl-horizontal">
+                                    <dt>Created by:</dt>
+                                    <dd>{{vm.pAProject.createdBy}}</dd>
+                                    <dt>Created:</dt>
+                                    <dd>{{vm.pAProject.createdDate | date:'medium'}}</dd>
+                                    <dt>Modified by:</dt>
+                                    <dd>{{vm.pAProject.lastModifiedBy}}</dd>
+                                    <dt>Modified:</dt>
+                                    <dd>{{vm.pAProject.lastModifiedDate | date:'medium'}}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!-- <div class="row">
 				    <div class="col-lg-12">
 				        <dl class="dl-horizontal">
 				            <dt>Completed:</dt>
@@ -111,31 +97,23 @@
 				        </dl>
 				    </div>
 				</div> -->
-			</div>
-		</div>
-		<div class="ibox">
-			<div class="ibox-title">
-				<h5>Data Training and Prediction</h5>
-
-				<div ibox-tools></div>
-			</div>
-			<div class="ibox-content">
-				<div class="wrapper wrapper-content">
-					<div class="row">
-						<input 
-                            type="file" 
-                            file-model="myFile"
-                            onchange="angular.element(this).scope().fileNameChanged()"
-                    	/>
-                    	
-						<div class="col-lg-3">
-						    <div class="ibox float-e-margins">
-						        <div class="ibox-content">
-
-						            <div class="file-manager">
-						                <div class="hr-line-dashed"></div>
-
-						                <!-- <button 
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Data Training and Prediction</h5>
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="wrapper wrapper-content">
+                            <div class="row">
+                                <input type="file" file-model="myFile" onchange="angular.element(this).scope().fileNameChanged()" />
+                                <div class="col-lg-3">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="file-manager">
+                                                <div class="hr-line-dashed"></div>
+                                                <!-- <button 
 				                        	type="file" 
 				                        	ngf-select 
 				                        	class="btn btn-default btn-block"
@@ -146,13 +124,9 @@
 				                        >
 				                            Upload File
 				                        </button> -->
-						                
-    									<button 
-    										ng-disabled="!vm.show_upload_button"
-    										ng-click="vm.uploadFile(vm.pAProject.id)"
-    										class="btn btn-primary btn-block"
-    									>Upload File</button>
-						                <!-- <button 
+                                                <button ng-click="vm.uploadFile(vm.pAProject.id)" class="btn btn-primary btn-block">Upload File</button>
+                                                <!-- <button ng-disabled="!vm.show_upload_button" ng-click="vm.uploadFile(vm.pAProject.id)" class="btn btn-primary btn-block">Upload File</button> -->
+                                                <!-- <button 
 				                        	type="file" 
 				                        	ngf-select class="btn btn-default btn-block"
 				                        	ngf-change="vm.setImage($file)" 
@@ -164,62 +138,63 @@
 						                <button class="btn btn-primary btn-block" ng-click="vm.upload_file()">
 						                	Upload Files
 						                </button> -->
-						                <div class="hr-line-dashed"></div>
-						                <button 
-						                	ng-click="vm.start_data_training(vm.pAProject.projectname)"
-						                	class="btn btn-primary btn-block"
-						                >
-						                	Start Data Training
-						                </button>
-						                <div class="hr-line-dashed"></div>
-						                <button 
-						                	ng-click="vm.start_data_Prediction(vm.pAProject.projectname)"
-						                	class="btn btn-primary btn-block"
-						                >
-						                	Generate Predictions
-						                </button>
-						                <div class="hr-line-dashed"></div>
-						                
-						                <div class="clearfix"></div>
-						            </div>
-						        </div>
-						    </div>
-						</div>
-						<div class="col-lg-9 animated fadeInRight">
-							<div class="row">
-								<div class="col-lg-12">
-
-									<div 
-										class="file-box" 
-										ng-repeat = "each_file in vm.pAProject.fileStatusDTO"
-									>
-									    <div class="file">
-									        <a href="">
-									            <span class="corner"></span>
-
-									            <div class="icon">
-									                <i class="fa fa-file"></i>
-									            </div>
-									            <div class="file-name">
-									                {{each_file.path}}
-									                <br/>
-									                <small>Size :{{vm.file_size_converter(each_file.fileSize)}}</small><br>
-									                <small>Created: <br> {{each_file.accessTime | date:'medium'}}</small>
-									            </div>
-									        </a>
-									    </div>
-
-									</div>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- <div class="ibox">
+                                                <div class="hr-line-dashed"></div>
+                                                <button ng-click="vm.start_data_training(vm.pAProject.projectname)" class="btn btn-primary btn-block">
+                                                    Start Data Training
+                                                </button>
+                                                <div class="hr-line-dashed"></div>
+                                                <button ng-click="vm.start_data_Prediction(vm.pAProject.projectname)" class="btn btn-primary btn-block">
+                                                    Generate Predictions
+                                                </button>
+                                                <div class="hr-line-dashed"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 animated fadeInRight">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="file-box" ng-repeat="each_file in vm.pAProject.fileStatusDTO">
+                                                <div class="file">
+                                                    <a href="">
+                                                        <span class="corner"></span>
+                                                        <div class="icon">
+                                                            <i class="fa fa-file"></i>
+                                                        </div>
+                                                        <div class="file-name">
+                                                            {{each_file.path}}
+                                                            <br/>
+                                                            <small>Size :{{vm.file_size_converter(each_file.fileSize)}}</small>
+                                                            <br>
+                                                            <small>Created: <br> {{each_file.accessTime | date:'medium'}}</small>
+                                                            <br>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <button 
+                                                                    ng-click="vm.download_file(each_file.path)" class="btn btn-primary btn-sm btn-block">
+                                                                        <span>Download</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button ng-click="vm.delete_file(each_file.path)" class="btn btn-danger btn-sm btn-block">
+                                                                        <span>Delete</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="ibox">
 			<div class="ibox-title">
 				<h5>Data Training and Prediction</h5>
 
@@ -301,14 +276,11 @@
 				</div>
 			</div>
 		</div> -->
-	</div>
-	</div>
-	</div>
-	</div>
-
+            </div>
+        </div>
+    </div>
 </div>
-
-
+</div>
 <!-- <div>
 	<h2>
 		<span data-translate="pasaasApp.pAProject.detail.title">PA Project</span>

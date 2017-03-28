@@ -38,6 +38,7 @@ import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.FileStatusDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
+import com.pervazive.kheddah.web.rest.util.MessageObject;
 
 /**
  * REST controller for managing PANotification.
@@ -181,6 +182,7 @@ public class HDFSOpsResource {
 		} catch (IOException io){
 			io.printStackTrace();
 		}
+		//return ResponseEntity.ok().body(HeaderUtil.pushMessage(fileName+" deleted"));
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("Deleted", fileName)).build();
     }
     

@@ -3,18 +3,18 @@
         "pASaxCode" : {
             "home": {
                 "title": "Patterns",
-                "createLabel": "Create a new PA Sax Code",
-                "createOrEditLabel": "Create or edit a PA Sax Code",
-                "search": "Search for PA Sax Code"
+                "createLabel": "Create a new Pattern",
+                "createOrEditLabel": "Pattern",
+                "search": "Search for Pattern"
             },
-            "created": "A new PA Sax Code is created with identifier {{ param }}",
-            "updated": "A PA Sax Code is updated with identifier {{ param }}",
-            "deleted": "A PA Sax Code is deleted with identifier {{ param }}",
+            "created": "A new Pattern is created with identifier {{ param }}",
+            "updated": "A Pattern is updated with identifier {{ param }}",
+            "deleted": "A Pattern is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete PA Sax Code {{ id }}?"
+                "question": "Are you sure you want to delete Pattern {{ id }}?"
             },
             "detail": {
-                "title": "PA Sax Code"
+                "title": "Pattern"
             },
             "distalarm": "Distalarm",
             "saxcode": "Saxcode",

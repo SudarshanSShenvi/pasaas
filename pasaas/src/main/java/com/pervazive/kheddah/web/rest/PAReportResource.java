@@ -34,10 +34,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
-import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.dbuploader.DBOperationsHandler;
+import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReport;
-import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAReportService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -118,10 +117,9 @@ public class PAReportResource {
     public ResponseEntity<List<PAReport>> getAllPAReports(@ApiParam Pageable pageable, HttpServletRequest request)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAReports");
-        if(CurrentOrganization.getCurrentOrganization() == null) 
-        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);
-        
-        Page<PAReport> page = pAReportService.findAll(pageable, paOrganizationService.findOrganizationByName(CurrentOrganization.getCurrentOrganization()));
+        /*if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);*/
+        Page<PAReport> page = pAReportService.findAll(pageable, paOrganizationService.findOrganizationByName(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization()));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reports");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

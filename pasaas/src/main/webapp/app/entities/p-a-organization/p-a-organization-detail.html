@@ -49,7 +49,8 @@
 		                        <form name="signupForm" ng-submit="processForm()" class="p-xs">
 		                            <!-- our nested state views will be injected here -->
 		                            <!-- <div id="form-views" ui-view></div> -->
-		                            <div ng-include="'app/entities/p-a-organization/step_one.html'"></div>
+		                            <!-- <div ng-include="'app/entities/p-a-organization/step_one.html'"></div> -->
+		                            <div ng-include="'app/entities/p-a-organization/p-a-organization-info.html'"></div>
 		                        </form>
 
 	                        </div>
@@ -64,7 +65,7 @@
 </div>
 
 
-<div>
+<!-- <div>
 	<h2>
 		<span data-translate="pasaasApp.pAOrganization.detail.title">PA Organization</span> {{vm.pAOrganization.id}}
 	</h2>
@@ -110,4 +111,4 @@
 		<span class="glyphicon glyphicon-pencil"></span>
 		<span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
 	</button>
-</div>
+</div> -->

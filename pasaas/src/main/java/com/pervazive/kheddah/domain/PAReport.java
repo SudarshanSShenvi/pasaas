@@ -42,9 +42,16 @@ public class PAReport extends AbstractAuditingEntity implements Serializable {
 
     @Column(name = "reportfile_content_type")
     private String reportfileContentType;
+    
+    @Column(name = "paproject_id")
+    private Long projectId;
 
     @ManyToOne
     private PAOrganization paorgrep;
+    
+/*    @ManyToOne
+    private PAProject paprorep;*/
+
 
     public Long getId() {
         return id;
@@ -165,4 +172,13 @@ public class PAReport extends AbstractAuditingEntity implements Serializable {
 	public void setReportfileContentType(String reportfileContentType) {
 		this.reportfileContentType = reportfileContentType;
 	}
+
+	public Long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
+
 }

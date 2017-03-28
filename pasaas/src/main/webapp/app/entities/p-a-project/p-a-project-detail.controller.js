@@ -44,6 +44,9 @@
         var vm = this;
 
         vm.show_upload_button = false;
+        $scope.fileNameChanged = function(){
+            vm.show_upload_button = true;
+        }
         vm.pAProject = entity;
         vm.previousState = previousState.name;
 
@@ -51,6 +54,55 @@
             vm.pAProject = result;
         });
         $scope.$on('$destroy', unsubscribe);
+
+        function on_download_success (result) {
+            console.log("Inside on_download_success : " + result.data.message);
+            swal({
+                title: "Success!",
+                text: result.data.message,
+                type: "success"
+            });
+            // $state.reload();
+        }
+        function on_download_error () {
+            console.log("Inside on_download_error : " + "Error Occoured");
+            swal({
+                title: "Error!",
+                text: "Error Occoured while File Download",
+                type: "error"
+            });
+        }
+        vm.download_file = function(file_name){
+            var api = "/api/download/";
+            var project_id = vm.pAProject.id;
+            $http.get("/api/download/" + project_id + "/" + file_name)
+            .then(on_download_success, on_download_error);
+        }
+
+        function on_delete_success (result) {
+            console.log("Inside on_delete_success : " + result.data.message);
+            swal({
+                title: "Success!",
+                text: result.data.message,
+                type: "success"
+            });
+            $state.reload();
+        }
+        function on_delete_error () {
+            console.log("Inside on_delete_error : " + "Error Occoured");
+            swal({
+                title: "Error!",
+                text: "Error Occoured while File Deletion",
+                type: "error"
+            });
+        }
+        vm.delete_file = function(file_name){
+            var api = "/api/delete/";
+            var project_id = vm.pAProject.id;
+            $http.delete("/api/delete/" + project_id + "/" + file_name)
+            .then(on_delete_success, on_delete_error);
+        }
+        
 
         function formatBytes(bytes,decimals) {
            if(bytes == 0) return '0 Byte';

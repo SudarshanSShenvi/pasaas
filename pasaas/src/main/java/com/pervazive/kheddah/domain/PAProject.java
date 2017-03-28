@@ -1,19 +1,35 @@
 package com.pervazive.kheddah.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pervazive.kheddah.domain.enumeration.PAStatus;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pervazive.kheddah.domain.enumeration.PAStatus;
 
 /**
  * A PAProject.
@@ -26,6 +42,7 @@ public class PAProject extends AbstractAuditingEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @NotFound(action = NotFoundAction.IGNORE)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -146,7 +163,12 @@ public class PAProject extends AbstractAuditingEntity implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<PAPredictionScore> papspros = new HashSet<>();
-
+    
+/*    @OneToMany(mappedBy = "paprorep")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PAReport> pareppros = new HashSet<>();*/
+    
     @OneToMany(mappedBy = "paprorc")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -831,4 +853,12 @@ public class PAProject extends AbstractAuditingEntity implements Serializable {
 	public void setPastatus(PAStatus pastatus) {
 		this.pastatus = pastatus;
 	}
+
+/*	public Set<PAReport> getPareppros() {
+		return pareppros;
+	}
+
+	public void setPareppros(Set<PAReport> pareppros) {
+		this.pareppros = pareppros;
+	}*/
 }

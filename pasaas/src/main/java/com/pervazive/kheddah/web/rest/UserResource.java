@@ -30,15 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.config.Constants;
-import com.pervazive.kheddah.custom.CurrentOrganization;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.AuthoritiesConstants;
-import com.pervazive.kheddah.security.SecurityUtils;
 import com.pervazive.kheddah.service.MailService;
-import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.UserService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -126,9 +123,10 @@ public class UserResource {
         		log.debug("ORGS - ", organization);
         		
 			}*/
-        	orgsUser.add(CurrentOrganization.getCurrentOrganization());
+        	
+        	orgsUser.add(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization());
 			managedUserVM.setOrganizations(orgsUser);
-			managedUserVM.setDefaultOrganization(CurrentOrganization.getCurrentOrganization());
+			managedUserVM.setDefaultOrganization(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization());
 			
             User newUser = userService.createUser(managedUserVM);
             mailService.sendCreationEmail(newUser);
@@ -182,7 +180,7 @@ public class UserResource {
         //Page<User> page = userRepository.findAllWithAuthorities(pageable);
     	//Page<User> page = userRepository.findAllWithAuthoritiesProjectsAndOrganizations(pageable);
     	Set<PAOrganization> orgSet = new HashSet<PAOrganization>();
-    	orgSet.add(paOrganizationRepository.findByOrganization(CurrentOrganization.getCurrentOrganization())); 
+    	orgSet.add(paOrganizationRepository.findByOrganization(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization())); 
     	Page<User> page = userRepository.findByOrganizationsIn( orgSet , pageable);
     	
         List<ManagedUserVM> managedUserVMs = page.getContent().stream()
