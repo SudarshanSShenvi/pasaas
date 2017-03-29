@@ -211,7 +211,7 @@
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', '$rootScope', function($stateParams, $state, $uibModal, $rootScope) {
+            onEnter: ['$stateParams', '$state', '$uibModal',  function($stateParams, $state, $uibModal) {
                 $uibModal.open({
                     templateUrl: 'app/entities/p-a-project/p-a-project-dialog.html',
                     controller: 'PAProjectDialogController',
@@ -223,8 +223,8 @@
                             return {
                             	projectname: null,
                                 description: null,
-                                id: null,
-                                paorgpro: $rootScope.this_organization
+                                id: null
+                                //paorgpro: $rootScope.this_organization
                             };
                         }
                 

@@ -22,269 +22,128 @@
 
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.pAGeneralConfig.id">
-            <label for="id" data-translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.pAGeneralConfig.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.hdfsurl" for="field_hdfsurl">Hdfsurl</label>
-            <input type="text" class="form-control" name="hdfsurl" id="field_hdfsurl"
-                    ng-model="vm.pAGeneralConfig.hdfsurl"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sparkurl" for="field_sparkurl">Sparkurl</label>
-            <input type="text" class="form-control" name="sparkurl" id="field_sparkurl"
-                    ng-model="vm.pAGeneralConfig.sparkurl"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_script" for="field_dr_script">Dr Script</label>
-            <input type="text" class="form-control" name="dr_script" id="field_dr_script"
-                    ng-model="vm.pAGeneralConfig.dr_script"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_inseriesformat" for="field_dr_inseriesformat">Dr Inseriesformat</label>
-            <input type="text" class="form-control" name="dr_inseriesformat" id="field_dr_inseriesformat"
-                    ng-model="vm.pAGeneralConfig.dr_inseriesformat"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_outseriesformat" for="field_dr_outseriesformat">Dr Outseriesformat</label>
-            <input type="text" class="form-control" name="dr_outseriesformat" id="field_dr_outseriesformat"
-                    ng-model="vm.pAGeneralConfig.dr_outseriesformat"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_inputfile" for="field_dr_inputfile">Dr Inputfile</label>
-            <input type="text" class="form-control" name="dr_inputfile" id="field_dr_inputfile"
-                    ng-model="vm.pAGeneralConfig.dr_inputfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_expressionfile" for="field_dr_expressionfile">Dr Expressionfile</label>
-            <input type="text" class="form-control" name="dr_expressionfile" id="field_dr_expressionfile"
-                    ng-model="vm.pAGeneralConfig.dr_expressionfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_outputfile" for="field_dr_outputfile">Dr Outputfile</label>
-            <input type="text" class="form-control" name="dr_outputfile" id="field_dr_outputfile"
-                    ng-model="vm.pAGeneralConfig.dr_outputfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_seriesgcolindex" for="field_dr_seriesgcolindex">Dr Seriesgcolindex</label>
-            <input type="text" class="form-control" name="dr_seriesgcolindex" id="field_dr_seriesgcolindex"
-                    ng-model="vm.pAGeneralConfig.dr_seriesgcolindex"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_seriesstart" for="field_dr_seriesstart">Dr Seriesstart</label>
-            <input type="number" class="form-control" name="dr_seriesstart" id="field_dr_seriesstart"
-                    ng-model="vm.pAGeneralConfig.dr_seriesstart"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_seriesend" for="field_dr_seriesend">Dr Seriesend</label>
-            <input type="number" class="form-control" name="dr_seriesend" id="field_dr_seriesend"
-                    ng-model="vm.pAGeneralConfig.dr_seriesend"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.dr_seriesnxt" for="field_dr_seriesnxt">Dr Seriesnxt</label>
-            <input type="number" class="form-control" name="dr_seriesnxt" id="field_dr_seriesnxt"
-                    ng-model="vm.pAGeneralConfig.dr_seriesnxt"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_inputfile" for="field_df_inputfile">Df Inputfile</label>
-            <input type="text" class="form-control" name="df_inputfile" id="field_df_inputfile"
-                    ng-model="vm.pAGeneralConfig.df_inputfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_outputfile" for="field_df_outputfile">Df Outputfile</label>
-            <input type="text" class="form-control" name="df_outputfile" id="field_df_outputfile"
-                    ng-model="vm.pAGeneralConfig.df_outputfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_entityfld" for="field_df_entityfld">Df Entityfld</label>
-            <input type="text" class="form-control" name="df_entityfld" id="field_df_entityfld"
-                    ng-model="vm.pAGeneralConfig.df_entityfld"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_seriesfld" for="field_df_seriesfld">Df Seriesfld</label>
-            <input type="text" class="form-control" name="df_seriesfld" id="field_df_seriesfld"
-                    ng-model="vm.pAGeneralConfig.df_seriesfld"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_inseriesformat" for="field_df_inseriesformat">Df Inseriesformat</label>
-            <input type="text" class="form-control" name="df_inseriesformat" id="field_df_inseriesformat"
-                    ng-model="vm.pAGeneralConfig.df_inseriesformat"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_outseriesformat" for="field_df_outseriesformat">Df Outseriesformat</label>
-            <input type="text" class="form-control" name="df_outseriesformat" id="field_df_outseriesformat"
-                    ng-model="vm.pAGeneralConfig.df_outseriesformat"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_isheader" for="field_df_isheader">Df Isheader</label>
-            <input type="text" class="form-control" name="df_isheader" id="field_df_isheader"
-                    ng-model="vm.pAGeneralConfig.df_isheader"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_script" for="field_df_script">Df Script</label>
-            <input type="text" class="form-control" name="df_script" id="field_df_script"
-                    ng-model="vm.pAGeneralConfig.df_script"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.df_skipfldindexes" for="field_df_skipfldindexes">Df Skipfldindexes</label>
-            <input type="text" class="form-control" name="df_skipfldindexes" id="field_df_skipfldindexes"
-                    ng-model="vm.pAGeneralConfig.df_skipfldindexes"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_inputfile" for="field_ss_inputfile">Ss Inputfile</label>
-            <input type="text" class="form-control" name="ss_inputfile" id="field_ss_inputfile"
-                    ng-model="vm.pAGeneralConfig.ss_inputfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_outputfile" for="field_ss_outputfile">Ss Outputfile</label>
-            <input type="text" class="form-control" name="ss_outputfile" id="field_ss_outputfile"
-                    ng-model="vm.pAGeneralConfig.ss_outputfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_saxcodefldindex" for="field_ss_saxcodefldindex">Ss Saxcodefldindex</label>
-            <input type="number" class="form-control" name="ss_saxcodefldindex" id="field_ss_saxcodefldindex"
-                    ng-model="vm.pAGeneralConfig.ss_saxcodefldindex"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_subseqinterval" for="field_ss_subseqinterval">Ss Subseqinterval</label>
-            <input type="number" class="form-control" name="ss_subseqinterval" id="field_ss_subseqinterval"
-                    ng-model="vm.pAGeneralConfig.ss_subseqinterval"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_subseqintervalthreshhold" for="field_ss_subseqintervalthreshhold">Ss Subseqintervalthreshhold</label>
-            <input type="number" class="form-control" name="ss_subseqintervalthreshhold" id="field_ss_subseqintervalthreshhold"
-                    ng-model="vm.pAGeneralConfig.ss_subseqintervalthreshhold"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_script" for="field_ss_script">Ss Script</label>
-            <input type="text" class="form-control" name="ss_script" id="field_ss_script"
-                    ng-model="vm.pAGeneralConfig.ss_script"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_tempopfile" for="field_ss_tempopfile">Ss Tempopfile</label>
-            <input type="text" class="form-control" name="ss_tempopfile" id="field_ss_tempopfile"
-                    ng-model="vm.pAGeneralConfig.ss_tempopfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.ss_inputdirname" for="field_ss_inputdirname">Ss Inputdirname</label>
-            <input type="text" class="form-control" name="ss_inputdirname" id="field_ss_inputdirname"
-                    ng-model="vm.pAGeneralConfig.ss_inputdirname"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_ipaddr" for="field_sq_ipaddr">Sq Ipaddr</label>
-            <input type="text" class="form-control" name="sq_ipaddr" id="field_sq_ipaddr"
-                    ng-model="vm.pAGeneralConfig.sq_ipaddr"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_mysqlpwd" for="field_sq_mysqlpwd">Sq Mysqlpwd</label>
-            <input type="text" class="form-control" name="sq_mysqlpwd" id="field_sq_mysqlpwd"
-                    ng-model="vm.pAGeneralConfig.sq_mysqlpwd"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_mysqldb" for="field_sq_mysqldb">Sq Mysqldb</label>
-            <input type="text" class="form-control" name="sq_mysqldb" id="field_sq_mysqldb"
-                    ng-model="vm.pAGeneralConfig.sq_mysqldb"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_loadlocalinfile" for="field_sq_loadlocalinfile">Sq Loadlocalinfile</label>
-            <input type="text" class="form-control" name="sq_loadlocalinfile" id="field_sq_loadlocalinfile"
-                    ng-model="vm.pAGeneralConfig.sq_loadlocalinfile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_daydumppath" for="field_sq_daydumppath">Sq Daydumppath</label>
-            <input type="text" class="form-control" name="sq_daydumppath" id="field_sq_daydumppath"
-                    ng-model="vm.pAGeneralConfig.sq_daydumppath"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_updquery" for="field_sq_updquery">Sq Updquery</label>
-            <input type="text" class="form-control" name="sq_updquery" id="field_sq_updquery"
-                    ng-model="vm.pAGeneralConfig.sq_updquery"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_insertquery" for="field_sq_insertquery">Sq Insertquery</label>
-            <input type="text" class="form-control" name="sq_insertquery" id="field_sq_insertquery"
-                    ng-model="vm.pAGeneralConfig.sq_insertquery"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_script" for="field_sq_script">Sq Script</label>
-            <input type="text" class="form-control" name="sq_script" id="field_sq_script"
-                    ng-model="vm.pAGeneralConfig.sq_script"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_command" for="field_sq_command">Sq Command</label>
-            <input type="text" class="form-control" name="sq_command" id="field_sq_command"
-                    ng-model="vm.pAGeneralConfig.sq_command"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sq_localinfiile" for="field_sq_localinfiile">Sq Localinfiile</label>
-            <input type="text" class="form-control" name="sq_localinfiile" id="field_sq_localinfiile"
-                    ng-model="vm.pAGeneralConfig.sq_localinfiile"
-                    readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.pastatus" for="field_pastatus">Pastatus</label>
-            <select class="form-control" name="pastatus" ng-model="vm.pAGeneralConfig.pastatus" id="field_pastatus" ng-disabled="true">
-                <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
-                <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
-                <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
-            </select>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" ng-show="vm.pAGeneralConfig.id">
+                    <label for="id" data-translate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                            ng-model="vm.pAGeneralConfig.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.hdfsurl" for="field_hdfsurl">Hdfsurl</label>
+                    <input type="text" class="form-control" name="hdfsurl" id="field_hdfsurl"
+                            ng-model="vm.pAGeneralConfig.hdfsurl"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sparkurl" for="field_sparkurl">Sparkurl</label>
+                    <input type="text" class="form-control" name="sparkurl" id="field_sparkurl"
+                            ng-model="vm.pAGeneralConfig.sparkurl"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.created_date" for="field_created_date">created_date</label>
+                    <input type="text" class="form-control" name="created_date" id="field_created_date"
+                            ng-model="vm.pAGeneralConfig.created_date"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.hdfsbasedir" for="field_hdfsbasedir">hdfsbasedir</label>
+                    <input type="text" class="form-control" name="hdfsbasedir" id="field_hdfsbasedir"
+                            ng-model="vm.pAGeneralConfig.hdfsbasedir"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.trainingfeeddir" for="field_trainingfeeddir">trainingfeeddir</label>
+                    <input type="text" class="form-control" name="trainingfeeddir" id="field_trainingfeeddir"
+                            ng-model="vm.pAGeneralConfig.trainingfeeddir"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.predictfeeddir" for="field_predictfeeddir">predictfeeddir</label>
+                    <input type="text" class="form-control" name="predictfeeddir" id="field_predictfeeddir"
+                            ng-model="vm.pAGeneralConfig.predictfeeddir"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.trainingrollupinfile" for="field_trainingrollupinfile">trainingrollupinfile</label>
+                    <input type="text" class="form-control" name="trainingrollupinfile" id="field_trainingrollupinfile"
+                            ng-model="vm.pAGeneralConfig.trainingrollupinfile"
+                            readonly />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.predictrollupinfile" for="field_predictrollupinfile">predictrollupinfile</label>
+                    <input type="text" class="form-control" name="predictrollupinfile" id="field_predictrollupinfile"
+                            ng-model="vm.pAGeneralConfig.predictrollupinfile"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.expressionfilepath" for="field_expressionfilepath">expressionfilepath</label>
+                    <input type="text" class="form-control" name="expressionfilepath" id="field_expressionfilepath"
+                            ng-model="vm.pAGeneralConfig.expressionfilepath"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.trainingpatternoutfile" for="field_trainingpatternoutfile">trainingpatternoutfile</label>
+                    <input type="text" class="form-control" name="trainingpatternoutfile" id="field_trainingpatternoutfile"
+                            ng-model="vm.pAGeneralConfig.trainingpatternoutfile"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.predictpatternoutfile" for="field_predictpatternoutfile">predictpatternoutfile</label>
+                    <input type="text" class="form-control" name="predictpatternoutfile" id="field_predictpatternoutfile"
+                            ng-model="vm.pAGeneralConfig.predictpatternoutfile"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.trainingpatterntmpoutfile" for="field_trainingpatterntmpoutfile">trainingpatterntmpoutfile</label>
+                    <input type="text" class="form-control" name="trainingpatterntmpoutfile" id="field_trainingpatterntmpoutfile"
+                            ng-model="vm.pAGeneralConfig.trainingpatterntmpoutfile"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.predictpatterntmpoutfile" for="field_predictpatterntmpoutfile">predictpatterntmpoutfile</label>
+                    <input type="text" class="form-control" name="predictpatterntmpoutfile" id="field_predictpatterntmpoutfile"
+                            ng-model="vm.pAGeneralConfig.predictpatterntmpoutfile"
+                            readonly />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.sqltmpuploadpath" for="field_sqltmpuploadpath">sqltmpuploadpath</label>
+                    <input type="text" class="form-control" name="sqltmpuploadpath" id="field_sqltmpuploadpath"
+                            ng-model="vm.pAGeneralConfig.sqltmpuploadpath"
+                            readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.pastatus" for="field_pastatus">Pastatus</label>
+                    <select class="form-control" name="pastatus" ng-model="vm.pAGeneralConfig.pastatus" id="field_pastatus" ng-disabled="true">
+                        <option value="Active" data-translate="pasaasApp.PAStatus.Active">Active</option>
+                        <option value="Inactive" data-translate="pasaasApp.PAStatus.Inactive">Inactive</option>
+                        <option value="Delete" data-translate="pasaasApp.PAStatus.Delete">Delete</option>
+                    </select>
+                </div>
+            </div>
         </div>
         
-               <div class="form-group" ngf-drop ngf-change="vm.setMsgattachments($file, vm.pAGeneralConfig)">
+        
+        
+        <div class="form-group" ngf-drop ngf-change="vm.setMsgattachments($file, vm.pAGeneralConfig)">
             <label class="control-label" data-translate="pasaasApp.pAGeneralConfig.exprfile" for="field_msgattachments">Expression File</label>
             <div>
                 <div ng-if="vm.pAGeneralConfig.exprfile" class="help-block clearfix">
                     <a class="pull-left" ng-click="vm.openFile(vm.pAGeneralConfig.exprfileContentType, vm.pAGeneralConfig.exprfile)" data-translate="entity.action.open">open</a><br>
                     <span class="pull-left">{{vm.pAGeneralConfig.exprfileContentType}}, {{vm.byteSize(vm.pAGeneralConfig.exprfile)}}</span>
-                    <button type="button" ng-click="vm.pAGeneralConfig.exprfile=null;vm.pAGeneralConfig.exprfileContentType=null;"
+                    <!-- <button type="button" ng-click="vm.pAGeneralConfig.exprfile=null;vm.pAGeneralConfig.exprfileContentType=null;"
                             class="btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
-                    </button>
+                    </button> -->
                 </div>
-                <button type="button" ngf-select class="btn btn-default btn-block"
+                <!-- <button type="button" ngf-select class="btn btn-default btn-block"
                         ngf-change="vm.setMsgattachments($file, vm.pAGeneralConfig)" data-translate="entity.action.addblob">
                     Add Attachment
-                </button>
+                </button> -->
             </div>
             <input type="hidden" class="form-control" name="exprfile" id="field_exprfile"
                     ng-model="vm.pAGeneralConfig.exprfile"

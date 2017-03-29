@@ -1,6 +1,5 @@
 package com.pervazive.kheddah.web.rest;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.FileStatusDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
-import com.pervazive.kheddah.web.rest.util.MessageObject;
 
 /**
  * REST controller for managing PANotification.

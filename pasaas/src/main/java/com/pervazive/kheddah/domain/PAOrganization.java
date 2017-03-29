@@ -26,6 +26,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pervazive.kheddah.domain.enumeration.PAStatus;
@@ -41,6 +43,7 @@ public class PAOrganization extends AbstractAuditingEntity implements Serializab
     private static final long serialVersionUID = 1L;
 
     @Id
+    @NotFound(action = NotFoundAction.IGNORE)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
