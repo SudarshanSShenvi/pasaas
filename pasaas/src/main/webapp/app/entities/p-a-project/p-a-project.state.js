@@ -27,6 +27,7 @@
             url: '/step_one',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             templateUrl: 'app/entities/p-a-project/step_one.html',
             controller: 'PAProjectController',
@@ -37,6 +38,7 @@
             url: '/step_two',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             templateUrl: 'app/entities/p-a-project/step_two.html',
             controller: 'PAProjectController',
@@ -47,16 +49,19 @@
             url: '/step_three',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             templateUrl: 'app/entities/p-a-project/step_three.html',
             controller: 'PAProjectController',
             controllerAs: 'vm'
         })
+
         .state('p-a-project.su', {
             parent: 'entity',
             url: '/p-a-project/suops',
             data: {
                 authorities: ['ROLE_SUPERADMIN'],
+                // authorities: [],
                 pageTitle: 'pasaasApp.pAProject.home.title'
             },
             views: {
@@ -80,6 +85,7 @@
             url: '/p-a-project',
             data: {
                 authorities: ['ROLE_USER'],
+                // authorities: [],
                 pageTitle: 'pasaasApp.pAProject.home.title'
             },
             views: {
@@ -106,6 +112,7 @@
             url: '/p-a-project/{id}',
             data: {
                 authorities: ['ROLE_USER'],
+                // authorities: [],
                 pageTitle: 'pasaasApp.pAProject.detail.title'
             },
             views: {
@@ -138,6 +145,7 @@
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -184,8 +192,8 @@
         //     parent: 'p-a-project',
         //     url: '/new',
         //     data: {
-        //         // authorities: ['ROLE_USER']
-        //         authorities: []
+                // authorities: ['ROLE_USER']
+                // authorities: []
         //     },
         //     views: {
         //         'content@': {
@@ -210,6 +218,40 @@
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal',  function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/p-a-project/p-a-project-dialog.html',
+                    controller: 'PAProjectDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                projectname: null,
+                                description: null,
+                                id: null
+                                //paorgpro: $rootScope.this_organization
+                            };
+                        }
+                
+                    }
+                }).result.then(function() {
+                    $state.go('p-a-project', null, { reload: 'p-a-project' });
+                }, function() {
+                    $state.go('p-a-project');
+                });
+            }]
+        })
+
+        .state('p-a-project.su.new', {
+            parent: 'p-a-project.su',
+            url: '/new',
+            data: {
+                authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal',  function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -230,11 +272,9 @@
                 
                     }
                 }).result.then(function() {
-                    $state.go('p-a-organization', null, { reload: 'p-a-organization' });
-                    // $state.go('p-a-project', null, { reload: 'p-a-project' });
+                    $state.go('p-a-project.su', null, { reload: 'p-a-project.su' });
                 }, function() {
-                    $state.go('p-a-organization');
-                    // $state.go('p-a-project');
+                    $state.go('p-a-project.su');
                 });
             }]
         })
@@ -327,8 +367,8 @@
         //     parent: 'p-a-project',
         //     url: '/{id}/edit',
         //     data: {
-        //         // authorities: ['ROLE_USER']
-        //         authorities: []
+                // authorities: ['ROLE_USER']
+                // authorities: []
         //     },
         //     views: {
         //         'content@': {
@@ -348,6 +388,7 @@
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -368,11 +409,38 @@
                 });
             }]
         })
+        .state('p-a-project.su.edit', {
+            parent: 'p-a-project.su',
+            url: '/{id}/edit',
+            data: {
+                authorities: ['ROLE_USER']
+                // authorities: []
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/p-a-project/p-a-project-dialog.html',
+                    controller: 'PAProjectDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['PAProject', function(PAProject) {
+                            return PAProject.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('p-a-project.su', null, { reload: 'p-a-project.su' });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
         .state('p-a-project.delete', {
             parent: 'p-a-project',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
+                // authorities: []
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -387,6 +455,31 @@
                     }
                 }).result.then(function() {
                     $state.go('p-a-project', null, { reload: 'p-a-project' });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
+        .state('p-a-project.su.delete', {
+            parent: 'p-a-project.su',
+            url: '/{id}/delete',
+            data: {
+                authorities: ['ROLE_USER']
+                // authorities: []
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/p-a-project/p-a-project-delete-dialog.html',
+                    controller: 'PAProjectDeleteController',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve: {
+                        entity: ['PAProject', function(PAProject) {
+                            return PAProject.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('p-a-project.su', null, { reload: 'p-a-project.su' });
                 }, function() {
                     $state.go('^');
                 });
