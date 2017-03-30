@@ -43,14 +43,16 @@ public interface HDFSFileOperationsService {
 	   */
 	  public void deleteFile(String file, Configuration conf) throws IOException;
 	  
+	  public void mkdir(String dir, Configuration conf) throws IOException;
 	/**
 	   * create directory in hdfs
 	   * @param dir
 	   * @throws IOException
 	   */
-	  public void mkdir(String dir, Configuration conf) throws IOException;
-	  
-	  public void mkdirStructure(String project, String organizationName) throws IOException;
+	  public void mkdirOrgStructure(String organizationName) throws IOException;
+	  public void deleteOrgStructure(String organizationName) throws IOException;
+	  public void mkdirProjectStructure(String projectName, String organizationName) throws IOException;
+	  public void removeProjectStructure(String projectName, String organizationName) throws IOException;
 	  
 	  public void copyHdfsFile(String hdfsSource, String hdfsDest, Configuration conf) throws IOException;
 

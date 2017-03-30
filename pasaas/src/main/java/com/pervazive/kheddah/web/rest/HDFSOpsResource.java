@@ -79,7 +79,7 @@ public class HDFSOpsResource {
      * @return the ResponseEntity with status 200 (OK) and the list of pANotifications in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @PostMapping("/mkdir/{newDir}")
+    /*@PostMapping("/mkdir/{newDir}")
     @Timed
     public ResponseEntity<String> createNewDir(@PathVariable String newDir)
         throws URISyntaxException {
@@ -90,7 +90,7 @@ public class HDFSOpsResource {
 		}
        
         return new ResponseEntity<String>("Successfully Created",HttpStatus.OK);
-    }
+    }*/
     
     /**
      * TODO all parms to be updated
@@ -100,7 +100,7 @@ public class HDFSOpsResource {
      * @return the ResponseEntity with status 200 (OK) and the list of pANotifications in body
      * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
      */
-    @PostMapping("/mkdirstructure/{project}")
+    /*@PostMapping("/mkdirstructure/{project}")
     @Timed
     public ResponseEntity<String> createNewDirStructure(@PathVariable String project, HttpServletRequest request)
         throws URISyntaxException {
@@ -113,7 +113,7 @@ public class HDFSOpsResource {
 		}
        
         return new ResponseEntity<String>("Successfully Created",HttpStatus.OK);
-    }
+    }*/
     
     @PostMapping("/pushfiles")
     @Timed

@@ -1,5 +1,6 @@
 package com.pervazive.kheddah.web.rest;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.repository.UserRepository;
 import com.pervazive.kheddah.security.AuthoritiesConstants;
 import com.pervazive.kheddah.security.SecurityUtils;
+import com.pervazive.kheddah.service.HDFSFileOperationsService;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.dto.PAOrganizationDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
@@ -57,6 +59,9 @@ public class PAOrganizationResource {
     
     @Inject
     private UserRepository userRepository;
+    
+    @Inject
+    private HDFSFileOperationsService hdfsFileOperationsService;
 
     /**
      * POST  /p-a-organizations : Create a new pAOrganization.
@@ -64,10 +69,11 @@ public class PAOrganizationResource {
      * @param pAOrganization the pAOrganization to create
      * @return the ResponseEntity with status 201 (Created) and with body the new pAOrganization, or with status 400 (Bad Request) if the pAOrganization has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @throws IOException 
      */
     @PostMapping("/p-a-organizations")
     @Timed
-    public ResponseEntity<PAOrganizationDTO> createPAOrganization(@RequestBody PAOrganization pAOrganization) throws URISyntaxException {
+    public ResponseEntity<PAOrganizationDTO> createPAOrganization(@RequestBody PAOrganization pAOrganization) throws URISyntaxException, IOException {
         log.debug("REST request to save PAOrganization : {}", pAOrganization);
         if (pAOrganization.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAOrganization", "idexists", "A new pAOrganization cannot already have an ID")).body(null);
@@ -89,6 +95,8 @@ public class PAOrganizationResource {
         	currentUser.setDefaultOrganization(pAOrganization.getOrganization());
         	userRepository.save(currentUser);
         }
+        //Create Organization Directory
+        hdfsFileOperationsService.mkdirOrgStructure(paOrganizationDTO.getOrganization());
         
         return ResponseEntity.created(new URI("/api/p-a-organizations/" + paOrganizationDTO.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("pAOrganization", paOrganizationDTO.getId().toString()))
@@ -248,12 +256,16 @@ PAOrganizationDTO paOrganizationDTO = new PAOrganizationDTO(pAOrganization);
      *
      * @param id the id of the pAOrganization to delete
      * @return the ResponseEntity with status 200 (OK)
+     * @throws IOException 
      */
     @DeleteMapping("/p-a-organizations/{id}")
     @Timed
-    public ResponseEntity<Void> deletePAOrganization(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePAOrganization(@PathVariable Long id) throws IOException {
         log.debug("REST request to delete PAOrganization : {}", id);
         pAOrganizationService.delete(id);
+        //Create Organization Directory
+        hdfsFileOperationsService.deleteOrgStructure(pAOrganizationService.getOrganizationWithUser(id).getOrganization());
+        
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("pAOrganization", id.toString())).build();
     }
 

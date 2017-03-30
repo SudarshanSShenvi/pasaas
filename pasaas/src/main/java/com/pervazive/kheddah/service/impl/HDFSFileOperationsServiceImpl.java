@@ -308,12 +308,76 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	    fileSystem.close();
 	  }
 	  
+	  public void mkdirOrgStructure(String organizationName) throws IOException {
+		  
+		  PAGeneralConfig paGeneralConfig = paGeneralConfigService.findByStatus();
+			String hdfsURL = paGeneralConfig.getHdfsurl();
+			String hdfsBaseDir = paGeneralConfig.getHdfsbasedir();
+		  Configuration configuration = new Configuration();
+		  configuration.set("fs.defaultFS", hdfsURL+hdfsBaseDir);
+		  FileSystem fileSystem = FileSystem.get(configuration); //create directory when organization is created and create project under it when project is created 
+		
+		 /**
+	     * Default File structure to be created
+	     * hdfsurl 	|
+		 *			| -- /user/pervazive/organization/project  	|
+		 *		     										| -- /ppa-repo
+		 *							    					| -- /ppa-repo/traindata
+		 *							    					| -- /ppa-repo/traindatafeed
+		 *							    					| -- /ppa-repo/predictdata
+		 *							    					| -- /ppa-repo/predictdatafeed
+		 *							    					| -- /ppa-repo/conf
+		 *							    					| -- /ppa-repo/traindata/temp
+		 *							    					| -- /ppa-repo/traindata/temp/trainDW
+		 *							    					| -- /ppa-repo/traindata/temp/trainTD (PATTERN RESULT)
+		 *							    					| -- /ppa-repo/predictdata/temp
+		 *							    					| -- /ppa-repo/predictdata/temp/predictDW
+		 *							    					| -- /ppa-repo/predictdata/temp/predictTD (PREDICTION RESULT)
+	     */
+		
+		
+		fileSystem.mkdirs(new Path(organizationName));
+		fileSystem.close();
+		  
+	  }
+	  
+	  public void deleteOrgStructure(String organizationName) throws IOException {
+		  PAGeneralConfig paGeneralConfig = paGeneralConfigService.findByStatus();
+			String hdfsURL = paGeneralConfig.getHdfsurl();
+			String hdfsBaseDir = paGeneralConfig.getHdfsbasedir();
+		  Configuration configuration = new Configuration();
+		  configuration.set("fs.defaultFS", hdfsURL+hdfsBaseDir);
+		FileSystem fileSystem = FileSystem.get(configuration); //create directory when organization is created and create project under it when project is created 
+		
+		 /**
+	     * Default File structure to be created
+	     * hdfsurl 	|
+		 *			| -- /user/pervazive/organization/project  	|
+		 *		     										| -- /ppa-repo
+		 *							    					| -- /ppa-repo/traindata
+		 *							    					| -- /ppa-repo/traindatafeed
+		 *							    					| -- /ppa-repo/predictdata
+		 *							    					| -- /ppa-repo/predictdatafeed
+		 *							    					| -- /ppa-repo/conf
+		 *							    					| -- /ppa-repo/traindata/temp
+		 *							    					| -- /ppa-repo/traindata/temp/trainDW
+		 *							    					| -- /ppa-repo/traindata/temp/trainTD (PATTERN RESULT)
+		 *							    					| -- /ppa-repo/predictdata/temp
+		 *							    					| -- /ppa-repo/predictdata/temp/predictDW
+		 *							    					| -- /ppa-repo/predictdata/temp/predictTD (PREDICTION RESULT)
+	     */
+		
+		
+		fileSystem.delete(new Path(organizationName), true);
+		fileSystem.close();
+	  }
+	  
 	  /**
 	   * create directory in hdfs
 	   * @param dir
 	   * @throws IOException
 	   */
-	  public void mkdirStructure(String projectName, String organizationName) throws IOException {
+	  public void mkdirProjectStructure(String projectName, String organizationName) throws IOException {
 
 		  PAGeneralConfig paGeneralConfig = paGeneralConfigService.findByStatus();
 			String hdfsURL = paGeneralConfig.getHdfsurl();
@@ -352,7 +416,8 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	     */
 		
 		
-		fileSystem.mkdirs(new Path(organizationName));
+		/*fileSystem.mkdirs(new Path(organizationName));
+		*/
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/ppa-repo"));
 		fileSystem.mkdirs(new Path(organizationName+"/"+projectName+"/"+expressionFilePath));
@@ -369,6 +434,37 @@ public class HDFSFileOperationsServiceImpl implements HDFSFileOperationsService{
 	    out.write(expressionFile);
 	    out.close();
 	    fileSystem.close();
+	  }
+	  
+	  public void removeProjectStructure(String projectName, String organizationName) throws IOException {
+
+		  PAGeneralConfig paGeneralConfig = paGeneralConfigService.findByStatus();
+			String hdfsURL = paGeneralConfig.getHdfsurl();
+			String hdfsBaseDir = paGeneralConfig.getHdfsbasedir();
+		  Configuration configuration = new Configuration();
+		  configuration.set("fs.defaultFS", hdfsURL+hdfsBaseDir);
+		FileSystem fileSystem = FileSystem.get(configuration); //create directory when organization is created and create project under it when project is created 
+		
+		 /**
+	     * Default File structure to be created
+	     * hdfsurl 	|
+		 *			| -- /user/pervazive/organization/project  	|
+		 *		     										| -- /ppa-repo
+		 *							    					| -- /ppa-repo/traindata
+		 *							    					| -- /ppa-repo/traindatafeed
+		 *							    					| -- /ppa-repo/predictdata
+		 *							    					| -- /ppa-repo/predictdatafeed
+		 *							    					| -- /ppa-repo/conf
+		 *							    					| -- /ppa-repo/traindata/temp
+		 *							    					| -- /ppa-repo/traindata/temp/trainDW
+		 *							    					| -- /ppa-repo/traindata/temp/trainTD (PATTERN RESULT)
+		 *							    					| -- /ppa-repo/predictdata/temp
+		 *							    					| -- /ppa-repo/predictdata/temp/predictDW
+		 *							    					| -- /ppa-repo/predictdata/temp/predictTD (PREDICTION RESULT)
+	     */
+		
+		fileSystem.delete(new Path(organizationName+"/"+projectName), true);
+		fileSystem.close();
 	  }
 	  
 	  public void copyHdfsFile(String hdfsSource, String hdfsDest, Configuration conf) throws IOException {

@@ -77,10 +77,11 @@ public class PAProjectResource {
      * @param pAProject the pAProject to create
      * @return the ResponseEntity with status 201 (Created) and with body the new pAProject, or with status 400 (Bad Request) if the pAProject has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @throws IOException 
      */
     @PostMapping("/p-a-projects")
     @Timed
-    public ResponseEntity<PAProject> createPAProject(@RequestBody PAProject pAProject) throws URISyntaxException {
+    public ResponseEntity<PAProject> createPAProject(@RequestBody PAProject pAProject) throws URISyntaxException, IOException {
         log.debug("REST request to save PAProject : {}", pAProject);
         if (pAProject.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAProject", "idexists", "A new pAProject cannot already have an ID")).body(null);
@@ -97,6 +98,9 @@ public class PAProjectResource {
         pausers.add(currentUser);
         pAProject.setPausers(pausers);
         PAProject result = pAProjectService.save(pAProject);
+        //On successful project Creation - create directory structure in hadoop
+        hdfsFileOperationsService.mkdirProjectStructure(result.getProjectname(), result.getPaorgpro().getOrganization());
+        
         return ResponseEntity.created(new URI("/api/p-a-projects/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("pAProject", result.getId().toString()))
             .body(result);
@@ -266,12 +270,16 @@ public class PAProjectResource {
      *
      * @param id the id of the pAProject to delete
      * @return the ResponseEntity with status 200 (OK)
+     * @throws IOException 
      */
     @DeleteMapping("/p-a-projects/{id}")
     @Timed
-    public ResponseEntity<Void> deletePAProject(@PathVariable Long id) {
+    public ResponseEntity<Void> deletePAProject(@PathVariable Long id) throws IOException {
         log.debug("REST request to delete PAProject : {}", id);
         pAProjectService.delete(id);
+        //On successful project Deletion - delete directory structure in hadoop
+        hdfsFileOperationsService.removeProjectStructure(pAProjectService.getProjectWithUser(id).getProjectname(), pAProjectService.getProjectWithUser(id).getPaorgpro().getOrganization());
+        
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("pAProject", id.toString())).build();
     }
 

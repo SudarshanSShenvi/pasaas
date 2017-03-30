@@ -103,6 +103,12 @@ public class PAProjectDTO {
 	public String getProjectname() {
 		return projectname;
 	}
+	
+    public PAProjectDTO projectname(String projectname) {
+        this.projectname = projectname;
+        return this;
+    }
+    
 	public void setProjectname(String projectname) {
 		this.projectname = projectname;
 	}
