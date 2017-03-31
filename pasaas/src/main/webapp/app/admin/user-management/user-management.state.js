@@ -139,6 +139,36 @@
                 });
             }]
         })
+        .state('user-management.su.new', {
+            parent: 'user-management.su',
+            url: '/new',
+            data: {
+                authorities: ['ROLE_ADMIN']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/admin/user-management/user-management-dialog.html',
+                    controller: 'UserManagementDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                id: null, login: null, firstName: null, lastName: null, email: null,
+                                activated: true, langKey: null, createdBy: null, createdDate: null,
+                                lastModifiedBy: null, lastModifiedDate: null, resetDate: null,
+                                resetKey: null, authorities: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('user-management.su', null, { reload: 'user-management.su' });
+                }, function() {
+                    $state.go('user-management.su');
+                });
+            }]
+        })
         .state('user-management.edit', {
             parent: 'user-management',
             url: '/{login}/edit',

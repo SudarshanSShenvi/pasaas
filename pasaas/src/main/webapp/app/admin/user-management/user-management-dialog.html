@@ -195,8 +195,15 @@
             <div class="col-lg-8">
                 <div class="form-group">
                     <label data-translate="userManagement.defaultOrganization">Default Organization</label>
-                    <input type="test" class="form-control" name="defaultOrganization"
-                           ng-model="vm.user.defaultOrganization" required ng-maxlength="100">
+                    <select 
+                        class="form-control" 
+                        name="defaultOrganization" 
+                        ng-model="vm.user.defaultOrganization"
+                        ng-options="organization for organization in vm.user.organizations"
+                    >
+                    </select>
+                    <!-- <input type="test" class="form-control" name="defaultOrganization"
+                           ng-model="vm.user.defaultOrganization" required ng-maxlength="100"> -->
                 </div>
             </div>
             <div class="col-lg-4">
