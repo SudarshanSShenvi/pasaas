@@ -92,6 +92,7 @@
 										ng-model="vm.pAOrganization.validfrom" 
 										is-open="vm.datePickerOpenStatus.validfrom"
 									/>
+										<!-- ng-init=""  -->
 									<span class="input-group-btn">
 										<button 
 											type="button" 
@@ -134,8 +135,16 @@
 									data-translate="pasaasApp.pAOrganization.pastatus" 
 									for="field_pastatus"
 								>Pastatus</label>
+
+								<!-- <select 
+									ng-init="somethingHere = options[0]" 
+								    ng-model="somethingHere" 
+								    ng-options="option.name for option in options">
+								</select> -->
+
 								<select 
 									class="form-control" 
+									ng-init="vm.pAOrganization.pastatus = 'Active'" 
 									name="pastatus" 
 									ng-model="vm.pAOrganization.pastatus" 
 									id="field_pastatus"
@@ -151,6 +160,8 @@
 									data-translate="pasaasApp.pAOrganization.pabporg" 
 									for="field_pabporg"
 								>Pabporg</label>
+								{{vm.pAOrganization.pabporg}} 
+								{{vm.pabusinessplans[1].businessplan}}
 								<select 
 									class="form-control" 
 									id="field_pabporg" 

@@ -23,6 +23,10 @@
 
         loadAll();
 
+        vm.print_now = function(coming_data){
+            console.log(coming_data);
+        }
+
         function loadAll () {
             PAOrganizationSu.query({
                 page: vm.page,

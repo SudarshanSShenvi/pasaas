@@ -34,6 +34,18 @@
         vm.paalarmrcas = PAAlarmRCA.query();
         vm.panedetails = PANEDetails.query();
 */
+        // var current_date = moment();
+        var current_date = new Date();
+        vm.pAOrganization.validfrom = current_date;
+
+        vm.pAOrganization.pabporg = vm.pabusinessplans[0]
+
+        // vm.pAOrganization.validto = current_date.add({
+        //     years: 0, 
+        //     months: 2, 
+        //     days: 0
+        // });
+
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
         });

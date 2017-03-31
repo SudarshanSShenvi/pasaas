@@ -284,7 +284,7 @@
 														></span>
 													</button>
 													<button 
-														type="submit"
+														type="button"
 														class="btn btn-danger btn-sm"
 													>
 														<!-- ui-sref="user-management.delete({login:each_user.login})" -->
@@ -292,8 +292,8 @@
 														<span class="glyphicon glyphicon-remove-circle"></span>
 														<span 
 															class="hidden-xs hidden-sm" 
-															data-translate="entity.action.delete"
-														></span>
+														>Remove</span>
+															<!-- data-translate="entity.action.delete" -->
 													</button>
 												</div>
 											</td>
@@ -421,6 +421,8 @@
 						</button>
 					</div>
 		            <div class="ibox-content" style="min-height:120px">
+		            	<pre>{{vm.pAOrganization.pausersObj | json}}</pre>
+		            	<pre>{{vm.pAOrganization | json}}</pre>
 		            	<!-- <div class="col-md-12">
 							<div class="input-group">
 								<input type="text" placeholder="Search" class="input-sm form-control">
