@@ -1,0 +1,29 @@
+[
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "1",
+		"alarmsno" : "Category1",
+		"detail" : "Category 1 –DataSet Information",
+		"cscore" : "0.99",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Disabled",
+		"alarmst" : "2",
+		"alarmsno" : "Category2",
+		"detail" : "Category 2 –DataSet Information",
+		"cscore" : "0.99",
+		"bscore" : "0.99"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Disabled",
+		"alarmst" : "3",
+		"alarmsno" : "Category3",
+		"detail" : "Category 1 –DataSet Information",
+		"cscore" : "0.99",
+		"bscore" : "0.99"
+	}
+]

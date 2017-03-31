@@ -1,0 +1,45 @@
+[
+
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "Alarm Text 1",
+		"alarmsno" : "7112",
+		"detail" : "Showing first 100 characters of root cause information for alarm text 1"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "Alarm Text 1",
+		"alarmsno" : "7112",
+		"detail" : "Showing first 100 characters of root cause information for alarm text 1"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-default",
+		"button" : "Archived",
+		"alarmst" : "Alarm Text 1",
+		"alarmsno" : "7112",
+		"detail" : "Showing first 100 characters of root cause information for alarm text 1"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "Alarm Text 1",
+		"alarmsno" : "7112",
+		"detail" : "Showing first 100 characters of root cause information for alarm text 1"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "Alarm Text 1",
+		"alarmsno" : "7112",
+		"detail" : "Showing first 100 characters of root cause information for alarm text 1"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "Alarm Text 1",
+		"alarmsno" : "7112",
+		"detail" : "Showing first 100 characters of root cause information for alarm text 1"
+	}
+]

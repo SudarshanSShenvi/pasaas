@@ -1,0 +1,161 @@
+
+<!-- <div ng-controller='controller_create_new_user'> -->
+<div>
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>Create New User</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a href="index.html">Home</a>
+	            </li>
+	            <li>
+	                <a>Platform</a>
+	            </li>
+	            <li>
+	                <a>BDA</a>
+	            </li>
+	            <li>
+	                <a>Configuration</a>
+	            </li>
+	            <li class="active">
+	                <strong>Create New User</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
+
+					<div class="ibox-title">
+						<h5>
+							New User "CREATE"
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6">
+								<!-- <div class="row">
+									<div class="col-md-3 custome_font_size_label">Configuration ID</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="number" 
+										name="configuration_id"
+										ng-model="new_score.configuration_id"
+										placeholder="Enter Configuration ID"
+										required
+										>
+									<div 
+										ng-show="form_prs_hr_view.configuration_id.$error.required && form_prs_hr_view.configuration_id.$dirty"
+										class="alert alert-danger"
+									>
+										Configuration ID is required
+									</div>
+
+									</div>
+									<div class="col-md-3 custome_font_size_label">Status</div>
+									<div class="col-md-3">
+										<select 
+											class="form-control m-b" 
+											name="account" 
+										>
+									        <option>Active</option>
+									        <option>Inactive</option>
+									        <option>Delete</option>
+									    </select>
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_input">Type</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="type"
+										ng-model="new_score.type"
+										placeholder="Enter Type"
+										required
+										>
+									<div 
+										ng-show="form_prs_hr_view.type.$error.required && form_prs_hr_view.type.$dirty"
+										class="alert alert-danger"
+									>
+										Type is required
+									</div>
+
+									</div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div> -->
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Login</div>
+									<div class="col-md-9">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="login"
+										ng-model="new_user.login"
+										placeholder="Enter Login"
+										required
+										>
+									<div 
+										ng-show="form_prs_hr_view.login.$error.required && form_prs_hr_view.login.$dirty"
+										class="alert alert-danger"
+									>
+										Login is required
+									</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Email</div>
+									<div class="col-md-9">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="email" 
+										name="email"
+										ng-model="new_user.email"
+										placeholder="Enter Email"
+										required
+										>
+									<div 
+										ng-show="form_prs_hr_view.email.$error.required && form_prs_hr_view.email.$dirty"
+										class="alert alert-danger"
+									>
+										Email is required
+									</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button class="btn btn-primary btn-sm" ng-click="create_user(new_user)">
+								<i class="fa fa-check"></i> SAVE
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

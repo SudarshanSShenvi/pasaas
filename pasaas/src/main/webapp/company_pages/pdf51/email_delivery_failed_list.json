@@ -1,0 +1,42 @@
+[
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "system2@machine.com",
+		"alarmsno" : "system2@machine.com",
+		"detail" : "Showingthe first 100 characters of Email Delivery Failed -Subject",
+		"Attachments" : "Yes"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "system2@machine.com",
+		"alarmsno" : "system2@machine.com",
+		"detail" : "Showingthe first 100 characters of Email Delivery Failed -Subject",
+		"Attachments" : "Yes"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Archived",
+		"alarmst" : "system2@machine.com",
+		"alarmsno" : "system2@machine.com",
+		"detail" : "Showingthe first 100 characters of Email Delivery Failed -Subject",
+		"Attachments" : "Yes"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "system2@machine.com",
+		"alarmsno" : "system2@machine.com",
+		"detail" : "Showingthe first 100 characters of Email Delivery Failed -Subject",
+		"Attachments" : "Yes"
+	},
+	{
+		"clmenu" : "btn btn-sm btn-primary",
+		"button" : "Active",
+		"alarmst" : "system2@machine.com",
+		"alarmsno" : "system2@machine.com",
+		"detail" : "Showingthe first 100 characters of Email Delivery Failed -Subject",
+		"Attachments" : "Yes"
+	}
+]

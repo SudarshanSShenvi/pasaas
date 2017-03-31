@@ -1,0 +1,40 @@
+.custome_font_size_label{
+
+	font-size: 11px;
+}
+.custome_font_size_input{
+	font-size: 11px;
+
+
+}
+
+/*---Input Number Spinner/Counter---*/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+/*---Input Number Spinner/Counter---*/
+
+/*---Select Dropdown---*/
+.selected_null {
+  color: black;
+  background-color: white;
+}
+.selected_active {
+  color: black;
+  background-color: white;
+}
+.selected_inactive {
+  color: black;
+  background-color: white;
+}
+.selected_deleted {
+  color: black;
+  background-color: white;
+}
+/*---Select Dropdown---*/
