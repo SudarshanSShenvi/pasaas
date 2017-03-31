@@ -262,9 +262,10 @@ PAOrganizationDTO paOrganizationDTO = new PAOrganizationDTO(pAOrganization);
     @Timed
     public ResponseEntity<Void> deletePAOrganization(@PathVariable Long id) throws IOException {
         log.debug("REST request to delete PAOrganization : {}", id);
-        pAOrganizationService.delete(id);
-        //Create Organization Directory
+      //Create Organization Directory
         hdfsFileOperationsService.deleteOrgStructure(pAOrganizationService.getOrganizationWithUser(id).getOrganization());
+        pAOrganizationService.delete(id);
+        
         
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("pAOrganization", id.toString())).build();
     }
