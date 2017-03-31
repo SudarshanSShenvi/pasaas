@@ -1,0 +1,195 @@
+<div ng-controller='controller_pdf52'>
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
+
+					<div class="ibox-title">
+						<h5>
+							[Subject]
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						
+							<div class="row">
+								<div class="col-md-2 custome_font_size_label">Attachments</div>
+								<div class="col-md-4">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="attachments"
+										ng-model="new_score.attachments"
+										placeholder="Enter Attachments"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.attachments.$error.required && form_prs_hr_view.attachments.$dirty"
+										class="alert alert-danger"
+									>
+										Attachments is required
+									</div>
+
+								</div>
+								<div class="col-md-2 custome_font_size_label">Status</div>
+								<div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											options-class="{ 
+												'selected_active' : label == 'Active', 
+												'selected_inactive': label == 'Inactive',
+												'selected_deleted': label == 'Deleted'
+											}"
+											ng-disabled="form_disabled"
+										>
+											<option ng-show="!selected_status" value="" class="selected_null">SELECT</option>
+										</select>
+										<!-- {{selected_status| json}} -->
+									</div>
+									<!-- <div class="col-md-4">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											ng-disabled="form_disabled"
+										>
+											<option value="">SELECT</option>
+										</select>
+									</div> -->
+							</div>
+							<p>&nbsp;</p>
+							<div class="row">
+								<div class="col-md-2 custome_font_size_label">Email To.</div>
+								<div class="col-md-4">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="email" 
+										name="email_to"
+										ng-model="new_score.email_to"
+										placeholder="Enter Email To"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.email_to.$error.required && form_prs_hr_view.email_to.$dirty"
+										class="alert alert-danger"
+									>
+										Email To is required
+									</div>
+
+								</div>
+								<div class="col-md-2 custome_font_size_label">Email Cc.</div>
+								<div class="col-md-4">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="email" 
+										name="email_cc"
+										ng-model="new_score.email_cc"
+										placeholder="Enter Email Cc"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.email_cc.$error.required && form_prs_hr_view.email_cc.$dirty"
+										class="alert alert-danger"
+									>
+										Email Cc is required
+									</div>
+
+								</div>
+							</div>
+							<p>&nbsp;</p>
+							<div class="row">
+								
+								<div class="col-md-2 custome_font_size_label">Subject</div>
+								<div class="col-md-10">
+
+									<textarea 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="email_subject"
+										ng-model="new_score.email_subject"
+										placeholder="Enter Subject"
+										required
+										ng-disabled="form_disabled"
+									></textarea>
+									<div 
+										ng-show="form_prs_hr_view.email_subject.$error.required && form_prs_hr_view.email_subject.$dirty"
+										class="alert alert-danger"
+									>
+										Subject is required
+									</div>
+
+
+								</div>
+							</div>
+							<p>&nbsp;</p>
+							<div class="row">
+								<div class="col-md-2 custome_font_size_label">Message</div>
+								<div class="col-md-10">
+
+									<textarea 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="email_body"
+										ng-model="new_score.email_body"
+										placeholder="Enter Message"
+										rows="6"
+										required
+										ng-disabled="form_disabled"
+									></textarea>
+									<div 
+										ng-show="form_prs_hr_view.email_body.$error.required && form_prs_hr_view.email_body.$dirty"
+										class="alert alert-danger"
+									>
+										Message is required
+									</div>
+
+
+								</div>
+							</div>
+							
+						
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button class="btn btn-success btn-sm" ng-click="view_form()">
+								<i class="fa fa-eye"></i> VIEW
+							</button>
+							<button class="btn btn-primary btn-sm" ng-click="edit_form()">
+								<i class="fa fa-pencil"></i> EDIT
+							</button>
+							<button class="btn btn-primary btn-sm"
+									ng-click="save_form(new_score)" 
+									ng-disabled="form_disabled"
+									>
+								<i class="fa fa-save"></i> SAVE
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

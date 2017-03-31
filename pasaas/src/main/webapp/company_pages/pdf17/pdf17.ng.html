@@ -1,0 +1,183 @@
+<!-- <div ng-controller='controller_pdf17'> -->
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+
+
+	<div class="row">
+	<div class="col-lg-9">
+	<div class="wrapper wrapper-content animated fadeInUp">
+	<div class="ibox">
+	<div class="ibox-content">
+		<div class="row">
+		    <div class="col-lg-12">
+		        <div class="m-b-md">
+		            <a href="" class="btn btn-white btn-xs pull-right">Edit project</a>
+
+		            <h2>Contract with {{page_data1.company_name}}</h2>
+		        </div>
+		        <dl class="dl-horizontal">
+		            <dt>Status:</dt>
+		            <dd><span class="label label-primary">{{page_data1.status}}</span></dd>
+		        </dl>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-lg-5">
+		        <dl class="dl-horizontal">
+
+		            <dt>Created by:</dt>	<dd>{{page_data1.created_by}}</dd>
+		            <dt>Messages:</dt>	<dd> {{page_data1.messages}}</dd>
+		            <dt>Client:</dt>	<dd><a href="" class="text-navy"> {{page_data1.client}}</a></dd>
+		            <dt>Version:</dt>	<dd> {{page_data1.version}}</dd>
+		        </dl>
+		    </div>
+		    <div class="col-lg-7" id="cluster_info">
+		        <dl class="dl-horizontal">
+
+		            <dt>Last Updated:</dt>	<dd> {{page_data1.last_updated}}</dd>
+		            <dt>Created:</dt>	<dd> {{page_data1.created}}</dd>
+		            <dt>Participants:</dt>
+		            <dd class="project-people">
+		                <span ng-repeat="each_participant in page_data1.paticipants">
+		                	<a href=""><img alt="image" class="img-circle" ng-src="{{each_participant}}"></a>
+		                </span>
+		            </dd>
+		        </dl>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-lg-12">
+		        <dl class="dl-horizontal">
+		            <dt>Completed:</dt>
+		            <dd>
+		                <div class="progress progress-striped active m-b-sm">
+		                    <div style="width: {{page_data1.completed_progress}}%;" class="progress-bar"></div>
+		                </div>
+		                <small>Project completed in <strong>{{page_data1.completed_progress}}%</strong>. Remaining close the project, sign a contract and invoice.</small>
+		            </dd>
+		        </dl>
+		    </div>
+		</div>
+		<div class="row m-t-sm">
+			<div class="col-lg-12">
+				<div class="panel blank-panel ui-tab">
+
+					<tabset>
+					    <tab heading="Project Files" active="tab.active" class="dsads">
+
+					    	<div class="wrapper wrapper-content">
+								<div class="row">
+									<div class="col-lg-3">
+									    <div class="ibox float-e-margins">
+									        <div class="ibox-content">
+									            <div class="file-manager">
+									                <h5>Show:</h5>
+									                <a href="" class="file-control active">All</a>
+									                <a href="" class="file-control">Documents</a>
+									                <a href="" class="file-control">Audio</a>
+									                <a href="" class="file-control">Images</a>
+
+									                <div class="hr-line-dashed"></div>
+									                <button class="btn btn-primary btn-block">Upload Files</button>
+									                <div class="hr-line-dashed"></div>
+
+									                <h5>Folders</h5>
+									                <ul class="folder-list" style="padding: 0">
+									                    <li ng-repeat="each_project in page_data1.folder_list">
+									                    	<a href=""><i class="fa fa-folder"></i> {{each_project}}</a>
+									                    </li>
+									                </ul>
+									                
+									                <h5 class="tag-title">Tags</h5>
+									                <ul class="tag-list" style="padding: 0">
+									                    <li ng-repeat="each_tag in page_data1.tag_list">
+									                    	<a href="">{{each_tag}}</a>
+									                    </li>
+									                </ul>
+									                <div class="clearfix"></div>
+									            </div>
+									        </div>
+									    </div>
+									</div>
+									<div class="col-lg-9 animated fadeInRight">
+										<div class="row">
+											<div class="col-lg-12">
+
+												<div 
+													class="file-box" 
+													ng-repeat = "each_file in file_list"
+												>
+												    <div class="file">
+												        <a href="">
+												            <span class="corner"></span>
+
+												            <div class="icon">
+												                <i class="{{each_file.class_name}}"></i>
+												            </div>
+												            <div class="file-name">
+												                {{each_file.name}}
+												                <br/>
+												                <small>{{each_file.date}}</small>
+												            </div>
+												        </a>
+												    </div>
+
+												</div>
+												
+											
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					    </tab>
+					    <tab heading="Users"></tab>
+					    <tab heading="Users Messages"></tab>
+					    <tab heading="Last Activity"></tab>
+					    <tab heading="Settings"></tab>
+
+					</tabset>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+		<div class="col-lg-3">
+		    <div class="wrapper wrapper-content project-manager">
+		        <h4>Project description</h4>
+		        <img ng-src="{{page_data1.project_description.image}}" class="img-responsive">
+
+		        <p class="small">{{page_data1.project_description.text}}</p>
+
+		        <p class="small font-bold">
+		            <span><i class="fa fa-circle text-warning"></i> {{page_data1.project_description.priority}} Priority</span>
+		        </p>
+		        <h5>Project tag</h5>
+		        <ul class="tag-list" style="padding: 0">
+		            <li ng-repeat="each_tag in page_data1.project_description.tag_list">
+		            	<a href=""><i class="fa fa-tag"></i> {{each_tag}}</a>
+		            </li>
+		        </ul>
+		        <h5>Project files</h5>
+		        <ul class="list-unstyled project-files">
+		            <li ng-repeat="each_file in page_data1.project_description.files_list">
+		            	<a href=""><i class="fa {{each_file.fa_icon}}"></i> {{each_file.path}}</a>
+		            </li>
+		        </ul>
+		        <div class="text-center m-t-md">
+		            <a href="" class="btn btn-xs btn-primary">Add files</a>
+		            <a href="" class="btn btn-xs btn-primary">Report contact</a>
+
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+</div>

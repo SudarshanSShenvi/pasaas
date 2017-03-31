@@ -1,0 +1,451 @@
+<div ng-controller="NavbarController as vm">
+	<nav class="navbar-default navbar-static-side" role="navigation">
+		<div class="sidebar-collapse">
+			<ul side-navigation class="nav" id="side-menu">
+				<li class="nav-header">
+
+					<div class="dropdown profile-element">
+						<img 
+							ng-if="vm.my_acc.image"
+	                        data-ng-src="
+	                        	{{
+	                        		'data:' + vm.my_acc.imageContentType + 
+	                        		';base64,' + vm.my_acc.image
+	                        	}}
+	                        " 
+	                        alt="User Image" 
+							class="img-circle" 
+							width="50%"
+						/>
+						<img 
+	                        ng-if="!vm.my_acc.image"
+	                        ng-src="content/images/avatar.png" 
+	                        alt="User Image" 
+	                        class="img-circle" 
+	                        width="50%" 
+	                    />
+							<!-- src="content/images/sudarshan_pic.png" -->
+						<a class="dropdown-toggle" href>
+							<span class="clear">
+								<span class="block m-t-xs">
+									<!-- <strong class="font-bold">Sudarshan Shenvi</strong> -->
+									<strong class="font-bold">{{vm.my_acc.firstName}} {{vm.my_acc.lastName}}</strong>
+							 	</span>
+								<!-- <span class="text-muted text-xs block">
+									CTO <b class="caret"></b>
+								</span> -->
+							</span>
+						</a>
+						<ul class="dropdown-menu animated fadeInRight m-t-xs">
+							<li><a ui-sref="profile">Profile</a></li>
+							<li><a ui-sref="contacts">Contacts</a></li>
+							<li><a ui-sref="inbox">Mailbox</a></li>
+							<li class="divider"></li>
+							<li><a href="../login.html">Logout</a></li>
+						</ul>
+					</div>
+					<div class="logo-element">
+						ION<sup>T</sup>
+					</div>
+
+				</li>
+
+				<!-- <pre>{{vm.my_acc.organizations | json}}</pre> -->
+				<!-- <li ng-class="{active: $state.includes('app1')}">
+					<a href="index.html">
+						<i class="fa fa-th-large"></i> 
+						<span class="nav-label">APP1</span> 
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('app1')}">
+						<li ui-sref-active="active"><a ui-sref="register">register</a></li>
+					</ul>
+				</li> -->
+				<!-- <li class="landing_link">
+					<a href="swagger-ui/index1.html"><i class="fa fa-star"></i> <span class="nav-label">Swagger UI </span> <span class="label label-warning pull-right">NEW</span></a>
+				</li> -->
+				<li>
+					<!-- <a ui-sref="home" ng-switch="isAuthenticated()"> -->
+					<a ui-sref="home">
+					<!-- <a ui-sref="home"> -->
+						<i class="fa fa-th-large"></i>
+						<span class="nav-label">Home </span>
+					</a>
+				</li>
+				<!-- <li ng-class="{active: $state.includes('app')}">
+					<a href="index.html">
+						<i class="fa fa-th-large"></i> 
+						<span class="nav-label">APP</span> 
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('app')}">
+						<li ui-sref-active="active"><a ui-sref="register">register</a></li>
+						<li ui-sref-active="active"><a ui-sref="requestReset">reset/request</a></li>
+						<li ui-sref-active="active"><a ui-sref="settings">settings</a></li>
+						<li ui-sref-active="active"><a ui-sref="p-a-project">p-a-project</a></li>
+						<li ui-sref-active="active"><a ui-sref="p-a-organization">p-a-organization</a></li>
+					</ul>
+				</li> -->
+
+				<li>
+					<a 
+						href="" 
+					>
+						<!-- has-authority="ROLE_SUPERADMIN" -->
+						<i class="fa fa-sitemap"></i> 
+						<span class="nav-label">Manage Application </span>
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level">
+						<li><a ui-sref="p-a-business-plan">Business Plan</a></li>
+						<li><a ui-sref="p-a-organization.su">Organization</a></li>
+						<li><a ui-sref="p-a-project.su">Project</a></li>
+						<li><a ui-sref="user-management.su">User</a></li>
+						<li><a ui-sref="p-a-sax-code">Patterns</a></li>
+						<li><a ui-sref="p-a-sax-code-tmp">PatternTmp</a></li>
+						<li><a ui-sref="p-a-prediction-score">Prediction Score</a></li>
+						<li>
+							<a href="">App Configuration <span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a ui-sref="p-a-general-config">General</a></li>
+								<li><a ui-sref="p-a-reliability-conf">Reliability</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="">Monitoring <span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a ui-sref="jhi-metrics">Metrics</a></li>
+								<li><a ui-sref="jhi-health">Health</a></li>
+								<li><a ui-sref="jhi-configuration">Configuration</a></li>
+								<li><a ui-sref="audits">Audits</a></li>
+								<li><a ui-sref="logs">Logs</a></li>
+								<li><a ui-sref="docs">API</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+				</li>
+
+				<li>
+					<a 
+						href="" 
+					>
+						<!-- has-any-authority="[ROLE_ADMIN, ROLE_SUPERADMIN]" -->
+						<i class="fa fa-bar-chart-o"></i>
+						<span class="nav-label">Operations </span>
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level">
+						<li>
+							<a href="">Organization <span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a ui-sref="p-a-organization.new">New Organization</a></li>
+								<li ng-repeat="each_org in vm.my_acc.organizations">
+									<!-- <a ui-sref="p-a-organization.name">{{each_org}}</a> -->
+									<a ui-sref="p-a-organization.name({organizationName:each_org})">{{each_org}}</a>
+								</li>
+								<li>
+									<a ng-if="vm.my_acc.organizations" ui-sref="p-a-report">Report</a>
+								</li>
+							</ul>
+						</li>
+					</ul>	
+					<!-- <ul class="nav nav-second-level">
+						<li><a ui-sref="p-a-report">New Organization</a></li>
+					</ul>
+					<ul class="nav nav-second-level">
+						<li><a ui-sref="p-a-report">Report</a></li>
+					</ul>
+					<ul class="nav nav-second-level">
+						<li ng-repeat="each_org in vm.my_acc.organizations">
+							<a ui-sref="p-a-organization">{{each_org}}</a>
+						</li>
+					</ul> -->
+				</li>
+
+				<li>
+					<a 
+						ui-sref="settings" 
+					>
+						<!-- has-any-authority="[ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_USER]" -->
+						<i class="fa fa-th-large"></i>
+						<span class="nav-label">Settings </span>
+					</a>
+				</li>
+
+
+				<li>
+					<a 
+						ui-sref="password" 
+					>
+						<!-- has-any-authority="[ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_USER]" -->
+						<i class="fa fa-envelope"></i>
+						<span class="nav-label">Password </span>
+					</a>
+				</li>
+
+				<li>
+					<a 
+						ui-sref="sessions" 
+					>
+						<!-- has-any-authority="[ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_USER]" -->
+						<i class="fa fa-flask"></i>
+						<span class="nav-label">Sessions </span>
+					</a>
+				</li>
+
+				<!-- <li>
+					<a 
+						href="" 
+					>
+						has-any-authority="[ROLE_ADMIN, ROLE_SUPERADMIN, ROLE_USER]"
+						<i class="fa fa-globe"></i>
+						<span class="nav-label">Signout </span>
+					</a>
+				</li> -->
+
+				<!-- <li>
+					<a href="">
+						<i class="fa fa-laptop"></i>
+						<span class="nav-label">Signin </span>
+					</a>
+				</li>
+
+				<li>
+					<a href="">
+						<i class="fa fa-picture-o"></i>
+						<span class="nav-label">Register </span>
+					</a>
+				</li> -->
+				<!-- <li ng-class="{active: $state.includes('company_pages')}">
+					<a href="index.html">
+						<i class="fa fa-th-large"></i> 
+						<span class="nav-label">Pages 1-15</span> 
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('company_pages')}">
+					
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf1">pdf1</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf2">pdf2</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf3">pdf3</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf4">pdf4</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf5">pdf5</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf6">pdf6</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf10">pdf10</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf11">pdf11</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf12">pdf12</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf13.project_details">pdf13</a></li>
+						
+					</ul>
+				</li>
+				<li ng-class="{active: $state.includes('company_pages')}">
+					<a href="index.html">
+						<i class="fa fa-th-large"></i> 
+						<span class="nav-label">Pages 16-30</span> 
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('company_pages')}">
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf16">pdf16</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf17">pdf17</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf18">pdf18</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf19">pdf19</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf20">pdf20</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf21">pdf21</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf23.step_one">pdf23</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf26">pdf26</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf28">pdf28</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf29">pdf29</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf30">pdf30</a></li>
+					</ul>
+				</li>
+				<li ng-class="{active: $state.includes('company_pages')}">
+					<a href="index.html">
+						<i class="fa fa-th-large"></i> 
+						<span class="nav-label">Pages 31-45</span> 
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('company_pages')}">
+
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf31">pdf31</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf34">pdf34</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf36">pdf36</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf37">pdf37</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf38">pdf38</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf39">pdf39</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf40">pdf40</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf41">pdf41</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf42">pdf42</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf43">pdf43</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf44">pdf44</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf45">pdf45</a></li>
+					</ul>
+				</li>
+
+				<li ng-class="{active: $state.includes('company_pages')}">
+					<a href="index.html"><i class="fa fa-th-large"></i>
+						<span class="nav-label">Pages 46-60</span> 
+					<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('company_pages')}">
+
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf46">pdf46</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf47">pdf47</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf48">pdf48</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf49">pdf49</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf50">pdf50</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf51">pdf51</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf52">pdf52</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf53">pdf53</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf54">pdf54</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf55">pdf55</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf56">pdf56</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf57">pdf57</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf58">pdf58</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf59">pdf59</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.pdf60">pdf60</a></li>
+						<li ui-sref-active="active"><a ui-sref="company_pages.create_new_user">create_new_user</a></li>
+					</ul>
+				</li> -->
+
+
+
+
+				<!-- <li ng-class="{active: $state.includes('charts')}">
+					<a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('charts')}">
+						<li ui-sref-active="active"><a ui-sref="charts.flot_chart">Flot Charts</a></li>
+						<li ui-sref-active="active"><a ui-sref="charts.morris_chart">Morris.js Charts</a></li>
+						<li ui-sref-active="active"><a ui-sref="charts.rickshaw_chart">Rickshaw Charts</a></li>
+						<li ui-sref-active="active"><a ui-sref="charts.chartjs_chart">Chart.js</a></li>
+						<li ui-sref-active="active"><a ui-sref="charts.peity_chart">Peity Charts</a></li>
+						<li ui-sref-active="active"><a ui-sref="charts.sparkline_chart">Sparkline Charts</a></li>
+					</ul>
+				</li>
+				<li ng-class="{active: $state.includes('mailbox')}">
+					<a ui-sref="inbox"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('mailbox')}">
+						<li ui-sref-active="active"><a ui-sref="mailbox.inbox">Inbox</a></li>
+						<li ui-sref-active="active"><a ui-sref="mailbox.email_view">Email view</a></li>
+						<li ui-sref-active="active"><a ui-sref="mailbox.email_compose">Compose email</a></li>
+						<li ui-sref-active="active"><a ui-sref="mailbox.email_template">Email template</a></li>
+					</ul>
+				</li>
+				<li ui-sref-active="active">
+					<a ui-sref="widgets"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
+				</li>
+				<li ng-class="{active: $state.includes('forms')}">
+					<a href=""><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('forms')}">
+						<li ui-sref-active="active"><a ui-sref="forms.basic_form">Basic form</a></li>
+						<li ui-sref-active="active"><a ui-sref="forms.advanced_plugins">Advanced Plugins</a></li>
+						<li ui-sref-active="active"><a ui-sref="forms.wizard.step_one">Wizard</a></li>
+						<li ui-sref-active="active"><a ui-sref="forms.file_upload">File Upload</a></li>
+						<li ui-sref-active="active"><a ui-sref="forms.text_editor">Text Editor</a></li>
+					</ul>
+				</li>
+				<li ng-class="{active: $state.includes('app')}">
+					<a href=""><i class="fa fa-desktop"></i> <span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('app')}">
+						<li ui-sref-active="active"><a ui-sref="app.contacts">Contacts</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.profile">Profile</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.projects">Projects</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.project_detail">Project detail</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.file_manager">File manager</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.calendar">Calendar</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.faq">FAQ</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.timeline">Timeline</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.pin_board">Pin board</a></li>
+						<li ui-sref-active="active"><a ui-sref="app.invoice">Invoice</a></li>
+						<li><a href="login.html">Login</a></li>
+						<li><a href="register.html">Register</a></li>
+					</ul>
+				</li>
+				<li ng-class="{active: $state.includes('pages')}">
+					<a href=""><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('pages')}">
+						<li ui-sref-active="active"><a ui-sref="pages.search_results">Search results</a></li>
+						<li><a href="lockscreen.html">Lockscreen</a></li>
+						<li><a href="404.html">404 Page</a></li>
+						<li><a href="500.html">500 Page</a></li>
+						<li ui-sref-active="active"><a ui-sref="pages.empy_page">Empty page</a></li>
+					</ul>
+				</li>
+
+				<li ng-class="{active: $state.includes('ui')}">
+					<a href=""><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('ui')}">
+						<li ui-sref-active="active"><a ui-sref="ui.typography">Typography</a></li>
+						<li ui-sref-active="active"><a ui-sref="ui.icons">Icons</a></li>
+						<li ui-sref-active="active"><a ui-sref="ui.buttons">Buttons</a></li>
+						<li ui-sref-active="active"><a ui-sref="ui.video">Video</a></li>
+						<li ui-sref-active="active"><a ui-sref="ui.tabs_panels">Tabs & Panels</a></li>
+						<li ui-sref-active="active"><a ui-sref="ui.notifications_tooltips">Notifications & Tooltips</a></li>
+						<li ui-sref-active="active"><a ui-sref="ui.badges_labels">Badges, Labels, Progress</a></li>
+					</ul>
+				</li>
+				<li ng-class="{active: $state.includes('miscellaneous')}">
+					<a href=""><i class="fa fa-globe"></i> <span class="nav-label">Miscellaneous</span> <span class="label label-info pull-right">NEW</span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('miscellaneous')}">
+						<li ui-sref-active="active"><a ui-sref="miscellaneous.google_maps">Google maps</a></li>
+						<li ui-sref-active="active"><a ui-sref="miscellaneous.code_editor">Code editor</a></li>
+						<li ui-sref-active="active"><a ui-sref="miscellaneous.modal_window">Modal window</a></li>
+						<li ui-sref-active="active"><a ui-sref="miscellaneous.nestable_list">Nestable list</a></li>
+					</ul>
+				</li>
+				<li ui-sref-active="active">
+					<a ui-sref="grid_options"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
+				</li>
+				<li ng-class="{active: $state.includes('tables')}">
+					<a href=""><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('tables')}">
+						<li ui-sref-active="active"><a ui-sref="tables.static_table">Static Tables</a></li>
+						<li ui-sref-active="active"><a ui-sref="tables.data_tables">Data Tables</a></li>
+						<li ui-sref-active="active"><a ui-sref="tables.nggrid">NG Grid</a></li>
+					</ul>
+				</li>
+				<li ng-class="{active: $state.includes('gallery')}">
+					<a href=""><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level" ng-class="{in: $state.includes('gallery')}">
+						<li ui-sref-active="active"><a ui-sref="gallery.basic_gallery">Basic Gallery</a></li>
+						<li ui-sref-active="active"><a ui-sref="gallery.bootstrap_carousel">Bootstrap Carusela</a></li>
+
+					</ul>
+				</li>
+				<li>
+					<a href=""><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<li>
+							<a href="">Third Level <span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li>
+									<a href="">Third Level Item</a>
+								</li>
+								<li>
+									<a href="">Third Level Item</a>
+								</li>
+								<li>
+									<a href="">Third Level Item</a>
+								</li>
+
+							</ul>
+						</li>
+						<li><a href="">Second Level Item</a></li>
+						<li>
+							<a href="">Second Level Item</a></li>
+						<li>
+							<a href="">Second Level Item</a></li>
+					</ul>
+				</li>
+				<li ui-sref-active="active">
+					<a ui-sref="css_animations"><i class="fa fa-magic"></i> <span class="nav-label">CSS Animations </span><span class="label label-info pull-right">62</span></a>
+				</li>
+				<li class="landing_link">
+					<a target="_blank" href="../../Landing_page/index.html"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right">NEW</span></a>
+				</li>
+				<li class="special_link">
+					<a href="../index.html"><i class="fa fa-html5"></i> <span class="nav-label">HTML/CSS Version</span></a>
+				</li> -->
+			</ul>
+
+		</div>
+	</nav>
+</div>

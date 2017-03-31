@@ -1,0 +1,54 @@
+[
+	{	
+	    "project_status" : "Active",
+	    "title" : "Contract With Telecom company",
+		"date_created" : "14.11.2016",
+	    "progress_percentage" : "33",
+	    "members" : [
+		    {"avatar" : "img/a2.jpg"},
+		    {"avatar" : "img/a1.jpg"},
+		    {"avatar" : "img/a3.jpg"}
+	    ]
+	},
+	{	
+	    "project_status" : "Inactive",
+	    "title" : "Beta version test case- telecom",
+		"date_created" : "14.11.2016",
+	    "progress_percentage" : "30",
+	    "members" : [
+		    {"avatar" : "img/a2.jpg"},
+		    {"avatar" : "img/a3.jpg"}
+	    ]
+	},
+	{	
+	    "project_status" : "Active",
+	    "title" : "Proof of concept with Telecom Company",
+		"date_created" : "14.11.2016",
+	    "progress_percentage" : "90",
+	    "members" : [
+		    {"avatar" : "img/a1.jpg"},
+		    {"avatar" : "img/a3.jpg"}
+	    ]
+	},
+	{	
+	    "project_status" : "Active",
+	    "title" : "Testing",
+		"date_created" : "14.11.2016",
+	    "progress_percentage" : "60",
+	    "members" : [
+		    {"avatar" : "img/a2.jpg"},
+		    {"avatar" : "img/a1.jpg"}
+	    ]
+	},
+	{	
+	    "project_status" : "Active",
+	    "title" : "Dummy Project",
+		"date_created" : "14.11.2016",
+	    "progress_percentage" : "80",
+	    "members" : [
+		    {"avatar" : "img/a2.jpg"},
+		    {"avatar" : "img/a1.jpg"},
+		    {"avatar" : "img/a3.jpg"}
+	    ]
+	}
+]

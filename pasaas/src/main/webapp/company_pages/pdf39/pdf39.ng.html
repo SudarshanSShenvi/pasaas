@@ -1,0 +1,185 @@
+<!-- <div ng-controller='controller_chapter36'> -->
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
+
+					<div class="ibox-title">
+						<h5>
+							A New Alarm Root Cause "CREATE"
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Alarm No</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="number" 
+										name="configuration_id"
+										ng-model="new_score.configuration_id"
+										placeholder="Enter Alarm No"
+										required
+										ng-disabled="form_disabled"	
+									>
+									<div 
+										ng-show="form_prs_hr_view.configuration_id.$error.required && form_prs_hr_view.configuration_id.$dirty"
+										class="alert alert-danger"
+									>
+										Configuration ID is required
+									</div>
+
+									</div>
+									<div class="col-md-3 custome_font_size_label">Status</div>
+									<div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											options-class="{ 
+												'selected_active' : label == 'Active', 
+												'selected_inactive': label == 'Inactive',
+												'selected_deleted': label == 'Deleted'
+											}"
+										>
+											<option ng-show="!selected_status" value="" class="selected_null">SELECT</option>
+										</select>
+										<!-- {{selected_status| json}} -->
+									</div>
+									<!-- <div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											ng-disabled="form_disabled"
+										>
+											<option value="">SELECT</option>
+										</select>
+									</div> -->
+									<!-- <div class="col-md-3">
+										<select 
+											class="form-control m-b" 
+											name="account" 
+											ng-disabled="form_disabled"
+										>
+									        <option>Active</option>
+									        <option>Inactive</option>
+									        <option>Delete</option>
+									    </select>
+									</div> -->
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_input">Alarm Type</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="type"
+										ng-model="new_score.type"
+										placeholder="Enter Alarm Type"
+										required
+										ng-disabled="form_disabled"	
+									>
+									<div 
+										ng-show="form_prs_hr_view.type.$error.required && form_prs_hr_view.type.$dirty"
+										class="alert alert-danger"
+									>
+										Type is required
+									</div>
+
+									</div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Alarm Text</div>
+									<div class="col-md-9">
+
+									<textarea
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="title"
+										ng-model="new_score.title"
+										placeholder="Enter Alarm Text"
+										required
+										ng-disabled="form_disabled"	
+									></textarea> 
+									<div 
+										ng-show="form_prs_hr_view.title.$error.required && form_prs_hr_view.title.$dirty"
+										class="alert alert-danger"
+									>
+										Title is required
+									</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Root Cause</div>
+									<div class="col-md-9">
+
+									<textarea
+										class="form-control custome_font_size_input" 
+										type="text" 
+										name="body"
+										ng-model="new_score.body"
+										placeholder="Enter Root Cause"
+										rows="6"
+										required
+										ng-disabled="form_disabled"	
+									></textarea> 
+									<div 
+										ng-show="form_prs_hr_view.body.$error.required && form_prs_hr_view.body.$dirty"
+										class="alert alert-danger"
+									>
+										Body is required
+									</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button class="btn btn-success btn-sm"  ng-click="view_form()">
+								<i class="fa fa-eye"></i> VIEW
+							</button>
+							<button class="btn btn-primary btn-sm" ng-click="edit_form()">
+								<i class="fa fa-pencil"></i> EDIT
+							</button>
+							<button class="btn btn-primary btn-sm"
+									ng-click="save_form(new_score)" 
+									ng-disabled="form_disabled"
+							>
+								<i class="fa fa-save"></i> SAVE
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

@@ -1,0 +1,169 @@
+<div class="well">
+	
+	    <div class="row">
+            <div class="col-lg-6">
+            <fieldset>
+				<legend>Project Details</legend>
+                
+				<div class="form-group" ng-show="vm.pAProject.id">
+					<label 
+						for="id" 
+						data-translate="global.field.id"
+					>ID</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="id" 
+						name="id"
+						ng-model="vm.pAProject.id" 
+						readonly 
+					/>
+				</div>
+				<div class="form-group">
+					<label 
+						for="field_projectname"
+						data-translate="pasaasApp.pAProject.projectname" 
+						class="control-label" 
+					>Projectname</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="field_projectname"
+						name="projectname" 
+						ng-model="vm.pAProject.projectname"
+					/>
+				</div>
+				
+				<div class="form-group">
+					<label 
+						for="field_description"
+						data-translate="pasaasApp.pAProject.description" 
+						class="control-label" 
+					>Description</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="field_description"
+						name="description" 
+						ng-model="vm.pAProject.description"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label 
+						for="field_pastatus"
+						data-translate="pasaasApp.pAProject.pastatus" 
+						class="control-label" 
+					>Status</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="field_pastatus"
+						name="pastatus" 
+						ng-model="vm.pAProject.pastatus"
+					/>
+				</div>
+
+				<div class="form-group">
+					<label 
+						for="field_paorgpro"
+						data-translate="pasaasApp.pAProject.paorgpro" 
+					>Paorgpro</label>
+					<select 
+						class="form-control" 
+						id="field_paorgpro" 
+						name="paorgpro" 
+						ng-model="vm.pAProject.paorgpro" 
+						ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id"
+					>
+						<option value=""></option>
+					</select>
+				</div>
+
+				<!-- <div class="form-group">
+					<label 
+						for="field_paorgpro"
+						data-translate="pasaasApp.pAProject.paorgpro" 
+						class="control-label"
+					>Paorgpro</label>
+					<input 
+						type="text" 
+						class="form-control" 
+						id="field_paorgpro"
+						name="paorgpro" 
+						ng-model="vm.pAProject.paorgpro"
+						ng-bind="vm.this_organization"
+						ng-disabled="true"
+					/>
+					<span>{{vm.this_organization}}</span>
+					<select 
+						class="form-control" 
+						id="field_paorgpro" 
+						name="paorgpro" 
+						ng-model="vm.pAProject.paorgpro" 
+						ng-options="pAOrganization as pAOrganization.organization for pAOrganization in vm.paorganizations track by pAOrganization.id"
+					>
+						<option value=""></option>
+					</select>
+				</div> -->
+				</fieldset>
+            </div>
+            <div class="col-lg-6">
+            	<fieldset>
+					<legend>Participants</legend>
+					<div class="form-group">
+						<!-- <label 
+							for="field_participants"
+							data-translate="" 
+							class="control-label"
+						>Participants</label> -->
+						<!-- <br> -->
+						<span ng-repeat="each_participant in vm.pAProject.pausers">
+		                	<span 
+		                		class="label label-default ng-binding" 
+		                		ng-click="vm.move_participants(vm.pAProject.pausers, vm.paorganizations[0].pausers, each_participant)"
+		                	>
+		                		{{each_participant}} <span class="glyphicon glyphicon-remove"></span>
+		                	</span>
+
+		                	<span>&nbsp;</span>
+		                	<!-- <a href="">
+		                		<img 
+		                			alt="image" 
+		                			class="img-circle" 
+		                			ng-src="{{each_participant}}"
+		                		>
+		                	</a> -->
+		                </span>
+		            </div>
+		        </fieldset>
+		        <fieldset>
+					<legend>Available Users </legend>
+		            <div class="form-group">
+		                <!-- <label 
+							for="field_participants"
+							data-translate="" 
+							class="control-label"
+						>Available Users</label> -->
+						<!-- <br> -->
+
+		                <span ng-repeat="each_user in vm.paorganizations[0].pausers">
+		                	<span 
+		                		class="label label-default ng-binding" 
+		                		ng-if="!vm.checkAvailability(vm.pAProject.pausers, each_user)" 
+		                		ng-click="vm.move_participants(vm.paorganizations[0].pausers, vm.pAProject.pausers, each_user)"
+		                	>
+		                		<!-- ng-if="each_user != vm.pAProject.pausers[0]"  -->
+		                		{{each_user}} <span class="glyphicon glyphicon-plus"></span>
+		                	</span>
+
+		                	<span>&nbsp;</span>
+		                		
+		                </span>
+		                <!-- <span>{{vm.pAProject.pausers}}</span> -->
+					</div>
+				</fieldset>
+            </div>
+        </div>
+
+</div>

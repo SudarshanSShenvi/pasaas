@@ -1,0 +1,96 @@
+<!-- <div ng-controller='controller_chapter23'> -->
+<div>
+    <div 
+        ng-show="page_meta_data.has_header" 
+        ng-include="'common_things/template_page_header.html'"
+    ></div>
+	<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content p-xl">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5>From:</h5>
+                        <address>
+                            <strong>{{invoice_data.from.name}}</strong><br>
+                            {{invoice_data.from.address}}<br>
+                            <abbr title="Phone">P:</abbr> {{invoice_data.from.contact}}
+                        </address>
+                    </div>
+
+                    <div class="col-sm-6 text-right">
+                        <h4>Invoice No.</h4>
+                        <h4 class="text-navy">INV-000567F7-00</h4>
+                        <span>To:</span>
+                        <address>
+                            <strong>{{invoice_data.to.name}}</strong><br>
+                            {{invoice_data.to.address}}<br>
+                            <abbr title="Phone">P:</abbr> {{invoice_data.to.contact}}
+                        </address>
+                        <p>
+                            <span><strong>Invoice Date:</strong> {{invoice_data.dates.invoice_date}}</span><br/>
+                            <span><strong>Due Date:</strong> {{invoice_data.dates.due_date}}</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="table-responsive m-t">
+                    <table class="table invoice-table">
+                        <thead>
+                        <tr>
+                            <th>Item List</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Tax</th>
+                            <th>Total Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="each_item in invoice_item_list">
+                            <td>
+                                <div><strong>{{each_item.heading}}</strong></div>
+                                <small>{{each_item.description}}</small>
+                            </td>
+                            <td>{{each_item.quantity}}</td>
+                            <td>${{each_item.price}}</td>
+                            <td>${{each_item.tax}}</td>
+                            <td>${{each_item.totalprice}}</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /table-responsive -->
+
+                <!-- <pre>{{invoice_item_list | json}}</pre> -->
+
+                <table class="table invoice-total">
+                    <tbody>
+                    <tr>
+                        <td><strong>Sub Total :</strong></td>
+                        <td>${{get_sub_total()}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TAX :</strong></td>
+                        <td>${{get_tax_amount()}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL :</strong></td>
+                        <td>${{get_grand_total()}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-right">
+                    <button class="btn btn-primary btn-outline"></i>CLOSE</button>
+                    <button class="btn btn-primary"><i class="fa fa-dollar"></i> Make A Payment</button>
+                </div>
+
+                <div class="well m-t"><strong>Comments</strong>
+                    This is a trail Platinum version - valid for 15 days from the activation day, afterwards you will be automatically charged. You will intimated and you always deactivate your account.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,243 @@
+<!-- <div ng-controller='controller_pdf56'> -->
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+			<form name="form_prs_hr_view">
+				<div class="ibox">
+
+					<div class="ibox-title">
+						<h5>
+							"Date"-"Predicted Alarms"-"Occoured Alarms"-"Matched Alarms"-"Predicted Percentage"
+							<small>colors.</small>
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">ID</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="number" 
+										name="id"
+										ng-model="new_score.id"
+										placeholder="Enter id"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.id.$error.required && form_prs_hr_view.id.$dirty"
+										class="alert alert-danger"
+									>
+										id is required
+									</div>
+
+									</div>
+									<div class="col-md-2 custome_font_size_label">Created Date</div>
+									<div class="col-md-4">
+
+										<input 
+											class="form-control custome_font_size_input" 
+											type="date" 
+											name="date_created"
+											ng-model="new_score.date_created"
+											placeholder="Enter Created Date"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.date_created.$error.required && form_prs_hr_view.date_created.$dirty"
+											class="alert alert-danger"
+										>
+											Created Date is required
+										</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Predicted Alarms</div>
+									<div class="col-md-9">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="number" 
+										name="alarms_predicted"
+										ng-model="new_score.alarms_predicted"
+										placeholder="Enter Predicted Alarms"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.alarms_predicted.$error.required && form_prs_hr_view.alarms_predicted.$dirty"
+										class="alert alert-danger"
+									>
+										Predicted Alarms is required
+									</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Occoured Alarms</div>
+									<div class="col-md-9">
+
+										<input 
+											class="form-control custome_font_size_input" 
+											type="number" 
+											name="alarms_occoured"
+											ng-model="new_score.alarms_occoured"
+											placeholder="Enter Occoured Alarms"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.alarms_occoured.$error.required && form_prs_hr_view.alarms_occoured.$dirty"
+											class="alert alert-danger"
+										>
+											Occoured Alarms is required
+										</div>
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Matched Alarms</div>
+									<div class="col-md-9">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="number" 
+										name="alarms_matched"
+										ng-model="new_score.alarms_matched"
+										placeholder="Enter Matched Alarms"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.alarms_matched.$error.required && form_prs_hr_view.alarms_matched.$dirty"
+										class="alert alert-danger"
+									>
+										Matched Alarms is required
+									</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Predicted Percentage</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="number" 
+										name="percentage_predicted"
+										ng-model="new_score.percentage_predicted"
+										placeholder="Enter Predicted Percentage"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.percentage_predicted.$error.required && form_prs_hr_view.percentage_predicted.$dirty"
+										class="alert alert-danger"
+									>
+										Predicted Percentage is required
+									</div>
+
+									</div>
+									<div class="col-md-3 custome_font_size_label">Time</div>
+									<div class="col-md-3">
+
+									<input 
+										class="form-control custome_font_size_input" 
+										type="time" 
+										name="time"
+										ng-model="new_score.time"
+										placeholder="Enter Time"
+										required
+										ng-disabled="form_disabled"
+									>
+									<div 
+										ng-show="form_prs_hr_view.time.$error.required && form_prs_hr_view.time.$dirty"
+										class="alert alert-danger"
+									>
+										Time is required
+									</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3 custome_font_size_label">Status</div>
+									<div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											options-class="{ 
+												'selected_active' : label == 'Active', 
+												'selected_inactive': label == 'Inactive',
+												'selected_deleted': label == 'Deleted'
+											}"
+											ng-disabled="form_disabled"
+										>
+											<option ng-show="!selected_status" value="" class="selected_null">SELECT</option>
+										</select>
+										<!-- {{selected_status| json}} -->
+									</div>
+									<!-- <div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											ng-disabled="form_disabled"
+										>
+											<option value="">SELECT</option>
+										</select>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button class="btn btn-success btn-sm" ng-click="view_form()">
+								<i class="fa fa-eye"></i> VIEW
+							</button>
+							<button class="btn btn-primary btn-sm" ng-click="edit_form()">
+								<i class="fa fa-pencil"></i> EDIT
+							</button>
+							<button class="btn btn-primary btn-sm"
+									ng-click="save_form(new_score)" 
+									ng-disabled="form_disabled"
+									>
+								<i class="fa fa-save"></i> SAVE
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>

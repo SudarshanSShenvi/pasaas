@@ -1,0 +1,291 @@
+<!-- <div ng-controller='controller_pdf47'> -->
+
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+			<form name="form_bda_reliability_configuration_create" novalidate>
+				<div class="ibox">
+
+					<div class="ibox-title">
+						<h5>
+							[ID 1] - Category 1
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6 custome_font_size_label">
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Configuration ID</div>
+									<div class="col-md-3">
+
+									<input 
+											class="form-control custome_font_size_input" 
+											type="number" 
+											name="configuration_id"
+											ng-model="new_configuration.configuration_id"
+											placeholder="Enter Configuration ID"
+											required
+											ng-disabled="false"
+										>
+										<div 
+											ng-show="form_bda_reliability_configuration_create.configuration_id.$error.required && form_bda_reliability_configuration_create.configuration_id.$dirty"
+											class="alert alert-danger"
+										>
+											Configuration ID is required
+										</div>
+
+									</div>
+									<div class="col-md-3 custome_font_size_label">Status</div>
+									<div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											options-class="{ 
+												'selected_active' : label == 'Active', 
+												'selected_inactive': label == 'Inactive',
+												'selected_deleted': label == 'Deleted'
+											}"
+										>
+											<option ng-show="!selected_status" value="" class="selected_null">SELECT</option>
+										</select>
+										<!-- {{selected_status| json}} -->
+									</div>
+									<!-- <div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+										>
+											<option value="">SELECT</option>
+										</select>
+									</div> -->
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Category</div>
+									<div class="col-md-3">
+
+									<input 
+											class="form-control custome_font_size_input" 
+											type="text" 
+											name="category"
+											ng-model="new_configuration.category"
+											placeholder="Enter Category"
+											required
+											ng-disabled="false"
+										>
+										<div 
+											ng-show="form_bda_reliability_configuration_create.category.$error.required && form_bda_reliability_configuration_create.category.$dirty"
+											class="alert alert-danger"
+										>
+											Category is required
+										</div>
+
+									</div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Data Set</div>
+									<div class="col-md-9">
+
+										<textarea
+											class="form-control custome_font_size_input" 
+											type="number" 
+											name="data_set"
+											ng-model="new_configuration.data_set"
+											placeholder="Enter Data Set"
+											required
+											ng-disabled="false"
+										></textarea> 
+										<div 
+											ng-show="form_bda_reliability_configuration_create.data_set.$error.required && form_bda_reliability_configuration_create.data_set.$dirty"
+											class="alert alert-danger"
+										>
+											Data Set is required
+										</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">C SCORE</div>
+									<div class="col-md-3">
+
+									<input 
+											class="form-control custome_font_size_input" 
+											type="number" 
+											name="c_score"
+											ng-model="new_configuration.c_score"
+											placeholder="Enter C SCORE"
+											required
+											ng-disabled="false"
+										>
+										<div 
+											ng-show="form_bda_reliability_configuration_create.c_score.$error.required && form_bda_reliability_configuration_create.c_score.$dirty"
+											class="alert alert-danger"
+										>
+											C SCORE is required
+										</div>
+
+									</div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">B SCORE</div>
+									<div class="col-md-3">
+
+									<input 
+											class="form-control custome_font_size_input" 
+											type="number" 
+											name="b_score"
+											ng-model="new_configuration.b_score"
+											placeholder="Enter B SCORE"
+											required
+											ng-disabled="false"
+										>
+										<div 
+											ng-show="form_bda_reliability_configuration_create.b_score.$error.required && form_bda_reliability_configuration_create.b_score.$dirty"
+											class="alert alert-danger"
+										>
+											B SCORE is required
+										</div>
+
+									</div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button 
+								class="btn btn-primary btn-sm" 
+								ng-click="save_form(new_configuration)" 
+							>
+								<i class="fa fa-check"></i> Submit
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- <div>
+	<div class="row wrapper border-bottom white-bg page-heading">
+	    <div class="col-lg-10">
+	        <h2>BDA Configurations</h2>
+	        <ol class="breadcrumb">
+	            <li>
+	                <a href="index.html">Home</a>
+	            </li>
+	            <li>
+	                <a>Platform</a>
+	            </li>
+	            <li>
+	                <a>BDA</a>
+	            </li>
+	            <li>
+	                <a>Configuration</a>
+	            </li>
+	            <li class="active">
+	                <strong>Reliability Configuration - Create</strong>
+	            </li>
+	        </ol>
+	    </div>
+	    <div class="col-lg-2">
+
+	    </div>
+	</div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
+
+					<div class="ibox-title">
+						<h5>
+							A New Reliability Configuration - "Create"
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-3">Configuration ID</div>
+									<div class="col-md-3"><span class="form-control custome_font_size_input">1</span></div>
+									<div class="col-md-3">Status</div>
+									<div class="col-md-3"><span class="form-control custome_font_size_input">Active</span></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3">Category</div>
+									<div class="col-md-3"><span class="form-control custome_font_size_input">Category 1</span></div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3">Data Set</div>
+									<div class="col-md-9"><span class="form-control custome_font_size_input">Configuration text 1 is here</span></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3">C SCORE</div>
+									<div class="col-md-3"><span class="form-control custome_font_size_input">0.99</span></div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3">B SCORE</div>
+									<div class="col-md-3"><span class="form-control custome_font_size_input">0.99</span></div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button class="btn btn-success btn-sm">
+								<i class="fa fa-eye"></i> VIEW
+							</button>
+							<button class="btn btn-primary btn-sm">
+								<i class="fa fa-pencil"></i> EDIT
+							</button>
+							<button class="btn btn-primary btn-sm">
+								<i class="fa fa-save"></i> SAVE
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div> -->

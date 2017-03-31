@@ -1,0 +1,213 @@
+<!-- <div ng-controller='controller_pdf29'> -->
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+
+
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
+					<div class="ibox-title">
+						<h5>Organization Summary</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+
+						<div class="row">
+							<div class="col-lg-3">
+								<img 
+									ng-src="{{page_data1.organization_summary.image}}" 
+									alt="..." 
+									style="width: 100%"
+								>
+							</div>
+							<div class="col-lg-3">
+								<h5><b>Telecom Company</b></h5> 
+								<p style="font-size: 9px;">
+									{{page_data1.organization_summary.company_description}}
+								</p>  
+							</div>
+							<div class="col-lg-3">
+									<h5></h5>
+
+									<h5>
+										<b>Industry Type</b>
+										<span style="font-size: 9px;margin: 20px;">
+											{{page_data1.organization_summary.industry_type}}
+										</span>
+									</h5>
+
+									<h5>
+										<b>Website</b>
+										<span style="font-size: 9px;margin: 56px;">
+											<u>{{page_data1.organization_summary.website}}</u>
+										</span>
+									</h5>
+									
+									<h5>
+										<b>Email</b>
+										<span style="font-size: 9px;margin: 72px;">
+											<u>{{page_data1.organization_summary.email}}</u>
+										</span>
+									</h5>
+							</div>
+							<div class="col-lg-3">
+									<h5>
+										<b>Address</b>
+										<span style="font-size: 9px;margin: 20px;">
+											{{page_data1.organization_summary.address}}
+											<p style="margin: 6px;margin-left: 68px;"></p>
+										</span>
+    								</h5>
+									<h5>
+										<b>(P)</b>
+										<span style="font-size: 9px;margin: 56px;">
+											{{page_data1.organization_summary.phone}}
+										</span>
+									</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+		    <div class="col-lg-4">
+		        <div class="ibox">
+		            <div class="ibox-title">
+						<h5>Task TO-DO List</h5>
+							<div ibox-tools></div>
+							<!-- <div class="ibox-content" data-ng-controller="ionSlider as slider">
+           				 		<button class="btn btn-positive">Pending</button>
+           				 		<div ion-range-slider range-options="slider.ionSliderOptions1">
+               				 	</div>
+               				</div> -->
+               			
+						<!-- 	<div class="col-lg-4">
+								<p> TO DO List </p>
+							</div>
+							<div class="col-lg-4"></div>
+							<div class="col-lg-4">
+							<p>Action</p>
+							</div>    -->            				
+               			
+					</div>
+		            <div>
+		            	<div class="ibox-content">
+		            		<div class="col-lg-3" align="center">
+           				 		<button class="btn btn-warning btn-xs">Pending</button>
+           				 	</div>
+           				 	<div class="col-lg-9" >
+           				 		<div ion-range-slider range-options="my_slider1">
+               					</div>
+               				</div>
+		               			
+		               			<table>
+		               				<tr>
+			               				<th class=""></th>
+			               				<th class="custome_font_size_label"><p>TO DO List</p></th>
+			               				<th class="custome_font_size_label"><p>Action</p></th>
+		               				</tr>
+		               				<tr>
+			               				<td><input icheck type="checkbox" ng-model="main.unCheck1"></td>
+			               				<td class="custome_font_size_label">Invite User to join your Organization</td>
+			               				<td></td>
+		               				</tr>
+		               				<tr>
+			               				<td><input icheck type="checkbox" ng-model="main.unCheck2"></td>
+			               				<td class="custome_font_size_label">Create a Project</td>
+			               				<td></td>
+		               				</tr>
+
+
+
+		               			</table>
+		               			
+               			</div>
+		            </div>
+		        </div>
+		    </div>
+
+		    <div class="col-lg-8">
+		        <div class="ibox">
+		            <div class="ibox-title">
+						<h5>User List</h5>
+
+						<div ibox-tools></div>
+					</div>
+		            <div class="ibox-content"  style="min-height:150px">
+		            		<div class="row">
+		            			<a 
+		            				class="btn btn-default btn-block" 
+		            				style="margin-left: 160px;width: 360px;"
+		            			>
+		            				<i class="fa fa-plus"></i>
+		            				<span style="margin: 6px;"></span>Invite User to join
+		            			</a>
+		            		</div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+		<div class="row">
+		    <div class="col-lg-4">
+		        <div class="ibox">
+		            <div class="ibox-title">
+						<h5>Organization Stats</h5>
+
+						<div ibox-tools></div>
+					</div>
+		            <div class="ibox-content">
+		            	<div class="row">
+		            		<div class="col-lg-3">
+               					<h4 style="margin-top: 20px;">Users:</h4>
+               				</div>
+               				<div class="col-lg-9">
+               					<div ion-range-slider range-options="my_slider2">
+               				</div>
+               				 </div>
+               			</div>
+               			<div class="row">
+               				<div class="col-lg-3">
+               					<h4 style="margin-top: 20px;">Projects:</h4>
+               				</div>
+               				<div class="col-lg-9">
+               				 <div ion-range-slider range-options="my_slider3">
+               				</div>
+               				 </div>
+               			</div>
+		            </div>
+		        </div>
+		    </div>
+
+		    <div class="col-lg-8">
+		        <div class="ibox">
+		            <div class="ibox-title">
+						<h5>Project List</h5>
+
+						<div ibox-tools></div>
+					</div>
+		            <div class="ibox-content" style="min-height:120px">
+		            	<div class="row">
+		            			<a 
+		            				class="btn btn-default btn-block" 
+		            				style="margin-left: 160px;width: 360px;"
+		            			>
+		            				<i class="fa fa-plus"></i>
+		            				<span style="margin: 6px;"></span>Create a Project
+		            			</a>
+		            		</div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
+	</div>
+
+</div>

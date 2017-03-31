@@ -1,0 +1,332 @@
+
+<div ng-controller='controller_pdf60'>
+<div>
+	<div 
+		ng-show="page_meta_data.has_header" 
+		ng-include="'common_things/template_page_header.html'"
+	></div>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		 <div class="row">
+			<div class="col-lg-12">
+				<div class="ibox">
+				<form name="form_prs_hr_view" novalidate>
+					<div class="ibox-title">
+						<h5>
+							"Date"-"Alarm"-"Alarms #"-[BScore, CScore]-"Prediction ID"
+							<small>colors.</small>
+						</h5>
+
+						<div ibox-tools></div>
+					</div>
+					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6">
+								
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">ID</div>
+									<div class="col-md-3">
+										<input 
+											class="form-control custome_font_size_label" 
+											type="number" 
+											name="id"
+											ng-model="new_score.id"
+											placeholder="Enter ID"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.id.$error.required && form_prs_hr_view.id.$dirty"
+											class="alert alert-danger"
+										>
+											ID is required
+										</div>
+									</div>
+									<div class="col-md-2 custome_font_size_label">Created Date</div>
+									<div class="col-md-4">
+										<input 
+											class="form-control custome_font_size_label" 
+											type="date" 
+											name="date_created"
+											ng-model="new_score.date_created"
+											placeholder="Enter Date"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.date_created.$error.required && form_prs_hr_view.date_created.$dirty"
+											class="alert alert-danger"
+										>
+											Date is required
+										</div>
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">
+									Distinguished Alarms
+									</div>
+									<div class="col-md-9">
+										<input 
+											class="form-control custome_font_size_label custome_font_size_input" 
+											type="number" 
+											name="distinguished_alarms"
+											ng-model="new_score.distinguished_alarms"
+											placeholder="Enter Distinguished Alarms"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.distinguished_alarms.$error.required && form_prs_hr_view.distinguished_alarms.$dirty"
+											class="alert alert-danger"
+										>
+											Distinguished Alarms is required
+										</div>
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Alarms Number</div>
+									<div class="col-md-3">
+										<input 
+											class="form-control custome_font_size_label" 
+											type="number" 
+											name="alarms_number"
+											ng-model="new_score.alarms_number"
+											placeholder="Enter Alarms Number"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.alarms_number.$error.required && form_prs_hr_view.alarms_number.$dirty"
+											class="alert alert-danger"
+										>
+											Alarms Number is required
+										</div>
+									</div>
+									<div class="col-md-3 custome_font_size_label">Severity</div>
+									<div class="col-md-3">
+
+										<input 
+											class="form-control custome_font_size_label custome_font_size_label" 
+											type="number" 
+											name="severity"
+											ng-model="new_score.severity"
+											placeholder="Enter Severity"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.severity.$error.required && form_prs_hr_view.severity.$dirty"
+											class="alert alert-danger"
+										>
+											Severity is required
+										</div>
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">B Count</div>
+									<div class="col-md-3">
+
+										<input 
+												class="form-control custome_font_size_label" 
+												type="number" 
+												name="b_count"
+												ng-model="new_score.b_count"
+												placeholder="Enter B Count"
+												required
+												ng-disabled="form_disabled"
+											>
+											<div 
+												ng-show="form_prs_hr_view.b_count.$error.required && form_prs_hr_view.b_count.$dirty"
+												class="alert alert-danger"
+											>
+												B Count is required
+											</div>
+
+									</div>
+									<div class="col-md-3 custome_font_size_label">C Count</div>
+									<div class="col-md-3">
+
+										<input 
+											class="form-control custome_font_size_label" 
+											type="number" 
+											name="c_count"
+											ng-model="new_score.c_count"
+											placeholder="Enter C Count"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.c_count.$error.required && form_prs_hr_view.c_count.$dirty"
+											class="alert alert-danger"
+										>
+											C Count is required
+										</div>
+									 
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">B Score</div>
+									<div class="col-md-3">
+
+										<input 
+											class="form-control custome_font_size_label" 
+											type="number" 
+											name="b_score"
+											ng-model="new_score.b_score"
+											placeholder="Enter B Score"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.b_score.$error.required && form_prs_hr_view.b_score.$dirty"
+											class="alert alert-danger"
+										>
+											B Score is required
+										</div>
+
+									</div>
+									<div class="col-md-3 custome_font_size_label">C Score</div>
+									<div class="col-md-3">
+
+										<input 
+											class="form-control custome_font_size_label" 
+											type="number" 
+											name="c_score"
+											ng-model="new_score.c_score"
+											placeholder="Enter C Score"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.c_score.$error.required && form_prs_hr_view.c_score.$dirty"
+											class="alert alert-danger"
+										>
+											C Score is required
+										</div>
+										
+
+									</div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Time</div>
+									<div class="col-md-3">
+
+										<input 
+											class="form-control custome_font_size_label" 
+											type="time" 
+											name="time"
+											ng-model="new_score.time"
+											placeholder="Enter Time"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.time.$error.required && form_prs_hr_view.time.$dirty"
+											class="alert alert-danger"
+										>
+											Time is required
+										</div>
+									 
+									</div>
+									<div class="col-md-3 custome_font_size_label"></div>
+									<div class="col-md-3"></div>
+								</div>
+								<p>&nbsp;</p>
+								<div class="row">
+									<div class="col-md-3 custome_font_size_label">Prediction ID</div>
+									<div class="col-md-3">
+
+										<input 
+											class="form-control custome_font_size_label" 
+											type="number" 
+											name="prediction_id"
+											ng-model="new_score.prediction_id"
+											placeholder="Enter Prediction ID"
+											required
+											ng-disabled="form_disabled"
+										>
+										<div 
+											ng-show="form_prs_hr_view.prediction_id.$error.required && form_prs_hr_view.prediction_id.$dirty"
+											class="alert alert-danger"
+										>
+											Prediction ID is required
+										</div>
+
+									</div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="row">
+									<div class="col-md-3"></div>
+									<div class="col-md-3"></div>
+									<div class="col-md-3">Status</div>
+									<div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											options-class="{ 
+												'selected_active' : label == 'Active', 
+												'selected_inactive': label == 'Inactive',
+												'selected_deleted': label == 'Deleted'
+											}"
+											ng-disabled="form_disabled"
+										>
+											<option ng-show="!selected_status" value="" class="selected_null">SELECT</option>
+										</select>
+										<!-- {{selected_status| json}} -->
+									</div>
+									<!-- <div class="col-md-3">
+										<select 
+											class="form-control m-b"
+											ng-model="selected_status" 
+											ng-options="each_status.label for each_status in list_status"
+											ng-style="{
+												'background-color':selected_status.back_color, 'color':selected_status.front_color
+											}"
+											ng-disabled="form_disabled"
+										>
+											<option value="">SELECT</option>
+										</select>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="" align="right">
+							<button class="btn btn-success btn-sm" ng-click="view_form()">
+								<i class="fa fa-eye"></i> VIEW
+							</button>
+							<button class="btn btn-primary btn-sm" ng-click="edit_form()">
+								<i class="fa fa-pencil"></i> EDIT
+							</button>
+							<button class="btn btn-primary btn-sm"
+									ng-click="save_form(new_score)" 
+									ng-disabled="form_disabled"
+									>
+								<i class="fa fa-save"></i> SAVE
+							</button>
+						</div>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</div>
