@@ -3,9 +3,16 @@
     role="form" 
     novalidate 
     ng-submit="vm.save()" 
+    class="animated fadeInDown" 
 >   
 
     <div class="modal-header bg-primary">
+        <button 
+            type="button" 
+            class="close" 
+            aria-hidden="true"
+            ui-sref="{{ vm.previousState }}" 
+        >&times;</button>
         <!-- <button 
             type="button" 
             class="close" 
@@ -91,17 +98,30 @@
     </div>
 
     <div class="modal-footer">
-        <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+        <button 
+            type="button" 
+            class="btn btn-default" 
+            ui-sref="{{ vm.previousState }}" 
+        >
+        <!-- <button 
+            type="button" 
+            class="btn btn-default" 
+            data-dismiss="modal" 
+            ng-click="vm.clear()"
+        > -->
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
         </button>
-
-        <!-- <button type="button" ui-sref="p-a-reliability-conf-detail.edit({id:vm.pAReliabilityConf.id})" class="btn btn-primary">
-            <span class="glyphicon glyphicon-pencil"></span>
-            <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+        <!-- <button 
+            type="submit" 
+            ng-disabled="editForm.$invalid || vm.isSaving" 
+            class="btn btn-primary"
+        >
+            <span class="glyphicon glyphicon-save"></span>&nbsp;
+            <span data-translate="entity.action.save">Save</span>
         </button> -->
     </div>
+
 </form>
 
 

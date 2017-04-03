@@ -276,9 +276,10 @@ public class PAProjectResource {
     @Timed
     public ResponseEntity<Void> deletePAProject(@PathVariable Long id) throws IOException {
         log.debug("REST request to delete PAProject : {}", id);
-        pAProjectService.delete(id);
         //On successful project Deletion - delete directory structure in hadoop
         hdfsFileOperationsService.removeProjectStructure(pAProjectService.getProjectWithUser(id).getProjectname(), pAProjectService.getProjectWithUser(id).getPaorgpro().getOrganization());
+       
+        pAProjectService.delete(id);
         
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("pAProject", id.toString())).build();
     }

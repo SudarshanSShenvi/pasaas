@@ -24,6 +24,7 @@
 						<thead>
 							<tr>
 								<th><span data-translate="global.field.id">ID</span></th>
+								<th><span data-translate="pasaasApp.pAReport.projectId">projectId</span></th>
 								<th><span data-translate="pasaasApp.pAReport.reporttype">Reporttype</span></th>
 								<th><span data-translate="pasaasApp.pAReport.reportname">Reportname</span></th>
 								<th><span data-translate="pasaasApp.pAReport.reportparms">Reportparms</span></th>
@@ -38,6 +39,7 @@
 								ng-repeat="pAReport in vm.pAReports track by pAReport.id"
 							>
 								<td><a ui-sref="p-a-report-detail({id:pAReport.id})">{{pAReport.id}}</a></td>
+								<td>{{pAReport.projectId}}</td>
 								<td>{{pAReport.reporttype}}</td>
 								<td>{{pAReport.reportname}}</td>
 								<td>{{pAReport.reportparms}}</td>

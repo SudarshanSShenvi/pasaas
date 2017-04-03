@@ -54,7 +54,7 @@ public interface PAOrganizationService {
     void delete(Long id);
     
     public void updateOrganizationwithUsers(Long id, String organizationname, ZonedDateTime validfrom, ZonedDateTime validto,
-			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers) ;
+			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers, String industrytype, String website) ;
     
     public PAOrganization getOrganizationWithUser(Long id);
 }

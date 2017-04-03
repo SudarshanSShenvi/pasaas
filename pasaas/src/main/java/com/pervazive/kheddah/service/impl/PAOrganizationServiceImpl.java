@@ -120,7 +120,7 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
     
     
     public void updateOrganizationwithUsers(Long id, String organizationname, ZonedDateTime validfrom, ZonedDateTime validto,
-			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers) {
+			PAStatus pastatus, PABusinessPlan pabporg, Set<String> pausers, String industrytype, String website) {
 
             Optional.of(pAOrganizationRepository
                 .findOne(id))
@@ -130,6 +130,8 @@ public class PAOrganizationServiceImpl implements PAOrganizationService{
                 	organization.setValidto(validto);
                 	organization.setPastatus(pastatus);
                 	organization.setPabporg(pabporg);
+                	organization.setIndustrytype(industrytype);
+                	organization.setWebsite(website);
                 	
                 	 Set<User> managedUsers = organization.getPAUsers();
                 	 managedUsers.clear();

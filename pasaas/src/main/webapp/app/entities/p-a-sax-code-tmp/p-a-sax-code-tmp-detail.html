@@ -1,9 +1,25 @@
-
-<form name="editForm" role="form" novalidate ng-submit="vm.save()">
-
+<form 
+    name="editForm" 
+    role="form" 
+    novalidate 
+    ng-submit="vm.save()"
+    class="animated fadeInDown" 
+>
     <div class="modal-header bg-primary">
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                ng-click="vm.clear()">&times;</button> -->
+        <button 
+            type="button" 
+            class="close" 
+            aria-hidden="true"
+            ui-sref="{{ vm.previousState }}" 
+        >&times;</button>
+        <!-- <button 
+            type="button" 
+            class="close" 
+            data-dismiss="modal" 
+            aria-hidden="true"
+            ng-click="vm.clear()"
+        >&times;</button> -->
+
         <h4 class="modal-title" id="myPASaxCodeTmpLabel" data-translate="pasaasApp.pASaxCodeTmp.home.createOrEditLabel">Create or edit a PA Sax Code Tmp</h4>
     </div>
     <div class="modal-body">

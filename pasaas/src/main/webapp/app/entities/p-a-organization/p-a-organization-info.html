@@ -187,7 +187,12 @@
 					<span class="glyphicon glyphicon-save"></span>&nbsp;
 					<span data-translate="entity.action.save">Save</span>
 				</button> -->
-				<button type="submit" ui-sref="{{ vm.previousState }}" class="btn btn-info">
+				<button 
+					type="submit" 
+					class="btn btn-info"
+					ui-sref="{{ vm.previousState }}" 
+				>
+					<!-- ui-sref="p-a-organization.name({organizationName : vm.pAOrganization.organization})"  -->
 		            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
 		        </button>
 				<!-- <button type="button" class="btn btn-default" data-dismiss="modal" ui-sref="p-a-organization.su">

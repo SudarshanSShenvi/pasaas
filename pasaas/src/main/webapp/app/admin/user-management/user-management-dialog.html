@@ -3,6 +3,7 @@
     role="form" 
     novalidate 
     ng-submit="vm.save()" 
+    class="animated fadeInDown" 
     show-validation
 >   
 
@@ -10,10 +11,16 @@
         <button 
             type="button" 
             class="close" 
+            aria-hidden="true"
+            ui-sref="{{ vm.previousState }}" 
+        >&times;</button>
+        <!-- <button 
+            type="button" 
+            class="close" 
             data-dismiss="modal" 
             aria-hidden="true"
             ng-click="vm.clear()"
-        >&times;</button>
+        >&times;</button> -->
         <h4 
             class="modal-title" 
             id="myUserLabel" 
@@ -251,9 +258,14 @@
         <button 
             type="button" 
             class="btn btn-default" 
+            ui-sref="{{ vm.previousState }}" 
+        >
+        <!-- <button 
+            type="button" 
+            class="btn btn-default" 
             data-dismiss="modal" 
             ng-click="vm.clear()"
-        >
+        > -->
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
             <span data-translate="entity.action.cancel">Cancel</span>
         </button>
@@ -266,6 +278,7 @@
             <span data-translate="entity.action.save">Save</span>
         </button>
     </div>
+
 </form>
 
 

@@ -2,10 +2,16 @@
     name="editForm" 
     role="form" 
     novalidate 
-    ng-submit="vm.save()" 
->   
-
+    ng-submit="vm.save()"
+    class="animated fadeInDown" 
+>
     <div class="modal-header bg-primary">
+        <button 
+            type="button" 
+            class="close" 
+            aria-hidden="true"
+            ui-sref="{{ vm.previousState }}" 
+        >&times;</button>
         <!-- <button 
             type="button" 
             class="close" 
@@ -13,6 +19,7 @@
             aria-hidden="true"
             ng-click="vm.clear()"
         >&times;</button> -->
+
         <h4 
             class="modal-title" 
             id="myPAPredictionScoreLabel" 

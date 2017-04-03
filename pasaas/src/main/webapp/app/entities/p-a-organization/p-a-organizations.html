@@ -45,27 +45,29 @@
 						<div ibox-tools></div>
 						<button 
 							class="btn btn-primary btn-xs pull-right" 
-							ui-sref="p-a-organization.new"
+							ui-sref="p-a-organization.new({organization:vm.pAOrganization.organization})"
 						>
 							Create New Organization
 						</button>
 						<div class="btn-group flex-btn-group-container pull-right">
 							<button 
 								type="submit"
-								ui-sref="p-a-organization-detail({id:vm.pAOrganization.id})"
+								ui-sref="p-a-organization-detail({id:vm.pAOrganization.id, organization:vm.pAOrganization.organization})"
 								class="btn btn-info btn-xs"
 							>
+								<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganization.id})" -->
 								<span class="glyphicon glyphicon-eye-open"></span>
 								<span 
 									class="hidden-xs hidden-sm" 
-									data-translate="entity.action.view"
-								></span>
+								>View Na</span>
+									<!-- data-translate="entity.action.view" -->
 							</button>
 							<button 
 								type="submit"
-								ui-sref="p-a-organization.edit({id:vm.pAOrganization.id})"
+								ui-sref="p-a-organization.edit({id:vm.pAOrganization.id, organization:vm.pAOrganization.organization})"
 								class="btn btn-primary btn-xs"
 							>
+								<!-- ui-sref="p-a-organization.edit({id:vm.pAOrganization.id})" -->
 								<span class="glyphicon glyphicon-pencil"></span>
 								<span 
 									class="hidden-xs hidden-sm" 
@@ -209,9 +211,20 @@
 							<div class="ibox-title">
 								<h5>Invite User</h5>
 			                    <div ibox-tools></div>
-			                    <button class="btn btn-primary btn-xs pull-right" ui-sref="user-management.new">
+								<button 
+									class="btn btn-primary btn-xs pull-right" 
+									ui-sref="user-management.new({organization:vm.pAOrganization.organization})"
+								>
+									<!-- ui-sref="user-management.new" -->
 									Create New User
 								</button>
+			                    <button 
+			                    	class="btn btn-success btn-xs pull-right" 
+			                    	ng-click="vm.add_user(vm.new_user)"
+			                    >
+									Add User
+								</button>
+			                    <input type="text" class="pull-right" ng-model="vm.new_user">
 							</div>
 							<!-- <div class="ibox-content">
 								<div class="input-group">
@@ -262,8 +275,9 @@
 													<button 
 														type="submit"
 														class="btn btn-info btn-sm"
-														ui-sref="user-management-detail({login:each_user.login})"
+														ui-sref="user-management-detail({login:each_user.login, organization:vm.pAOrganization.organization})"
 													>
+														<!-- ui-sref="user-management-detail({login:each_user.login})" -->
 														<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganization.id})" -->
 														<span class="glyphicon glyphicon-eye-open"></span>
 														<span 
@@ -274,8 +288,9 @@
 													<button 
 														type="submit"
 														class="btn btn-primary btn-sm"
-														ui-sref="user-management.edit({login:each_user.login})"
+														ui-sref="user-management.edit({login:each_user.login, organization:vm.pAOrganization.organization})"
 													>
+														<!-- ui-sref="user-management.edit({login:each_user.login})" -->
 														<!-- ui-sref="p-a-organization.edit({id:each_user.id})" -->
 														<span class="glyphicon glyphicon-pencil"></span>
 														<span 
@@ -286,6 +301,7 @@
 													<button 
 														type="button"
 														class="btn btn-danger btn-sm"
+														ng-click="vm.remove_user(each_user.login)"
 													>
 														<!-- ui-sref="user-management.delete({login:each_user.login})" -->
 														
@@ -411,9 +427,10 @@
 	                    <!-- <pre>{{vm.pAOrganization | json}}</pre> -->
 	                    <button 
 	                    	class="btn btn-primary btn-xs pull-right" 
-	                    	ng-click="vm.calling_new_project()"
 	                    	ng-disabled="vm.pAOrganization.paprojects.length >= vm.pAOrganization.pabporg.projects"
+	                    	ui-sref="p-a-project.new({organization:vm.pAOrganization.organization})"
 	                    >
+	                    	<!-- ng-click="vm.calling_new_project()" -->
 	                    	<!-- ui-sref="p-a-project.new({org:'Vodafone'})" -->
 	                    	<!-- ui-sref="p-a-project.new({org:vm.pAOrganization.organization})" -->
 	                    <!-- <a ui-sref="p-a-organization.name({organizationName:each_org})"> -->
@@ -421,8 +438,8 @@
 						</button>
 					</div>
 		            <div class="ibox-content" style="min-height:120px">
-		            	<pre>{{vm.pAOrganization.pausersObj | json}}</pre>
-		            	<pre>{{vm.pAOrganization | json}}</pre>
+		            	<!-- <pre>{{vm.pAOrganization.pausersObj | json}}</pre> -->
+		            	<!-- <pre>{{vm.pAOrganization | json}}</pre> -->
 		            	<!-- <div class="col-md-12">
 							<div class="input-group">
 								<input type="text" placeholder="Search" class="input-sm form-control">
@@ -473,7 +490,7 @@
 											<button 
 												type="submit"
 												class="btn btn-info btn-sm"
-												ui-sref="p-a-project-detail({id:each_project.id})"
+												ui-sref="p-a-project-detail({id:each_project.id, organization:vm.pAOrganization.organization})"
 											>
 												<span class="glyphicon glyphicon-eye-open"></span>
 												<span 
@@ -484,7 +501,7 @@
 											<button 
 												type="submit"
 												class="btn btn-primary btn-sm"
-												ui-sref="p-a-project.edit({id:each_project.id})"
+												ui-sref="p-a-project.edit({id:each_project.id, organization:vm.pAOrganization.organization})"
 											>
 												<span class="glyphicon glyphicon-pencil"></span>
 												<span 
@@ -493,10 +510,11 @@
 												></span>
 											</button>
 											<button 
-												type="submit"
+												type="button"
 												class="btn btn-danger btn-sm"
-												ui-sref="p-a-project.delete({id:each_project.id})"
+												ng-click="vm.delete_project({id:each_project.id})"
 											>
+												<!-- ui-sref="p-a-project.delete({id:each_project.id})" -->
 												<span class="glyphicon glyphicon-remove-circle"></span>
 												<span 
 													class="hidden-xs hidden-sm" 

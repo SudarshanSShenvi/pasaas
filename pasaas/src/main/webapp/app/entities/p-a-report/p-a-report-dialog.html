@@ -1,9 +1,26 @@
-
-<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+<form 
+    name="editForm" 
+    role="form" 
+    novalidate 
+    ng-submit="vm.save()" 
+    class="animated fadeInDown" 
+>   
 
     <div class="modal-header bg-primary">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                ng-click="vm.clear()">&times;</button>
+        <button 
+            type="button" 
+            class="close" 
+            aria-hidden="true"
+            ui-sref="{{ vm.previousState }}" 
+        >&times;</button>
+        <!-- <button 
+            type="button" 
+            class="close" 
+            data-dismiss="modal" 
+            aria-hidden="true"
+            ng-click="vm.clear()"
+        >&times;</button> -->
+
         <h4 class="modal-title" id="myPAReportLabel" data-translate="pasaasApp.pAReport.home.createOrEditLabel">Create or edit a PA Report</h4>
     </div>
     <div class="modal-body">
@@ -68,10 +85,11 @@
                         <span class="glyphicon glyphicon-remove"></span>
                     </button> -->
                 </div>
-                 <!-- <button type="button" ngf-select class="btn btn-default btn-block"
+
+                 <button type="button" ngf-select class="btn btn-default btn-block"
                         ngf-change="vm.setMsgattachments($file, vm.pAReport)" data-translate="entity.action.addblob">
                     Add Attachment
-                </button> -->
+                </button>
     </div>
     <!-- <div class="row" ng-show="new" >
 
@@ -119,14 +137,29 @@
                     </div>
                 </div> -->
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        <button 
+            type="button" 
+            class="btn btn-default" 
+            ui-sref="{{ vm.previousState }}" 
+        >
+        <!-- <button 
+            type="button" 
+            class="btn btn-default" 
+            data-dismiss="modal" 
+            ng-click="vm.clear()"
+        > -->
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;
+            <span data-translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        <button 
+            type="submit" 
+            ng-disabled="editForm.$invalid || vm.isSaving" 
+            class="btn btn-primary"
+        >
+            <span class="glyphicon glyphicon-save"></span>&nbsp;
+            <span data-translate="entity.action.save">Save</span>
         </button>
     </div>
-    
     
 </form>
               

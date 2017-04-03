@@ -5,13 +5,16 @@
         .module('pasaasApp')
         .controller('UserManagementDetailController', UserManagementDetailController);
 
-    UserManagementDetailController.$inject = ['$stateParams', 'User'];
+    UserManagementDetailController.$inject = ['previousState', '$stateParams', 'User'];
 
-    function UserManagementDetailController ($stateParams, User) {
+    function UserManagementDetailController (previousState, $stateParams, User) {
         var vm = this;
 
         vm.load = load;
         vm.user = {};
+
+
+        vm.previousState = previousState.name;
 
         vm.load($stateParams.login);
 

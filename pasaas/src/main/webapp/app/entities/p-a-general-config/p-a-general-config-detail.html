@@ -3,9 +3,16 @@
     role="form" 
     novalidate 
     ng-submit="vm.save()" 
+    class="animated fadeInDown" 
 >   
 
     <div class="modal-header bg-primary">
+        <button 
+            type="button" 
+            class="close" 
+            aria-hidden="true"
+            ui-sref="{{ vm.previousState }}" 
+        >&times;</button>
         <!-- <button 
             type="button" 
             class="close" 
@@ -155,10 +162,13 @@
     </div>
 
     <div class="modal-footer">
-        <button type="submit"
+        <button 
+            type="submit"
             ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+            class="btn btn-info"
+        >
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+            <span data-translate="entity.action.back"> Back</span>
         </button>
 
         <!-- <button type="button" ui-sref="p-a-general-config-detail.edit({id:vm.pAGeneralConfig.id})" class="btn btn-primary">

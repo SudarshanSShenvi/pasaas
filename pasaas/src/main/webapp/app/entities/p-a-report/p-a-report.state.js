@@ -90,21 +90,27 @@
                 });
             }]
         })
+
         .state('p-a-report.new', {
             parent: 'p-a-report',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-                $uibModal.open({
+            views: {
+                'content@': {
                     templateUrl: 'app/entities/p-a-report/p-a-report-dialog.html',
                     controller: 'PAReportDialogController',
                     controllerAs: 'vm',
-                    backdrop: 'static',
-                    size: 'lg',
-                    resolve: {
-                        entity: function () {
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('pAReport');
+                    $translatePartialLoader.addPart('pAStatus');
+                    return $translate.refresh();
+                }],
+                entity: function () {
                             return {
                                 reporttype: null,
                                 reportname: null,
@@ -112,40 +118,107 @@
                                 pastatus: null,
                                 id: null
                             };
-                        }
-                    }
-                }).result.then(function() {
-                    $state.go('p-a-report', null, { reload: 'p-a-report' });
-                }, function() {
-                    $state.go('p-a-report');
-                });
-            }]
+                        },
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'p-a-report',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
         })
+
+        // .state('p-a-report.new', {
+        //     parent: 'p-a-report',
+        //     url: '/new',
+        //     data: {
+        //         authorities: ['ROLE_USER']
+        //     },
+        //     onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+        //         $uibModal.open({
+        //             templateUrl: 'app/entities/p-a-report/p-a-report-dialog.html',
+        //             controller: 'PAReportDialogController',
+        //             controllerAs: 'vm',
+        //             backdrop: 'static',
+        //             size: 'lg',
+        //             resolve: {
+        //                 entity: function () {
+        //                     return {
+        //                         reporttype: null,
+        //                         reportname: null,
+        //                         reportparms: null,
+        //                         pastatus: null,
+        //                         id: null
+        //                     };
+        //                 }
+        //             }
+        //         }).result.then(function() {
+        //             $state.go('p-a-report', null, { reload: 'p-a-report' });
+        //         }, function() {
+        //             $state.go('p-a-report');
+        //         });
+        //     }]
+        // })
+
         .state('p-a-report.edit', {
             parent: 'p-a-report',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
-            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
-                $uibModal.open({
+            views: {
+                'content@': {
                     templateUrl: 'app/entities/p-a-report/p-a-report-dialog.html',
                     controller: 'PAReportDialogController',
                     controllerAs: 'vm',
-                    backdrop: 'static',
-                    size: 'lg',
-                    resolve: {
-                        entity: ['PAReport', function(PAReport) {
-                            return PAReport.get({id : $stateParams.id}).$promise;
-                        }]
-                    }
-                }).result.then(function() {
-                    $state.go('p-a-report', null, { reload: 'p-a-report' });
-                }, function() {
-                    $state.go('^');
-                });
-            }]
+                }
+            },
+            resolve: {
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('pAReport');
+                    $translatePartialLoader.addPart('pAStatus');
+                    return $translate.refresh();
+                }],
+                entity: ['$stateParams', 'PAReport', function($stateParams, PAReport) {
+                    return PAReport.get({id : $stateParams.id}).$promise;
+                }],
+                previousState: ["$state", function ($state) {
+                    var currentStateData = {
+                        name: $state.current.name || 'p-a-report',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
+                }]
+            }
         })
+        // .state('p-a-report.edit', {
+        //     parent: 'p-a-report',
+        //     url: '/{id}/edit',
+        //     data: {
+        //         authorities: ['ROLE_USER']
+        //     },
+        //     onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+        //         $uibModal.open({
+        //             templateUrl: 'app/entities/p-a-report/p-a-report-dialog.html',
+        //             controller: 'PAReportDialogController',
+        //             controllerAs: 'vm',
+        //             backdrop: 'static',
+        //             size: 'lg',
+        //             resolve: {
+        //                 entity: ['PAReport', function(PAReport) {
+        //                     return PAReport.get({id : $stateParams.id}).$promise;
+        //                 }]
+        //             }
+        //         }).result.then(function() {
+        //             $state.go('p-a-report', null, { reload: 'p-a-report' });
+        //         }, function() {
+        //             $state.go('^');
+        //         });
+        //     }]
+        // })
         .state('p-a-report.delete', {
             parent: 'p-a-report',
             url: '/{id}/delete',

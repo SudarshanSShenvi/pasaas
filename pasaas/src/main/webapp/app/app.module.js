@@ -14,9 +14,10 @@
 			'ui.bootstrap',
 			'ui.bootstrap.datetimepicker',
 			'ui.router',
-			'infinite-scroll',
+			// 'infinite-scroll',
+			'angularMoment',
 			// jhipster-needle-angularjs-add-module JHipster will add new module here
-			'angular-loading-bar'
+			'angular-loading-bar',
 
 
 			// 'ui.router',                    // Routing
@@ -40,8 +41,11 @@
 			// 'ui.codemirror',                // Code editor
 			// 'ui.tree'                       // Nestable list
 		])
-		.run(run);
-
+		.run(run)
+		.run(function($rootScope, $uibModalStack) {
+			$uibModalStack.dismissAll();
+		});
+		
 	run.$inject = ['stateHandler', 'translationHandler'];
 
 	function run(stateHandler, translationHandler) {
