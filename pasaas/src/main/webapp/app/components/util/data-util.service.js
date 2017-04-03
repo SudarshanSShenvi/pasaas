@@ -59,7 +59,10 @@
         }
 
         // function openFile (type, data) {
-        //     $window.open('data:' + type  + data, '_blank', 'height=300,width=400');
+        //     $window.open('data:' + type + ',' + data);
+        // }
+        // function openFile (type, data) {
+        //     $window.open('data:' + type + ',' + data, '_blank', 'height=300,width=400');
         // }
         function openFile (type, data) {
             $window.open('data:' + type + ';base64,' + data, '_blank', 'height=300,width=400');

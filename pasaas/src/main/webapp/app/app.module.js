@@ -41,10 +41,7 @@
 			// 'ui.codemirror',                // Code editor
 			// 'ui.tree'                       // Nestable list
 		])
-		.run(run)
-		.run(function($rootScope, $uibModalStack) {
-			$uibModalStack.dismissAll();
-		});
+		.run(run);
 		
 	run.$inject = ['stateHandler', 'translationHandler'];
 

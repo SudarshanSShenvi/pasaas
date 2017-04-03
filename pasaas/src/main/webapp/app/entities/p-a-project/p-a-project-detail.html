@@ -108,6 +108,8 @@
                 <div class="ibox">
                     <div class="ibox-title">
                         <h5>Data Training and Prediction</h5>
+                        <!-- <a href="http://10.10.10.176:8088/api/download/1/March_2015_1_31.csv">fdfdsfs</a> -->
+                        <!-- <a href="api/download/1/March_2015_1_31.csv">omkar</a> -->
                         <div ibox-tools></div>
                     </div>
                     <div class="ibox-content">
@@ -178,10 +180,12 @@
                                                             <br>
                                                             <div class="row">
                                                                 <div class="col-lg-6">
-                                                                    <button 
-                                                                    ng-click="vm.download_file(each_file.path)" class="btn btn-primary btn-sm btn-block">
+                                                                    <a 
+                                                                    href="api/download/{{vm.pAProject.id}}/{{each_file.path}}"
+                                                                     class="btn btn-primary btn-sm btn-block">
                                                                         <span>Download</span>
-                                                                    </button>
+                                                                    </a>
+                                                                    <!-- ng-click="vm.download_file(each_file.path)" -->
                                                                 </div>
                                                                 <div class="col-lg-6">
                                                                     <button ng-click="vm.delete_file(each_file.path)" class="btn btn-danger btn-sm btn-block">

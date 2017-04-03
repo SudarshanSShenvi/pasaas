@@ -1,50 +1,58 @@
 (function() {
-    'use strict';
+	'use strict';
 
-    angular
-        .module('pasaasApp')
-        .controller('NavbarController', NavbarController);
+	angular
+		.module('pasaasApp')
+		.controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService'];
+	NavbarController.$inject = ['$timeout', '$rootScope', '$scope', '$state', 'Auth', 'Principal', 'ProfileService', 'LoginService'];
 
-    function NavbarController ($state, Auth, Principal, ProfileService, LoginService) {
-        var vm = this;
+	function NavbarController ($timeout, $rootScope, $scope, $state, Auth, Principal, ProfileService, LoginService) {
+		var vm = this;
 
-        vm.isNavbarCollapsed = true;
-        vm.isAuthenticated = Principal.isAuthenticated;
+		vm.isNavbarCollapsed = true;
+		vm.isAuthenticated = Principal.isAuthenticated;
 
-        ProfileService.getProfileInfo().then(function(response) {
-            vm.inProduction = response.inProduction;
-            vm.swaggerEnabled = response.swaggerEnabled;
-        });
+		ProfileService.getProfileInfo().then(function(response) {
+			vm.inProduction = response.inProduction;
+			vm.swaggerEnabled = response.swaggerEnabled;
+		});
 
-        Principal.identity().then(function(account) {
-            vm.my_acc = account;
-        });
+		$rootScope.$on('customEvent1', function(event) {
+			console.log("Inside customEvent1");
 
-        vm.login = login;
-        vm.logout = logout;
-        vm.toggleNavbar = toggleNavbar;
-        vm.collapseNavbar = collapseNavbar;
-        vm.$state = $state;
+			$timeout(function () {
+		        location.reload();
+		    }, 2000);
+		});
+		
+		Principal.identity().then(function(account) {
+			vm.my_acc = account;
+		});
 
-        function login() {
-            collapseNavbar();
-            LoginService.open();
-        }
+		vm.login = login;
+		vm.logout = logout;
+		vm.toggleNavbar = toggleNavbar;
+		vm.collapseNavbar = collapseNavbar;
+		vm.$state = $state;
 
-        function logout() {
-            collapseNavbar();
-            Auth.logout();
-            $state.go('home');
-        }
+		function login() {
+			collapseNavbar();
+			LoginService.open();
+		}
 
-        function toggleNavbar() {
-            vm.isNavbarCollapsed = !vm.isNavbarCollapsed;
-        }
+		function logout() {
+			collapseNavbar();
+			Auth.logout();
+			$state.go('home');
+		}
 
-        function collapseNavbar() {
-            vm.isNavbarCollapsed = true;
-        }
-    }
+		function toggleNavbar() {
+			vm.isNavbarCollapsed = !vm.isNavbarCollapsed;
+		}
+
+		function collapseNavbar() {
+			vm.isNavbarCollapsed = true;
+		}
+	}
 })();

@@ -31,12 +31,22 @@
         }
 
         function onSaveSuccess (result) {
+            swal({
+                title: "Success!",
+                text: "Record Edited Successfully",
+                type: "success"
+            });
             $scope.$emit('pasaasApp:pABusinessPlanUpdate', result);
             vm.isSaving = false;
             $state.go(vm.previousState);
         }
 
         function onSaveError () {
+            swal({
+                title: "Error!",
+                text: "Record Edit Failed",
+                type: "error"
+            });
             vm.isSaving = false;
         }
 
