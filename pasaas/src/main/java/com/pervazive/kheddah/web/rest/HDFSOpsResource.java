@@ -140,7 +140,9 @@ public class HDFSOpsResource {
     		Configuration configuration = hdfsFileOperationsService.init("pervazive");
     		String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+file.getOriginalFilename();
     		
-        	hdfsFileOperationsService.addFile(file, dirName, configuration);
+    		String dirName_P = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+file.getOriginalFilename();
+    		
+    		hdfsFileOperationsService.addFile(file, dirName, configuration);
 		} catch (IOException e) {
 			new ResponseEntity<String>("Error :"+e.getMessage() ,HttpStatus.BAD_REQUEST);
 		}
@@ -152,37 +154,29 @@ public class HDFSOpsResource {
     @Timed
     public void downloadFile(@PathVariable("projectid") Long projectId, @PathVariable("fileName") String fileName,  HttpServletResponse response) throws IOException {
     	
-    	/*String tmp = "SUQsQVVUSE9SLEZJTEVOQU1FLERBVEVFWEVDVVRFRCxPUkRFUkVYRUNVVEVELEVYRUNUWVBFLE1ENVNVTSxERVNDUklQVElPTixDT01NRU5UUyxU"
-    			+ "QUcsTElRVUlCQVNFLENPTlRFWFRTLExBQkVMUwowMDAwMDAwMDAwMDAwMSxzdWRhcnNoYW4sY2xhc3NwYXRoOmNvbmZpZy9saXF1aWJhc2UvY2hhbm"
-    			+ "dlbG9nLzAwMDAwMDAwMDAwMDAwX2luaXRpYWxfc2NoZW1hLnhtbCwiMjAxNi0wOC0wNSAxMjo1MTo0NyIsMSxFWEVDVVRFRCw3OmQyMjA2MzRkYWU3YWJm"
-    			+ "MGQ5YjZjZGI4NmNjNWI3ZDc2LCJjcmVhdGVUYWJsZSwgY3JlYXRlSW5kZXggKHgyKSwgY3JlYXRlVGFibGUgKHgyKSwgYWRkUHJpbWFyeUtleSwgY3JlYXRlVGFibGUsI"
-    			+ "GFkZEZvcmVpZ25LZXlDb25zdHJhaW50ICh4MyksIGxvYWREYXRhLCBkcm9wRGVmYXVsdFZhbHVlLCBsb2FkRGF0YSAoeDIpLCBjcmVhdGVUYWJsZS"
-    			+ "AoeDIpLCBhZGRQcmltYXJ5S2V5LCBjcmVhdGVJbmRleCAoeDIpLCBhZGRGb3JlaWduS2V5Q29uc3RyYWludCIsLE5VTEwsMy40LjIsTlVMTCxOVUxMCjIwMTYwO"
-    			+ "DA1MDYxMTQ2LTEsamhpcHN0ZXIsY2xhc3NwYXRoOmNvbmZpZy9saXF1aWJhc2UvY2hhbmdlbG9nLzIwMTYwODA1MDYxMTQ2X2FkZGVkX2VudGl0eV9Qc3B0b3Bz"
-    			+ "dWJzLnhtbCwiMjAxNi0wOC0wNSAxNTozMzo0MSIsMixFWEVDVVRFRCw3OmJkZGIyMDc3ODc5MjBmODMzMWFhODMwYTliZDRhZmUwLGNyZWF0ZVRhYmxlLCxOVUxM"
-    			+ "LDMuNC4yLE5VTEwsTlVMTAoyMDE2MDgxMDA1MzQzMC0xLGpoaXBzdGVyLGNsYXNzcGF0aDpjb25maWcvbGlxdWliYXNlL2NoYW5nZWxvZy8yMDE2MDgxMDA1MzQz"
-    			+ "MF9hZGRlZF9lbnRpdHlfTG9jYW5hbHlzaXMueG1sLCIyMDE2LTA4LTEwIDExOjI3OjEwIiwzLEVYRUNVVEVELDc6OWFmNjJkZTJkMzMzM2YzZDYyYWM4ODk5Y2I3YmZ"
-    			+ "jMjgsY3JlYXRlVGFibGUsLE5VTEwsMy40LjIsTlVMTCxOVUxMCjIwMTYwODEwMTU1MTQ0LTEsamhpcHN0ZXIsY2xhc3NwYXRoOmNvbmZpZy9saXF1aWJhc2UvY2hhbmd"
-    			+ "lbG9nLzIwMTYwODEwMTU1MTQ0X2FkZGVkX2VudGl0eV9Mb2NhdGlvbmxvb2t1cC54bWwsIjIwMTYtMDgtMTAgMjE6MzE6NTAiLDQsRVhFQ1VURUQsNzoyYWR"
-    			+ "hZWNlNzVlY2JiZDM0MGRhYzIwMmY3OGFmZjg4YSxjcmVhdGVUYWJsZSwsTlVMTCwzLjQuMixOVUxMLE5VTEwK"; */
-    	
     		PAProject paProject = paProjectService.findOne(projectId);
     		try {
     			Configuration configuration = hdfsFileOperationsService.init("pervazive");
     			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
+    			
+    			String dirName_P = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
     		
     			FSDataInputStream in = hdfsFileOperationsService.readFile(dirName, configuration);
     			response.addHeader("Content-disposition", "attachment;filename="+fileName+"");
-    			response.setContentType("txt/csv");
+
+    	        // set content attributes for the response
+    	        response.setContentType("application/octet-stream");
+    			
+    			//response.setContentType("txt/csv");
 
     			// Copy the stream to the response's output stream.
-    			//IOUtils.copy(in, response.getOutputStream());
+    			IOUtils.copy(in, response.getOutputStream());
     			
     			// following 2 lines added for test only
     			// ****************************************************************************************************
-    			InputStream stream = new ByteArrayInputStream(IOUtils.toString(in, "UTF-8").getBytes()); 
+    			/*InputStream stream = new ByteArrayInputStream(IOUtils.toString(in, "UTF-8").getBytes()); 
     			IOUtils.copy(stream, response.getOutputStream());
-    			// ****************************************************************************************************
+    			*/// ****************************************************************************************************
     			response.flushBuffer();
     		} catch (IOException io){
     			io.printStackTrace();
@@ -198,6 +192,7 @@ public class HDFSOpsResource {
 		try {
 			Configuration configuration = hdfsFileOperationsService.init("pervazive");
 			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
+			String dirName_P = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
 			hdfsFileOperationsService.deleteFile(dirName, configuration);
 		} catch (IOException io){
 			io.printStackTrace();
@@ -213,6 +208,7 @@ public class HDFSOpsResource {
     	
     	PAProject paProject = paProjectService.findProjectByName(projectName);
     	String dirName = "/user/pervazive/"+paProject.getPaorgpro().getOrganization()+"/"+projectName+"/ppa-repo/traindata";
+    	String dirName_P = "/user/pervazive/"+paProject.getPaorgpro().getOrganization()+"/"+projectName+"/ppa-repo/traindata";
     	//dirName = dirName.replace(' ', '+');
     	
     	List<FileStatus> fileList = new ArrayList<FileStatus>();

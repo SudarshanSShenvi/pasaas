@@ -50,7 +50,7 @@
 
 				</li>
 
-				<!-- <pre>{{vm.my_acc.organizations | json}}</pre> -->
+				<!-- <pre>{{vm.my_acc | json}}</pre> -->
 				<!-- <li ng-class="{active: $state.includes('app1')}">
 					<a href="index.html">
 						<i class="fa fa-th-large"></i> 
@@ -133,6 +133,20 @@
 					>
 						<!-- has-any-authority="[ROLE_ADMIN, ROLE_SUPERADMIN]" -->
 						<i class="fa fa-bar-chart-o"></i>
+						<span class="nav-label">Organization </span>
+						<span class="fa arrow"></span>
+					</a>
+					<ul class="nav nav-second-level">
+						<li><a ui-sref="p-a-organization.new">New Organization</a></li>
+						<li ng-repeat="each_org in vm.my_acc.organizations">
+							<a ui-sref="p-a-organization.name({organizationName:each_org})">{{each_org}}</a>
+						</li>
+					</ul>	
+					<!-- <a 
+						href="" 
+						has-any-authority="[ROLE_ADMIN, ROLE_SUPERADMIN]"
+					>
+						<i class="fa fa-bar-chart-o"></i>
 						<span class="nav-label">Operations </span>
 						<span class="fa arrow"></span>
 					</a>
@@ -142,7 +156,6 @@
 							<ul class="nav nav-third-level">
 								<li><a ui-sref="p-a-organization.new">New Organization</a></li>
 								<li ng-repeat="each_org in vm.my_acc.organizations">
-									<!-- <a ui-sref="p-a-organization.name">{{each_org}}</a> -->
 									<a ui-sref="p-a-organization.name({organizationName:each_org})">{{each_org}}</a>
 								</li>
 								<li>
@@ -150,7 +163,7 @@
 								</li>
 							</ul>
 						</li>
-					</ul>	
+					</ul> -->	
 					<!-- <ul class="nav nav-second-level">
 						<li><a ui-sref="p-a-report">New Organization</a></li>
 					</ul>

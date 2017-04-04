@@ -171,8 +171,8 @@
 		
 		vm.user_slider = {
 			min: 0,
-			// max: vm.pAOrganization.pabporg.users,
-			// from:vm.pAOrganization.pausers.length,
+			max: vm.pAOrganization.pabporg.users,
+			from:vm.pAOrganization.pausers.length,
 			type: 'single',
 			prefix: "",
 			maxPostfix: "",
@@ -181,8 +181,8 @@
 		};
 		vm.project_slider = {
 			min: 0,
-			// max: vm.pAOrganization.pabporg.projects,
-			// from:vm.pAOrganization.paprojects.length,
+			max: vm.pAOrganization.pabporg.projects,
+			from:vm.pAOrganization.paprojects.length,
 			type: 'single',
 			prefix: "",
 			maxPostfix: "",

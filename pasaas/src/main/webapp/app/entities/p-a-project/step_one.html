@@ -50,6 +50,32 @@
 				</div>
 
 				<div class="form-group">
+								<label 
+						for="field_pastatus"
+						data-translate="pasaasApp.pAProject.pastatus" 
+						class="control-label" 
+					>Status</label>
+
+								<!-- <select 
+									ng-init="somethingHere = options[0]" 
+								    ng-model="somethingHere" 
+								    ng-options="option.name for option in options">
+								</select> -->
+
+								<select 
+									class="form-control" 
+									name="pastatus" 
+									ng-model="vm.pAProject.pastatus"
+									id="field_pastatus"
+								>
+									<!-- ng-init="vm.pAOrganization.pastatus = 'Active'"  -->
+									<option value="Active" >Active</option>
+									<option value="Inactive" >Inactive</option>
+									<option value="Delete" >Delete</option>
+								</select>
+							</div>
+
+				<!-- <div class="form-group">
 					<label 
 						for="field_pastatus"
 						data-translate="pasaasApp.pAProject.pastatus" 
@@ -62,7 +88,7 @@
 						name="pastatus" 
 						ng-model="vm.pAProject.pastatus"
 					/>
-				</div>
+				</div> -->
 
 				<div class="form-group">
 					<label 

@@ -11,26 +11,26 @@
         $scope.page_meta_data = {
             "has_header" : true,
             "page_header_title" : "Project List",
-            "breadcrumb_data" : [
-                {
-                    "link" : "index.html",
-                    "label" : "Home",
-                    "class" : "",
-                    "is_active" : false
-                },
-                {
-                    "link" : "/",
-                    "label" : "Platform",
-                    "class" : "",
-                    "is_active" : false
-                },
-                {
-                    "link" : "/",
-                    "label" : "Project List",
-                    "class" : "active",
-                    "is_active" : true
-                }
-            ]
+            // "breadcrumb_data" : [
+            //     {
+            //         "link" : "index.html",
+            //         "label" : "Home",
+            //         "class" : "",
+            //         "is_active" : false
+            //     },
+            //     {
+            //         "link" : "/",
+            //         "label" : "Platform",
+            //         "class" : "",
+            //         "is_active" : false
+            //     },
+            //     {
+            //         "link" : "/",
+            //         "label" : "Project List",
+            //         "class" : "active",
+            //         "is_active" : true
+            //     }
+            // ]
 
         };
         var vm = this;

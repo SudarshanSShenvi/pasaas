@@ -2,7 +2,7 @@
 	"pasaasApp": {
 		"pAProject" : {
 			"home": {
-				"title": "Project List",
+				"title": "Projects",
 				"createLabel": "Create New Project",
 				"createOrEditLabel": "Project",
 				"search": "Search for PA Project"

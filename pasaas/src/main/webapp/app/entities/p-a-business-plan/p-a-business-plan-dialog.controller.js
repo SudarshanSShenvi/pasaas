@@ -13,7 +13,8 @@
         vm.pABusinessPlan = entity;
         // vm.clear = clear;
         vm.save = save;
-        vm.paorganizations = PAOrganization.query();
+        // [Commented 4/4/2017 - Calling organization while opening Business plan in new/edit mode]
+        // vm.paorganizations = PAOrganization.query(); 
 
         vm.previousState = previousState.name;
 
@@ -33,7 +34,7 @@
         function onSaveSuccess (result) {
             swal({
                 title: "Success!",
-                text: "Record Edited Successfully",
+                text: "Done!",
                 type: "success"
             });
             $scope.$emit('pasaasApp:pABusinessPlanUpdate', result);

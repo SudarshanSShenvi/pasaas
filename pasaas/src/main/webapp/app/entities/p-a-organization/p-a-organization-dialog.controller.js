@@ -9,11 +9,83 @@
 
 	function PAOrganizationDialogController (previousState, moment, $state, $timeout, $scope, $stateParams, entity, PAOrganization, PAProject, PABusinessPlan, PAReliabilityScore, PAReliabilityConf, PAPredictionScore, PASaxCodeTmp, PASaxCode, PAAlarmActuality, PAPrediction, PAReport, PAAccPrecision, PAFileUpload, PAPMTRequest, PADataConnector, PAScheduler, PASchedulerInterval, PAAlarmRCA, PANEDetails) {
 		var vm = this;
+		// vm.pAOrganization = [{
+		// 	paorgpro : {
+		// 		pabporg : {},
+		// 	},
+		// }];
+
+		// vm.pAOrganization.paorgpro = {};
 
 		vm.pAOrganization = entity;
 		// vm.clear = clear;
 
 		vm.previousState = previousState.name;
+
+		if(vm.pAOrganization.pabporg){
+			$scope.selected_plan = vm.pAOrganization.pabporg;
+		}else{
+			$scope.selected_plan = {
+			    "id": 1,
+			    "businessplan": "Trial",
+			    "users": 1,
+			    "description": "Trial Plan",
+			    "pastatus": "Active",
+			    "projects": 1
+			};
+		}
+		console.log(JSON.stringify($scope.selected_plan, null, 4));
+
+		// $scope.selected_plan = vm.pAOrganization.paprojectsObj[0].paorgpro.pabporg;
+		// $scope.selected_plan = {
+		//     "id": 1,
+		//     "businessplan": "Trial",
+		//     "users": 1,
+		//     "description": "Trial Plan",
+		//     "pastatus": "Active",
+		//     "projects": 1
+		//   };
+
+		// $timeout(function () {
+		// 	console.log(JSON.stringify(vm.pAOrganization));
+		// 	$scope.selected_plan = vm.pAOrganization.paprojectsObj[0].paorgpro.pabporg;
+	 //    }, 2000);
+
+
+	 //    $scope.data = [
+		//   {
+		//     "id": 1,
+		//     "businessplan": "Trial",
+		//     "users": 1,
+		//     "description": "Trial Plan",
+		//     "pastatus": "Active",
+		//     "projects": 1
+		//   },
+		//   {
+		//     "id": 2,
+		//     "businessplan": "Silver",
+		//     "users": 3,
+		//     "description": "Silver Plan",
+		//     "pastatus": "Active",
+		//     "projects": 10
+		//   },
+		//   {
+		//     "id": 3,
+		//     "businessplan": "Gold",
+		//     "users": 10,
+		//     "description": "Gold Plan",
+		//     "pastatus": "Active",
+		//     "projects": 25
+		//   },
+		//   {
+		//     "id": 4,
+		//     "businessplan": "Platinum",
+		//     "users": 50,
+		//     "description": "Platinum Plan",
+		//     "pastatus": "Active",
+		//     "projects": 250
+		//   }
+		// ];
 
 		vm.datePickerOpenStatus = {};
 		vm.openCalendar = openCalendar;
@@ -41,7 +113,7 @@
 		// vm.pAOrganization.validto = moment().toDate();
 		// var current_date = moment().hour(8).minute(0).second(0).toDate();
 
-		vm.pAOrganization.pabporg = vm.pabusinessplans[0];
+		// vm.pAOrganization.pabporg = vm.pabusinessplans[0];
 
 		vm.change_to_date = function(){
 			if(vm.pAOrganization.pabporg.businessplan == 'Trial'){
@@ -120,7 +192,7 @@
 			$scope.$emit('customEvent1');
 			swal({
 				title: "Success!",
-				text: "Record Edited Successfully",
+				text: "Record Created Successfully",
 				type: "success"
 			});
 			$scope.$emit('pasaasApp:pAOrganizationUpdate', result);

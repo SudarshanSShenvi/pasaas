@@ -1,0 +1,220 @@
+		<div class="row">
+		    <!-- <div class="col-lg-4"> -->
+		        <!-- <div class="ibox">
+		            <div class="ibox-title">
+						<h5>Quick Actions</h5>
+
+						<div ibox-tools></div>
+					</div>
+		            <div class="ibox-content" style="min-height:120px">
+
+		            	<div class="col-lg-4">
+		            		<button 
+		            			class="btn  btn-sm btn-primary"
+		            			style="margin-left: -20px;margin-right: 5px"
+		            		>Create a Project</button>
+		            	</div>
+		            	<div class="col-lg-4">
+		            		<button 
+		            			class="btn btn-sm btn-primary" 
+		            			style="margin-left: 5px;margin-right: 20px"
+		            		>Upgrade Plan</button>
+		            	</div>
+		            	<div class="col-lg-4">
+		            		<button 
+		            			class="btn btn-sm btn-primary" 
+		            			style="margin-left: 10px;margin-right: -45px"
+		            		>Action</button>
+		            	</div>
+		            	<div class="col-lg-4">
+		            		<button 
+		            			class="btn btn-primary btn-sm" 
+		            			style="margin-left: -25px;margin-top:10px;margin-right: 5px"
+		            		>Invite Users</button>
+		            	</div>
+		            	<div class="col-lg-4">
+		            		<button 
+		            			class="btn btn-sm btn-primary" 
+		            			style="margin-left: 5px;margin-top:10px;margin-right: 5px"
+		            		>Action</button>
+		            	</div>
+
+
+		            </div>
+		        </div> -->
+		    <!-- </div> -->
+
+		    <div class="col-lg-12">
+		        <div class="ibox">
+		            <div class="ibox-title">
+						<h5>Project List</h5>
+	                    <div ibox-tools></div>
+	                    <!-- <pre>{{vm.pAOrganization.organization | json}}</pre> -->
+	                    <!-- <pre>{{vm.pAOrganization | json}}</pre> -->
+	                    <button 
+	                    	class="btn btn-primary btn-xs pull-right" 
+	                    	ng-disabled="vm.pAOrganization.paprojects.length >= vm.pAOrganization.pabporg.projects"
+	                    	ui-sref="p-a-project.new({organization:vm.pAOrganization.organization})"
+	                    >
+	                    	<!-- ng-click="vm.calling_new_project()" -->
+	                    	<!-- ui-sref="p-a-project.new({org:'Vodafone'})" -->
+	                    	<!-- ui-sref="p-a-project.new({org:vm.pAOrganization.organization})" -->
+	                    <!-- <a ui-sref="p-a-organization.name({organizationName:each_org})"> -->
+							Create New Project
+						</button>
+					</div>
+		            <div class="ibox-content" style="min-height:120px">
+		            	<!-- <pre>{{vm.pAOrganization.pausersObj | json}}</pre> -->
+		            	<!-- <div class="col-md-12">
+							<div class="input-group">
+								<input type="text" placeholder="Search" class="input-sm form-control">
+								<span class="input-group-btn">
+								<button type="button" class="btn btn-sm btn-primary"> Invite User</button> 
+								</span>
+							</div>
+						</div> -->
+						<br>
+		            	<!-- <pre>{{vm.pAOrganization.paprojectsObj | json}}</pre> -->
+						 <table 
+							datatable="" 
+							class="table table-striped table-hover dataTables-example"
+						>
+							<thead>
+								<tr>
+									<th></th>
+									<th>Project Name</th>
+									<!-- <th>Progress</th> -->
+									<!-- <th>Participants</th> -->
+									<th>Description</th>
+									<th>Users Count</th>
+									<th class="text-center">Status</th>
+									<th class="text-center">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="gradeX" ng-repeat="each_project in vm.pAOrganization.paprojectsObj">
+									<td></td>
+									<td>{{each_project.projectname}}</td>
+									<td>{{each_project.description}}</td>
+									<!-- <td class="project-people">
+                                        <span ng-repeat="each_participant in vm.pAProject.pausers">
+						                	<span class="label label-default ng-binding">
+						                		{{each_participant}}
+						                	</span>
+	                                        <span>&nbsp;</span>
+                                        </span>
+                                    </td> -->
+									<td class="center"></td>
+									<td class="text-center">
+										<button 
+											type="button" 
+											class="btn btn-sm btn-xs" 
+											ng-class="
+												each_project.pastatus == 'Active' 
+												? 'btn-primary' :
+												(
+													each_project.pastatus == 'Inactive' 
+													? 'btn-default' : 
+													'btn-success'
+												)
+											"
+											style="width: 60px;margin-left:10px"
+										>{{each_project.pastatus}}</button>
+									</td>
+									<td class="text-center">
+										<div class="btn-group flex-btn-group-container">
+											<button 
+												type="submit"
+												class="btn btn-success btn-sm"
+												ui-sref="p-a-project-detail({id:each_project.id, organization:vm.pAOrganization.organization})"
+												ng-disabled="each_project.pastatus == 'Inactive'"
+											>
+												<span class="fa fa-tachometer"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+												>Dashboard</span>
+													<!-- data-translate="entity.action.view" -->
+											</button>
+											<button 
+												type="submit"
+												class="btn btn-warning btn-sm"
+												ui-sref="p-a-project-detail({id:each_project.id, organization:vm.pAOrganization.organization})"
+												ng-disabled="each_project.pastatus == 'Inactive'"
+											>
+												<span class="fa fa-area-chart"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+												>Report</span>
+													<!-- data-translate="entity.action.view" -->
+											</button>
+											<button 
+												type="submit"
+												class="btn btn-info btn-sm"
+												ui-sref="p-a-project-detail({id:each_project.id, organization:vm.pAOrganization.organization})"
+												ng-disabled="each_project.pastatus == 'Inactive'"
+											>
+												<span class="glyphicon glyphicon-eye-open"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+													data-translate="entity.action.view"
+												></span>
+											</button>
+											<button 
+												type="submit"
+												class="btn btn-primary btn-sm"
+												ui-sref="p-a-project.edit({id:each_project.id, organization:vm.pAOrganization.organization})"
+											>
+												<span class="glyphicon glyphicon-pencil"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+													data-translate="entity.action.edit"
+												></span>
+											</button>
+											<button 
+												type="button"
+												class="btn btn-danger btn-sm"
+												ng-click="vm.delete_project({id:each_project.id})"
+											>
+												<!-- ui-sref="p-a-project.delete({id:each_project.id})" -->
+												<span class="glyphicon glyphicon-remove-circle"></span>
+												<span 
+													class="hidden-xs hidden-sm" 
+													data-translate="entity.action.delete"
+												></span>
+											</button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							<!-- <tbody>
+								<tr class="gradeX">
+									<td></td>
+									<td>Contract with Telecom Company
+									</td>
+									<td>
+										20%
+										<div 
+											class="progress-bar progress-bar-warning" 
+											role="progressbar" 
+											aria-valuenow="20" 
+											aria-valuemin="0" 
+											aria-valuemax="100" 
+											style="width:60%;height: 5px;margin-top:8px"
+										>
+												
+										</div>
+									</td>
+									<td>2</td>
+									<td><button class="btn btn-sm btn-primary ">Active</td>
+									<td> <u>View</u></td>
+								</tr>
+								
+								
+							</tbody> -->
+							
+						</table>
+
+		            </div>
+		        </div>
+		    </div>
+		</div>

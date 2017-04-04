@@ -21,27 +21,27 @@
         $scope.page_meta_data = {
             "has_header" : true,
             "page_header_title" : "Profile",
-            "breadcrumb_data" : [
-                {
-                    "link" : "index.html",
-                    "label" : "Home",
-                    "class" : "",
-                    "is_active" : false
-                },
-                {
-                    "link" : "/",
-                    "label" : "Platform",
-                    "class" : "",
-                    "is_active" : false
-                },
+            // "breadcrumb_data" : [
+            //     {
+            //         "link" : "index.html",
+            //         "label" : "Home",
+            //         "class" : "",
+            //         "is_active" : false
+            //     },
+            //     {
+            //         "link" : "/",
+            //         "label" : "Platform",
+            //         "class" : "",
+            //         "is_active" : false
+            //     },
                 
-                {
-                    "link" : "/",
-                    "label" : " Profile",
-                    "class" : "active",
-                    "is_active" : true
-                }
-            ]
+            //     {
+            //         "link" : "/",
+            //         "label" : " Profile",
+            //         "class" : "active",
+            //         "is_active" : true
+            //     }
+            // ]
 
         };
         var vm = this;

@@ -11,7 +11,7 @@
             "updated": "A PA Business Plan is updated with identifier {{ param }}",
             "deleted": "A PA Business Plan is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete PA Business Plan {{ id }}?"
+                "question": "Are you sure you want to delete Business Plan {{ businessplan }}?"
             },
             "detail": {
                 "title": "PA Business Plan"
