@@ -39,7 +39,7 @@
             });
             $scope.$emit('pasaasApp:pABusinessPlanUpdate', result);
             vm.isSaving = false;
-            $state.go(vm.previousState);
+            $state.go(vm.previousState, {}, {reload: true});
         }
 
         function onSaveError () {

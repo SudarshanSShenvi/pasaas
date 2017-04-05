@@ -6,6 +6,13 @@
 					<h5 data-translate="pasaasApp.pAReliabilityConf.home.title">Reliability Configurations</h5>
 
 					<div ibox-tools></div>
+					<input 
+	                	type="text" 
+	                	ng-model="serachText" 
+	                	class="btn-xs pull-right" 
+	                	placeholder="Search..."
+	                >
+	                <span class="pull-right">&nbsp;</span>
 					<button 
 						class="btn btn-primary btn-xs pull-right" 
 						ui-sref="p-a-reliability-conf.new"
@@ -16,8 +23,8 @@
 
 				<div class="ibox-content">
 					<jhi-alert></jhi-alert>
-					<table 
-						datatable="ng" 
+					<!-- <table 
+						datatable="" 
 						class="table table-striped table-hover dataTables-example"
 					>
 						<thead>
@@ -25,16 +32,43 @@
 								<th><span data-translate="global.field.id">ID</span></th>
 								<th><span data-translate="pasaasApp.pAReliabilityConf.bscore">Bscore</span></th>
 								<th><span data-translate="pasaasApp.pAReliabilityConf.cscore">Cscore</span></th>
-								<!-- <th><span data-translate="pasaasApp.pAReliabilityConf.dataset">Dataset</span></th> -->
 								<th><span data-translate="pasaasApp.pAReliabilityConf.category">Category</span></th>
 								<th><span data-translate="pasaasApp.pAReliabilityConf.pastatus">Status</span></th>
 								<th></th>
 							</tr>
+						</thead> -->
+					<table class="jh-table table table-striped table-hover">
+						<thead>
+							<tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+								<th jh-sort-by="id">
+									<span data-translate="global.field.id">ID</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="bscore">
+									<span data-translate="pasaasApp.pAReliabilityConf.bscore">Bscore</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="cscore">
+									<span data-translate="pasaasApp.pAReliabilityConf.cscore">Cscore</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="category">
+									<span data-translate="pasaasApp.pAReliabilityConf.category">Category</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="pastatus">
+									<span data-translate="pasaasApp.pAReliabilityConf.pastatus">Pastatus</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>	
+							</tr>
 						</thead>
-						<tbody>
+						<tbody 
+                        	infinite-scroll="vm.loadPage(vm.page + 1)" 
+                        	infinite-scroll-disabled="vm.page >= vm.links['last']"
+                        >
 							<tr 
 								class="gradeX" 
-								ng-repeat="pAReliabilityConf in vm.pAReliabilityConfs track by pAReliabilityConf.id"
+								ng-repeat="pAReliabilityConf in vm.pAReliabilityConfs | filter : serachText track by pAReliabilityConf.id"
 							>
 								<td><a ui-sref="p-a-reliability-conf-detail({id:pAReliabilityConf.id})">{{pAReliabilityConf.id}}</a></td>
 								<td>{{pAReliabilityConf.bscore}}</td>

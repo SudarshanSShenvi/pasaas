@@ -1,10 +1,7 @@
 package com.pervazive.kheddah.web.rest;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -138,9 +135,11 @@ public class HDFSOpsResource {
     	
     	try {
     		Configuration configuration = hdfsFileOperationsService.init("pervazive");
-    		String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+file.getOriginalFilename();
     		
-    		String dirName_P = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+file.getOriginalFilename();
+    		String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+file.getOriginalFilename();
+    		String actionType = "P";
+    		if(actionType.equals("T"))
+        	dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+file.getOriginalFilename();
     		
     		hdfsFileOperationsService.addFile(file, dirName, configuration);
 		} catch (IOException e) {
@@ -158,8 +157,9 @@ public class HDFSOpsResource {
     		try {
     			Configuration configuration = hdfsFileOperationsService.init("pervazive");
     			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
-    			
-    			String dirName_P = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
+    			String actionType = "P";
+        		if(actionType.equals("T"))
+            	dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
     		
     			FSDataInputStream in = hdfsFileOperationsService.readFile(dirName, configuration);
     			response.addHeader("Content-disposition", "attachment;filename="+fileName+"");
@@ -192,7 +192,11 @@ public class HDFSOpsResource {
 		try {
 			Configuration configuration = hdfsFileOperationsService.init("pervazive");
 			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
-			String dirName_P = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
+			
+			String actionType = "P";
+    		if(actionType.equals("T"))
+        	dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
+    		
 			hdfsFileOperationsService.deleteFile(dirName, configuration);
 		} catch (IOException io){
 			io.printStackTrace();
@@ -208,7 +212,10 @@ public class HDFSOpsResource {
     	
     	PAProject paProject = paProjectService.findProjectByName(projectName);
     	String dirName = "/user/pervazive/"+paProject.getPaorgpro().getOrganization()+"/"+projectName+"/ppa-repo/traindata";
-    	String dirName_P = "/user/pervazive/"+paProject.getPaorgpro().getOrganization()+"/"+projectName+"/ppa-repo/traindata";
+    	
+    	String actionType = "P";
+		if(actionType.equals("T"))
+    	dirName = "/user/pervazive/"+paProject.getPaorgpro().getOrganization()+"/"+projectName+"/ppa-repo/predictdata";
     	//dirName = dirName.replace(' ', '+');
     	
     	List<FileStatus> fileList = new ArrayList<FileStatus>();

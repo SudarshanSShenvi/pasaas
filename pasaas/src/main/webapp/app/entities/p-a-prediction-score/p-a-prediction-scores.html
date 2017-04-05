@@ -6,6 +6,34 @@
 					<h5 data-translate="pasaasApp.pAPredictionScore.home.title">Prediction Scores</h5>
 
 					<div ibox-tools></div>
+					<input 
+	                	type="text" 
+	                	ng-model="serachText" 
+	                	class="btn-xs pull-right" 
+	                	placeholder="Search..."
+	                >
+	                <span class="pull-right">&nbsp;</span>
+					<select 
+						class="btn-xs pull-right" 
+						id="field_pabporg" 
+						name="pabporg" 
+						ng-model="vm.selected_project" 
+						ng-options="
+							each_paln as each_paln.projectname for each_paln in vm.project_list
+						"
+						ng-change="vm.get_patterns()"
+					>
+						<!-- ng-init=" vm.pAOrganization.pabporg = selected_plan" -->
+					</select>
+	                <span class="pull-right">&nbsp;</span>
+	                <input 
+	                	type="text" 
+	                	ng-model="vm.selected_project.paorgpro.organization" 
+	                	class="btn-xs pull-right" 
+	                	placeholder="Organization"
+	                	ng-disabled="true"
+	                >
+	                <span class="pull-right">&nbsp;</span>
 					<!-- <button 
 						class="btn btn-primary btn-xs pull-right" 
 						ui-sref="p-a-organization.new"
@@ -16,8 +44,8 @@
 
 				<div class="ibox-content">
 					<jhi-alert></jhi-alert>
-					<table 
-						datatable="ng" 
+					<!-- <table 
+						datatable="" 
 						class="table table-striped table-hover dataTables-example"
 					>
 						<thead>
@@ -32,11 +60,51 @@
 								<th><span data-translate="pasaasApp.pAPredictionScore.createdon">Createdon</span></th>
 								<th></th>
 							</tr>
+						</thead> -->
+					<table class="jh-table table table-striped table-hover">
+						<thead>
+							<tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+								<th jh-sort-by="id">
+									<span data-translate="global.field.id">ID</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="dist">
+									<span data-translate="pasaasApp.pAPredictionScore.dist">Dist</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="alarmno">
+									<span data-translate="pasaasApp.pAPredictionScore.alarmno">Alarmno</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="bcount">
+									<span data-translate="pasaasApp.pAPredictionScore.bcount">Bcount</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="ccount">
+									<span data-translate="pasaasApp.pAPredictionScore.ccount">Ccount</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="bscore">
+									<span data-translate="pasaasApp.pAPredictionScore.bscore">Bscore</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="cscore">
+									<span data-translate="pasaasApp.pAPredictionScore.cscore">Cscore</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="createdon">
+									<span data-translate="pasaasApp.pAPredictionScore.createdon">Createdon</span>
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+							</tr>
 						</thead>
-						<tbody>
+						<tbody 
+                        	infinite-scroll="vm.loadPage(vm.page + 1)" 
+                        	infinite-scroll-disabled="vm.page >= vm.links['last']"
+                        >
 							<tr 
 								class="gradeX" 
-								ng-repeat="pAPredictionScore in vm.pAPredictionScores track by pAPredictionScore.id"
+								ng-repeat="pAPredictionScore in vm.pAPredictionScores | filter : serachText track by pAPredictionScore.id"
 							>
 								<td><a ui-sref="p-a-prediction-score-detail({id:pAPredictionScore.id})">{{pAPredictionScore.id}}</a></td>
 								<td>{{pAPredictionScore.dist}}</td>

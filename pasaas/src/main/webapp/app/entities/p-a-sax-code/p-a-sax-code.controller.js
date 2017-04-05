@@ -5,10 +5,14 @@
         .module('pasaasApp')
         .controller('PASaxCodeController', PASaxCodeController);
 
-    PASaxCodeController.$inject = ['$scope', '$state', 'PASaxCode', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    PASaxCodeController.$inject = ['PASaxCodeSu', 'PAProjectSu', '$scope', '$state', 'PASaxCode', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function PASaxCodeController ($scope, $state, PASaxCode, ParseLinks, AlertService, paginationConstants) {
+    function PASaxCodeController (PASaxCodeSu, PAProjectSu, $scope, $state, PASaxCode, ParseLinks, AlertService, paginationConstants) {
         var vm = this;
+
+        vm.project_list = PAProjectSu.query();
+
+        vm.selected_project = {};
 
         vm.pASaxCodes = [];
         vm.loadPage = loadPage;
@@ -21,14 +25,24 @@
         vm.reset = reset;
         vm.reverse = true;
 
-        loadAll();
+        vm.get_patterns = function(){
+        	vm.pASaxCodes = [];
+        	loadAll();
+        }
+
 
         function loadAll () {
-            PASaxCode.query({
+            PASaxCodeSu.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
+                projectId: vm.selected_project.id,
                 sort: sort()
             }, onSuccess, onError);
+            // PASaxCode.query({
+            //     page: vm.page,
+            //     size: vm.itemsPerPage,
+            //     sort: sort()
+            // }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

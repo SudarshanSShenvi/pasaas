@@ -3,6 +3,7 @@ package com.pervazive.kheddah.service.impl;
 import com.pervazive.kheddah.service.PAPredictionScoreService;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAPredictionScoreRepository;
 import org.slf4j.Logger;
@@ -65,6 +66,14 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
     public Page<PAPredictionScore> findAll(Pageable pageable,  PAOrganization paOrganization) {
         log.debug("Request to get all PAPredictionScores");
         Page<PAPredictionScore> result = pAPredictionScoreRepository.findByPaorgps(paOrganization, pageable);
+        //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
+        return result;
+    }
+    
+    @Transactional(readOnly = true) 
+    public Page<PAPredictionScore> findAllProject(Pageable pageable,  PAProject paProject) {
+        log.debug("Request to get all PAPredictionScores");
+        Page<PAPredictionScore> result = pAPredictionScoreRepository.findByPaprops(paProject, pageable);
         //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
         return result;
     }

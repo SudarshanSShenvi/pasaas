@@ -11,6 +11,13 @@
 					<div class="ibox-title">
 						<h5 data-translate="pasaasApp.pAProject.home.title">Projects</h5>
 						<div ibox-tools></div>
+						<input 
+		                	type="text" 
+		                	ng-model="serachText" 
+		                	class="btn-xs pull-right" 
+		                	placeholder="Search..."
+		                >
+		                <span class="pull-right">&nbsp;</span>
 
 						<button 
 							class="btn btn-primary btn-xs pull-right" 
@@ -24,8 +31,8 @@
 
 					<div class="ibox-content">
 						<jhi-alert></jhi-alert>
-						<table 
-							datatable="ng" 
+						<!-- <table 
+							datatable="" 
 							class="table table-striped table-hover dataTables-example"
 						>
 							<thead>
@@ -36,11 +43,36 @@
 									<th><span data-translate="pasaasApp.pAProject.paorgpro">Paorgpro</span></th>
 									<th></th>
 								</tr>
+							</thead> -->
+						<table class="jh-table table table-striped table-hover">
+							<thead>
+								<tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+									<th jh-sort-by="id">
+										<span data-translate="global.field.id">ID</span> 
+										<span class="glyphicon glyphicon-sort"></span>
+									</th>
+									<th jh-sort-by="projectname">
+										<span data-translate="pasaasApp.pAProject.projectname">Projectname</span> 
+										<span class="glyphicon glyphicon-sort"></span>
+									</th>
+									<th jh-sort-by="description">
+										<span data-translate="pasaasApp.pAProject.description">Description</span> 
+										<span class="glyphicon glyphicon-sort"></span>
+									</th>
+									<th jh-sort-by="paorgpro.organization">
+										<span data-translate="pasaasApp.pAProject.paorgpro">Paorgpro</span> 
+										<span class="glyphicon glyphicon-sort"></span>
+									</th>
+									<th></th>
+								</tr>
 							</thead>
-							<tbody>
+							<tbody 
+	                        	infinite-scroll="vm.loadPage(vm.page + 1)" 
+	                        	infinite-scroll-disabled="vm.page >= vm.links['last']"
+	                        >
 								<tr 
 									class="gradeX" 
-									ng-repeat="pAProject in vm.pAProjects track by pAProject.id"
+									ng-repeat="pAProject in vm.pAProjects | filter : serachText track by pAProject.id"
 								>
 									<td><a ui-sref="p-a-project-detail({id:pAProject.id})">{{pAProject.id}}</a></td>
 									<td>{{pAProject.projectname}}</td>

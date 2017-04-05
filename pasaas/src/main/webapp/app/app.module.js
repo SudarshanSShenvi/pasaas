@@ -14,7 +14,7 @@
 			'ui.bootstrap',
 			'ui.bootstrap.datetimepicker',
 			'ui.router',
-			// 'infinite-scroll',
+			'infinite-scroll',
 			'angularMoment',
 			// jhipster-needle-angularjs-add-module JHipster will add new module here
 			'angular-loading-bar',
@@ -33,7 +33,7 @@
 			// 'summernote',                   // Text editor
 			// 'nouislider',                   // Slider
 			// 'datePicker',                   // Datapicker
-			// 'datatables',                   // Dynamic tables
+			'datatables',                   // Dynamic tables
 			// 'localytics.directives',        // Chosen select
 			// 'angles',                       // Charts js
 			// 'ui.map',                       // Google maps

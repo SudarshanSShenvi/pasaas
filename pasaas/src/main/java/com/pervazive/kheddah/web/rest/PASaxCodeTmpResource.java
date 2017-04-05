@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.PASaxCodeTmp;
 import com.pervazive.kheddah.service.PAOrganizationService;
+import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.PASaxCodeTmpService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -48,6 +50,9 @@ public class PASaxCodeTmpResource {
     
     @Inject
     private PAOrganizationService paOrganizationService;
+    
+    @Inject
+    private PAProjectService paProjectService;
 
 
     /**
@@ -109,6 +114,21 @@ public class PASaxCodeTmpResource {
         	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);*/
         
         Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAll(pageable, paOrganizationService.findOrganizationByName(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization()));
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-code-tmps");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/p-a-sax-code-tmps/suops/{projectId}")
+    @Timed
+    public ResponseEntity<List<PASaxCodeTmp>> getAllPASaxCodeTmpsProjects(@ApiParam Pageable pageable, @PathVariable Long projectId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PASaxCodeTmps");
+        
+      /*  if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);*/
+        PAProject paProject = paProjectService.findOne(projectId);
+        
+        Page<PASaxCodeTmp> page = pASaxCodeTmpService.findAllProject(pageable, paProject);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-code-tmps");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

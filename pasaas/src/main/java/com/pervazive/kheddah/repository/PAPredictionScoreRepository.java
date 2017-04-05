@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
+import com.pervazive.kheddah.domain.PAProject;
+
 import java.lang.Float;
 
 /**
@@ -20,6 +22,8 @@ public interface PAPredictionScoreRepository extends JpaRepository<PAPredictionS
 	Page<PAPredictionScore> findByPaorgpsIn(List<PAOrganization> paOrganization, Pageable pageable);
 	
 	Page<PAPredictionScore> findByPaorgps(PAOrganization paOrganization, Pageable pageable);
+	
+	Page<PAPredictionScore> findByPaprops(PAProject paProject, Pageable pageable);
 	
 	@Query(value = "INSERT INTO pasaas.pa_prediction_score (dist,alarmno,bcount,ccount,bscore,cscore,createdon,severity) "
 			+ "SELECT SUBSTRING_INDEX(AA.distalarm,'_',1), SUBSTRING_INDEX(AA.distalarm,'_',-1), AA.b AS bCount, BB.c AS cCount, "

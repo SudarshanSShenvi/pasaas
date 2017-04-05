@@ -3,6 +3,7 @@ package com.pervazive.kheddah.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAGeneralConfig;
 import com.pervazive.kheddah.service.PAGeneralConfigService;
+import com.pervazive.kheddah.service.dto.PAGeneralConfigDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
 
@@ -23,6 +24,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * REST controller for managing PAGeneralConfig.
@@ -87,12 +89,15 @@ public class PAGeneralConfigResource {
      */
     @GetMapping("/p-a-general-configs")
     @Timed
-    public ResponseEntity<List<PAGeneralConfig>> getAllPAGeneralConfigs(@ApiParam Pageable pageable)
+    public ResponseEntity<List<PAGeneralConfigDTO>> getAllPAGeneralConfigs(@ApiParam Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of PAGeneralConfigs");
         Page<PAGeneralConfig> page = pAGeneralConfigService.findAll(pageable);
+        List<PAGeneralConfigDTO> generalConfigDTOs = page.getContent().stream()
+        		.map(PAGeneralConfigDTO::new)
+        		 .collect(Collectors.toList());
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-general-configs");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return new ResponseEntity<>(generalConfigDTOs, headers, HttpStatus.OK);
     }
 
     /**
@@ -103,10 +108,11 @@ public class PAGeneralConfigResource {
      */
     @GetMapping("/p-a-general-configs/{id}")
     @Timed
-    public ResponseEntity<PAGeneralConfig> getPAGeneralConfig(@PathVariable Long id) {
+    public ResponseEntity<PAGeneralConfigDTO> getPAGeneralConfig(@PathVariable Long id) {
         log.debug("REST request to get PAGeneralConfig : {}", id);
-        PAGeneralConfig pAGeneralConfig = pAGeneralConfigService.findOne(id);
-        return Optional.ofNullable(pAGeneralConfig)
+        //PAGeneralConfig pAGeneralConfig = pAGeneralConfigService.findOne(id);
+        PAGeneralConfigDTO pAGeneralConfigDTO = new PAGeneralConfigDTO(pAGeneralConfigService.findOne(id));
+        return Optional.ofNullable(pAGeneralConfigDTO)
             .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))

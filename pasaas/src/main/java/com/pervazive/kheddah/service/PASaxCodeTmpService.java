@@ -1,6 +1,7 @@
 package com.pervazive.kheddah.service;
 
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.PASaxCodeTmp;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,8 @@ public interface PASaxCodeTmpService {
     Page<PASaxCodeTmp> findAll(Pageable pageable, String user);
 
     Page<PASaxCodeTmp> findAll(Pageable pageable, PAOrganization paOrganization);
+    
+    Page<PASaxCodeTmp> findAllProject(Pageable pageable, PAProject paProject);
     /**
      *  Get the "id" pASaxCodeTmp.
      *

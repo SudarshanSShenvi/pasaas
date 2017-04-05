@@ -50,5 +50,15 @@
     	return $resource(resourceUrl, {}, { 
     		'query': { method: 'GET', isArray: true}
     	}); }
+    
+    angular    
+    .module('pasaasApp')
+    .factory('PAPredictionScoreSu', PAPredictionScoreSu); 
+    
+    PAPredictionScoreSu.$inject = ['$resource', 'DateUtils']; function PAPredictionScoreSu ($resource, DateUtils) {
+    	var resourceUrl =  'api/p-a-prediction-scores/suops/:projectId';     
+    	return $resource(resourceUrl, {}, { 
+    		'query': { method: 'GET', isArray: true}
+    	}); }
     	
 })();

@@ -2,6 +2,7 @@ package com.pervazive.kheddah.service.impl;
 
 import com.pervazive.kheddah.service.PASaxCodeTmpService;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.PASaxCodeTmp;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PASaxCodeTmpRepository;
@@ -66,6 +67,14 @@ public class PASaxCodeTmpServiceImpl implements PASaxCodeTmpService{
     public Page<PASaxCodeTmp> findAll(Pageable pageable, PAOrganization paOrganization) {
         log.debug("Request to get all PASaxCodeTmps");
         Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findByPaorgsct(paOrganization, pageable);
+        //Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findAll(pageable);
+        return result;
+    }
+    
+    @Transactional(readOnly = true) 
+    public Page<PASaxCodeTmp> findAllProject(Pageable pageable, PAProject paProject) {
+        log.debug("Request to get all PASaxCodeTmps");
+        Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findByPaprosct(paProject, pageable);
         //Page<PASaxCodeTmp> result = pASaxCodeTmpRepository.findAll(pageable);
         return result;
     }

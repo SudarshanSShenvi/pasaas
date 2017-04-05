@@ -5,10 +5,14 @@
         .module('pasaasApp')
         .controller('PAPredictionScoreController', PAPredictionScoreController);
 
-    PAPredictionScoreController.$inject = ['$scope', '$state', 'PAPredictionScore', 'ParseLinks', 'AlertService', 'paginationConstants', 'PAPredictionScoreC1'];
+    PAPredictionScoreController.$inject = ['PAPredictionScoreSu', 'PAProjectSu', '$scope', '$state', 'PAPredictionScore', 'ParseLinks', 'AlertService', 'paginationConstants', 'PAPredictionScoreC1'];
 
-    function PAPredictionScoreController ($scope, $state, PAPredictionScore, ParseLinks, AlertService, paginationConstants, PAPredictionScoreC1) {
+    function PAPredictionScoreController (PAPredictionScoreSu, PAProjectSu, $scope, $state, PAPredictionScore, ParseLinks, AlertService, paginationConstants, PAPredictionScoreC1) {
         var vm = this;
+
+        vm.project_list = PAProjectSu.query();
+
+        vm.selected_project = {};
 
         vm.pAPredictionScores = [];
         vm.loadPage = loadPage;
@@ -21,15 +25,25 @@
         vm.reset = reset;
         vm.reverse = true;
 
-        loadAll();
-        loadAllC1();
+        // loadAllC1();
+
+        vm.get_patterns = function(){
+            vm.pAPredictionScores = [];
+            loadAll();
+        }
 
         function loadAll () {
-            PAPredictionScore.query({
+            PAPredictionScoreSu.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
+                projectId: vm.selected_project.id,
                 sort: sort()
             }, onSuccess, onError);
+            // PAPredictionScore.query({
+            //     page: vm.page,
+            //     size: vm.itemsPerPage,
+            //     sort: sort()
+            // }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

@@ -2,6 +2,8 @@ package com.pervazive.kheddah.service;
 
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
+import com.pervazive.kheddah.domain.PAProject;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -28,6 +30,8 @@ public interface PAPredictionScoreService {
     Page<PAPredictionScore> findAll(Pageable pageable, String user);
     
     Page<PAPredictionScore> findAll(Pageable pageable, PAOrganization paOrganization);
+    
+    Page<PAPredictionScore> findAllProject(Pageable pageable,  PAProject paProject);
     
     public Page<PAPredictionScore> findFailuresAbove(Pageable pageable,  Float probValStart, Float probValEnd );
     public Page<PAPredictionScore> findStableAbove(Pageable pageable,  Float probValStart, Float probValEnd);

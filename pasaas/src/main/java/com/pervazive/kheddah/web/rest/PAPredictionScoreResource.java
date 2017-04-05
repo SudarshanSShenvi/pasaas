@@ -28,8 +28,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAPredictionScoreService;
+import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.dto.PAPredictionScoreDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -50,6 +52,9 @@ public class PAPredictionScoreResource {
     
     @Inject
     private PAOrganizationService paOrganizationService;
+    
+    @Inject
+    private PAProjectService pAProjectService;
 
 
     /**
@@ -112,6 +117,31 @@ public class PAPredictionScoreResource {
         Page<PAPredictionScore> page = pAPredictionScoreService.findAll(pageable, paOrganizationService.findOrganizationByName(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization()) );
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    /**
+     * GET  /p-a-prediction-scores : get all the pAPredictionScores.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of pAPredictionScores in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/p-a-prediction-scores/suops/{projectId}")
+    @Timed
+    public ResponseEntity<List<PAPredictionScoreDTO>> getAllPAPredictionScoresForProject(@ApiParam Pageable pageable, @PathVariable Long projectId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAPredictionScores");
+        PAProject paProject = pAProjectService.findOne(projectId);
+       /* if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAPredictionScore", "Organization missing", "Create one to proceed")).body(null);*/
+        
+        Page<PAPredictionScore> page = pAPredictionScoreService.findAllProject(pageable, paProject);
+        List<PAPredictionScoreDTO> predictionScoreDTOList = page.getContent().stream()
+        		 .map(PAPredictionScoreDTO::new)
+                 .collect(Collectors.toList());
+        
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores/suops");
+        return new ResponseEntity<>(predictionScoreDTOList, headers, HttpStatus.OK);
     }
     
     @GetMapping("/p-a-prediction-scoresfailing/{probStart}/{probEnd:.+}")

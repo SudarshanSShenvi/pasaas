@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.PASaxCode;
 import com.pervazive.kheddah.service.PAOrganizationService;
+import com.pervazive.kheddah.service.PAProjectService;
 import com.pervazive.kheddah.service.PASaxCodeService;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -48,6 +50,9 @@ public class PASaxCodeResource {
     
     @Inject
     private PAOrganizationService paOrganizationService;
+    
+    @Inject
+    private PAProjectService paProjectService;
 
 
     /**
@@ -110,6 +115,28 @@ public class PASaxCodeResource {
         Page<PASaxCode> page = pASaxCodeService.findAll(pageable,paOrganizationService.findOrganizationByName(((PAOrganization) request.getSession().getAttribute("s_organization")).getOrganization()));
         
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-codes");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    /**
+     * GET  /p-a-sax-codes : get all the pASaxCodes.
+     *
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of pASaxCodes in body
+     * @throws URISyntaxException if there is an error to generate the pagination HTTP headers
+     */
+    @GetMapping("/p-a-sax-codes/suops/{projectId}")
+    @Timed
+    public ResponseEntity<List<PASaxCode>> getAllPASaxCodesProjects(@ApiParam Pageable pageable, @PathVariable Long projectId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PASaxCodes");
+        /*if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);*/
+        PAProject paProject = paProjectService.findOne(projectId);
+        
+        Page<PASaxCode> page = pASaxCodeService.findAllByProject(pageable, paProject);
+        
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-sax-codes/suops/");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

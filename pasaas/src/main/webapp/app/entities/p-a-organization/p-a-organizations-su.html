@@ -6,7 +6,13 @@
 					<h5 data-translate="pasaasApp.pAOrganization.home.title">Organizations</h5>
 
 					<div ibox-tools></div>
-
+					<input 
+	                	type="text" 
+	                	ng-model="serachText" 
+	                	class="btn-xs pull-right" 
+	                	placeholder="Search..."
+	                >
+	                <span class="pull-right">&nbsp;</span>
 					<button 
 						class="btn btn-primary btn-xs pull-right" 
 						ui-sref="p-a-organization.su.new"
@@ -18,8 +24,8 @@
 				</div>
 
 				<div class="ibox-content">
-					<table 
-						datatable="ng" 
+					<!-- <table 
+						datatable="" 
 						class="table table-striped table-hover dataTables-example"
 					>
 						<thead>
@@ -31,11 +37,44 @@
 								<th><span data-translate="pasaasApp.pAOrganization.pastatus">Pastatus</span></th>
 								<th><span data-translate="pasaasApp.pAOrganization.pabporg">Pabporg</span></th>
 							</tr>
-						</thead>
-						<tbody>
+						</thead> -->
+					<table class="jh-table table table-striped table-hover">
+						<thead>
+							<tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+								<th jh-sort-by="id">
+									<span data-translate="global.field.id">ID</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="organization">
+									<span data-translate="pasaasApp.pAOrganization.organization">Organization</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="validfrom">
+									<span data-translate="pasaasApp.pAOrganization.validfrom">Validfrom</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="validto">
+									<span data-translate="pasaasApp.pAOrganization.validto">Validto</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="pastatus">
+									<span data-translate="pasaasApp.pAOrganization.pastatus">Pastatus</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th jh-sort-by="pabporg.businessplan">
+									<span data-translate="pasaasApp.pAOrganization.pabporg">Pabporg</span> 
+									<span class="glyphicon glyphicon-sort"></span>
+								</th>
+								<th></th>
+							</tr>
+						</thead>	
+						<tbody 
+                        	infinite-scroll="vm.loadPage(vm.page + 1)" 
+                        	infinite-scroll-disabled="vm.page >= vm.links['last']"
+                        >
 							<tr 
 								class="gradeX" 
-								ng-repeat="pAOrganization in vm.pAOrganizations track by pAOrganization.id"
+								ng-repeat="pAOrganization in vm.pAOrganizations | filter : serachText track by pAOrganization.id"
 							>
 								<td><a ui-sref="p-a-organization-detail({id:pAOrganization.id})">{{pAOrganization.id}}</a></td>
 								<td>{{pAOrganization.organization}}</td>

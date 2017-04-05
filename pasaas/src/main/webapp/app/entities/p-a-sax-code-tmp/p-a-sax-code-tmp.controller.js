@@ -5,10 +5,14 @@
         .module('pasaasApp')
         .controller('PASaxCodeTmpController', PASaxCodeTmpController);
 
-    PASaxCodeTmpController.$inject = ['$scope', '$state', 'PASaxCodeTmp', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    PASaxCodeTmpController.$inject = ['PASaxCodeTmpSu', 'PAProjectSu', '$scope', '$state', 'PASaxCodeTmp', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function PASaxCodeTmpController ($scope, $state, PASaxCodeTmp, ParseLinks, AlertService, paginationConstants) {
+    function PASaxCodeTmpController (PASaxCodeTmpSu, PAProjectSu, $scope, $state, PASaxCodeTmp, ParseLinks, AlertService, paginationConstants) {
         var vm = this;
+
+        vm.project_list = PAProjectSu.query();
+
+        vm.selected_project = {};
 
         vm.pASaxCodeTmps = [];
         vm.loadPage = loadPage;
@@ -21,14 +25,24 @@
         vm.reset = reset;
         vm.reverse = true;
 
-        loadAll();
+        vm.get_patterns = function(){
+            vm.pASaxCodeTmps = [];
+            loadAll();
+        }
+
 
         function loadAll () {
-            PASaxCodeTmp.query({
+            PASaxCodeTmpSu.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
+                projectId: vm.selected_project.id,
                 sort: sort()
             }, onSuccess, onError);
+            // PASaxCodeTmp.query({
+            //     page: vm.page,
+            //     size: vm.itemsPerPage,
+            //     sort: sort()
+            // }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

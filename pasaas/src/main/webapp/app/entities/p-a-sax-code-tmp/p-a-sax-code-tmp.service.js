@@ -23,4 +23,18 @@
             'update': { method:'PUT' }
         });
     }
+    
+    angular
+    .module('pasaasApp')
+    .factory('PASaxCodeTmpSu', PASaxCodeTmpSu);
+
+    PASaxCodeTmpSu.$inject = ['$resource'];
+
+function PASaxCodeTmpSu ($resource) {
+    var resourceUrl =  'api/p-a-sax-code-tmps/suops/:projectId';
+
+    return $resource(resourceUrl, {}, {
+        'query': { method: 'GET', isArray: true}
+    });
+}
 })();

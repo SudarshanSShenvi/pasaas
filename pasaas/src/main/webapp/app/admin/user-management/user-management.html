@@ -6,6 +6,13 @@
                     <h5 data-translate="userManagement.home.title">Users</h5>
 
                     <div ibox-tools></div>
+                    <input 
+                        type="text" 
+                        ng-model="serachText" 
+                        class="btn-xs pull-right" 
+                        placeholder="Search..."
+                    >
+                    <span class="pull-right">&nbsp;</span>
                     <button 
                         class="btn btn-primary btn-xs pull-right" 
                         ui-sref="user-management.su.new"
@@ -15,8 +22,8 @@
                 </div>
 
                 <div class="ibox-content">
-                    <table 
-                        datatable="ng" 
+                    <!-- <table 
+                        datatable="" 
                         class="table table-striped table-hover dataTables-example"
                     >
                         <thead>
@@ -27,16 +34,47 @@
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th><span data-translate="userManagement.email">Email</span></th>
-                                <!-- <th><span data-translate="userManagement.langKey">Lang Key</span></th> -->
                                 <th><span data-translate="userManagement.profiles">Profiles</span></th>
                                 <th><span data-translate="userManagement.organizations">Organizations</span></th>
                                 <th></th>
                             </tr>
+                        </thead> -->
+                    <table class="jh-table table table-striped table-hover">
+                        <thead>
+                            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                                <th jh-sort-by="id">
+                                    <span data-translate="global.field.id">ID</span>
+                                    <span class="glyphicon glyphicon-sort"></span>
+                                </th>
+                                <th>Image</th>
+                                <th jh-sort-by="login">
+                                    <span data-translate="userManagement.login">Login</span> 
+                                    <span class="glyphicon glyphicon-sort"></span>
+                                </th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th jh-sort-by="email">
+                                    <span data-translate="userManagement.email">Email</span> 
+                                    <span class="glyphicon glyphicon-sort"></span>
+                                </th>
+                                <th jh-sort-by="profiles">
+                                    <span data-translate="userManagement.profiles">Profiles</span> 
+                                    <span class="glyphicon glyphicon-sort"></span>
+                                </th>
+                                <th jh-sort-by="organizations">
+                                    <span data-translate="userManagement.organizations">Organizations</span> 
+                                    <span class="glyphicon glyphicon-sort"></span>
+                                </th>
+                            </tr>
                         </thead>
+                       <!--  <tbody 
+                            infinite-scroll="vm.loadPage(vm.page + 1)" 
+                            infinite-scroll-disabled="vm.page >= vm.links['last']"
+                        > -->
                         <tbody>
                             <tr 
                                 class="gradeX" 
-                                ng-repeat="user in vm.users track by user.id"
+                                ng-repeat="user in vm.users | filter : serachText track by user.id"
                             >
 				            	<td>
 				            		<a ui-sref="user-management-detail({login:user.login})">{{user.id}}</a>
