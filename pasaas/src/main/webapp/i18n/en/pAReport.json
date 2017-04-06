@@ -16,11 +16,12 @@
             "detail": {
                 "title": "Report"
             },
-            "reporttype": "Reporttype",
-            "reportname": "Reportname",
-            "reportparms": "Reportparms",
+            "reporttype": "Report Type",
+            "reportname": "Report name",
+            "reportparms": "Report parameters",
             "pastatus": "Status",
-            "paorgrep": "Paorgrep"
+            "paorgrep": "Organization",
+            "projectId": "Project Id"
         }
     }
 }

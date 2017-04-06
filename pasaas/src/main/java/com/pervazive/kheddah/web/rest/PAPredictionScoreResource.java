@@ -144,6 +144,38 @@ public class PAPredictionScoreResource {
         return new ResponseEntity<>(predictionScoreDTOList, headers, HttpStatus.OK);
     }
     
+    @GetMapping("/p-a-prediction-scores/chartb/{projectId}")
+    @Timed
+    public ResponseEntity<List<PAPredictionScoreDTO>> getAllPAPredictionScoresForChartB(@ApiParam Pageable pageable, @PathVariable Long projectId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAPredictionScores");
+        PAProject paProject = pAProjectService.findOne(projectId);
+        
+        Page<PAPredictionScore> page = pAPredictionScoreService.findAllPredictionsForChartB(pageable, paProject);
+        List<PAPredictionScoreDTO> predictionScoreDTOList = page.getContent().stream()
+        		 .map(PAPredictionScoreDTO::new)
+                 .collect(Collectors.toList());
+        
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores/chartb");
+        return new ResponseEntity<>(predictionScoreDTOList, headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/p-a-prediction-scores/chartc/{projectId}")
+    @Timed
+    public ResponseEntity<List<PAPredictionScoreDTO>> getAllPAPredictionScoresForChartC(@ApiParam Pageable pageable, @PathVariable Long projectId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAPredictionScores");
+        PAProject paProject = pAProjectService.findOne(projectId);
+        
+        Page<PAPredictionScore> page = pAPredictionScoreService.findAllPredictionsForChartC(pageable, paProject);
+        List<PAPredictionScoreDTO> predictionScoreDTOList = page.getContent().stream()
+        		 .map(PAPredictionScoreDTO::new)
+                 .collect(Collectors.toList());
+        
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores/chartc");
+        return new ResponseEntity<>(predictionScoreDTOList, headers, HttpStatus.OK);
+    }
+    
     @GetMapping("/p-a-prediction-scoresfailing/{probStart}/{probEnd:.+}")
     @Timed
     public ResponseEntity<List<PAPredictionScoreDTO>> getAllFailingHighProbElements(@PathVariable String probStart, @PathVariable String probEnd, @ApiParam Pageable pageable)

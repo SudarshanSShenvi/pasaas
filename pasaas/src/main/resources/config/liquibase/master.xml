@@ -50,5 +50,6 @@
     <include file="classpath:config/liquibase/changelog/20170203072814_added_entity_constraints_PASchedulerInterval.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170203073225_added_entity_constraints_PAAlarmRCA.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170203074331_added_entity_constraints_PANEDetails.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170406105903_added_entity_Issues.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

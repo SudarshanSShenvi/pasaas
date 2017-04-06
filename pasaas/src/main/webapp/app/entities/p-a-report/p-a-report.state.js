@@ -11,7 +11,7 @@
         $stateProvider
         .state('p-a-report', {
             parent: 'entity',
-            url: '/p-a-report',
+            url: '/p-a-report/{id}/{organization}',
             data: {
                 authorities: ['ROLE_USER'],
                 pageTitle: 'pasaasApp.pAReport.home.title'
@@ -29,6 +29,19 @@
                     $translatePartialLoader.addPart('pAStatus');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
+                }],
+                previousState: ["$state", "$stateParams", function($state, $stateParams) {
+                    var orgn = $stateParams.organization;
+                    var project_id = $stateParams.id;
+                    var currentStateData = {
+                        coming_project_id: project_id,
+                        // name: 'p-a-organization.name({organizationName : "Vodafone"})',
+                        // name: 'p-a-organization.name({organizationName : "'+ orgn +'"})',
+                        name: $state.current.name + '({organizationName : "' + orgn + '"})',
+                        params: $state.params,
+                        url: $state.href($state.current.name, $state.params)
+                    };
+                    return currentStateData;
                 }]
             }
         })

@@ -25,6 +25,12 @@ public interface PAPredictionScoreRepository extends JpaRepository<PAPredictionS
 	
 	Page<PAPredictionScore> findByPaprops(PAProject paProject, Pageable pageable);
 	
+	@Query(value = "SELECT paPredictionScore FROM PAPredictionScore paPredictionScore where paPredictionScore.cscore != ?1 AND paPredictionScore.paprops.id = ?2")
+	Page<PAPredictionScore> findCscorePredictions(Float cVal, Long paProject, Pageable pageable);
+	
+	@Query(value = "SELECT paPredictionScore FROM PAPredictionScore paPredictionScore where paPredictionScore.bscore != ?1 AND paPredictionScore.paprops.id = ?2")
+	Page<PAPredictionScore> findBscorePredictions(Float cVal, Long paProject, Pageable pageable);
+	
 	@Query(value = "INSERT INTO pasaas.pa_prediction_score (dist,alarmno,bcount,ccount,bscore,cscore,createdon,severity) "
 			+ "SELECT SUBSTRING_INDEX(AA.distalarm,'_',1), SUBSTRING_INDEX(AA.distalarm,'_',-1), AA.b AS bCount, BB.c AS cCount, "
 			+ "ROUND(IFNULL((AA.b / (AA.b + BB.c)), 0), 3) AS bScore, ROUND(IFNULL((BB.c / (AA.b + BB.c)), 0), 3) AS cScore, now(), AA.severity "

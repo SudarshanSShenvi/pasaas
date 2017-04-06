@@ -23,4 +23,18 @@
             'update': { method:'PUT' }
         });
     }
+    
+    angular
+    .module('pasaasApp')
+    .factory('PAReportPro', PAReportPro);
+
+    PAReportPro.$inject = ['$resource'];
+
+function PAReportPro ($resource) {
+    var resourceUrl =  'api/p-a-reports/project/:projectId';
+
+    return $resource(resourceUrl, {}, {
+        'query': { method: 'GET', isArray: true}
+    });
+}
 })();

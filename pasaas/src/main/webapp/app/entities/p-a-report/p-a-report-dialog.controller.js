@@ -36,7 +36,7 @@
         function onSaveSuccess (result) {
             swal({
                 title: "Success!",
-                text: "Record Edited Successfully",
+                text: "Your request for report is submitted. \n Please check after sometime",
                 type: "success"
             });
             $scope.$emit('pasaasApp:pAReportUpdate', result);

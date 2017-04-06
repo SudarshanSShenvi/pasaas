@@ -78,6 +78,22 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
         return result;
     }
     
+    @Transactional(readOnly = true) 
+    public Page<PAPredictionScore> findAllPredictionsForChartC(Pageable pageable,  PAProject paProject) {
+        log.debug("Request to get all PAPredictionScores");
+        Page<PAPredictionScore> result = pAPredictionScoreRepository.findCscorePredictions(1F, paProject.getId(), pageable);
+        //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
+        return result;
+    }
+    
+    @Transactional(readOnly = true) 
+    public Page<PAPredictionScore> findAllPredictionsForChartB(Pageable pageable,  PAProject paProject) {
+        log.debug("Request to get all PAPredictionScores");
+        Page<PAPredictionScore> result = pAPredictionScoreRepository.findBscorePredictions(1F, paProject.getId(), pageable);
+        //Page<PAPredictionScore> result = pAPredictionScoreRepository.findAll(pageable);
+        return result;
+    }
+    
     
     /**
      *  Get all the pAPredictionScores.

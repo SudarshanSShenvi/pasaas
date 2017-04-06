@@ -78,6 +78,37 @@ public class PAReportResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReport", "idexists", "A new pAReport cannot already have an ID")).body(null);
         }
         PAReport result = pAReportService.save(pAReport);
+        
+        ExecutorService executorService = Executors.newFixedThreadPool(8);
+	    Future<Long> future1 = executorService.submit(new Callable<Long>() {
+	        @Override
+	        public Long call() throws Exception {
+	        			        	
+	        	  		log.debug(" ===================== Invoking DB handler");
+	        	    	DBOperationsHandler dbOperationsHandler = new DBOperationsHandler();
+			        	
+			        	Connection connection = dbOperationsHandler.getConnection(environment.getProperty("spring.datasource.url"), 
+			        			environment.getProperty("spring.datasource.username"), environment.getProperty("spring.datasource.password"));
+			        	dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.exportCSVPredictions, result.getPaorgrep().getId(), result.getProjectId(), 
+			        			"/tmp/reportfiles/file_"+result.getId()+"_"+result.getPaorgrep().getId()+"_"+result.getProjectId()+".csv");
+			        	// dbOperationsHandler.executeAnyQuery(connection, dbOperationsHandler.exportTSVPredictions, pAReport.getPaorgrep().getId(), 1L, 
+			        	// "/tmp/reportfiles/file_"+pAReport.getPaorgrep().getId()+"_1.tsv");
+			        	log.debug("===================== File export complete");
+			        	File downloadFile = new File("/tmp/reportfiles/file_"+result.getId()+"_"+result.getPaorgrep().getId()+"_"+result.getProjectId()+".csv");
+			            FileInputStream inputStream = new FileInputStream(downloadFile);
+
+			            byte[] reportfile = IOUtils.toByteArray(inputStream);
+			            
+			            result.setReportfile(reportfile);
+			            updatePAReport(result);
+			            log.debug("===================== Attached");
+			            inputStream.close();
+			            
+			            return 0L;
+	        }
+	    });
+	    if(future1.isDone())  log.debug("===================== Async Process completed");
+	    
         return ResponseEntity.created(new URI("/api/p-a-reports/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("pAReport", result.getId().toString()))
             .body(result);
@@ -100,6 +131,8 @@ public class PAReportResource {
             return createPAReport(pAReport);
         }
         PAReport result = pAReportService.save(pAReport);
+        
+	    
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("pAReport", pAReport.getId().toString()))
             .body(result);
@@ -123,6 +156,18 @@ public class PAReportResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reports");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    
+    @GetMapping("/p-a-reports/project/{projectId}")
+    @Timed
+    public ResponseEntity<List<PAReport>> getAllPAReportsbyProject(@ApiParam Pageable pageable, @PathVariable Long projectId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAReports");
+        /*if(CurrentOrganization.getCurrentOrganization() == null) 
+        	return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("pAReliabilityScore", "Organization missing", "Create one to proceed")).body(null);*/
+        Page<PAReport> page = pAReportService.findAllByProject(pageable, projectId);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-reports/project");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /p-a-reports/:id : get the "id" pAReport.
@@ -135,7 +180,7 @@ public class PAReportResource {
     public ResponseEntity<PAReport> getPAReport(@PathVariable Long id) {
         log.debug("REST request to get PAReport : {}", id);
         PAReport pAReport = pAReportService.findOne(id);
-        ExecutorService executorService = Executors.newFixedThreadPool(8);
+        /*ExecutorService executorService = Executors.newFixedThreadPool(8);
 	    Future<Long> future1 = executorService.submit(new Callable<Long>() {
 	        @Override
 	        public Long call() throws Exception {
@@ -160,7 +205,7 @@ public class PAReportResource {
 			            
 			            return 0L;
 	        }
-	    });
+	    });*/
         
         
         return Optional.ofNullable(pAReport)

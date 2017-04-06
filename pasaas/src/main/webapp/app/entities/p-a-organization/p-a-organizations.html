@@ -82,52 +82,63 @@
 						<h5>Organization Summary</h5>
 
 						<div ibox-tools></div>
-						<button 
-							class="btn btn-primary btn-xs pull-right" 
-							ui-sref="p-a-organization.new({organization:vm.pAOrganization.organization})"
-						>
-							Create New Organization
-						</button>
-						<span class="pull-right">&nbsp;</span>
-						<div class="btn-group flex-btn-group-container pull-right">
-							<button 
-								type="submit"
-								ui-sref="p-a-organization-detail({id:vm.pAOrganization.id, organization:vm.pAOrganization.organization})"
-								class="btn btn-info btn-xs"
-							>
-								<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganization.id})" -->
-								<span class="glyphicon glyphicon-eye-open"></span>
-								<span 
-									class="hidden-xs hidden-sm" 
-									data-translate="entity.action.view"
-								>View</span>
-							</button>
-							<button 
-								type="submit"
-								ui-sref="p-a-organization.edit({id:vm.pAOrganization.id, organization:vm.pAOrganization.organization})"
-								class="btn btn-primary btn-xs"
-							>
-								<!-- ui-sref="p-a-organization.edit({id:vm.pAOrganization.id})" -->
-								<span class="glyphicon glyphicon-pencil"></span>
-								<span 
-									class="hidden-xs hidden-sm" 
-									data-translate="entity.action.edit"
-								></span>
-							</button>
-							<!-- <button 
-								type="submit"
-								ui-sref="p-a-organization.delete({id:vm.pAOrganization.id})"
-								class="btn btn-danger btn-xs"
-							>
-								<span class="glyphicon glyphicon-remove-circle"></span>
-								<span 
-									class="hidden-xs hidden-sm" 
-									data-translate="entity.action.delete"
-								></span>
-							</button> -->
-						</div>
 					</div>
 					<div class="ibox-content">
+						<div class="row">
+							<div class="col-md-6"></div>
+							<!-- <div class="col-md-2">
+							
+							</div> -->
+							<div class="col-md-3">
+								<div class="btn-group flex-btn-group-container pull-right">
+									<button 
+										type="submit"
+										ui-sref="p-a-organization-detail({id:vm.pAOrganization.id, organization:vm.pAOrganization.organization})"
+										class="btn btn-info btn-xs"
+									>
+										<!-- ui-sref="p-a-organization-detail({id:vm.pAOrganization.id})" -->
+										<span class="glyphicon glyphicon-eye-open"></span>
+										<span 
+											class="hidden-xs hidden-sm" 
+											data-translate="entity.action.view"
+										>View</span>
+									</button>
+									<button 
+										type="submit"
+										ui-sref="p-a-organization.edit({id:vm.pAOrganization.id, organization:vm.pAOrganization.organization})"
+										class="btn btn-primary btn-xs"
+									>
+										<!-- ui-sref="p-a-organization.edit({id:vm.pAOrganization.id})" -->
+										<span class="glyphicon glyphicon-pencil"></span>
+										<span 
+											class="hidden-xs hidden-sm" 
+											data-translate="entity.action.edit"
+										></span>
+									</button>
+									<!-- <button 
+										type="submit"
+										ui-sref="p-a-organization.delete({id:vm.pAOrganization.id})"
+										class="btn btn-danger btn-xs"
+									>
+										<span class="glyphicon glyphicon-remove-circle"></span>
+										<span 
+											class="hidden-xs hidden-sm" 
+											data-translate="entity.action.delete"
+										></span>
+									</button> -->
+								</div>
+							</div>
+							<div class="col-md-3">
+								<button 
+									class="btn btn-primary btn-block btn-xs pull-right" 
+									ui-sref="p-a-organization.new({organization:vm.pAOrganization.organization})"
+								>
+									Create New Organization
+								</button>
+							</div>
+						</div>
+						<span class="pull-right">&nbsp;</span>
+						
 
 						<div class="row" style="min-height: 90px">
 							<div class="col-lg-2">

@@ -6,24 +6,37 @@
 					<h5 data-translate="pasaasApp.pAOrganization.home.title">Organizations</h5>
 
 					<div ibox-tools></div>
-					<input 
-	                	type="text" 
-	                	ng-model="serachText" 
-	                	class="btn-xs pull-right" 
-	                	placeholder="Search..."
-	                >
-	                <span class="pull-right">&nbsp;</span>
-					<button 
-						class="btn btn-primary btn-xs pull-right" 
-						ui-sref="p-a-organization.su.new"
-					>
-						<span  data-translate="pasaasApp.pAOrganization.home.createLabel">
-							Create new PA Organization
-						</span>
-					</button>
+					
 				</div>
 
-				<div class="ibox-content">
+				<div class="ibox-content table-responsive">
+					<div class="row">
+						<div class="col-md-6"></div>
+						<div class="col-md-2">
+						
+						</div>
+						<div class="col-md-2">
+							<button 
+								class="btn btn-primary btn-xs btn-block pull-right" 
+								ui-sref="p-a-organization.su.new"
+							>
+								<span  data-translate="pasaasApp.pAOrganization.home.createLabel">
+									Create new PA Organization
+								</span>
+							</button>
+						</div>
+						<div class="col-md-2">
+							<input 
+			                	type="text" 
+			                	ng-model="serachText" 
+			                	class="btn-xs btn-block pull-right" 
+			                	placeholder="Search..."
+			                >
+						</div>
+					</div>
+					
+	                <!-- <span class="pull-right">&nbsp;</span> -->
+					
 					<!-- <table 
 						datatable="" 
 						class="table table-striped table-hover dataTables-example"

@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myIssuesLabel" translate="imgcheckApp.issues.home.createOrEditLabel">Create or edit a Issues</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.issues.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.issues.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="imgcheckApp.issues.category" for="field_category">Category</label>
+            <select class="form-control" name="category" ng-model="vm.issues.category" id="field_category">
+                <option value="Issue" translate="imgcheckApp.CategoryType.Issue">Issue</option>
+                <option value="NewFeatureRequest" translate="imgcheckApp.CategoryType.NewFeatureRequest">New-Feature</option>
+                <option value="FeatureEnhancement" translate="imgcheckApp.CategoryType.FeatureEnhancement">Feature-Enhancement</option>
+                <option value="UI" translate="imgcheckApp.CategoryType.UI">UI</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="imgcheckApp.issues.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                    ng-model="vm.issues.description"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAttachment($file, vm.issues)">
+            <label class="control-label" translate="imgcheckApp.issues.attachment" for="field_attachment">Attachment</label>
+            <div>
+                <div ng-if="vm.issues.attachment" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.issues.attachmentContentType, vm.issues.attachment)" translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.issues.attachmentContentType}}, {{vm.byteSize(vm.issues.attachment)}}</span>
+                    <button ng-click="vm.issues.attachment=null;vm.issues.attachmentContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAttachment($file, vm.issues)" translate="entity.action.addblob">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="attachment" id="field_attachment"
+                    ng-model="vm.issues.attachment"
+                     />
+            <input type="hidden" class="form-control" name="attachmentContentType" id="field_attachmentContentType"
+                    ng-model="vm.issues.attachmentContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="imgcheckApp.issues.details" for="field_details">Details</label>
+                <textarea class="form-control" name="details" id="field_details"
+                    ng-model="vm.issues.details"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

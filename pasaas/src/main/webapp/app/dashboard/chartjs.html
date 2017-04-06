@@ -1,6 +1,6 @@
-<!-- <div class="row wrapper border-bottom white-bg page-heading">
+<div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>Flot Charts</h2>
+        <h2>Chart.js</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">Home</a>
@@ -9,27 +9,27 @@
                 <a>Graphs</a>
             </li>
             <li class="active">
-                <strong>Flot Charts</strong>
+                <strong>Chart</strong>
             </li>
         </ol>
     </div>
     <div class="col-lg-2">
 
     </div>
-</div> -->
-<div class="wrapper wrapper-content animated fadeInRight" ng-controller="flotChartCtrl as charts">
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="chartJsCtrl as chart">
     <div class="row">
         <div class="col-lg-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Bar Chart Example
+                    <h5>Line Chart Example
                         <small>With custom colors.</small>
                     </h5>
                     <div ibox-tools></div>
                 </div>
                 <div class="ibox-content">
-                    <div class="flot-chart">
-                        <div flot class="flot-chart-content" dataset="charts.flotChartData" options="charts.flotBarOptions"></div>
+                    <div>
+                        <canvas linechart options="chart.lineOptions" data="chart.lineData" height="140" responsive=true ></canvas>
                     </div>
                 </div>
             </div>
@@ -37,15 +37,13 @@
         <div class="col-lg-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Line Cahrt Example</h5>
-
+                    <h5>Bar Chart Example</h5>
                     <div ibox-tools></div>
                 </div>
                 <div class="ibox-content">
-
-                    <div class="flot-chart">
-                        <div flot class="flot-chart-content" dataset="charts.flotChartData" options="charts.flotLineOptions"></div>
-                    </div>
+                        <div>
+                            <canvas barchart options="chart.barOptions" data="chart.barData" height="140" responsive=true ></canvas>
+                        </div>
                 </div>
             </div>
         </div>
@@ -54,13 +52,13 @@
         <div class="col-lg-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Pie Chart Example</h5>
+                    <h5>Polar Area</h5>
 
                     <div ibox-tools></div>
                 </div>
                 <div class="ibox-content">
-                    <div class="flot-chart">
-                        <div flot class="flot-chart-content" dataset="charts.flotPieData" options="charts.flotPieOptions"></div>
+                    <div>
+                        <canvas polarchart options="chart.polarOptions" data="chart.polarData" height="140" responsive=true></canvas>
                     </div>
                 </div>
             </div>
@@ -68,34 +66,31 @@
         <div class="col-lg-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Line Area</h5>
+                    <h5>Pie </h5>
 
                     <div ibox-tools></div>
                 </div>
                 <div class="ibox-content">
-
-                    <div class="flot-chart">
-                        <div flot class="flot-chart-content" dataset="charts.flotLineAreaData" options="charts.flotLineAreaOptions"></div>
+                    <div>
+                        <canvas doughnutchart options="chart.doughnutOptions" data="chart.doughnutData" height="140" responsive=true></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Multiple Axes Line Chart Example </h5>
-
+                    <h5>Radar Chart Example</h5>
                     <div ibox-tools></div>
                 </div>
                 <div class="ibox-content">
-                    <div class="flot-chart">
-                        <div flot class="flot-chart-content" dataset="charts.flotMultiData" options="charts.flotMultiOptions"></div>
+                    <div>
+                        <canvas radarchart options="chart.radarOptions" data="chart.radarData" responsive=true></canvas>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>

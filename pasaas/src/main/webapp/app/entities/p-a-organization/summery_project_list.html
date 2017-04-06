@@ -51,19 +51,30 @@
 	                    <div ibox-tools></div>
 	                    <!-- <pre>{{vm.pAOrganization.organization | json}}</pre> -->
 	                    <!-- <pre>{{vm.pAOrganization | json}}</pre> -->
-	                    <button 
-	                    	class="btn btn-primary btn-xs pull-right" 
-	                    	ng-disabled="vm.pAOrganization.paprojects.length >= vm.pAOrganization.pabporg.projects"
-	                    	ui-sref="p-a-project.new({organization:vm.pAOrganization.organization})"
-	                    >
-	                    	<!-- ng-click="vm.calling_new_project()" -->
-	                    	<!-- ui-sref="p-a-project.new({org:'Vodafone'})" -->
-	                    	<!-- ui-sref="p-a-project.new({org:vm.pAOrganization.organization})" -->
-	                    <!-- <a ui-sref="p-a-organization.name({organizationName:each_org})"> -->
-							Create New Project
-						</button>
 					</div>
-		            <div class="ibox-content" style="min-height:120px">
+		            <div class="ibox-content table-responsive" style="min-height:120px">
+		            	<div class="row">
+							<div class="col-md-6"></div>
+							<div class="col-md-2">
+								
+							</div>
+							<div class="col-md-2">
+								
+							</div>
+							<div class="col-md-2">
+								<button 
+			                    	class="btn btn-primary btn-xs btn-block pull-right" 
+			                    	ng-disabled="vm.pAOrganization.paprojects.length >= vm.pAOrganization.pabporg.projects"
+			                    	ui-sref="p-a-project.new({organization:vm.pAOrganization.organization})"
+			                    >
+			                    	<!-- ng-click="vm.calling_new_project()" -->
+			                    	<!-- ui-sref="p-a-project.new({org:'Vodafone'})" -->
+			                    	<!-- ui-sref="p-a-project.new({org:vm.pAOrganization.organization})" -->
+			                    <!-- <a ui-sref="p-a-organization.name({organizationName:each_org})"> -->
+									Create New Project
+								</button>
+							</div>
+	                    
 		            	<!-- <pre>{{vm.pAOrganization.pausersObj | json}}</pre> -->
 		            	<!-- <div class="col-md-12">
 							<div class="input-group">
@@ -126,7 +137,7 @@
 											<button 
 												type="submit"
 												class="btn btn-success btn-sm"
-												ui-sref="p-a-project-detail({id:each_project.id, organization:vm.pAOrganization.organization})"
+												ui-sref="dashboard({id:each_project.id, organization:vm.pAOrganization.organization})"
 												ng-disabled="each_project.pastatus == 'Inactive'"
 											>
 												<span class="fa fa-tachometer"></span>
@@ -138,7 +149,7 @@
 											<button 
 												type="submit"
 												class="btn btn-warning btn-sm"
-												ui-sref="p-a-project-detail({id:each_project.id, organization:vm.pAOrganization.organization})"
+												ui-sref="p-a-report({id:each_project.id, organization:vm.pAOrganization.organization})"
 												ng-disabled="each_project.pastatus == 'Inactive'"
 											>
 												<span class="fa fa-area-chart"></span>
@@ -173,7 +184,7 @@
 											<button 
 												type="button"
 												class="btn btn-danger btn-sm"
-												ng-click="vm.delete_project({id:each_project.id})"
+												ng-click="vm.delete_project(each_project.id)"
 											>
 												<!-- ui-sref="p-a-project.delete({id:each_project.id})" -->
 												<span class="glyphicon glyphicon-remove-circle"></span>

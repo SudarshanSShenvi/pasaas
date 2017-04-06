@@ -60,5 +60,25 @@
     	return $resource(resourceUrl, {}, { 
     		'query': { method: 'GET', isArray: true}
     	}); }
+    
+    angular    
+    .module('pasaasApp')
+    .factory('PAPredictionScoreChartB', PAPredictionScoreChartB); 
+    
+    PAPredictionScoreChartB.$inject = ['$resource', 'DateUtils']; function PAPredictionScoreChartB ($resource, DateUtils) {
+    	var resourceUrl =  'api/p-a-prediction-scores/chartb/:projectId';     
+    	return $resource(resourceUrl, {}, { 
+    		'query': { method: 'GET', isArray: true}
+    	}); }
+    
+    angular    
+    .module('pasaasApp')
+    .factory('PAPredictionScoreChartC', PAPredictionScoreChartC); 
+    
+    PAPredictionScoreChartC.$inject = ['$resource', 'DateUtils']; function PAPredictionScoreChartC ($resource, DateUtils) {
+    	var resourceUrl =  'api/p-a-prediction-scores/chartc/:projectId';     
+    	return $resource(resourceUrl, {}, { 
+    		'query': { method: 'GET', isArray: true}
+    	}); }
     	
 })();

@@ -28,6 +28,8 @@ public interface PAReportService {
     Page<PAReport> findAll(Pageable pageable, String user);
 
     Page<PAReport> findAll(Pageable pageable, PAOrganization paOrganization);
+    
+    Page<PAReport> findAllByProject(Pageable pageable, Long projectId);
     /**
      *  Get the "id" pAReport.
      *

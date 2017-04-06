@@ -1,0 +1,38 @@
+
+<div>
+    <h2><span translate="imgcheckApp.issues.detail.title">Issues</span> {{vm.issues.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="imgcheckApp.issues.category">Category</span></dt>
+        <dd>
+            <span translate="{{'imgcheckApp.CategoryType.' + vm.issues.category}}">{{vm.issues.category}}</span>
+        </dd>
+        <dt><span translate="imgcheckApp.issues.description">Description</span></dt>
+        <dd>
+            <span>{{vm.issues.description}}</span>
+        </dd>
+        <dt><span translate="imgcheckApp.issues.attachment">Attachment</span></dt>
+        <dd>
+            <div ng-if="vm.issues.attachment">
+                <a ng-click="vm.openFile(vm.issues.attachmentContentType, vm.issues.attachment)" translate="entity.action.open">open</a>
+                {{vm.issues.attachmentContentType}}, {{vm.byteSize(vm.issues.attachment)}}
+            </div>
+        </dd>
+        <dt><span translate="imgcheckApp.issues.details">Details</span></dt>
+        <dd>
+            <span>{{vm.issues.details}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="issues-detail.edit({id:vm.issues.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -68,6 +68,14 @@ public class PAReportServiceImpl implements PAReportService{
         //Page<PAReport> result = pAReportRepository.findAll(pageable);
         return result;
     }
+    
+    @Transactional(readOnly = true) 
+    public Page<PAReport> findAllByProject(Pageable pageable, Long projectId) {
+        log.debug("Request to get all PAReports");
+        Page<PAReport> result = pAReportRepository.findByProjectId(projectId, pageable);
+        //Page<PAReport> result = pAReportRepository.findAll(pageable);
+        return result;
+    }
 
     /**
      *  Get one pAReport by id.

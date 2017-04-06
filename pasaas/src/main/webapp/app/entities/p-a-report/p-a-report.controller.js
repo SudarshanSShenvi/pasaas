@@ -5,10 +5,13 @@
         .module('pasaasApp')
         .controller('PAReportController', PAReportController);
 
-    PAReportController.$inject = ['$scope', '$state', 'PAReport', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    PAReportController.$inject = ['PAReportPro', 'previousState', '$scope', '$state', 'PAReport', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function PAReportController ($scope, $state, PAReport, ParseLinks, AlertService, paginationConstants) {
+    function PAReportController (PAReportPro, previousState, $scope, $state, PAReport, ParseLinks, AlertService, paginationConstants) {
         var vm = this;
+
+        vm.previousState = previousState.name;
+        $scope.project_id = previousState.coming_project_id;
 
         vm.pAReports = [];
         vm.loadPage = loadPage;
@@ -24,11 +27,17 @@
         loadAll();
 
         function loadAll () {
-            PAReport.query({
+            PAReportPro.query({
                 page: vm.page,
                 size: vm.itemsPerPage,
+                projectId: $scope.project_id,
                 sort: sort()
             }, onSuccess, onError);
+            // PAReport.query({
+            //     page: vm.page,
+            //     size: vm.itemsPerPage,
+            //     sort: sort()
+            // }, onSuccess, onError);
             function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
                 if (vm.predicate !== 'id') {

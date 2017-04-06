@@ -1,0 +1,65 @@
+<div>
+    <h2 translate="imgcheckApp.issues.home.title">Issues</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="issues.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="imgcheckApp.issues.home.createLabel">
+                        Create new Issues
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="category"><span translate="imgcheckApp.issues.category">Category</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span translate="imgcheckApp.issues.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="attachment"><span translate="imgcheckApp.issues.attachment">Attachment</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="details"><span translate="imgcheckApp.issues.details">Details</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="issues in vm.issues track by issues.id">
+                    <td><a ui-sref="issues-detail({id:issues.id})">{{issues.id}}</a></td>
+                    <td translate="{{'imgcheckApp.CategoryType.' + issues.category}}">{{issues.category}}</td>
+                    <td>{{issues.description}}</td>
+                    <td>
+                        <a ng-if="issues.attachment" ng-click="vm.openFile(issues.attachmentContentType, issues.attachment)" translate="entity.action.open">open</a>
+                        <span ng-if="issues.attachment">{{issues.attachmentContentType}}, {{vm.byteSize(issues.attachment)}}</span>
+                    </td>
+                    <td>{{issues.details}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="issues-detail({id:issues.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="issues.edit({id:issues.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="issues.delete({id:issues.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

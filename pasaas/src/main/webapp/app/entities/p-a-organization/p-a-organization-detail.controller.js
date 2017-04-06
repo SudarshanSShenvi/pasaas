@@ -44,11 +44,14 @@
 			},
 			function(isConfirm){
 				if (isConfirm) {
-				// 	PAProject.delete({id: coming_project_id},
-		  //               function () {
-		  //                   // $uibModalInstance.close(true);
-		  //               });
-					// // p-a-project.delete({id:each_project.id})
+					// console.log(coming_project_id);
+					PAProject.delete({id: coming_project_id},
+		                function () {
+		                	$state.reload();
+		                    // $uibModalInstance.close(true);
+							swal("Deleted", "Deleted Suucessfully!", "success");
+		                });
+					// p-a-project.delete({id:each_project.id})
 					// actual_removal(coming_user, save_organization);
 				} else {
 					swal("Cancelled", "Delete Operation Canceled", "error");

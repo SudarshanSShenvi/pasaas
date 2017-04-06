@@ -7,27 +7,7 @@
 							<div class="ibox-title">
 								<h5>Invite User</h5>
 			                    <div ibox-tools></div>
-								<button 
-									class="btn btn-primary btn-xs pull-right" 
-									ui-sref="user-management.new({organization:vm.pAOrganization.organization})"
-								>
-									<!-- ui-sref="user-management.new" -->
-									Create New User
-								</button>
-			                    <span class="pull-right">&nbsp;</span>
-			                    <button 
-			                    	class="btn btn-success btn-xs pull-right" 
-			                    	ng-click="vm.add_user(vm.new_user)"
-			                    >
-									Add User
-								</button>
-			                    <span class="pull-right">&nbsp;</span>
-			                    <input 
-			                    	type="text" 
-			                    	class="btn-xs pull-right" 
-			                    	ng-model="vm.new_user"
-			                    >
-			                    <span class="pull-right">&nbsp;</span>
+
 							</div>
 							<!-- <div class="ibox-content">
 								<div class="input-group">
@@ -37,7 +17,37 @@
 									</span>
 								</div>
 							</div> -->
-							<div class="ibox-content">
+							<div class="ibox-content table-responsive">
+								<div class="row">
+									<div class="col-md-6"></div>
+									<div class="col-md-2">
+										<input 
+					                    	type="text" 
+					                    	class="btn-xs btn-block pull-right" 
+					                    	ng-model="vm.new_user"
+					                    	placeholder="Enter User Name" 
+					                    >
+									</div>
+									<div class="col-md-2">
+										<button 
+					                    	class="btn btn-success btn-xs btn-block pull-right" 
+					                    	ng-click="vm.add_user(vm.new_user)"
+					                    >
+											Add User
+										</button>
+									</div>
+									<div class="col-md-2">
+										<button 
+											class="btn btn-primary btn-xs btn-block pull-right" 
+											ui-sref="user-management.new({organization:vm.pAOrganization.organization})"
+										>
+											<!-- ui-sref="user-management.new" -->
+											Create New User
+										</button>
+									</div>
+								</div>
+								
+			                    <!-- <span class="pull-right">&nbsp;</span> -->
 								<table 
 									datatable="" 
 									class="table table-striped table-hover dataTables-example"

@@ -33,8 +33,11 @@ public interface PAPredictionScoreService {
     
     Page<PAPredictionScore> findAllProject(Pageable pageable,  PAProject paProject);
     
-    public Page<PAPredictionScore> findFailuresAbove(Pageable pageable,  Float probValStart, Float probValEnd );
-    public Page<PAPredictionScore> findStableAbove(Pageable pageable,  Float probValStart, Float probValEnd);
+    Page<PAPredictionScore> findAllPredictionsForChartB(Pageable pageable,  PAProject paProject);
+    Page<PAPredictionScore> findAllPredictionsForChartC(Pageable pageable,  PAProject paProject);
+    
+    Page<PAPredictionScore> findFailuresAbove(Pageable pageable,  Float probValStart, Float probValEnd );
+    Page<PAPredictionScore> findStableAbove(Pageable pageable,  Float probValStart, Float probValEnd);
 
     /**
      *  Get the "id" pAPredictionScore.

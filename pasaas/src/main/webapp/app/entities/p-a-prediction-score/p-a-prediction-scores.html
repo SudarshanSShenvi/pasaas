@@ -6,34 +6,7 @@
 					<h5 data-translate="pasaasApp.pAPredictionScore.home.title">Prediction Scores</h5>
 
 					<div ibox-tools></div>
-					<input 
-	                	type="text" 
-	                	ng-model="serachText" 
-	                	class="btn-xs pull-right" 
-	                	placeholder="Search..."
-	                >
-	                <span class="pull-right">&nbsp;</span>
-					<select 
-						class="btn-xs pull-right" 
-						id="field_pabporg" 
-						name="pabporg" 
-						ng-model="vm.selected_project" 
-						ng-options="
-							each_paln as each_paln.projectname for each_paln in vm.project_list
-						"
-						ng-change="vm.get_patterns()"
-					>
-						<!-- ng-init=" vm.pAOrganization.pabporg = selected_plan" -->
-					</select>
-	                <span class="pull-right">&nbsp;</span>
-	                <input 
-	                	type="text" 
-	                	ng-model="vm.selected_project.paorgpro.organization" 
-	                	class="btn-xs pull-right" 
-	                	placeholder="Organization"
-	                	ng-disabled="true"
-	                >
-	                <span class="pull-right">&nbsp;</span>
+					
 					<!-- <button 
 						class="btn btn-primary btn-xs pull-right" 
 						ui-sref="p-a-organization.new"
@@ -42,7 +15,45 @@
 					</button> -->
 				</div>
 
-				<div class="ibox-content">
+				<div class="ibox-content table-responsive">
+					<div class="row">
+						<div class="col-md-6"></div>
+						<div class="col-md-2">
+							<input 
+			                	type="text" 
+			                	ng-model="vm.selected_project.paorgpro.organization" 
+			                	class="btn-xs btn-block pull-right" 
+			                	placeholder="Organization"
+			                	ng-disabled="true"
+			                >
+						</div>
+						<div class="col-md-2">
+							<select 
+								class="btn-primary btn-block pull-right" 
+								id="field_pabporg" 
+								name="pabporg" 
+								ng-model="vm.selected_project" 
+								ng-options="
+									each_paln as each_paln.projectname for each_paln in vm.project_list
+								"
+								ng-change="vm.get_patterns()"
+							>
+								<option value="" ng-disabled="true">Select Project</option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<input 
+			                	type="text" 
+			                	ng-model="serachText" 
+			                	class="btn-xs btn-block pull-right" 
+			                	placeholder="Search..."
+			                >
+						</div>
+					</div>
+					
+	                <!-- <span class="pull-right">&nbsp;</span>
+	                <span class="pull-right">&nbsp;</span>
+	                <span class="pull-right">&nbsp;</span> -->
 					<jhi-alert></jhi-alert>
 					<!-- <table 
 						datatable="" 

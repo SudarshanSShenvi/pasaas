@@ -1,0 +1,137 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+	<div class="col-lg-10">
+		<h2>Dashboard</h2>
+	</div>
+	<div class="col-lg-2">
+		<h2>
+		<button 
+			type="button"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info pull-right"
+        >
+            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+            <span data-translate="entity.action.back"> Back</span>
+        </button>
+		
+		<h2>
+	</div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-show="">
+	<h2 align="center">No Data Available</h2>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Most Affected Network Elements</h5>
+					<div ibox-tools></div>
+				</div>
+
+				<div class="ibox-content" ng-controller="controller_prediction_score_chart_C as vm">
+					<div>
+						<canvas 
+							barchart 
+							options="vm.barOptions" 
+							data="vm.barData" 
+							height="200" 
+							responsive=true 
+						></canvas>
+					</div>
+					<!-- <pre>{{vm.pAPredictionScores | json}}</pre> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">	
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Most Stable Network Elements</h5>
+					<div ibox-tools></div>
+				</div>
+
+				<div class="ibox-content" ng-controller="controller_prediction_score_chart_B as vm">
+					<div>
+						<canvas 
+							barchart 
+							options="vm.barOptions" 
+							data="vm.barData" 
+							height="200" 
+							responsive=true 
+						></canvas>
+					</div>
+					<!-- <pre>{{vm.pAPredictionScores | json}}</pre> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">	
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Most Stable Network Elements</h5>
+					<div ibox-tools></div>
+				</div>
+				
+				<div class="ibox-content">
+					<div class="flot-chart">
+						<div flot class="flot-chart-content" dataset="vm.flotPieData" options="vm.flotPieOptions"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="row">
+		<div class="col-lg-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Line Chart Example</h5>
+
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+
+					<div class="flot-chart">
+						<div flot class="flot-chart-content" dataset="charts.flotChartData" options="charts.flotLineOptions"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Line Area</h5>
+
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+
+					<div class="flot-chart">
+						<div flot class="flot-chart-content" dataset="charts.flotLineAreaData" options="charts.flotLineAreaOptions"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <div class="row">
+		<div class="col-lg-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>Multiple Axes Line Chart Example </h5>
+
+					<div ibox-tools></div>
+				</div>
+				<div class="ibox-content">
+					<div class="flot-chart">
+						<div flot class="flot-chart-content" dataset="charts.flotMultiData" options="charts.flotMultiOptions"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+</div>

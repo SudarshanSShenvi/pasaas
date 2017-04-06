@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAReport;
+import java.lang.Long;
 
 /**
  * Spring Data JPA repository for the PAReport entity.
@@ -18,5 +19,7 @@ public interface PAReportRepository extends JpaRepository<PAReport,Long> {
 	Page<PAReport> findByPaorgrepIn(List<PAOrganization> paOrganization, Pageable pageable);
 	
 	Page<PAReport> findByPaorgrep(PAOrganization paOrganization, Pageable pageable);
+	
+	Page<PAReport> findByProjectId(Long projectid, Pageable pageable);
 	
 }
