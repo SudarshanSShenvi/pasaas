@@ -238,7 +238,66 @@ public class PAProjectResource {
         log.debug("REST request to get PAProject : {}", id);
         PAProject pAProject = pAProjectService.findOne(id);
         
+        String dirNameT = "/user/pervazive/"+pAProject.getPaorgpro().getOrganization()+"/"+pAProject.getProjectname()+"/ppa-repo/traindata";
+        
+        String dirNameP = "/user/pervazive/"+pAProject.getPaorgpro().getOrganization()+"/"+pAProject.getProjectname()+"/ppa-repo/predictdata";     
+        List<FileStatus> fileListT = new ArrayList<FileStatus>();
+    	FileStatus[] fileStatusT = null;
+        try {
+        	fileStatusT =hdfsFileOperationsService.readFileList(dirNameT, hdfsFileOperationsService.init("pervazive"));
+        	for (FileStatus fileStat : fileStatusT)  {
+				if(fileStat.isFile()) {
+					fileListT.add(fileStat);
+				}
+        	}
+         } catch (IOException e) {
+    	   new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+        
+        List<FileStatusDTO> fileStatusDTOT = fileListT.stream()
+                .map(FileStatusDTO::new)
+                .collect(Collectors.toList());
+        
+        List<FileStatus> fileListP = new ArrayList<FileStatus>();
+    	FileStatus[] fileStatusP = null;
+        try {
+        	fileStatusP =hdfsFileOperationsService.readFileList(dirNameP, hdfsFileOperationsService.init("pervazive"));
+        	for (FileStatus fileStat : fileStatusP)  {
+				if(fileStat.isFile()) {
+					fileListP.add(fileStat);
+				}
+        	}
+         } catch (IOException e) {
+    	   new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+        
+        List<FileStatusDTO> fileStatusDTOP = fileListP.stream()
+                .map(FileStatusDTO::new)
+                .collect(Collectors.toList());
+        
+        PAProjectDTO paProjectDTO = new PAProjectDTO(pAProject);
+        paProjectDTO.setFileStatusDTOT(fileStatusDTOT);
+        paProjectDTO.setFileStatusDTOP(fileStatusDTOP);
+        
+        
+        return Optional.ofNullable(paProjectDTO)
+            .map(result -> new ResponseEntity<>(
+                result,
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    
+    
+   /* @GetMapping("/p-a-projects/{opts}/{id}")
+    @Timed
+    public ResponseEntity<PAProjectDTO> getPAProject(@PathVariable Long id, @PathVariable String opts) {
+        log.debug("REST request to get PAProject : {}", id);
+        PAProject pAProject = pAProjectService.findOne(id);
+        
         String dirName = "/user/pervazive/"+pAProject.getPaorgpro().getOrganization()+"/"+pAProject.getProjectname()+"/ppa-repo/traindata";
+        
+        if(opts.equals("P"))
+        	dirName = "/user/pervazive/"+pAProject.getPaorgpro().getOrganization()+"/"+pAProject.getProjectname()+"/ppa-repo/predictdata/";        
         List<FileStatus> fileList = new ArrayList<FileStatus>();
     	FileStatus[] fileStatus = null;
         try {
@@ -263,7 +322,7 @@ public class PAProjectResource {
                 result,
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+    }*/
 
     /**
      * DELETE  /p-a-projects/:id : delete the "id" pAProject.

@@ -37,7 +37,7 @@
             'query': { method: 'GET', isArray: true},
         });
     }
-
+    
     angular
     .module('pasaasApp')
     .factory('PAProjectUpload', PAProjectUpload);

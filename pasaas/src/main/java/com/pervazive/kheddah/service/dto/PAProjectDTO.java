@@ -92,7 +92,9 @@ public class PAProjectDTO {
 	private String lastModifiedBy;
 	private ZonedDateTime lastModifiedDate;
 	
-	private List<FileStatusDTO> fileStatusDTO;
+	private List<FileStatusDTO> fileStatusDTOT;
+	
+	private List<FileStatusDTO> fileStatusDTOP;
 	
 	public Long getId() {
 		return id;
@@ -299,11 +301,21 @@ public class PAProjectDTO {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	public List<FileStatusDTO> getFileStatusDTO() {
-		return fileStatusDTO;
+	public List<FileStatusDTO> getFileStatusDTOT() {
+		return fileStatusDTOT;
 	}
 
-	public void setFileStatusDTO(List<FileStatusDTO> fileStatusDTO) {
-		this.fileStatusDTO = fileStatusDTO;
+	public void setFileStatusDTOT(List<FileStatusDTO> fileStatusDTOT) {
+		this.fileStatusDTOT = fileStatusDTOT;
 	}
+
+	public List<FileStatusDTO> getFileStatusDTOP() {
+		return fileStatusDTOP;
+	}
+
+	public void setFileStatusDTOP(List<FileStatusDTO> fileStatusDTOP) {
+		this.fileStatusDTOP = fileStatusDTOP;
+	}
+
+
 }

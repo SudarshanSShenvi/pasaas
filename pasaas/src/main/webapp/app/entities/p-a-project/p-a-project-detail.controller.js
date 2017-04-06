@@ -127,8 +127,8 @@
 				type: "error"
 			});
 		}
-		vm.delete_file = function(file_name){
-			var api = "/api/delete/";
+		vm.delete_file_for_training = function(file_name){
+			var api = "/api/delete/T/";
 			var project_id = vm.pAProject.id;
 			
 			swal({
@@ -144,13 +144,36 @@
 			},
 			function(isConfirm){
 				if (isConfirm) {
-					$http.delete("/api/delete/" + project_id + "/" + file_name)
+					$http.delete("/api/delete/T/" + project_id + "/" + file_name)
 					.then(on_delete_success, on_delete_error);
 				} else {
 					swal("Cancelled", "Delete Operation Canceled", "error");
 				}
 			});
+		}
+		vm.delete_file_for_prediction = function(file_name){
+			var api = "/api/delete/P/";
+			var project_id = vm.pAProject.id;
 			
+			swal({
+				title: "Are you sure?",
+				text: "You will not be able to recover this file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				cancelButtonText: "No, cancel please!",
+				closeOnConfirm: false,
+				closeOnCancel: false
+			},
+			function(isConfirm){
+				if (isConfirm) {
+					$http.delete("/api/delete/P/" + project_id + "/" + file_name)
+					.then(on_delete_success, on_delete_error);
+				} else {
+					swal("Cancelled", "Delete Operation Canceled", "error");
+				}
+			});
 		}
 		
 
@@ -229,11 +252,19 @@
 			// PADataTrain.save({projectName: project_name}, onPredictionSuccess, onPredictionError);
 		}
 
-		vm.uploadFile = function(project_id){
+		vm.uploadFileForTraining = function(project_id){
 			var file = $scope.myFile;
 			console.log('file is ' );
 			console.dir(file);
-			var uploadUrl = "api/pushfile/" + project_id;
+			var uploadUrl = "api/pushfile/T/" + project_id;
+			fileUpload.uploadFileToUrl(file, uploadUrl);
+		};
+
+		vm.uploadFileForPrediction = function(project_id){
+			var file = $scope.myFile;
+			console.log('file is ' );
+			console.dir(file);
+			var uploadUrl = "api/pushfile/P/" + project_id;
 			fileUpload.uploadFileToUrl(file, uploadUrl);
 		};
 

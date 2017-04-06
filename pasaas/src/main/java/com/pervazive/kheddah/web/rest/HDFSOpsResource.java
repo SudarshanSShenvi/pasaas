@@ -127,9 +127,9 @@ public class HDFSOpsResource {
        return new ResponseEntity<String>("Successfully uploaded",HttpStatus.OK);
     }
     
-    @PostMapping("/pushfile/{projectId}")
+    @PostMapping("/pushfile/{opts}/{projectId}")
     @Timed
-    public ResponseEntity<String> createNewFile(@RequestPart("file") @Valid MultipartFile file, @PathVariable Long projectId)
+    public ResponseEntity<String> createNewFile(@RequestPart("file") @Valid MultipartFile file, @PathVariable String opts, @PathVariable Long projectId)
         throws URISyntaxException {
     	PAProject paProject = paProjectService.findOne(projectId);
     	
@@ -137,8 +137,8 @@ public class HDFSOpsResource {
     		Configuration configuration = hdfsFileOperationsService.init("pervazive");
     		
     		String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+file.getOriginalFilename();
-    		String actionType = "P";
-    		if(actionType.equals("T"))
+    		
+    		if(opts.equals("P"))
         	dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+file.getOriginalFilename();
     		
     		hdfsFileOperationsService.addFile(file, dirName, configuration);
@@ -149,16 +149,16 @@ public class HDFSOpsResource {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
     
-    @GetMapping("/download/{projectid}/{fileName:.+}")
+    @GetMapping("/download/{opts}/{projectid}/{fileName:.+}")
     @Timed
-    public void downloadFile(@PathVariable("projectid") Long projectId, @PathVariable("fileName") String fileName,  HttpServletResponse response) throws IOException {
+    public void downloadFile(@PathVariable("projectid") Long projectId, @PathVariable("fileName") String fileName,  @PathVariable String opts, HttpServletResponse response) throws IOException {
     	
     		PAProject paProject = paProjectService.findOne(projectId);
     		try {
     			Configuration configuration = hdfsFileOperationsService.init("pervazive");
     			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
-    			String actionType = "P";
-        		if(actionType.equals("T"))
+    			
+    			if(opts.equals("P"))
             	dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
     		
     			FSDataInputStream in = hdfsFileOperationsService.readFile(dirName, configuration);
@@ -183,18 +183,17 @@ public class HDFSOpsResource {
     		}
     }
     
-    @DeleteMapping("/delete/{projectid}/{fileName:.+}")
+    @DeleteMapping("/delete/{opts}/{projectid}/{fileName:.+}")
     @Timed
     @Secured(AuthoritiesConstants.SUPERADMIN)
-    public ResponseEntity<Void> deleteFile(@PathVariable("projectid") Long projectId, @PathVariable("fileName") String fileName) {
+    public ResponseEntity<Void> deleteFile(@PathVariable("projectid") Long projectId, @PathVariable("fileName") String fileName, @PathVariable String opts) {
     	
     	PAProject paProject = paProjectService.findOne(projectId);
 		try {
 			Configuration configuration = hdfsFileOperationsService.init("pervazive");
 			String dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/traindata/"+fileName;
 			
-			String actionType = "P";
-    		if(actionType.equals("T"))
+			if(opts.equals("P"))
         	dirName = configuration.get("fs.defaultFS")+"/"+paProject.getPaorgpro().getOrganization()+"/"+paProject.getProjectname()+"/ppa-repo/predictdata/"+fileName;
     		
 			hdfsFileOperationsService.deleteFile(dirName, configuration);

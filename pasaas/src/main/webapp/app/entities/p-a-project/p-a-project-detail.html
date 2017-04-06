@@ -107,7 +107,7 @@
                 </div>
                 <div class="ibox">
                     <div class="ibox-title">
-                        <h5>Data Training and Prediction</h5>
+                        <h5>Data Training</h5>
                         <!-- <a href="http://10.10.10.176:8088/api/download/1/March_2015_1_31.csv">fdfdsfs</a> -->
                         <!-- <a href="api/download/1/March_2015_1_31.csv">omkar</a> -->
                         <div ibox-tools></div>
@@ -132,7 +132,7 @@
 				                        >
 				                            Upload File
 				                        </button> -->
-                                                <button ng-click="vm.uploadFile(vm.pAProject.id)" class="btn btn-primary btn-block">Upload File</button>
+                                                <button ng-click="vm.uploadFileForTraining(vm.pAProject.id)" class="btn btn-primary btn-block">Upload File</button>
                                                 <!-- <button ng-disabled="!vm.show_upload_button" ng-click="vm.uploadFile(vm.pAProject.id)" class="btn btn-primary btn-block">Upload File</button> -->
                                                 <!-- <button 
 				                        	type="file" 
@@ -151,10 +151,10 @@
                                                     Start Data Training
                                                 </button>
                                                 <div class="hr-line-dashed"></div>
-                                                <button ng-click="vm.start_data_Prediction(vm.pAProject.projectname)" class="btn btn-primary btn-block">
+                                                <!-- <button ng-click="vm.start_data_Prediction(vm.pAProject.projectname)" class="btn btn-primary btn-block">
                                                     Generate Predictions
                                                 </button>
-                                                <div class="hr-line-dashed"></div>
+                                                <div class="hr-line-dashed"></div> -->
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@
                                 <div class="col-lg-9 animated fadeInRight">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="file-box" ng-repeat="each_file in vm.pAProject.fileStatusDTO">
+                                            <div class="file-box" ng-repeat="each_file in vm.pAProject.fileStatusDTOT">
                                                 <div class="file">
                                                     <a href="">
                                                         <span class="corner"></span>
@@ -181,14 +181,113 @@
                                                             <div class="row">
                                                                 <div class="col-lg-6">
                                                                     <a 
-                                                                    href="api/download/{{vm.pAProject.id}}/{{each_file.path}}"
+                                                                    href="api/download/T/{{vm.pAProject.id}}/{{each_file.path}}"
                                                                      class="btn btn-primary btn-sm btn-block">
                                                                         <span>Download</span>
                                                                     </a>
                                                                     <!-- ng-click="vm.download_file(each_file.path)" -->
                                                                 </div>
                                                                 <div class="col-lg-6">
-                                                                    <button ng-click="vm.delete_file(each_file.path)" class="btn btn-danger btn-sm btn-block">
+                                                                    <button ng-click="vm.delete_file_for_training(each_file.path)" class="btn btn-danger btn-sm btn-block">
+                                                                        <span>Delete</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Data Prediction</h5>
+                        <!-- <a href="http://10.10.10.176:8088/api/download/1/March_2015_1_31.csv">fdfdsfs</a> -->
+                        <!-- <a href="api/download/1/March_2015_1_31.csv">omkar</a> -->
+                        <div ibox-tools></div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="wrapper wrapper-content">
+                            <div class="row">
+                                <input type="file" file-model="myFile" onchange="angular.element(this).scope().fileNameChanged()" />
+                                <div class="col-lg-3">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <div class="file-manager">
+                                                <div class="hr-line-dashed"></div>
+                                                <!-- <button 
+				                        	type="file" 
+				                        	ngf-select 
+				                        	class="btn btn-default btn-block"
+				                        	ngf-pattern="'.csv,.txt'"
+											accept="text/csv, text/plain"
+											ngf-change="vm.setImage($file, myFile)"
+				                        	file-model="myFile"
+				                        >
+				                            Upload File
+				                        </button> -->
+                                                <button ng-click="vm.uploadFileForPrediction(vm.pAProject.id)" class="btn btn-primary btn-block">Upload File</button>
+                                                <!-- <button ng-disabled="!vm.show_upload_button" ng-click="vm.uploadFile(vm.pAProject.id)" class="btn btn-primary btn-block">Upload File</button> -->
+                                                <!-- <button 
+				                        	type="file" 
+				                        	ngf-select class="btn btn-default btn-block"
+				                        	ngf-change="vm.setImage($file)" 
+				                        	accept="image/*" 
+				                        	translate="entity.action.addimage"
+				                        >
+				                            Add image
+				                        </button>
+						                <button class="btn btn-primary btn-block" ng-click="vm.upload_file()">
+						                	Upload Files
+						                </button> -->
+                                                <div class="hr-line-dashed"></div>
+                                                <!-- <button ng-click="vm.start_data_training(vm.pAProject.projectname)" class="btn btn-primary btn-block">
+                                                    Start Data Training
+                                                </button>
+                                                <div class="hr-line-dashed"></div> -->
+                                                <button ng-click="vm.start_data_Prediction(vm.pAProject.projectname)" class="btn btn-primary btn-block">
+                                                    Generate Predictions
+                                                </button>
+                                                <div class="hr-line-dashed"></div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 animated fadeInRight">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="file-box" ng-repeat="each_file in vm.pAProject.fileStatusDTOP">
+                                                <div class="file">
+                                                    <a href="">
+                                                        <span class="corner"></span>
+                                                        <div class="icon">
+                                                            <i class="fa fa-file"></i>
+                                                        </div>
+                                                        <div class="file-name">
+                                                            {{each_file.path}}
+                                                            <br/>
+                                                            <small>Size :{{vm.file_size_converter(each_file.fileSize)}}</small>
+                                                            <br>
+                                                            <small>Created: <br> {{each_file.accessTime | date:'medium'}}</small>
+                                                            <br>
+                                                            <br>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <a 
+                                                                    href="api/download/P/{{vm.pAProject.id}}/{{each_file.path}}"
+                                                                     class="btn btn-primary btn-sm btn-block">
+                                                                        <span>Download</span>
+                                                                    </a>
+                                                                    <!-- ng-click="vm.download_file(each_file.path)" -->
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button ng-click="vm.delete_file_for_prediction(each_file.path)" class="btn btn-danger btn-sm btn-block">
                                                                         <span>Delete</span>
                                                                     </button>
                                                                 </div>
