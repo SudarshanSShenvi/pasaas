@@ -80,5 +80,15 @@
     	return $resource(resourceUrl, {}, { 
     		'query': { method: 'GET', isArray: true}
     	}); }
+    
+    angular    
+    .module('pasaasApp')
+    .factory('PAPredictionScorePieChart', PAPredictionScorePieChart); 
+    
+    PAPredictionScorePieChart.$inject = ['$resource', 'DateUtils']; function PAPredictionScorePieChart ($resource, DateUtils) {
+    	var resourceUrl =  'api/p-a-prediction-scores/distribution/:projectId';     
+    	return $resource(resourceUrl, {}, { 
+    		'query': { method: 'GET', isArray: true}
+    	}); }
     	
 })();

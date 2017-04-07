@@ -32,6 +32,7 @@ import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.service.PAOrganizationService;
 import com.pervazive.kheddah.service.PAPredictionScoreService;
 import com.pervazive.kheddah.service.PAProjectService;
+import com.pervazive.kheddah.service.dto.AlarmDistribution;
 import com.pervazive.kheddah.service.dto.PAPredictionScoreDTO;
 import com.pervazive.kheddah.web.rest.util.HeaderUtil;
 import com.pervazive.kheddah.web.rest.util.PaginationUtil;
@@ -158,6 +159,22 @@ public class PAPredictionScoreResource {
         
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores/chartb");
         return new ResponseEntity<>(predictionScoreDTOList, headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/p-a-prediction-scores/distribution/{projectId}")
+    @Timed
+    public ResponseEntity<List<AlarmDistribution>> getAllPAPredictionScoresAlarmDistribution(@ApiParam Pageable pageable, @PathVariable Long projectId)
+        throws URISyntaxException {
+        log.debug("REST request to get a page of PAPredictionScores");
+        PAProject paProject = pAProjectService.findOne(projectId);
+        
+        Page<AlarmDistribution> page = pAPredictionScoreService.findAlarmCountDistribution(pageable, paProject);
+       /* List<PAPredictionScoreDTO> predictionScoreDTOList = page.getContent().stream()
+        		 .map(PAPredictionScoreDTO::new)
+                 .collect(Collectors.toList());*/
+        
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/p-a-prediction-scores/chartb");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
     
     @GetMapping("/p-a-prediction-scores/chartc/{projectId}")

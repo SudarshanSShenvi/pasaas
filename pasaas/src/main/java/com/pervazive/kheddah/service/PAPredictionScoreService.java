@@ -3,6 +3,7 @@ package com.pervazive.kheddah.service;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
 import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.service.dto.AlarmDistribution;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +39,8 @@ public interface PAPredictionScoreService {
     
     Page<PAPredictionScore> findFailuresAbove(Pageable pageable,  Float probValStart, Float probValEnd );
     Page<PAPredictionScore> findStableAbove(Pageable pageable,  Float probValStart, Float probValEnd);
+    
+    Page<AlarmDistribution> findAlarmCountDistribution(Pageable pageable, PAProject paProject);
 
     /**
      *  Get the "id" pAPredictionScore.

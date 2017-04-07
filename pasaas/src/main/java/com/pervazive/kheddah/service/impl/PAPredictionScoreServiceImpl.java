@@ -1,20 +1,23 @@
 package com.pervazive.kheddah.service.impl;
 
-import com.pervazive.kheddah.service.PAPredictionScoreService;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
 import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.repository.PAOrganizationRepository;
 import com.pervazive.kheddah.repository.PAPredictionScoreRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
-import java.util.List;
+import com.pervazive.kheddah.service.PAPredictionScoreService;
+import com.pervazive.kheddah.service.dto.AlarmDistribution;
 
 /**
  * Service Implementation for managing PAPredictionScore.
@@ -145,4 +148,11 @@ public class PAPredictionScoreServiceImpl implements PAPredictionScoreService{
         log.debug("Request to delete PAPredictionScore : {}", id);
         pAPredictionScoreRepository.delete(id);
     }
+
+	@Override
+	public Page<AlarmDistribution> findAlarmCountDistribution(Pageable pageable, PAProject paProject) {
+		
+		Page<AlarmDistribution> result = pAPredictionScoreRepository.findAlarmCountDistribution(paProject.getId(), pageable);
+		return result;
+	}
 }

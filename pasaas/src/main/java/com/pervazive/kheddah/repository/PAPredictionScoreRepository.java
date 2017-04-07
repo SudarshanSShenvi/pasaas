@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.pervazive.kheddah.domain.PAOrganization;
 import com.pervazive.kheddah.domain.PAPredictionScore;
 import com.pervazive.kheddah.domain.PAProject;
+import com.pervazive.kheddah.service.dto.AlarmDistribution;
 
 import java.lang.Float;
 
@@ -31,6 +32,11 @@ public interface PAPredictionScoreRepository extends JpaRepository<PAPredictionS
 	@Query(value = "SELECT paPredictionScore FROM PAPredictionScore paPredictionScore where paPredictionScore.bscore != ?1 AND paPredictionScore.paprops.id = ?2")
 	Page<PAPredictionScore> findBscorePredictions(Float cVal, Long paProject, Pageable pageable);
 	
+	@Query(value = "SELECT new com.pervazive.kheddah.service.dto.AlarmDistribution(paPredictionScore.alarmno, count(paPredictionScore)) from PAPredictionScore paPredictionScore "
+			+ "WHERE paPredictionScore.paprops.id = ?1 group by paPredictionScore.alarmno order by count(paPredictionScore) desc")
+	Page<AlarmDistribution> findAlarmCountDistribution(Long paProject, Pageable pageable);
+	
+	
 	@Query(value = "INSERT INTO pasaas.pa_prediction_score (dist,alarmno,bcount,ccount,bscore,cscore,createdon,severity) "
 			+ "SELECT SUBSTRING_INDEX(AA.distalarm,'_',1), SUBSTRING_INDEX(AA.distalarm,'_',-1), AA.b AS bCount, BB.c AS cCount, "
 			+ "ROUND(IFNULL((AA.b / (AA.b + BB.c)), 0), 3) AS bScore, ROUND(IFNULL((BB.c / (AA.b + BB.c)), 0), 3) AS cScore, now(), AA.severity "
@@ -48,4 +54,7 @@ public interface PAPredictionScoreRepository extends JpaRepository<PAPredictionS
 	
 	//@Query("select paPredictionScore from PAPredictionScore paPredictionScore where paPredictionScore.bscore>?1")
 	Page<PAPredictionScore> findByBscoreBetween(Float bscorestart, Float bscoreend, Pageable pageable);
+	
+	
+	
 }

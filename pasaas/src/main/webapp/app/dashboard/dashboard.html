@@ -73,13 +73,29 @@
 		<div class="col-lg-12">	
 			<div class="ibox float-e-margins">
 				<div class="ibox-title">
-					<h5>Most Stable Network Elements</h5>
+					<h5>Fault Type Distribution</h5>
 					<div ibox-tools></div>
 				</div>
 				
 				<div class="ibox-content">
+					<!-- <select 
+						name="pie_size" 
+						id="pie_size" 
+						ng-model="vm.pie_size"
+						ng-change="vm.fetch_pie_data(vm.pie_size)"
+					>	
+						<option value="" ng-disabled="true">Select Pie Size</option>
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="20">20</option>
+					</select> -->
 					<div class="flot-chart">
-						<div flot class="flot-chart-content" dataset="vm.pieData" options="vm.pieOptions"></div>
+						<div 
+							flot 
+							class="flot-chart-content" 
+							dataset="vm.pieData" 
+							options="vm.pieOptions"
+						></div>
 					</div>
 				</div>
 			</div>
