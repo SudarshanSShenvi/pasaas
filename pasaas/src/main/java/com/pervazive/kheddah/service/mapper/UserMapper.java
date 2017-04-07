@@ -1,6 +1,8 @@
 package com.pervazive.kheddah.service.mapper;
 
 import com.pervazive.kheddah.domain.Authority;
+import com.pervazive.kheddah.domain.PAOrganization;
+import com.pervazive.kheddah.domain.PAProject;
 import com.pervazive.kheddah.domain.User;
 import com.pervazive.kheddah.service.dto.UserDTO;
 import org.mapstruct.*;
@@ -52,6 +54,32 @@ public interface UserMapper {
             Authority auth = new Authority();
             auth.setName(string);
             return auth;
+        }).collect(Collectors.toSet());
+    }
+    
+    default Set<String> stringsFromPaOrganizations (Set<PAOrganization> paOrganizations) {
+        return paOrganizations.stream().map(PAOrganization::getOrganization)
+            .collect(Collectors.toSet());
+    }
+
+    default Set<PAOrganization> paOrganizationsFromStrings(Set<String> strings) {
+        return strings.stream().map(string -> {
+        	PAOrganization paOrganization = new PAOrganization();
+        	paOrganization.setOrganization(string);
+            return paOrganization;
+        }).collect(Collectors.toSet());
+    }
+    
+    default Set<String> stringsFromPaProjects (Set<PAProject> paProjects) {
+        return paProjects.stream().map(PAProject::getProjectname)
+            .collect(Collectors.toSet());
+    }
+
+    default Set<PAProject> paProjectsFromStrings(Set<String> strings) {
+        return strings.stream().map(string -> {
+        	PAProject paProject = new PAProject();
+        	paProject.setProjectname(string);
+            return paProject;
         }).collect(Collectors.toSet());
     }
 }

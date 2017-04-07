@@ -473,6 +473,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.pervazive.kheddah</groupId>
+			<artifactId>paml</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>/home/pervazive/git/pasaas/pasaas/lib/paml-1.0.jar</systemPath>
+		</dependency>
     </dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>

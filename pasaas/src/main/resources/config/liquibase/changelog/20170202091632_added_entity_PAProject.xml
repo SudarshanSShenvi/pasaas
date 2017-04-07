@@ -51,7 +51,7 @@
  			<column name="feedoutdateformat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-			<column name="feedfirstlineheader" type="varchar(10)">
+			<column name="feedfirstlineheader" type="boolean" valueBoolean="true">
                 <constraints nullable="true" />
             </column>
  			<column name="feedskipindexes" type="varchar(255)">

@@ -24,7 +24,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://10.10.10.176:3306/pasaas?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://10.10.10.176:3306/pasaasp?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: root
         password: tizam0
