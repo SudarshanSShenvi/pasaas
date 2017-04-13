@@ -157,12 +157,14 @@ public class UserService {
         return user;
     }
 
-    public void updateUser(String firstName, String lastName, String email, String langKey) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, byte[] image, String imageContentType) {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
             user.setLangKey(langKey);
+            user.setImage(image);
+            user.setImageContentType(imageContentType);
             log.debug("Changed Information for User: {}", user);
         });
     }

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('imgcheckApp')
+        .module('pasaasApp')
         .controller('IssuesController', IssuesController);
 
     IssuesController.$inject = ['$scope', '$state', 'DataUtils', 'Issues', 'ParseLinks', 'AlertService'];

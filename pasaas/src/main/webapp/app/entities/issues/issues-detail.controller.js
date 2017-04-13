@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('imgcheckApp')
+        .module('pasaasApp')
         .controller('IssuesDetailController', IssuesDetailController);
 
     IssuesDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'DataUtils', 'entity', 'Issues'];
@@ -15,7 +15,7 @@
         vm.byteSize = DataUtils.byteSize;
         vm.openFile = DataUtils.openFile;
 
-        var unsubscribe = $rootScope.$on('imgcheckApp:issuesUpdate', function(event, result) {
+        var unsubscribe = $rootScope.$on('pasaasApp:issuesUpdate', function(event, result) {
             vm.issues = result;
         });
         $scope.$on('$destroy', unsubscribe);

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('imgcheckApp')
+        .module('pasaasApp')
         .controller('IssuesDeleteController',IssuesDeleteController);
 
     IssuesDeleteController.$inject = ['$uibModalInstance', 'entity', 'Issues'];

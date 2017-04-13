@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('imgcheckApp')
+        .module('pasaasApp')
         .config(stateConfig);
 
     stateConfig.$inject = ['$stateProvider'];

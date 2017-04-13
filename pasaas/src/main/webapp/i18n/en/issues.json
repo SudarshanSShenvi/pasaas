@@ -1,0 +1,25 @@
+{
+    "imgcheckApp": {
+        "issues" : {
+            "home": {
+                "title": "Issues",
+                "createLabel": "Create a new Issues",
+                "createOrEditLabel": "Create or edit a Issues",
+                "search": "Search for Issues"
+            },
+            "created": "A new Issues is created with identifier {{ param }}",
+            "updated": "A Issues is updated with identifier {{ param }}",
+            "deleted": "A Issues is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Issues {{ id }}?"
+            },
+            "detail": {
+                "title": "Issues"
+            },
+            "category": "Category",
+            "description": "Description",
+            "attachment": "Attachment",
+            "details": "Details"
+        }
+    }
+}

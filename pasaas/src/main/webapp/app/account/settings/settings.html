@@ -15,7 +15,7 @@
 	                    <h5>Profile Detail</h5>
 	                </div>
 	                <div>
-		                <div>
+		                <!-- <div>
 		                    <img 
 		                        ng-if="vm.user.image"
 		                        data-ng-src="
@@ -35,7 +35,7 @@
 		                        width="100%" 
 		                        class="img-thumbnail" 
 		                    />
-	                        <!-- <div ng-if="vm.user.image" class="help-block clearfix">
+	                        <div ng-if="vm.user.image" class="help-block clearfix">
 	                            <span class="pull-left">
 	                            	{{vm.user.imageContentType}}, {{vm.byteSize(vm.user.image)}}
 	                            </span>
@@ -45,7 +45,7 @@
 	                            >
 	                                <span class="glyphicon glyphicon-remove"></span>
 	                            </button>
-	                        </div> -->
+	                        </div>
 	                        <button 
 	                        	type="file" 
 	                        	ngf-select class="btn btn-default btn-block"
@@ -55,7 +55,78 @@
 	                        >
 	                            Add image
 	                        </button>
-	                    </div>
+	                    </div> -->
+	                    <div 
+		                    class="form-group" 
+		                    ngf-drop ngf-change="vm.setImage($file, vm.settingsAccount)" 
+		                    ngf-pattern="'image/*'"
+		                >
+		                    <label 
+		                    	class="control-label" 
+		                    	translate="imgcheckApp.imgc.image" 
+		                    	for="field_image"
+		                    >Image</label>
+		                    <div>
+		                        <!-- <img 
+		                            data-ng-src="{{'data:' + vm.imgc.imageContentType + ';base64,' + my_img}}"
+		                            style="max-height: 100px;" 
+		                        /> -->
+		                            <!-- ng-if="vm.imgc.image" -->
+			                    <img 
+			                        data-ng-src="
+			                        	{{
+			                        		'data:' + vm.settingsAccount.imageContentType + 
+			                        		';base64,' + vm.settingsAccount.image
+			                        	}}
+			                        " 
+			                        alt="User Image" 
+			                        width="100%" 
+			                        class="img-thumbnail"
+			                        ng-if="vm.settingsAccount.image"
+		                        />
+			                    <img 
+			                        src="content/images/avatar.png" 
+			                        alt="User Image" 
+			                        width="100%" 
+			                        class="img-thumbnail" 
+			                        ng-if="!vm.settingsAccount.image"
+			                    />
+		                        <!-- <div ng-if="vm.settingsAccount.image" class="help-block clearfix">
+		                            <span class="pull-left">
+		                            	{{vm.settingsAccount.imageContentType}}, {{vm.byteSize(vm.settingsAccount.image)}}
+		                            </span>
+		                            <button 
+		                            	ng-click="vm.settingsAccount.image=null;vm.settingsAccount.imageContentType=null;"
+		                            	class="btn btn-default btn-xs pull-right"
+		                            >
+		                                <span class="glyphicon glyphicon-remove"></span>
+		                            </button>
+		                        </div> -->
+		                        <button 
+		                        	type="file" 
+		                        	ngf-select class="btn btn-default btn-block"
+		                        	ngf-change="vm.setImage($file, vm.settingsAccount)" 
+		                        	accept="image/*" 
+		                        	translate="entity.action.addimage"
+		                        >
+		                            Add image
+		                        </button>
+		                    </div>
+		                    <input 
+		                        type="hidden" 
+		                        class="form-control" 
+		                        name="image" 
+		                        id="field_image"
+		                    	ng-model="vm.settingsAccount.image"
+		                    />
+		                    <input 
+		                    	type="hidden" 
+		                    	class="form-control" 
+		                    	name="imageContentType" 
+		                    	id="field_imageContentType"
+		                        ng-model="vm.uer.imageContentType" 
+		                    />
+		                </div>
 	                    <!-- <div class="ibox-content no-padding border-left-right">
 	                        <img 
 	                        	alt="image" 
@@ -65,7 +136,11 @@
 	                    </div> -->
 	                    <div class="ibox-content profile-content">
 	                        <h4>
-	                        	<strong>{{page_data1.name}}</strong>
+	                        	<strong>
+	                        		{{vm.settingsAccount.firstName}}
+	                        		{{vm.settingsAccount.lastName}}
+	                        	</strong>
+	                        	<!-- <strong>{{page_data1.name}}</strong> -->
 	                        	<span class="pull-right">
 	                        		<button 
 	                        			type="button" 

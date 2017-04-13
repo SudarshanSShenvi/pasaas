@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('imgcheckApp')
+        .module('pasaasApp')
         .controller('IssuesDialogController', IssuesDialogController);
 
     IssuesDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Issues'];
@@ -34,7 +34,7 @@
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('imgcheckApp:issuesUpdate', result);
+            $scope.$emit('pasaasApp:issuesUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

@@ -5,9 +5,9 @@
         .module('pasaasApp')
         .controller('SettingsController', SettingsController);
 
-    SettingsController.$inject = ['$scope', 'Principal', 'Auth', 'JhiLanguageService', '$translate'];
+    SettingsController.$inject = ['$scope', 'Principal', 'Auth', 'JhiLanguageService', '$translate', 'DataUtils'];
 
-    function SettingsController ($scope, Principal, Auth, JhiLanguageService, $translate) {
+    function SettingsController ($scope, Principal, Auth, JhiLanguageService, $translate, DataUtils) {
         $scope.page_data1 = {
             "name" : "Sudarshan Shenvi",
             "subscription_type" : "Silver",
@@ -55,6 +55,7 @@
          * Store the "settings account" in a separate variable, and not in the shared "account" variable.
          */
         var copyAccount = function (account) {
+            console.log(account);
             return {
                 activated: account.activated,
                 email: account.email,
@@ -62,6 +63,8 @@
                 langKey: account.langKey,
                 lastName: account.lastName,
                 login: account.login,
+                image: account.image,
+                imageContentType: account.imageContentType,
                 organizations: account.organizations
             };
         };
@@ -77,10 +80,12 @@
         });
 
         function save () {
+            console.log(vm.settingsAccount);
             Auth.updateAccount(vm.settingsAccount).then(function() {
                 vm.error = null;
                 vm.success = 'OK';
                 Principal.identity(true).then(function(account) {
+                    console.log(account);
                     vm.settingsAccount = copyAccount(account);
                 });
                 JhiLanguageService.getCurrent().then(function(current) {
@@ -93,5 +98,22 @@
                 vm.error = 'ERROR';
             });
         }
+
+        
+        vm.setImage = function ($file, user) {
+            // console.log(JSON.stringify(user), null, 4);
+            console.log(user);
+            if ($file && $file.$error === 'pattern') {
+                return;
+            }
+            if ($file) {
+                DataUtils.toBase64($file, function(base64Data) {
+                    $scope.$apply(function() {
+                        user.image = base64Data;
+                        user.imageContentType = $file.type;
+                    });
+                });
+            }
+        };
     }
 })();

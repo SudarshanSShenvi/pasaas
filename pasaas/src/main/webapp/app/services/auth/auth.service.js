@@ -155,10 +155,12 @@
         }
 
         function updateAccount (account, callback) {
+            console.log(account);
             var cb = callback || angular.noop;
 
             return Account.save(account,
                 function () {
+                    console.log(account);
                     return cb(account);
                 },
                 function (err) {

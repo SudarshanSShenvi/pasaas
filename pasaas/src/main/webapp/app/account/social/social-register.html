@@ -1,22 +1,75 @@
 <div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1 ng-show="success" data-translate="social.register.title" translate-values="{ label: vm.providerLabel }">Registration with</h1>
-            <h1 ng-show="error" data-translate="social.register.errorTitle">Registration</h1>
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="panel panel-default">
+			<div class="panel-heading" align="center">
+				<h1>predict<span class="text-success">ION<sup><b>T</b></sup></span></h1>
+				<h2>Predictive Analytics for Telecommunications</h2>
+				<!-- <h4>About the Predictive Analytics application for Telecom in a Sentence.</h4> -->
+			</div>
+			<div class="panel-body" style="min-height:450px">
+				<div class="col-md-6 col-md-offset-3" align="center">
+					<h1 ng-show="success" data-translate="social.register.title" translate-values="{ label: vm.providerLabel }">Registration with</h1>
+					<h1 ng-show="error" data-translate="social.register.errorTitle">Registration</h1>
 
-            <div class="alert alert-success" ng-show="vm.success" data-translate="social.register.messages.success">
-                <strong>Registration saved!</strong> Please check your email for confirmation.
-            </div>
+					<div class="alert alert-success" ng-show="vm.success" data-translate="social.register.messages.success">
+						<strong>Registration saved!</strong> Please check your email for confirmation.
+					</div>
 
-            <div class="alert alert-danger" ng-show="vm.error" data-translate="social.register.messages.error.fail">
-                <strong>Registration failed!</strong> Please try again later.
-            </div>
+					<div class="alert alert-danger" ng-show="vm.error" data-translate="social.register.messages.error.fail">
+						<strong>Registration failed!</strong> Please try again later.
+					</div>
 
-            <jh-social ng-if="vm.success" ng-provider="{{ vm.provider }}"></jh-social>
-            <br/>
-            <div class="alert alert-warning" data-translate="global.messages.info.authenticated">
-                If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-            </div>
-        </div>
-    </div>
-</div>
+					<!-- <jh-social ng-if="vm.success" ng-provider="{{ vm.provider }}"></jh-social> -->
+					<br/>
+					<div class="alert alert-warning" data-translate="global.messages.info.authenticated">
+						If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							
+						</div>
+						<div class="col-md-6">
+							<div class="form-group row">
+								<div class="col-md-4">
+									<jh-social ng-if="vm.success" ng-provider="google"></jh-social>
+								</div>
+								<div class="col-md-4">
+									<jh-social ng-if="vm.success" ng-provider="facebook"></jh-social>
+								</div>
+								<div class="col-md-4">
+									<jh-social ng-if="vm.success" ng-provider="twitter"></jh-social>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer text-center">
+				<p>PredictION<sup>T</sup> - Predictive Analytics for Telecom &copy; 2015-16</p>
+			</div>
+		</div>
+	</div>
+</div>		
+<!-- <div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1 ng-show="success" data-translate="social.register.title" translate-values="{ label: vm.providerLabel }">Registration with</h1>
+			<h1 ng-show="error" data-translate="social.register.errorTitle">Registration</h1>
+
+			<div class="alert alert-success" ng-show="vm.success" data-translate="social.register.messages.success">
+				<strong>Registration saved!</strong> Please check your email for confirmation.
+			</div>
+
+			<div class="alert alert-danger" ng-show="vm.error" data-translate="social.register.messages.error.fail">
+				<strong>Registration failed!</strong> Please try again later.
+			</div>
+
+			<jh-social ng-if="vm.success" ng-provider="{{ vm.provider }}"></jh-social>
+			<br/>
+			<div class="alert alert-warning" data-translate="global.messages.info.authenticated">
+				If you want to <a class="alert-link" href="#/login">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+			</div>
+		</div>
+	</div>
+</div> -->

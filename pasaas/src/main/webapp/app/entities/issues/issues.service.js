@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular
-        .module('imgcheckApp')
+        .module('pasaasApp')
         .factory('Issues', Issues);
 
     Issues.$inject = ['$resource'];
