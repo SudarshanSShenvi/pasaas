@@ -1,0 +1,11 @@
+{
+    "imgcheckApp": {
+        "CategoryType" : {
+            "null": "",
+            "Issue": "Issue",
+            "NewFeatureRequest": "NewFeatureRequest",
+            "FeatureEnhancement": "FeatureEnhancement",
+            "UI": "UI"
+        }
+    }
+}
